@@ -1,20 +1,3 @@
 {
-  "MonsterType": {
-    "beast": "MonsterType.Beast",
-    "dragon": "MonsterType.Dragon",
-    "humanoid": "MonsterType.Humanoid",
-    "undead": "MonsterType.Undead"
-  },
-  "SpellType": {
-    "fire": "SpellType.Fire",
-    "wind": "SpellType.Wind",
-    "earth": "SpellType.Earth",
-    "water": "SpellType.Water"
-  },
-  "ItemType": {
-    "armor": "ItemType.Armor",
-    "weapon": "ItemType.Weapon",
-    "potion": "ItemType.Potion",
-    "scroll": "ItemType.Scroll"
-  }
+
 }
