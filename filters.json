@@ -1,3 +1,33 @@
-[
-  
-]
+{
+    "Rule": {
+        "params": [
+            {
+              "attribute": "type",
+              "attributeType": "RuleType",
+              "title": "Type"
+            },
+            {
+              "attribute": "sources.name",
+              "title": "Source",
+              "dynamic": true
+            }
+          ],
+          "group": [
+            {
+              "attribute": "type",
+              "attributeType": "RuleType",
+              "title": "Type"
+            },      {
+              "attribute": "sources.name",
+              "title": "Source",
+              "dynamic": true
+            }
+          ],
+          "sort": [
+            {
+              "attribute": "name",
+              "title": "Common.Name"
+            }
+          ]
+    }
+}

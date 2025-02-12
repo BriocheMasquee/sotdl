@@ -1,3 +1,14 @@
 {
-
+  "RuleType": {
+    "action": "RuleType.Action",
+    "affliction": "RuleType.Affliction",
+    "attribute": "RuleType.Attribute",
+    "characteristic": "RuleType.Characteristic",
+    "combat": "RuleType.Combat",
+    "environment": "RuleType.Environment",
+    "move": "RuleType.Move",
+    "other": "RuleType.Other",
+    "roll": "RuleType.Roll",
+    "source": "Common.Source"
+  }
 }
