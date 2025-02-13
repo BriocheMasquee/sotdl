@@ -1,3 +1,24 @@
 {
-  
+    "Common.CustomType": "Custom Type",
+    "Common.Default": "Default",
+    "Common.Description": "Description",
+    "Common.Image": "Image",
+    "Common.Location": "Location",
+    "Common.Name": "Name",
+    "Common.Note": "Note",
+    "Common.Page": "Page",
+    "Common.Source": "Source",
+
+    "Entity.Rule": "Rule",
+    "Entity.Rule.many": "Rules",
+
+    "RuleType.Action": "Action",
+    "RuleType.Affliction": "Affliction",
+    "RuleType.Attribute": "Attribute",
+    "RuleType.Characteristic": "Characteristic",
+    "RuleType.Combat": "Combat",
+    "RuleType.Environment": "Environment",
+    "RuleType.Move": "Move",
+    "RuleType.Other": "Other",
+    "RuleType.Roll": "Roll"
 }
