@@ -6,6 +6,9 @@
       "label": "rules"
     },
     "loadable": true,
-    "dynamic": true
+    "dynamic": true,
+    "custom": {
+      "detail": ""
+    }
   }
 ]
