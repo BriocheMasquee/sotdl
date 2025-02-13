@@ -1,0 +1,65 @@
+{
+    "debug": false,
+    "spacing": 0,
+    "padding": [
+      20
+    ],
+    "views": [
+      {
+        "type": "hStack",
+        "views": [
+          {
+            "type": "text",
+            "style": "entityTitle",
+            "value": "**{{name|uppercase}}**"
+          },
+          {
+            "style": "entitySubtitle",
+            "value": "{% if type %}**{{type|map: 'RuleType'|uppercase}}**{% endif %}",
+            "alignment": "trailing"
+          }
+        ]
+      },
+      {
+        "type": "divider",
+        "bgColor": "#000000",
+        "height": 2.5,
+        "padding": [
+          0
+        ]
+      },
+      {
+        "type": "spacer"
+      },
+      {
+        "type": "text",
+        "style": "sotdlbody",
+        "value": "{{descr}}"
+      },
+      {
+        "type": "spacer"
+      },
+      {
+        "type": "divider",
+        "bgColor": "#000000",
+        "height": 1.5,
+        "padding": [
+          0
+        ]
+      },
+      {
+        "type": "vStack",
+        "padding": [
+          8,
+          0
+        ],
+        "views": [
+          {
+            "type": "text",
+            "style": "sourceText",
+            "value": "{{footer}}"
+          }
+        ]
+      }
+    ]
+  }

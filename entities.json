@@ -1,10 +1,11 @@
 [
-    {
-        "name": "Rule",
-        "label": "rule",
-        "collection": {
-          "label": "rules"
-        },
-        "dynamic": true 
-      }
+  {
+    "name": "Rule",
+    "label": "rule",
+    "collection": {
+      "label": "rules"
+    },
+    "loadable": true,
+    "dynamic": true
+  }
 ]
