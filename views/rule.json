@@ -40,6 +40,14 @@
         "type": "spacer"
       },
       {
+        "type": "image",
+        "value": "{{image}}",
+        "link": "{{image}}"
+      },
+      {
+        "type": "spacer"
+      },
+      {
         "type": "divider",
         "bgColor": "#000000",
         "height": 1.5,
