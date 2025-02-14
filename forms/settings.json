@@ -1,0 +1,51 @@
+{
+  "title": "Common.Settings",
+  "sections": [
+    {
+      "type": "group",
+      "title": "Common.Locale",
+      "fields": [
+        {
+          "type": "picker",
+          "title": "Common.Language",
+          "placeholder": "Common.Default",
+          "attribute": "language",
+          "attributeType": "SystemLanguage"
+        },
+        {
+          "type": "picker",
+          "title": "Common.Measurement",
+          "placeholder": "Common.Default",
+          "attribute": "measurement",
+          "attributeType": "MeasurementSystem"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Turn Order",
+      "fields": [
+        {
+          "type": "picker",
+          "title": "Initiative.Auto-Roll",
+          "placeholder": "None",
+          "defaultValue": "hostileAndNeutral",
+          "attribute": "combat.initiative.autoRoll",
+          "attributeType": "InitiativeRollType"
+        },
+        {
+          "type": "picker",
+          "title": "Initiative.GroupBy",
+          "placeholder": "None",
+          "attribute": "combat.initiative.group",
+          "attributeType": "InitiativeGroupType"
+        },
+        {
+          "type": "toggle",
+          "title": "Initiative.ReRoll",
+          "attribute": "combat.initiative.everyRound"
+        }
+      ]
+    }
+  ]
+}
