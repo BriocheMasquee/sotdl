@@ -1,3 +1,46 @@
 {
-  
+    "Common.CustomType": "Custom Type",
+    "Common.Default": "Default",
+    "Common.Description": "Description",
+    "Common.Image": "Image",
+    "Common.Language": "Language",
+    "Common.Locale": "Locale",
+    "Common.Location": "Location",
+    "Common.Measurement": "Measurement",
+    "Common.Name": "Name",
+    "Common.Note": "Note",
+    "Common.Page": "Page",
+    "Common.Settings": "Settings",
+    "Common.Source": "Source",
+
+    "Entity.Rule": "Rule",
+    "Entity.Rule.many": "Rules",
+
+    "Initiative.Auto-Roll": "Auto-Roll Initiative",
+    "Initiative.GroupBy": "Group Initiative By",
+    "Initiative.ReRoll": "Re-Roll Initiative Every Round",
+
+    "MeasurementSystem.Imperial": "Imperial",
+    "MeasurementSystem.Metric": "Metric",
+
+    "RuleType.Action": "Action",
+    "RuleType.Affliction": "Affliction",
+    "RuleType.Attribute": "Attribute",
+    "RuleType.Characteristic": "Characteristic",
+    "RuleType.Combat": "Combat",
+    "RuleType.Environment": "Environment",
+    "RuleType.Move": "Move",
+    "RuleType.Other": "Other",
+    "RuleType.Roll": "Roll",
+
+    "Spell.Duration": "Duration",
+    "Spell.Effects": "Spell effects",
+    "Spell.EffectOptions": "Triggered, Sacrifice, Permanence, Attack Roll 20+",
+    "Spell.Informations": "Basic Informations",
+    "Spell.Options": "Spell options",
+    "Spell.OptionOptions": "Requirement, Target, Area...",
+    "Spell.Rank": "Rank",
+    "Spell.Tradition": "Tradition",
+    "Spell.Type": "Type"
+
 }

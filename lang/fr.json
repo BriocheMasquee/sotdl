@@ -1,3 +1,46 @@
 {
-  
+    "Common.CustomType": "Choix du Type",
+    "Common.Default": "Par défaut",
+    "Common.Description": "Description",
+    "Common.Image": "Image",
+    "Common.Language": "Langue",
+    "Common.Locale": "Localisation",
+    "Common.Location": "Emplacement ",
+    "Common.Measurement": "Mesures",
+    "Common.Name": "Nom",
+    "Common.Note": "Note",
+    "Common.Page": "Page",
+    "Common.Settings": "Réglages",
+    "Common.Source": "Source ",
+
+    "Entity.Rule": "Règle",
+    "Entity.Rule.many": "Règles",
+
+    "Initiative.Auto-Roll": "Lancer l'nitiative automatiquement",
+    "Initiative.GroupBy": "Grouper l'initiative par",
+    "Initiative.ReRoll": "Relancer l'initiative à chaque round",
+
+    "MeasurementSystem.Imperial": "Impérial",
+    "MeasurementSystem.Metric": "Métrique",
+
+    "RuleType.Action": "Action",
+    "RuleType.Affliction": "Affliction",
+    "RuleType.Attribute": "Attribut",
+    "RuleType.Characteristic": "Caractéristiques",
+    "RuleType.Combat": "Combat",
+    "RuleType.Environment": "Environnement",
+    "RuleType.Move": "Déplacement",
+    "RuleType.Other": "Autre",
+    "RuleType.Roll": "Jet",
+
+    "Spell.Duration": "Durée",
+    "Spell.Effects": "Effets du sort",
+    "Spell.EffectOptions": "Déclenché, Sacrifice, Permanence, Jet d'attaque 20+",
+    "Spell.Informations": "Informations générales",
+    "Spell.Options": "Options du sort",
+    "Spell.OptionOptions": "Condition, Cible, Zone d'effet...",
+    "Spell.Rank": "Rang",
+    "Spell.Tradition": "Tradition",
+    "Spell.Type": "Type"
+
 }
