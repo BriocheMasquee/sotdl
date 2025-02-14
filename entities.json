@@ -10,5 +10,15 @@
     "custom": {
       "detail": ""
     }
+  },
+  {
+    "name": "Spell",
+    "label": "spell",
+    "collection": {
+      "label": "spells"
+    },
+    "custom": {
+      "detail": "{{data.spellTradition|map: 'SpellTradition'}} • {{data.spellType|map: 'SpellType'}} • {{'Spell.Rank'|l}} {{data.spellRank|uppercase}}"
+    }
   }
 ]
