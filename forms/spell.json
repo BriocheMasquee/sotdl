@@ -5,10 +5,28 @@
       "title": "Spell.Informations",
       "type": "group",
       "fields": [
-        { "title": "Spell.Tradition", "type": "picker", "attribute": "data.spellTradition", "attributeType": "SpellTradition" },
-        { "title": "Spell.Type", "type": "picker", "attribute": "data.spellType", "attributeType": "SpellType" },
-        { "title": "Spell.Rank", "type": "number", "attribute": "data.spellRank" },
-        { "title": "Spell.Duration", "type": "text", "attribute": "data.spellDuration" }
+        {
+          "title": "Spell.Tradition",
+          "type": "picker",
+          "attribute": "data.spellTradition",
+          "attributeType": "SpellTradition"
+        },
+        {
+          "title": "Spell.Type",
+          "type": "picker",
+          "attribute": "data.spellType",
+          "attributeType": "SpellType"
+        },
+        {
+          "title": "Spell.Rank",
+          "type": "number",
+          "attribute": "data.spellRank"
+        },
+        {
+          "title": "Spell.Duration",
+          "type": "text",
+          "attribute": "data.spellDuration"
+        }
       ]
     },
     {
