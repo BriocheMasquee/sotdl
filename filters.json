@@ -29,5 +29,47 @@
               "title": "Common.Name"
             }
           ]
+    },
+
+    "Spell": {
+      "params": [
+        {
+          "attribute": "data.spellTradition",
+          "attributeType": "SpellTradition",
+          "title": "Spell.Tradition"
+        },
+        {
+          "attribute": "data.spellType",
+          "attributeType": "SpellType",
+          "title": "Spell.Type"
+        },
+        {
+          "attribute": "sources.name",
+          "title": "Source",
+          "dynamic": true
+        }
+      ],
+      "group": [
+        {
+          "attribute": "data.spellTradition",
+          "attributeType": "SpellTradition",
+          "title": "Spell.Tradition"
+        },
+        {
+          "attribute": "data.spellRank",
+          "text": "{{'Spell.Rank'|l}} {{value}}",
+          "title": "Spell.Rank"
+        }
+      ],
+      "sort": [
+        {
+          "attribute": "data.spellRank",
+          "title": "Spell.Rank"
+        },
+        {
+          "attribute": "name",
+          "title": "Common.Name"
+        }
+      ]
     }
 }
