@@ -1,15 +1,56 @@
 {
+
+  "Immunities": {
+    "Asleep": "Immunities.Asleep",
+    "Blinded": "Immunities.Blinded",
+    "Charmed": "Immunities.Charmed",
+    "Compelled": "Immunities.Compelled",
+    "Dazed": "Immunities.Dazed",
+    "Deafened": "Immunities.Deafened",
+    "Diseased": "Immunities.Diseased",
+    "Fatigued": "Immunities.Fatigued",
+    "Frightened": "Immunities.Frightened",
+    "Grabbed": "Immunities.Grabbed",
+    "Immobilized": "Immunities.Immobilized",
+    "Impaired": "Immunities.Impaired",
+    "Poisoned": "Immunities.Poisoned",
+    "Prone": "Immunities.Prone",
+    "Slowed": "Immunities.Slowed",
+    "Stunned": "Immunities.Stunned",
+    "Surprised": "Immunities.Surprised",
+    "Unconscious": "Immunities.Unconscious",
+    "Acid": "Immunities.Acid",
+    "Cold": "Immunities.Cold",
+    "Disease": "Immunities.Disease",
+    "Fire": "Immunities.Fire",
+    "Poison": "Immunities.Poison"
+  },
+
   "RuleType": {
-    "action": "RuleType.Action",
-    "affliction": "RuleType.Affliction",
-    "attribute": "RuleType.Attribute",
-    "characteristic": "RuleType.Characteristic",
-    "combat": "RuleType.Combat",
-    "environment": "RuleType.Environment",
-    "move": "RuleType.Move",
-    "other": "RuleType.Other",
-    "roll": "RuleType.Roll",
-    "source": "Common.Source"
+    "Action": "RuleType.Action",
+    "Affliction": "RuleType.Affliction",
+    "Attribute": "RuleType.Attribute",
+    "Characteristic": "RuleType.Characteristic",
+    "Combat": "RuleType.Combat",
+    "Environment": "RuleType.Environment",
+    "Move": "RuleType.Move",
+    "Other": "RuleType.Other",
+    "Roll": "RuleType.Roll",
+    "Source": "Common.Source"
+  },
+
+  "SpecialMovementTraits": {
+    "Climber": "SpecialMovementTraits.Climber",
+    "Flier": "SpecialMovementTraits.Flier",
+    "Swoop": "SpecialMovementTraits.Swoop",
+    "Swimmer": "SpecialMovementTraits.Swimmer"
+  },
+
+  "SpecialSenses": {
+    "Darksight": "SpecialSenses.Darksight",
+    "Shadowsight": "SpecialSenses.Shadowsight",
+    "Sightless": "SpecialSenses.Sightless",
+    "Truesight": "SpecialSenses.Truesight"
   },
 
   "SpellTradition": {
@@ -56,8 +97,21 @@
     "Transformation": "SpellTradition.Transformation",
     "Water": "SpellTradition.Water"
   },
+  
   "SpellType": {
     "Attack": "SpellType.Attack",
     "Utility": "SpellType.Utility"
+  },
+
+  "Vulnerabilities": {
+    "acid": "Vulnerabilities.Acid",
+    "air": "Vulnerabilities.Air",
+    "celestial": "Vulnerabilities.Celestial",
+    "earth": "Vulnerabilities.Earth",
+    "iron": "Vulnerabilities.Iron",
+    "poison": "Vulnerabilities.Poison",
+    "silver": "Vulnerabilities.Silver",
+    "sunlight": "Vulnerabilities.Sunlight"
   }
+
 }

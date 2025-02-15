@@ -1,4 +1,26 @@
 {
+    "Attributes.AGI": "Agility",
+    "Attributes.INT": "Intelligence",
+    "Attributes.STR": "Strength",
+    "Attributes.WIL": "Will",
+
+    "Characteristics.Armor": "Armor",
+    "Characteristics.Corruption": "Corruption",
+    "Characteristics.Defense": "Defense",
+    "Characteristics.Health": "Health",
+    "Characteristics.Immunities": "Immunities",
+    "Characteristics.Insanity": "Insanity",
+    "Characteristics.Perception": "Perception",
+    "Characteristics.Power": "Power",
+    "Characteristics.SpecialMovmentTraits": "Special Movement Traits",
+    "Characteristics.SpecialSenses": "Special Senses",
+    "Characteristics.Speed": "Speed",
+    "Characteristics.Vulnerabilities": "Vulnerabilities",
+
+    "Combat.AttackOptions": "Attack Options",
+    "Combat.SpecialActions": "Special Actions",
+    "Combat.SpecialAttacks": "Special Attacks",
+
     "Common.CustomType": "Custom Type",
     "Common.Default": "Default",
     "Common.Description": "Description",
@@ -13,10 +35,44 @@
     "Common.Settings": "Settings",
     "Common.Source": "Source",
 
+    "Creature.Attributes": "Attributes",
+    "Creature.Characteristics": "Characteristics",
+    "Creature.Descriptors": "Descriptors",
+    "Creature.Difficulty": "Difficulty",
+    "Creature.Magic": "Magic",
+    "Creature.Size": "Size",
+    "Creature.Traits": "Traits",
+
+    "Entity.Creature": "Creature",
+    "Entity.Creature.many": "Creatures",
     "Entity.Rule": "Rule",
     "Entity.Rule.many": "Rules",
     "Entity.Spell": "Spell",
     "Entity.Spell.many": "Spells",
+
+    "Immunities.Asleep": "Asleep",
+    "Immunities.Blinded": "Blinded",
+    "Immunities.Charmed": "Charmed",
+    "Immunities.Compelled": "Compelled",
+    "Immunities.Dazed": "Dazed",
+    "Immunities.Deafened": "Deafened",
+    "Immunities.Diseased": "Diseased",
+    "Immunities.Fatigued": "Fatigued",
+    "Immunities.Frightened": "Frightened",
+    "Immunities.Grabbed": "Grabbed",
+    "Immunities.Immobilized": "Immobilized",
+    "Immunities.Impaired": "Impaired",
+    "Immunities.Poisoned": "Poisoned",
+    "Immunities.Prone": "Prone",
+    "Immunities.Slowed": "Slowed",
+    "Immunities.Stunned": "Stunned",
+    "Immunities.Surprised": "Surprised",
+    "Immunities.Unconscious": "Unconscious",
+    "Immunities.Acid": "Acid",
+    "Immunities.Cold": "Cold",
+    "Immunities.Disease": "Disease",
+    "Immunities.Fire":   "Fire",
+    "Immunities.Poison": "Poison",
 
     "Initiative.Auto-Roll": "Auto-Roll Initiative",
     "Initiative.GroupBy": "Group Initiative By",
@@ -24,6 +80,8 @@
 
     "MeasurementSystem.Imperial": "Imperial",
     "MeasurementSystem.Metric": "Metric",
+
+    "Round.EndEffect": "End of the Round",
 
     "RuleType.Action": "Action",
     "RuleType.Affliction": "Affliction",
@@ -35,10 +93,21 @@
     "RuleType.Other": "Other",
     "RuleType.Roll": "Roll",
 
+    "SpecialMovementTraits.Climber": "Climber",
+    "SpecialMovementTraits.Flier": "Flier",
+    "SpecialMovementTraits.Swoop": "(Swoop)",
+    "SpecialMovementTraits.Swimmer": "Swimmer",
+
+    "SpecialSenses.Darksight": "Darksight",
+    "SpecialSenses.Shadowsight": "Shadowsight",
+    "SpecialSenses.Sightless": "Sightless",
+    "SpecialSenses.Truesight": "Truesight",
+
     "Spell.Duration": "Duration",
     "Spell.Effects": "Spell effects",
     "Spell.EffectOptions": "Triggered, Sacrifice, Permanence, Attack Roll 20+",
     "Spell.Informations": "Basic Informations",
+    "Spells.List": "Spells list",
     "Spell.Options": "Spell options",
     "Spell.OptionOptions": "Requirement, Target, Area...",
     "Spell.Rank": "Rank",
@@ -87,6 +156,14 @@
     "SpellTradition.Water": "Water",
     "Spell.Type": "Type",
     "SpellType.Attack": "Attack",
-    "SpellType.Utility": "Utility"
+    "SpellType.Utility": "Utility",
 
+    "Vulnerabilities.Acid": "Acid",
+    "Vulnerabilities.Air": "Air",
+    "Vulnerabilities.Celestial": "Celestial",
+    "Vulnerabilities.Earth": "Earth",
+    "Vulnerabilities.Iron": "Iron",
+    "Vulnerabilities.Poison": "Poison",
+    "Vulnerabilities.Silver": "Silver",
+    "Vulnerabilities.Sunlight": "Sunlight"
 }

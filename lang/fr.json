@@ -1,4 +1,26 @@
 {
+    "Attributes.AGI": "Agilité",
+    "Attributes.INT": "Intelligence",
+    "Attributes.STR": "Force",
+    "Attributes.WIL": "Volonté",
+
+    "Characteristics.Armor": "Armure",
+    "Characteristics.Corruption": "Corruption",
+    "Characteristics.Defense": "Défense",
+    "Characteristics.Health": "Santé",
+    "Characteristics.Immunities": "Immunités",
+    "Characteristics.Insanity": "Folie",
+    "Characteristics.Perception": "Perception",
+    "Characteristics.Power": "Puissance",
+    "Characteristics.SpecialMovmentTraits": "Modes de déplacement spéciaux",
+    "Characteristics.SpecialSenses": "Sens spéciaux",
+    "Characteristics.Speed": "Vitesse",
+    "Characteristics.Vulnerabilities": "Vulnérabilités",
+
+    "Combat.AttackOptions": "Options d'attaque",
+    "Combat.SpecialActions": "Actions spéciales",
+    "Combat.SpecialAttacks": "Attaques spéciales",
+
     "Common.CustomType": "Choix du Type",
     "Common.Default": "Par défaut",
     "Common.Description": "Description",
@@ -13,10 +35,44 @@
     "Common.Settings": "Réglages",
     "Common.Source": "Source ",
 
+    "Creature.Attributes": "Attributs",
+    "Creature.Characteristics": "Caractéristiques",
+    "Creature.Descriptors": "Descripteurs",
+    "Creature.Difficulty": "Difficulté",
+    "Creature.Magic": "Magie",
+    "Creature.Size": "Gabrit",
+    "Creature.Traits": "Traits",
+
+    "Entity.Creature": "Créature",
+    "Entity.Creature.many": "Créatures",
     "Entity.Rule": "Règle",
     "Entity.Rule.many": "Règles",
     "Entity.Spell": "Sort",
     "Entity.Spell.many": "Sorts",
+
+    "Immunities.Asleep": "Endormi",
+    "Immunities.Blinded": "Aveuglé",
+    "Immunities.Charmed": "Charmé",
+    "Immunities.Compelled": "Contraint",
+    "Immunities.Dazed": "Étourdi",
+    "Immunities.Deafened": "Assourdi",
+    "Immunities.Diseased": "Malade",
+    "Immunities.Fatigued": "Fatigué",
+    "Immunities.Frightened": "Effrayé",
+    "Immunities.Grabbed": "Saisi",
+    "Immunities.Immobilized": "Immobilisé",
+    "Immunities.Impaired": "Affaibli",
+    "Immunities.Poisoned": "Empoisonné",
+    "Immunities.Prone": "À terre",
+    "Immunities.Slowed": "Ralenti",
+    "Immunities.Stunned": "Stupéfait",
+    "Immunities.Surprised": "Surpris",
+    "Immunities.Unconscious": "Inconscient",
+    "Immunities.Acid": "Acide",
+    "Immunities.Cold": "Froid",
+    "Immunities.Disease": "Maladie",
+    "Immunities.Fire":   "Feu",
+    "Immunities.Poison": "Poison",
 
     "Initiative.Auto-Roll": "Lancer l'initiative automatiquement pour",
     "Initiative.GroupBy": "Grouper l'initiative par",
@@ -24,6 +80,8 @@
 
     "MeasurementSystem.Imperial": "Impérial",
     "MeasurementSystem.Metric": "Métrique",
+
+    "Round.EndEffect": "Fin du Round",
 
     "RuleType.Action": "Action",
     "RuleType.Affliction": "Affliction",
@@ -35,10 +93,21 @@
     "RuleType.Other": "Autre",
     "RuleType.Roll": "Jet",
 
+    "SpecialMovementTraits.Climber": "Grimpeur",
+    "SpecialMovementTraits.Flier": "Volant",
+    "SpecialMovementTraits.Swoop": "(Piqué)",
+    "SpecialMovementTraits.Swimmer": "Nageur",
+
+    "SpecialSenses.Darksight": "Vision des ténèbres",
+    "SpecialSenses.Shadowsight": "Vision des ombres",
+    "SpecialSenses.Sightless": "Aveugle",
+    "SpecialSenses.Truesight": "Vision véritable",
+
     "Spell.Duration": "Durée",
     "Spell.Effects": "Effets du sort",
     "Spell.EffectOptions": "Déclenché, Sacrifice, Permanence, Jet d'attaque 20+",
     "Spell.Informations": "Informations générales",
+    "Spells.List": "Liste de sorts",
     "Spell.Options": "Options du sort",
     "Spell.OptionOptions": "Condition, Cible, Zone d'effet...",
     "Spell.Rank": "Rang",
@@ -87,6 +156,14 @@
     "SpellTradition.Water": "Eau",
     "Spell.Type": "Type",
     "SpellType.Attack": "Attaque",
-    "SpellType.Utility": "Utilitaire"
+    "SpellType.Utility": "Utilitaire",
 
+    "Vulnerabilities.Acid": "Acide",
+    "Vulnerabilities.Air": "Air",
+    "Vulnerabilities.Celestial": "Céleste",
+    "Vulnerabilities.Earth": "Terre",
+    "Vulnerabilities.Iron": "Fer",
+    "Vulnerabilities.Poison": "Poison",
+    "Vulnerabilities.Silver": "Argent",
+    "Vulnerabilities.Sunlight": "Lumiètre du Soleil"
 }

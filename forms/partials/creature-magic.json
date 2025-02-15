@@ -1,0 +1,24 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "placeholder": "Spell.Tradition",
+          "attribute": "name"
+        }
+      ]
+    },
+    {
+      "title": "Common.Description",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Spells.List",
+          "type": "textArea",
+          "attribute": "text"
+        }
+      ]
+    }
+  ]
+}

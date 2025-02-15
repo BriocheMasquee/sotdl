@@ -1,5 +1,17 @@
 [
   {
+    "name": "Creature",
+    "label": "creature",
+    "collection": {
+      "label": "creatures"
+    },
+    "loadable": true,
+    "role": "hostile",
+    "custom": {
+      "detail": "{{data.creatureDescriptors}} • {{'Creature.Difficulty'|l}} {{data.cr}}"
+    }
+  },
+  {
     "name": "Rule",
     "label": "rule",
     "collection": {
