@@ -1,7 +1,18 @@
 {
+    "Ammunition.Arrow": "Flèche",
+    "Ammunition.Bolt": "Carreau",
+    "Ammunition.BulletPowder": "Balle & poudre noire",
+    "Ammunition.Dart": "Fléchette",
+    "Ammunition.Stone": "Pierre",
+
     "Ancestry.StartingAttributes": "Valeurs de départ des attributs",
     "Ancestry.Creating": "Créer un",
     "Ancestry.Tables": "Tables d'ascendance",
+
+    "Armor.Clothing": "Vêtements",
+    "Armor.Heavy": "Armure lourde",
+    "Armor.Light": "Armure légère",
+    "Armor.Medium": "Armure moyenne",
 
     "Attributes.AGI": "Agilité",
     "Attributes.INT": "Intelligence",
@@ -9,6 +20,10 @@
     "Attributes.WIL": "Volonté",
     "Attributes.Mod": "Modificateurs d'attributs",
 
+    "Availability.Common": "Commun",
+    "Availability.Uncommon": "Inhabituel",
+    "Availability.Rare": "Rare",
+    "Availability.Exotic": "Exotique",
 
     "Characteristics.Armor": "Armure",
     "Characteristics.Corruption": "Corruption",
@@ -35,7 +50,9 @@
     "Common.CustomType": "Choix du Type",
     "Common.Default": "Par défaut",
     "Common.Description": "Description",
+    "Common.HP": "Santé",
     "Common.Image": "Image",
+    "Common.Informations": "Informations générales",
     "Common.Language": "Langue",
     "Common.Language&Profession": "Langes & professions",
     "Common.Locale": "Localisation",
@@ -58,10 +75,28 @@
     "Entity.Ancestry.many": "Ascendances",
     "Entity.Creature": "Créature",
     "Entity.Creature.many": "Créatures",
+    "Entity.Item": "Objet",
+    "Entity.Item.many": "Objets",
+    "Entity.Path": "Voie",
+    "Entity.Path.many": "Voies",
     "Entity.Rule": "Règle",
     "Entity.Rule.many": "Règles",
     "Entity.Spell": "Sort",
     "Entity.Spell.many": "Sorts",
+    "Entity.Table": "Table",
+    "Entity.Table.many": "Tables",
+
+    "Gear.Personal": "Personnel",
+    "Gear.Accessory": "Accessoire",
+    "Gear.Tool": "Outil",
+    "Gear.Food": "Nourriture",
+    "Gear.Animal": "Animaux",
+    "Gear.Hireling": "Homme de main",
+    "Gear.Potion": "Potion",
+
+    "Hand.One": "Une",
+    "Hand.Two": "Deux",
+    "Hand.Off": "Faible",
 
     "Immunities.Asleep": "Endormi",
     "Immunities.Blinded": "Aveuglé",
@@ -91,12 +126,33 @@
     "Initiative.GroupBy": "Grouper l'initiative par",
     "Initiative.ReRoll": "Relancer l'initiative à chaque nouveau round",
 
+    "Item.AdventuringGear": "Équipement d'aventurier",
+    "Item.Armor": "Armure",
+    "Item.ArmorType": "Type d'armure",
+    "Item.Availability": "Disponibilité",
+    "Item.GearType": "Type d'équipement",
+    "Item.Price": "Prix",
+    "Item.Requirement": "Conditions",
+    "Item.Type": "Type d'objet",
+    "Item.Weapon": "Arme",
+    "Item.WeaponType": "Type d'arme",
+
     "Level4.Expert": "Expert de niveau 4",
     "Level4.Options": "Options du niveau 4",
     "Level4.Talent": "Talents de niveau 4",
 
     "MeasurementSystem.Imperial": "Impérial",
     "MeasurementSystem.Metric": "Métrique",
+
+    "Property.Cumbersone": "Encombrante",
+    "Property.Finesse": "Finesse",
+    "Property.Misfire": "Enrayée",
+    "Property.Short": "Portée courte",
+    "Property.Medium": "Portée moyenne",
+    "Property.Long": "Portée longue",
+    "Property.Reload": "Rechargement",
+    "Property.Size1": "Gabarit 1",
+    "Property.Thrown": "De jet",
 
     "Round.EndEffect": "Fin du Round",
 
@@ -123,7 +179,6 @@
     "Spell.Duration": "Durée",
     "Spell.Effects": "Effets du sort",
     "Spell.EffectOptions": "Déclenché, Sacrifice, Permanence, Jet d'attaque 20+",
-    "Spell.Informations": "Informations générales",
     "Spells.List": "Liste de sorts",
     "Spell.Options": "Options du sort",
     "Spell.OptionOptions": "Condition, Cible, Zone d'effet...",
@@ -182,5 +237,21 @@
     "Vulnerabilities.Iron": "Fer",
     "Vulnerabilities.Poison": "Poison",
     "Vulnerabilities.Silver": "Argent",
-    "Vulnerabilities.Sunlight": "Lumiètre du Soleil"
+    "Vulnerabilities.Sunlight": "Lumiètre du Soleil",
+
+    "Weapon.Ammunition": "Munition",
+    "Weapon.AmmunitionRequirement": "Utilise des munitions",
+    "Weapon.AmmunitionType": "Type de munitions",
+    "Weapon.Basic": "Arme de mêlée basique",
+    "Weapon.Defensive": "Défensive",
+    "Weapon.DefensiveValue": "Valeur défensive",
+    "Weapon.Hands": "Mains",
+    "Weapon.Military": "Arme de mêlée militaire",
+    "Weapon.Property": "Propriétés",
+    "Wepaon.Swift": "Arme de mêlée rapide",
+    "Weapon.Heavy": "Arme de mêlée lourde",
+    "Weapon.Ranged": "Arme à distance",
+    "Weapon.Reach": "Allonge",
+    "Weapon.ReachValue": "Valeur d'allonge",
+    "Weapon.Shield": "Bouclier"
 }

@@ -327,10 +327,10 @@
         "data.agilityModifier": "#{% eval %}{{data.AGI}}-10{% endeval %}",
         "data.intellectModifier": "#{% eval %}{{data.INT}}-10{% endeval %}",
         "data.willModifier": "#{% eval %}{{data.WIL}}-10{% endeval %}"
-    },
+      },
     {
-        "inCombatDetail": "{{'Characteristics.Defense'|l}} {{data.ac}}",
-        "outCombatDetail": "{{data.creatureDescriptors}}"
+        "inCombatDetail": "{{'Characteristics.Defense'|l}} {{data.ac}}", 
+        "outCombatDetail": "{{data.creatureDescriptors}} • {{'Characteristics.Perception'|l}} {{data.perception}}"
     }
   ]
 }

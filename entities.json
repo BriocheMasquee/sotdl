@@ -1,12 +1,5 @@
 [
   {
-    "name": "Ancestry",
-    "label": "ancestry",
-    "collection": {
-      "label": "ancestries"
-    }
-  },
-  {
     "name": "Creature",
     "label": "creature",
     "collection": {
@@ -16,6 +9,40 @@
     "role": "hostile",
     "custom": {
       "detail": "{{data.creatureDescriptors}} • {{'Creature.Difficulty'|l}} {{data.cr}}"
+    }
+  },
+  {
+    "name": "Spell",
+    "label": "spell",
+    "collection": {
+      "label": "spells"
+    },
+    "custom": {
+      "detail": "{{data.spellTradition|map: 'SpellTradition'}} • {{data.spellType|map: 'SpellType'}} • {{'Spell.Rank'|l}} {{data.spellRank|uppercase}}"
+    }
+  },
+  {
+    "name": "Item",
+    "label": "item",
+    "collection": {
+      "label": "items"
+    },
+    "custom": {
+      "detail": "{{data.itemType|map: 'ItemType'}} • {{data.availability|map: 'Availability'}}"
+    }
+  },
+  {
+    "name": "Ancestry",
+    "label": "ancestry",
+    "collection": {
+      "label": "ancestries"
+    }
+  },
+  {
+    "name": "Path",
+    "label": "path",
+    "collection": {
+      "label": "paths"
     }
   },
   {
@@ -31,13 +58,10 @@
     }
   },
   {
-    "name": "Spell",
-    "label": "spell",
+    "name": "Table",
+    "label": "table",
     "collection": {
-      "label": "spells"
-    },
-    "custom": {
-      "detail": "{{data.spellTradition|map: 'SpellTradition'}} • {{data.spellType|map: 'SpellType'}} • {{'Spell.Rank'|l}} {{data.spellRank|uppercase}}"
+      "label": "tables"
     }
   }
 ]

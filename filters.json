@@ -1,4 +1,14 @@
 {
+  "Ancestry": {
+    "params": [
+      {
+        "attribute": "sources.name",
+        "title": "Source",
+        "dynamic": true
+      }
+    ]
+  },
+
   "Creature": {
     "params": [
       {
@@ -43,6 +53,37 @@
         "attribute": "data.cr",
         "title": "Creature.Difficulty",
         "text": "{{value}}"
+      }
+    ]
+  },
+
+  "Item": {
+    "params": [
+      {
+        "attribute": "data.itemType",
+        "attributeType": "ItemType",
+        "title": "Item.Type"
+      },
+      {
+        "attribute": "data.availability",
+        "attributeType": "Availability",
+        "title": "Item.Availability"
+      },
+      {
+        "attribute": "sources.name",
+        "title": "Source",
+        "dynamic": true
+      }
+    ],
+    "group": [
+      {
+        "attribute": "data.itemType",
+        "attributeType": "ItemType",
+        "title": "Item.Type"
+      },
+      {
+        "attribute": "name",
+        "title": "Common.Name"
       }
     ]
   },

@@ -1,0 +1,145 @@
+{
+  "title": "Item",
+  "sections": [
+    {
+      "title": "Common.Informations", 
+      "type": "group",
+      "fields": [
+        {
+          "title": "Item.Price",
+          "type": "text",
+          "attribute": "data.price"
+        },
+        {
+          "title": "Item.Availability",
+          "type": "picker",
+          "attribute": "data.availability",
+          "attributeType": "Availability"
+        },
+        {
+          "title": "Item.Type",
+          "type": "picker",
+          "attribute": "data.itemType",
+          "attributeType": "ItemType"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "visibleIf": "{{data.itemType == 'Armor'}}",
+      "fields": [
+        {
+          "title": "Item.ArmorType",
+          "type": "picker",
+          "attribute": "data.armorType",
+          "attributeType": "ArmorType"
+        },
+        {
+          "title": "Item.Requirement",
+          "type": "text",
+          "attribute": "data.armorRequirement"
+        },
+        {
+          "title": "Characteristics.Defense",
+          "type": "text",
+          "attribute": "data.armorDefense"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "visibleIf": "{{data.itemType == 'Weapon'}}",
+      "fields": [
+        {
+          "title": "Item.WeaponType",
+          "type": "picker",
+          "attribute": "data.weaponType",
+          "attributeType": "WeaponType"
+        },
+        {
+          "title": "Item.Requirement",
+          "type": "text",
+          "attribute": "data.weaponRequirement"
+        },
+        {
+          "title": "Characteristics.Damage",
+          "type": "text",
+          "attribute": "data.weaponDamage"
+        },
+        {
+          "title": "Weapon.Hands",
+          "type": "picker",
+          "attribute": "data.weaponHands",
+          "attributeType": "WeaponHands"
+        },
+        {
+          "title": "Weapon.Property",
+          "type": "form",
+          "text": "{% include 'weapon-property.md' data %}",
+          "form": {
+            "title": "Weapon.Property", 
+            "sections": [
+              {
+                "type": "group",
+                "fields": [
+                  {
+                    "title": "Weapon.Reach",
+                    "type": "toggle",
+                    "attribute": "data.weaponReach"
+                  },
+                  {
+                    "title": "Weapon.ReachValue",
+                    "type": "number",
+                    "attribute": "data.reachValue",
+                    "visibleIf": "{{data.weaponReach}}"
+                  },
+                  {
+                    "title": "Weapon.Defensive",
+                    "type": "toggle",
+                    "attribute": "data.weaponDefensive"
+                  },
+                  {
+                    "title": "Weapon.DefensiveValue",
+                    "type": "number",
+                    "attribute": "data.defensiveValue",
+                    "visibleIf": "{{data.weaponDefensive}}"
+                  },
+                  {
+                    "title": "Weapon.AmmunitionRequirement",
+                    "type": "toggle",
+                    "attribute": "data.ammunitionRequirement"
+                  },
+                  {
+                    "title": "Weapon.AmmunitionType",
+                    "type": "picker",
+                    "attribute": "data.ammunitionType",
+                    "attributeType": "Ammunition",
+                    "visibleIf": "{{data.ammunitionRequirement}}"
+                  }
+                ]
+              },
+              {
+                "title": "Weapon.Property",
+                "type": "multiPicker",
+                "attribute": "data.weaponProperty",
+                "attributeType": "WeaponProperty"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "visibleIf": "{{data.itemType == 'AdventuringGear'}}",
+      "fields": [
+        {
+          "title": "Item.GearType",
+          "type": "picker",
+          "attribute": "data.gearType",
+          "attributeType": "GearType"
+        }
+      ]
+    }
+  ]
+}

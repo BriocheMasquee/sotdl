@@ -1,0 +1,25 @@
+{
+    "title": "Path",
+    "sections": [
+      {
+        "title": "Common.Attributes",
+        "type": "group",
+        "fields": [
+          {
+            "type": "hStack",
+            "fields": [
+              {
+                "title": "Attributes.STR",
+                "type": "text",
+                "attribute": "data.STR",
+                "placeholder": "10",
+                "alignment": "top"
+              }
+            ]
+          }
+        ]
+      }
+
+
+    ]
+  }

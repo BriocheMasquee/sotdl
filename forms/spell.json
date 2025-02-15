@@ -2,7 +2,7 @@
   "title": "Spell",
   "sections": [
     {
-      "title": "Spell.Informations",
+      "title": "Common.Informations",
       "type": "group",
       "fields": [
         {

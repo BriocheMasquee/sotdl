@@ -32,7 +32,11 @@
         { "title": "Characteristics.SpecialSenses", "attribute": "data.senses", "type": "multiPicker", "attributeType": "SpecialSenses" },
         { "title": "Characteristics.Defense", "attribute": "data.ac", "type": "number" },
         { "title": "Characteristics.Armor", "attribute": "data.armor", "type": "text" },
-        { "title": "Characteristics.Health", "attribute": "data.hp", "type": "number" },
+        {
+          "title": "Characteristics.Health",
+          "type": "number",
+          "attribute": "data.hp"
+        },
         { "title": "Characteristics.Insanity", "attribute": "data.insanity", "type": "text" },
         { "title": "Characteristics.Corruption", "attribute": "data.corruption", "type": "text" },
         { "title": "Characteristics.Power", "attribute": "data.power", "type": "number" },

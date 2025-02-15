@@ -1,4 +1,35 @@
 {
+  "Ammunition": {
+    "Arrow": "Ammunition.Arrow",
+    "Bolt": "Ammunition.Bolt",
+    "Bullet & Black Powder": "Ammunition.BulletPowder",
+    "Dart": "Ammunition.Dart",
+    "Stone": "Ammunition.Stone"
+  },
+
+  "ArmorType": {
+    "Clothing": "Armor.Clothing",
+    "LightArmor": "Armor.Light",
+    "MediumArmor": "Armor.Medium",
+    "HeavyArmor": "Armor.Heavy"
+  },
+
+  "Availability": {
+    "Common": "Availability.Common",
+    "Uncommon": "Availability.Uncommon",
+    "Rare": "Availability.Rare",
+    "Exotic": "Availability.Exotic"
+  },
+
+  "GearType": {
+    "PersonalGear": "Gear.Personal",
+    "Accessory": "Gear.Accessory",
+    "Tool": "Gear.Tool",
+    "Food": "Gear.Food",
+    "AnimalGear": "Gear.Animal",
+    "Hireling": "Gear.Hireling",
+    "Potion": "Gear.Potion"
+  },
 
   "Immunities": {
     "Asleep": "Immunities.Asleep",
@@ -24,6 +55,12 @@
     "Disease": "Immunities.Disease",
     "Fire": "Immunities.Fire",
     "Poison": "Immunities.Poison"
+  },
+
+  "ItemType": {
+    "Armor": "Item.Armor",
+    "Weapon": "Item.Weapon",
+    "AdventuringGear": "Item.AdventuringGear"
   },
 
   "RuleType": {
@@ -112,6 +149,34 @@
     "poison": "Vulnerabilities.Poison",
     "silver": "Vulnerabilities.Silver",
     "sunlight": "Vulnerabilities.Sunlight"
+  },
+
+  "WeaponHands": {
+    "One": "Hand.One",
+    "Two": "Hand.Two",
+    "Off": "Hand.Off"
+  },
+
+  "WeaponProperty": {
+    "Cumbersone": "Property.Cumbersone",
+    "Finesse": "Property.Finesse",
+    "Misfire": "Property.Misfire",
+    "Short range": "Property.Short",
+    "Medium range": "Property.Medium",
+    "Long range": "Property.Long",
+    "Reload": "Property.Reload",
+    "Size 1": "Property.Size1",
+    "Thrown": "Property.Thrown"
+  },
+
+  "WeaponType": {
+    "BasicMelee": "Weapon.Basic",
+    "MilitaryMelee": "Weapon.Military",
+    "SwiftMelee": "Wepaon.Swift",
+    "HeavyMelee": "Weapon.Heavy",
+    "Ranged": "Weapon.Ranged",
+    "Shield": "Weapon.Shield",
+    "Ammunition": "Weapon.Ammunition"
   }
 
 }
