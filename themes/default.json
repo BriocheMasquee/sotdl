@@ -43,6 +43,12 @@
       "color": "#000000",
       "size": 15
     },
+    "ancestrySection": {
+      "font": "Athelas",
+      "size": 18,
+      "color":"#9B0619",
+      "alignment": "center"
+    },
 
 
 

@@ -5,7 +5,7 @@
       "type": "group",
       "fields": [
         { "title": "Creature.Difficulty", "attribute": "data.cr", "type": "number" },
-        { "title": "Creature.Size", "attribute": "data.creatureSize", "type": "text" },
+        { "title": "Characteristics.Size", "attribute": "data.size", "type": "text" },
         { "title": "Creature.Descriptors", "attribute": "data.creatureDescriptors", "type": "text" }
       ]
     },
@@ -26,7 +26,7 @@
     },
     {
       "type": "group",
-      "title": "Creature.Characteristics",
+      "title": "Common.Characteristics",
       "fields": [
         { "title": "Characteristics.Perception", "attribute": "data.perception", "type": "number" },
         { "title": "Characteristics.SpecialSenses", "attribute": "data.senses", "type": "multiPicker", "attributeType": "SpecialSenses" },

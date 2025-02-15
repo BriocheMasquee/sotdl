@@ -8,10 +8,10 @@
         "bgColor": "#000000",
         "views": [
           {
-            "type": "text",
             "style": "entityTitleW",
             "padding": [4, 8, 4, 0],
-            "value": "**{{name|uppercase}}**"
+            "value": "**{{name|uppercase}}**",
+            "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
           },
           {
             "style": "entitySubtitleW",
@@ -29,7 +29,7 @@
           {
             "style": "entitySubtitleW",
             "bgColor": "#9B0619",
-            "value": "{% if data.creatureDescriptors %}***{{data.creatureDescriptors}}***{% endif %} {% if data.creatureSize %}***- {{'Creature.Size'|l}} {{data.creatureSize}}***{% endif %}",
+            "value": "{% if data.creatureDescriptors %}***{{data.creatureDescriptors}}***{% endif %} {% if data.size %}***- {{'Characteristics.Size'|l}} {{data.size}}***{% endif %}",
             "padding": [4, 8, 4, 0]
           }
         ]

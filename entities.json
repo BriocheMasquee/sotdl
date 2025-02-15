@@ -1,5 +1,12 @@
 [
   {
+    "name": "Ancestry",
+    "label": "ancestry",
+    "collection": {
+      "label": "ancestries"
+    }
+  },
+  {
     "name": "Creature",
     "label": "creature",
     "collection": {
