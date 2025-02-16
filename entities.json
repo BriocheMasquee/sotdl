@@ -39,10 +39,20 @@
     }
   },
   {
+    "name": "Complication",
+    "label": "complication",
+    "collection": {
+      "label": "complications"
+    }
+  },
+  {
     "name": "Path",
     "label": "path",
     "collection": {
       "label": "paths"
+    },
+    "custom": {
+      "detail": "{{data.pathType|map: 'PathType'}} {% if data.expertCategory %}• {{data.expertCategory|map: 'PathECategory'}}{% endif %}{% if data.masterCategory %}• {{data.masterCategory|map: 'PathMCategory'}}{% endif %}"
     }
   },
   {
@@ -52,10 +62,7 @@
       "label": "rules"
     },
     "loadable": true,
-    "dynamic": true,
-    "custom": {
-      "detail": ""
-    }
+    "dynamic": true
   },
   {
     "name": "Table",

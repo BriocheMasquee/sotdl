@@ -64,6 +64,7 @@
     "Common.Settings": "Settings",
     "Common.Source": "Source",
     "Common.Talent": "Talents",
+    "Common.Trait": "Trait",
 
     "Creature.Attributes": "Attributes",
     "Creature.Descriptors": "Descriptors",
@@ -73,6 +74,8 @@
 
     "Entity.Ancestry": "Ancestry",
     "Entity.Ancestry.many": "Ancestries",
+    "Entity.Complication": "Complication",
+    "Entity.Complication.many": "Complications",
     "Entity.Creature": "Creature",
     "Entity.Creature.many": "Creatures",
     "Entity.Item": "Item",

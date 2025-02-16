@@ -8,7 +8,21 @@
       }
     ]
   },
-
+  "Complication": {
+    "params": [
+      {
+        "attribute": "source",
+        "title": "Source",
+        "dynamic": true
+      }
+    ],
+    "group": [
+      {
+        "attribute": "name",
+        "title": "Common.Name"
+      }
+    ]
+  },
   "Creature": {
     "params": [
       {
@@ -81,6 +95,37 @@
         "attributeType": "ItemType",
         "title": "Item.Type"
       },
+      {
+        "attribute": "name",
+        "title": "Common.Name"
+      }
+    ]
+  },
+  "Path": {
+    "params": [
+      {
+        "attribute": "data.pathType",
+        "attributeType": "PathType",
+        "title": "Path.Type"
+      },
+      {
+        "attribute": "source",
+        "title": "Source",
+        "dynamic": true
+      }
+    ],
+    "group": [
+      {
+        "attribute": "data.pathType",
+        "attributeType": "PathType",
+        "title": "Path.Type"
+      },
+      {
+        "attribute": "name",
+        "title": "Common.Name"
+      }
+    ],
+    "sort": [
       {
         "attribute": "name",
         "title": "Common.Name"

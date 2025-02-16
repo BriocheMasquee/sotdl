@@ -1,0 +1,70 @@
+{
+  "debug": false,
+  "spacing": 0,
+  "padding": [
+    20
+  ],
+  "views": [
+    {
+      "style": "entityTitle",
+      "value": "**{{name|uppercase}}**",
+      "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 2.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "text",
+      "value": "{{descr}}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        8
+      ],
+      "views": [
+        {
+          "type": "list",
+          "attribute": "data.trait",
+          "views": [
+            {
+              "type": "text",
+              "style": "sotdlbody",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        8,
+        0
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "sourceText",
+          "value": "{{footer}}"
+        }
+      ]
+    }
+  ]
+}
