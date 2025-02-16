@@ -7,4 +7,4 @@
 Courtesy of Robert J. Scwhalb.
 This game system doesn't include game elements.
 
-_Schwalb Entertainment, LLC was founded in 2014 by Robert J. Schwalb and is headquartered in Murfreesboro, Tennessee._
+_Shadow of the Demon Lord is ©2015 Schwalb Entertainment, LLC. All rights reserved. Shadow of the Demon Lord, Schwalb Entertainment, and their associated logos are trademarks of Schwalb Entertainment, LLC._
