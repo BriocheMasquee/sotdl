@@ -63,6 +63,24 @@
     "AdventuringGear": "Item.AdventuringGear"
   },
 
+  "PathECategory": {
+    "Faith": "Path.Category.Faith",
+    "Power": "Path.Category.Power",
+    "Trickery": "Path.Category.Trickery",
+    "War": "Path.Category.War"
+  }, 
+
+  "PathMCategory": {
+    "Magic": "Path.Category.Magic",
+    "Skill": "Path.Category.Skill"
+  },
+
+  "PathType": {
+    "Novice": "Path.Novice",
+    "Expert": "Path.Expert",
+    "Master": "Path.Master"
+  }, 
+
   "RuleType": {
     "Action": "RuleType.Action",
     "Affliction": "RuleType.Affliction",
