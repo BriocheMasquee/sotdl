@@ -159,14 +159,16 @@
   },
 
   "Vulnerabilities": {
-    "acid": "Vulnerabilities.Acid",
-    "air": "Vulnerabilities.Air",
-    "celestial": "Vulnerabilities.Celestial",
-    "earth": "Vulnerabilities.Earth",
-    "iron": "Vulnerabilities.Iron",
-    "poison": "Vulnerabilities.Poison",
-    "silver": "Vulnerabilities.Silver",
-    "sunlight": "Vulnerabilities.Sunlight"
+    "Acid": "Vulnerabilities.Acid",
+    "Air": "Vulnerabilities.Air",
+    "Celestial": "Vulnerabilities.Celestial",
+    "Earth": "Vulnerabilities.Earth",
+    "Fire": "Vulnerabilities.Fire",
+    "Iron": "Vulnerabilities.Iron",
+    "Poison": "Vulnerabilities.Poison",
+    "Silver": "Vulnerabilities.Silver",
+    "Sunlight": "Vulnerabilities.Sunlight",
+    "Water": "Vulnerabilities.Water"
   },
 
   "WeaponHands": {

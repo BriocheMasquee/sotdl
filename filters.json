@@ -151,7 +151,8 @@
               "attribute": "type",
               "attributeType": "RuleType",
               "title": "Type"
-            },      {
+            },      
+            {
               "attribute": "sources.name",
               "title": "Source",
               "dynamic": true

@@ -30,7 +30,7 @@
     },
     {
       "type": "spacer",
-      "visibleIf": "{% if data.spellOption or data.spellDuration or data.spellEffect %}true{% endif %}"
+      "visibleIf": "{% if data.spellOptions or data.spellDuration or data.spellEffects %}true{% endif %}"
     },
     {
       "type": "vStack",
@@ -40,7 +40,7 @@
       "views": [
         {
           "type": "list",
-          "attribute": "data.spellOption",
+          "attribute": "data.spellOptions",
           "views": [
             {
               "type": "text",
@@ -52,7 +52,7 @@
         {
           "type": "text",
           "style": "sotdlbody",
-          "value": "{% if data.spellDuration %}**{{'Spell.Duration'|l}}.**{% endif %} {{data.spellDuration}}.",
+          "value": "{% if data.spellDuration %}**{{'Spell.Duration'|l}}.**{% endif %} {{data.spellDuration}}",
           "visibleIf": "{% if data.spellDuration %}true{% endif %}"
         }
       ]
@@ -60,7 +60,7 @@
     {
       "type": "divider",
       "bgColor": "#9B0619",
-      "visibleIf": "{% if data.spellOption or data.spellDuration or data.spellEffect %}true{% endif %}",
+      "visibleIf": "{% if data.spellOptions or data.spellDuration or data.spellEffects %}true{% endif %}",
       "height": 1.5,
       "padding": [
         0
@@ -68,7 +68,7 @@
     },
     {
       "type": "spacer",
-      "visibleIf": "{% if data.spellOption or data.spellDuration or data.spellEffect %}true{% endif %}"
+      "visibleIf": "{% if data.spellOptions or data.spellDuration or data.spellEffects %}true{% endif %}"
     },
     {
       "type": "vStack",
@@ -83,7 +83,7 @@
         },
         {
           "type": "list",
-          "attribute": "data.spellEffect",
+          "attribute": "data.spellEffects",
           "views": [
             {
               "type": "text",

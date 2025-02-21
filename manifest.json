@@ -1,8 +1,0 @@
-{
-  "id": "sotdl",
-  "name": "Shadow of the Demon Lord",
-  "type": "system",
-  "version": "0.9.0",
-  "description": "Shadow of the Demon Lord game system for EncounterPlus.",
-  "download": "https://github.com/BriocheMasquee/sotdl/releases/download/0.9.0/sotdl.system"
-}

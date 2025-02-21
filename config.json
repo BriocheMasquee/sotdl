@@ -37,5 +37,20 @@
         }
       }
     }
+  },
+  "combat": {
+    "combatants": {
+      "default": {
+        "defeated": "#{{data.hp.current|default: 1}} <= -{{data.hp.maximum|default: 0}}",
+        "bars": [
+          {
+            "attribute": "data.hp",
+            "title": "Characteristics.Health",
+            "label": "Common.HP",
+            "temporary": true
+          }
+        ]
+  }
+}
   }
 }

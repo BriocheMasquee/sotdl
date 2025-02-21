@@ -158,6 +158,46 @@
           ]
         }
       ]
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "vStack",
+      "views": [
+        {
+          "type": "text",
+          "style": "ancestrySection",
+          "value": "{% if notes %}**{{'Path.expertStory'|l|uppercase}}**{% endif %}",
+          "padding": [
+            4,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        8
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "sotdlbody",
+          "value": "{{notes}}"
+        }
+      ]
     }
   ]
 }

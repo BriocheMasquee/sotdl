@@ -89,7 +89,7 @@
           {
             "type": "text",
             "style": "sotdlbody",
-            "value": "{% if data.vulnerabilities %}**{{'Characteristics.Vulnerabilities'|l}}** : {{data.vulnerabilities|map: 'Vulnerabilities'|lowercase}}.{% endif %}"
+            "value": "{% if data.vulnerabilities %}**{{'Characteristics.Vulnerabilities'|l}}** : {{data.vulnerabilities|map: 'Vulnerabilities'}}{% endif %}"
           },
           {
             "type": "list",
