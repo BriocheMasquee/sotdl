@@ -1,0 +1,1 @@
+{{spellTradition.tradition|map: 'SpellTradition'}} {% if spellTradition.darkMagic %}({{'Spell.DarkMagic'|l|lowercase}}){% endif -%}{% if spellTradition.psychicTradition %}({{'Spell.PsychicTradition'|l|lowercase}}){% endif -%}{% if spellTradition.onlyIncantation %}({{'Spell.OnlyIncantation'|l|lowercase}}){% endif -%}

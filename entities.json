@@ -1,108 +1,69 @@
 [
-  {
-    "name": "Character",
-    "label": "character",
-    "collection": {
-      "label": "characters"
+    {
+        "name": "Creature",
+        "label": "creature",
+        "collection": {
+            "label": "creatures"
+        },
+        "loadable": true
     },
-    "loadable": true,
-    "role": "friendly",
-    "custom": {
-      "detail": ""
+    {
+        "name": "NPC",
+        "label": "npc",
+        "extends": "Creature",
+        "collection": {
+        "label": "npcs"
+        },
+        "loadable": true
+    },
+    {
+        "name": "Spell",
+        "label": "spell",
+        "collection": {
+            "label": "spells"
+        }
+    },
+    {
+        "name": "Item",
+        "label": "item",
+        "collection": {
+            "label": "items"
+        }
+    },
+    {
+        "name": "Vehicle",
+        "label": "vehicle",
+        "collection": {
+            "label": "vehicles"
+        }
+    },
+    {
+        "name": "Ancestry",
+        "label": "ancestry",
+        "collection": {
+            "label": "ancestries"
+        }
+    },
+    {
+        "name": "Path",
+        "label": "path",
+        "collection": {
+            "label": "paths"
+        }
+    },
+    {
+        "name": "Rule",
+        "label": "rule",
+        "collection": {
+            "label": "rules"
+        },
+        "dynamic": true
+    },
+    {
+        "name": "Table",
+        "label": "table",
+        "collection": {
+        "label": "tables"
+        }
     }
-  },
-  {
-    "name": "Creature",
-    "label": "creature",
-    "collection": {
-      "label": "creatures"
-    },
-    "loadable": true,
-    "role": "hostile",
-    "custom": {
-      "detail": "{{data.creatureDescriptors}} • {{'Creature.Difficulty'|l}} {{data.cr}}"
-    }
-  },
-  {
-    "name": "NPC",
-    "label": "npc",
-    "extends": "Creature",
-    "collection": {
-      "label": "npcs"
-    },
-    "custom": {
-      "detail": ""
-    },
-    "loadable": true,
-    "role": "neutral"
-  },
-  {
-    "name": "Spell",
-    "label": "spell",
-    "collection": {
-      "label": "spells"
-    },
-    "custom": {
-      "detail": "{{data.spellTradition|map: 'SpellTradition'}} • {{data.spellType|map: 'SpellType'}} • {{'Spell.Rank'|l}} {{data.spellRank|uppercase}}"
-    }
-  },
-  {
-    "name": "Item",
-    "label": "item",
-    "collection": {
-      "label": "items"
-    },
-    "custom": {
-      "detail": "{{data.itemType|map: 'ItemType'}} • {{data.availability|map: 'Availability'}}"
-    }
-  },
-  {
-    "name": "Ancestry",
-    "label": "ancestry",
-    "collection": {
-      "label": "ancestries"
-    },
-    "custom": {
-      "detail": ""
-    }
-  },
-  {
-    "name": "Complication",
-    "label": "complication",
-    "collection": {
-      "label": "complications"
-    },
-    "custom": {
-      "detail": ""
-    }
-  },
-  {
-    "name": "Path",
-    "label": "path",
-    "collection": {
-      "label": "paths"
-    },
-    "custom": {
-      "detail": "{{data.pathType|map: 'PathType'}} {% if data.expertCategory %}• {{data.expertCategory|map: 'PathECategory'}}{% endif %}{% if data.masterCategory %}• {{data.masterCategory|map: 'PathMCategory'}}{% endif %}"
-    }
-  },
-  {
-    "name": "Rule",
-    "label": "rule",
-    "collection": {
-      "label": "rules"
-    },
-    "custom": {
-      "detail": ""
-    },
-    "loadable": true,
-    "dynamic": true
-  },
-  {
-    "name": "Table",
-    "label": "table",
-    "collection": {
-      "label": "tables"
-    }
-  }
 ]

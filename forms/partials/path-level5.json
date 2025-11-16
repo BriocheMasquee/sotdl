@@ -1,23 +1,23 @@
 {
     "sections": [
-      {
-        "type": "group",
-        "fields": [
-          {
-            "title": "Common.Characteristics",
-            "type": "text",
-            "attribute": "data.levelCharacteristics"
-          }
-        ]
-      },
-      {
-        "title": "Common.Talent",
-        "type": "list",
-        "attribute": "data.level5Talent",
-        "form": {
-          "title": "Common.Talent",
-          "partial": "generic-feature"
+        {
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Common.Characteristics",
+                    "type": "text",
+                    "attribute": "data.levelCharacteristics"
+                }
+            ]
+        },
+        {
+            "title": "Common.Talent",
+            "type": "list",
+            "attribute": "data.level5Talent",
+            "form": {
+                "title": "Common.Talent",
+                "partial": "generic-feature"
+            }
         }
-      }
     ]
-  }
+}

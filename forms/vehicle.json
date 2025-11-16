@@ -1,0 +1,66 @@
+{
+  "title": "Vehicle",
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        { "title": "Vehicle.Price", "attribute": "data.price", "type": "text" },
+        { "title": "Characteristics.Size", "attribute": "data.size", "type": "text" },
+        { "title": "Vehicle.Descriptors", "attribute": "data.vehicleDescriptors", "type": "text" }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Vehicle.Attributes",
+      "fields": [
+        {
+          "type": "hStack",
+          "fields": [
+            { "title": "Attributes.STR", "type": "text", "alignment": "top", "attribute": "data.STR" },
+            { "title": "Attributes.AGI", "type": "text", "alignment": "top", "attribute": "data.AGI" },
+            { "title": "Attributes.INT", "type": "text", "alignment": "top", "attribute": "data.INT" },
+            { "title": "Attributes.WIL", "type": "text", "alignment": "top", "attribute": "data.WIL" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Common.Characteristics",
+      "fields": [
+        { "title": "Characteristics.Defense", "attribute": "data.ac", "type": "number" },
+        { "title": "Characteristics.Armor", "attribute": "data.armor", "type": "text" },
+        {
+          "title": "Characteristics.Health",
+          "type": "number",
+          "attribute": "data.hp"
+        },
+        { "title": "Vehicle.Space", "attribute": "data.space", "type": "text" },
+        { "title": "Vehicle.MaxSpeed", "attribute": "data.maxSpeed", "type": "text" },
+        { "title": "Vehicle.AccSpeed", "attribute": "data.acceleration", "type": "number" },
+        { "title": "Vehicle.DecSpeed", "attribute": "data.deceleration", "type": "number" },
+        { "title": "Characteristics.SpecialMovementTraits", "attribute": "data.specialMovementTraits", "type": "multiPicker", "attributeType": "SpecialMovementTraits" },
+        { "title": "Vehicle.Crew", "attribute": "data.crew", "type": "text" },
+        { "title": "Vehicle.Cargo", "attribute": "data.cargo", "type": "text" }
+      ]
+    },
+    {
+      "title": "Ancestry.TalentImmunitiesVulnerabilities",
+      "type": "list",
+      "attribute": "data.vehicleTraits",
+      "form": {
+                "title": "Common.Trait.many",
+                "partial": "generic-feature"
+            }
+    },
+    {
+      "title": "Vehicle.AttackOptions",
+      "type": "list",
+      "attribute": "data.vehicleAttacks",
+      "form": {
+        "title": "Vehicle.AttackOptions",
+        "partial": "generic-feature"
+      }
+    }
+ ]
+}

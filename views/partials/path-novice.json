@@ -1,252 +1,221 @@
 {
-  "views": [
-    {
-      "type": "vStack",
-      "views": [
+    "views": [
         {
-          "type": "text",
-          "style": "ancestrySection",
-          "value": "**{{'Path.Level1'|l|uppercase}}**",
-          "padding": [
-            4,
-            0,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Common.Attributes'|l}}.** {{data.level1.data.levelAttribute}}.",
-          "visibleIf": "{% if data.level1.data.levelAttribute %}true{% endif %}"
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [10,0,0,0],
+            "views": [
+                {
+                    "style": "entitySubtitle",
+                    "value": "**{{'Path.Novice'|l}}** • **{{'Path.Level1'|l}}**"
+                }
+            ]
         },
         {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Common.Characteristics'|l}}.** {{data.level1.data.levelCharacteristics}}",
-          "visibleIf": "{% if data.level1.data.levelCharacteristics %}true{% endif %}"
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
         },
         {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Common.Language&Profession'|l}}.** {{data.level1.data.levelLangProf}}",
-          "visibleIf": "{% if data.level1.data.levelLangProf %}true{% endif %}"
+            "type": "spacer"
         },
         {
-          "type": "list",
-          "attribute": "data.level1Talent",
-          "views": [
-            {
-              "type": "text",
-              "style": "sotdlbody",
-              "value": "**{{name}}.** {{text}}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "vStack",
-      "views": [
-        {
-          "type": "text",
-          "style": "ancestrySection",
-          "value": "**{{'Path.Level2'|l|uppercase}}**",
-          "padding": [
-            4,
-            0,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Common.Characteristics'|l}}.** {{data.level2.data.levelCharacteristics}}",
-          "visibleIf": "{% if data.level2.data.levelCharacteristics %}true{% endif %}"
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Common.Attributes'|l}}.** {{data.level1.data.levelAttribute}}",
+                    "visibleIf": "{% if data.level1.data.levelAttribute %}true{% endif %}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Common.Characteristics'|l}}.** {{data.level1.data.levelCharacteristics}}",
+                    "visibleIf": "{% if data.level1.data.levelCharacteristics %}true{% endif %}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Common.Language&Profession'|l}}.** {{data.level1.data.levelLangProf}}",
+                    "visibleIf": "{% if data.level1.data.levelLangProf %}true{% endif %}"
+                }
+            ]
         },
         {
-          "type": "list",
-          "attribute": "data.level2Talent",
-          "views": [
-            {
-              "type": "text",
-              "style": "sotdlbody",
-              "value": "**{{name}}.** {{text}}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "vStack",
-      "views": [
-        {
-          "type": "text",
-          "style": "ancestrySection",
-          "value": "**{{'Path.Level5'|l|uppercase}}**",
-          "padding": [
-            4,
-            0,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Common.Characteristics'|l}}.** {{data.level5.data.levelCharacteristics}}",
-          "visibleIf": "{% if data.level5.data.levelCharacteristics %}true{% endif %}"
+            "type": "vStack",
+            "padding": [5,5,0,5],
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.level1Talent",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
         },
         {
-          "type": "list",
-          "attribute": "data.level5Talent",
-          "views": [
-            {
-              "type": "text",
-              "style": "sotdlbody",
-              "value": "**{{name}}.** {{text}}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "vStack",
-      "views": [
-        {
-          "type": "text",
-          "style": "ancestrySection",
-          "value": "**{{'Path.Level8'|l|uppercase}}**",
-          "padding": [
-            4,
-            0,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Common.Characteristics'|l}}.** {{data.level8.data.levelCharacteristics}}",
-          "visibleIf": "{% if data.level8.data.levelCharacteristics %}true{% endif %}"
+            "type": "spacer"
         },
         {
-          "type": "list",
-          "attribute": "data.level8Talent",
-          "views": [
-            {
-              "type": "text",
-              "style": "sotdlbody",
-              "value": "**{{name}}.** {{text}}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "spacer"
-    },
-    {
-      "type": "vStack",
-      "views": [
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [10,0,0,0],
+            "views": [
+                {
+                    "style": "entitySubtitle",
+                    "value": "**{{'Path.Novice'|l}}** • **{{'Path.Level2'|l}}**"
+                }
+            ]
+        },
         {
-          "type": "text",
-          "style": "ancestrySection",
-          "value": "{% if notes %}**{{'Path.noviceTraining'|l|uppercase}}**{% endif %}",
-          "padding": [
-            4,
-            0,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
         {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "{{notes}}"
+            "type": "spacer"
+        },
+        {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Common.Characteristics'|l}}.** {{data.level2.data.levelCharacteristics}}",
+                    "visibleIf": "{% if data.level2.data.levelCharacteristics %}true{% endif %}"
+                }
+            ]
+        },
+        {
+            "type": "vStack",
+            "padding": [5,5,0,5],
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.level2Talent",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [10,0,0,0],
+            "views": [
+                {
+                    "style": "entitySubtitle",
+                    "value": "**{{'Path.Expert'|l}} • {{'Path.Level5'|l}}**"
+                }
+            ]
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Common.Characteristics'|l}}.** {{data.level5.data.levelCharacteristics}}",
+                    "visibleIf": "{% if data.level5.data.levelCharacteristics %}true{% endif %}"
+                }
+            ]
+        },
+        {
+            "type": "vStack",
+            "padding": [5,5,0,5],
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.level5Talent",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [10,0,0,0],
+            "views": [
+                {
+                    "style": "entitySubtitle",
+                    "value": "**{{'Path.Master'|l}} • {{'Path.Level8'|l}}**"
+                }
+            ]
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Common.Characteristics'|l}}.** {{data.level8.data.levelCharacteristics}}",
+                    "visibleIf": "{% if data.level8.data.levelCharacteristics %}true{% endif %}"
+                }
+            ]
+        },
+        {
+            "type": "vStack",
+            "padding": [5,5,0,5],
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.level8Talent",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

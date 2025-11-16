@@ -1,72 +1,121 @@
 {
     "debug": false,
     "spacing": 0,
-    "padding": [
-      20
-    ],
+    "padding": [15],
     "views": [
-      {
-        "type": "hStack",
-        "views": [
-          {
-            "type": "text",
-            "style": "entityTitle",
-            "value": "**{{name|uppercase}}**"
-          },
-          {
-            "style": "entitySubtitle",
-            "value": "{% if type %}**{{type|map: 'RuleType'|uppercase}}**{% endif %}",
-            "alignment": "trailing"
-          }
-        ]
-      },
-      {
-        "type": "divider",
-        "bgColor": "#000000",
-        "height": 2.5,
-        "padding": [
-          0
-        ]
-      },
-      {
-        "type": "spacer"
-      },
-      {
-        "type": "text",
-        "value": "{{descr}}"
-      },
-      {
-        "type": "spacer"
-      },
-      {
-        "type": "image",
-        "value": "{{image}}",
-        "link": "{{image}}"
-      },
-      {
-        "type": "spacer"
-      },
-      {
-        "type": "divider",
-        "bgColor": "#000000",
-        "height": 1.5,
-        "padding": [
-          0
-        ]
-      },
-      {
-        "type": "vStack",
-        "padding": [
-          8,
-          0
-        ],
-        "views": [
-          {
-            "type": "text",
-            "style": "sourceText",
-            "value": "{{footer}}"
-          }
-        ]
-      }
+        {
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [0,5],
+            "views": [
+                {
+                    "style": "entityTitle",
+                    "value": "**{{name}}**",
+                    "link": "https://www.google.com/search?tbm=isch&q=book+{{name}}"
+                },
+                {
+                    "style": "spellSubtitle",
+                    "alignment": "trailing",
+                    "width": -1,
+                    "value": "{% if data.ruleType %}**{{data.ruleType|map: 'RuleType'|uppercase}}**{% endif %}"
+                }
+            ]
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 2.5,
+            "padding": [0]
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{data.ruleType == 'Source'}}"
+        },
+        {
+            "type": "hStack",
+            "visibleIf": "{{data.ruleType == 'Source'}}",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "image",
+                    "padding": [8],
+                    "height": 230,
+                    "value": "{{image}}",
+                    "link": "{{image}}"
+                },
+                {
+                    "type": "vStack",
+                    "padding": [8],
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Source.Author'|l}} :** {{data.author}}",
+                            "visibleIf": "{{data.author}}"
+                        },
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Source.Translator'|l}} :** {{data.translator}}",
+                            "visibleIf": "{{data.translator}}"
+                        },
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Source.Edition'|l}} :** {{data.edition}}",
+                            "visibleIf": "{{data.edition}}"
+                        },
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Source.Type'|l}} :** {{data.sourceType}}",
+                            "visibleIf": "{{data.sourceType}}"
+                        },
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Source.Serie'|l}} :** {{data.serie}}",
+                            "visibleIf": "{{data.serie}}"
+                        },
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Source.Pages'|l}} :** {{data.pages}}",
+                            "visibleIf": "{{data.pages}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "{{descr}}"
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
+        {
+          "type": "text",
+          "style": "source",
+          "padding": [5,0,0,0],
+          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
+          "visibleIf": "{{sourceFormatted}}"
+        }
     ]
-  }
+}

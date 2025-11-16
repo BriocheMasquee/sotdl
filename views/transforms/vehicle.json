@@ -1,0 +1,17 @@
+{
+  "attributes": [
+    {
+        "data.xp": "#{{data.cr}}",
+        "data.perceptionModifier": "{% if data.perception %}#{% eval %}{{data.perception}}-10{% endeval %}{% endif %}",
+        "data.strengthModifier": "#{% eval %}{{data.STR}}-10{% endeval %}",
+        "data.agilityModifier": "#{% eval %}{{data.AGI}}-10{% endeval %}",
+        "data.intellectModifier": "#{% eval %}{{data.INT}}-10{% endeval %}",
+        "data.willModifier": "#{% eval %}{{data.WIL}}-10{% endeval %}"
+      },
+    {
+        "inCombatDetail": "{{'Characteristics.Defense'|l}} {{data.ac}}", 
+        "outCombatDetail": "{{data.creatureDescriptors}} • {{'Characteristics.Perception'|l}} {{data.perception}}"
+    }
+  ]
+}
+

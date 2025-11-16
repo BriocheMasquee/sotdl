@@ -1,0 +1,35 @@
+{
+    "sections": [
+        {
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Spell.Tradition",
+                    "type": "picker",
+                    "attribute": "tradition",
+                    "attributeType": "SpellTradition"
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Spell.DarkMagic",
+                    "type": "toggle",
+                    "attribute": "darkMagic"
+                },
+                {
+                    "title": "Spell.PsychicTradition",
+                    "type": "toggle",
+                    "attribute": "psychicTradition"
+                },
+                {
+                    "title": "Spell.OnlyIncantation",
+                    "type": "toggle",
+                    "attribute": "onlyIncantation"
+                }
+            ]
+        }
+    ]
+}

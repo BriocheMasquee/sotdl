@@ -1,96 +1,100 @@
 {
-  "debug": false,
-  "spacing": 0,
-  "padding": [
-    20
-  ],
-  "views": [
-    {
-      "type": "hStack",
-      "views": [
+    "debug": false,
+    "spacing": 0,
+    "padding": [15],
+    "views": [
         {
-          "style": "entityTitle",
-          "value": "**{{name|uppercase}}**",
-          "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [0,5],
+            "views": [
+                {
+                    "style": "entityTitle",
+                    "value": "**{{name}}**",
+                    "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
+                }
+            ]
         },
         {
-          "style": "entitySubtitle",
-          "value": "**{{data.pathType|map: 'PathType'|uppercase|l}}** {% if data.expertCategory %}• **{{data.expertCategory|map: 'PathECategory'|uppercase|l}}**{% endif %} {% if data.masterCategory %}• **{{data.masterCategory|map: 'PathMCategory'|uppercase|l}}**{% endif %}",
-          "alignment": "trailing"
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 2.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "spacer"
-    },
-    {
-      "type": "text",
-      "value": "{{descr}}"
-    },
-    {
-      "type": "spacer"
-    },
-    {
-      "type": "partial",
-      "value": "path-novice",
-      "visibleIf": "{% if data.pathType == 'Novice' %}true{% endif %}"
-    },
-    {
-      "type": "partial",
-      "value": "path-expert",
-      "visibleIf": "{% if data.pathType == 'Expert' %}true{% endif %}"
-    },
-    {
-      "type": "partial",
-      "value": "path-master",
-      "visibleIf": "{% if data.pathType == 'Master' %}true{% endif %}"
-    },
-    {
-      "visibleIf": "{{image}}",
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "spacer"
-    },
-    {
-      "type": "image",
-      "value": "{{image}}",
-      "link": "{{image}}"
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8,
-        0
-      ],
-      "views": [
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 2.5,
+            "padding": [0]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "text",
+            "value": "{{descr}}"
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "partial",
+            "value": "path-novice",
+            "visibleIf": "{% if data.pathType == 'Novice' %}true{% endif %}"
+        },
+        {
+            "type": "partial",
+            "value": "path-expert",
+            "visibleIf": "{% if data.pathType == 'Expert' %}true{% endif %}"
+        },
+        {
+            "type": "partial",
+            "value": "path-master",
+            "visibleIf": "{% if data.pathType == 'Master' %}true{% endif %}"
+        },
+        {
+            "type": "partial",
+            "value": "path-other",
+            "visibleIf": "{% if data.other %}true{% endif %}"
+        },        
+        {
+            "type": "vStack",
+            "padding": [5,5,0,5],
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.talent",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{image}}"
+        },
+        {
+            "type": "image",
+            "value": "{{image}}",
+            "link": "{{image}}"
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
         {
           "type": "text",
-          "style": "sourceText",
-          "value": "{{footer}}"
+          "style": "source",
+          "padding": [5,0,0,0],
+          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
+          "visibleIf": "{{sourceFormatted}}"
         }
-      ]
-    }
-  ]
+    ]
 }

@@ -1,33 +1,33 @@
 {
     "sections": [
-      {
-        "type": "group",
-        "fields": [
-          {
-            "title": "Common.Attributes",
-            "type": "text",
-            "attribute": "data.levelAttribute"
-          },
-          {
-            "title": "Common.Characteristics",
-            "type": "text",
-            "attribute": "data.levelCharacteristics"
-          },
-          {
-            "title": "Common.Language&Profession",
-            "type": "textArea",
-            "attribute": "data.levelLangProf"
-          }
-        ]
-      },
-      {
-        "title": "Common.Talent",
-        "type": "list",
-        "attribute": "data.level7Talent",
-        "form": {
-          "title": "Common.Talent",
-          "partial": "generic-feature"
+        {
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Common.Attributes",
+                    "type": "text",
+                    "attribute": "data.levelAttribute"
+                },
+                {
+                    "title": "Common.Characteristics",
+                    "type": "text",
+                    "attribute": "data.levelCharacteristics"
+                },
+                {
+                    "title": "Common.Language&Profession",
+                    "type": "textArea",
+                    "attribute": "data.levelLangProf"
+                }
+            ]
+        },
+        {
+            "title": "Common.Talent",
+            "type": "list",
+            "attribute": "data.level7Talent",
+            "form": {
+                "title": "Common.Talent",
+                "partial": "generic-feature"
+            }
         }
-      }
     ]
-  }
+}

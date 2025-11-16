@@ -1,0 +1,195 @@
+{
+    "debug": false,
+    "spacing": 0,
+    "padding": [15],
+    "views": [
+        {
+            "type": "hStack",
+            "bgColor": "#000000",
+            "alignment": "bottom",
+            "padding": [0,5],
+            "views": [
+                {
+                    "style": "creatureTitle",
+                    "padding": [4, 8, 4, 0],
+                    "value": "**{{name}}**",
+                    "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
+                },
+                {
+                    "style": "creatureSubtitle",
+                    "padding": [4, 8, 4, 4],
+                    "alignment": "trailing",
+                    "width": -1,
+                    "value": "{% if data.price %} **{{'Vehicle.Price'|l|uppercase}} {{data.price}}**{% endif %}"
+                }
+            ]
+        },
+                {
+            "type": "vStack",
+            "width": 0,
+            "padding": [2, 0, 0, 0],
+            "views": [
+                {
+                    "style": "creatureSubtitle",
+                    "bgColor": "#9B0619",
+                    "value": "{% if data.vehicleDescriptors %}***{{data.vehicleDescriptors}}***{% endif %} {% if data.size %}***• {{'Characteristics.Size'|l}} {{data.size}}***{% endif %}",
+                    "padding": [4, 13, 4, 0]
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+                {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Characteristics.Defense'|l}}** {{data.ac}} {% if data.armor %}{{data.armor|lowercase|brackets}}{% endif %} ;  **{{'Characteristics.Health'|l}}** {{data.hp}}"
+                },
+                {
+                    "type": "flow",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Attributes.STR'|l}}** {{data.STR}} {% if data.STR%}{{data.strengthModifier|signed|brackets}}{% endif %}"
+                        },
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Attributes.AGI'|l}}** {{data.AGI}} {% if data.AGI%}{{data.agilityModifier|signed|brackets}}{% endif %}"
+                        },
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Attributes.INT'|l}}** {{data.INT}} {% if data.INT%}{{data.intellectModifier|signed|brackets}}{% endif %}"
+                        },
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "**{{'Attributes.WIL'|l}}** {{data.WIL}} {% if data.WIL%}{{data.willModifier|signed|brackets}}{% endif %}"
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Vehicle.Space'|l}}** {{data.space}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Vehicle.MaxSpeed'|l}}** {{data.maxSpeed}} {% if data.acceleration %}({{'Vehicle.AccSpeed'|l|lowercase}} {{data.acceleration}} / {{'Vehicle.DecSpeed'|l|lowercase}} {{data.deceleration}}) {% endif %}; {% if data.specialMovementTraits %}{{data.specialMovementTraits|map: 'SpecialMovementTraits'|lowercase}}{% endif %}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Vehicle.Crew'|l}}** {{data.crew}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Vehicle.Cargo'|l}}** {{data.cargo}}"
+                }
+            ]
+        },
+        {
+            "type": "vStack",
+            "padding": [5,5,0,5],
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.vehicleTraits",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+                {
+            "type": "text",
+            "style": "creatureSection",
+            "bgColor": "#A7A9AC",
+            "padding": [4,13,4,5],
+            "value": "**{{'Vehicle.AttackOptions'|l}}**",
+            "visibleIf": "{% if data.vehicleAttacks %}true{% endif %}"
+        },
+        {
+            "type": "vStack",
+            "padding": [5],
+            "visibleIf": "{% if data.vehicleAttacks %}true{% endif %}",
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.vehicleAttacks",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}**{% endif %} {{text}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{% if data.vehicleAttacks %}true{% endif %}"
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{descr}}"
+        },
+        {
+            "type": "divider",
+            "bgColor": "#9B0619",
+            "height": 1.5,
+            "padding": [0],
+            "visibleIf": "{{descr}}"
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{descr}}"
+        },
+        {
+            "type": "text",
+            "value": "{{descr}}"
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{image}}"
+        },
+        {
+            "type": "image",
+            "value": "{{image}}",
+            "link": "{{image}}"
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
+        {
+          "type": "text",
+          "style": "source",
+          "padding": [5,0,0,0],
+          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
+          "visibleIf": "{{sourceFormatted}}"
+        }
+
+    ]
+}

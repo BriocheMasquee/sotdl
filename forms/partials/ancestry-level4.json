@@ -1,0 +1,29 @@
+{
+    "sections": [
+        {
+            "type": "group",
+            "title": "Level4.Expert",
+            "fields": [
+                {
+                    "title": "Common.Characteristics",
+                    "type": "text",
+                    "attribute": "level4Increase"
+                },
+                {
+                    "title": "Level4.Options",
+                    "type": "textArea",
+                    "attribute": "level4Options"
+                }
+            ]
+        },
+        {
+            "title": "Level4.Talent",
+            "type": "list",
+            "attribute": "data.level4Talent",
+            "form": {
+                "title": "Common.Talent",
+                "partial": "generic-feature"
+            }
+        }
+    ]
+}

@@ -1,24 +1,24 @@
 {
-  "sections": [
-    {
-      "type": "group",
-      "fields": [
+    "sections": [
         {
-          "placeholder": "Common.Name",
-          "attribute": "name"
-        }
-      ]
-    },
-    {
-      "title": "Common.Description",
-      "type": "group",
-      "fields": [
+            "type": "group",
+            "fields": [
+                {
+                    "placeholder": "Common.Name",
+                    "attribute": "name"
+                }
+            ]
+        },
         {
-          "title": "Common.Description",
-          "type": "textArea",
-          "attribute": "text"
+            "title": "Common.Description",
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Common.Description",
+                    "type": "textArea",
+                    "attribute": "text"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

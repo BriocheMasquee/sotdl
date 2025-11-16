@@ -1,56 +1,121 @@
 {
-  "measurement": {
-    "imperial": {
-      "default": true,
-      "title": "MeasurementSystem.Imperial",
-      "units": ["ft", "mi", "lb"],
-      "format": "@value @unit.",
-      "conversion": {
-        "metric": {
-          "ft": {
-            "m": "@value * 0.3"
-          },
-          "mi": {
-            "km": "@value * 1.5"
-          },
-          "lb": {
-            "kg": "@value * 0.5"
-          }
+    "entities": {
+        "Default": {
+            "combatant": {
+                "bars": [
+                    {
+                        "attribute": "data.hp",
+                        "title": "Common.HitPoints",
+                        "label": "Common.HP",
+                        "temporary": true
+                    }
+                ]
+            }
+        },
+        "Ancestry": {
+            "collection": {
+                "detail": ""
+            }
+        },
+        "Creature": {
+            "collection": {
+                "detail": "{% if data.creatureDescriptors %}{{data.creatureDescriptors}}{% endif %}{% if data.size and data.creatureDescriptors %} • {% endif %}{% if data.size %}{{'Characteristics.Size'|l}} {% endif %}{{data.size}}"
+            },
+            "combatant": {
+                "image": "token"
+            }
+        },
+        "Item": {
+            "collection": {
+                "detail": "{% if data.gearType %}{{data.gearType|map: 'GearType'|l}}{% endif%}{% if data.marvelType %}{{data.marvelType|map: 'MarvelType'|l}} • {% endif %}{% if data.availability %}{{data.availability|map: 'Availability'|l}}{% endif %}"
+            }
+        },
+        "NPC": {
+            "collection": {
+                "detail": "{% if data.creatureDescriptors %}{{data.creatureDescriptors}}{% endif %}{% if data.size and data.creatureDescriptors %} • {% endif %}{% if data.size %}{{'Characteristics.Size'|l}} {% endif %}{{data.size}}"
+            },
+            "combatant": {
+                "image": "token"
+            }
+        },
+        "Path": {
+            "collection": {
+                "detail": "{{data.pathType|map: 'PathType'|l}} {% if data.expertCategory %}• {{data.expertCategory|map: 'PathECategory'|l}}{% endif %}{% if data.masterCategory %}• {{data.masterCategory|map: 'PathMCategory'|l}}{% endif %}"
+            }
+        },
+        "Rule": {
+            "collection": {
+                "detail": ""
+            }
+        },
+        "Spell": {
+            "collection": {
+                "detail": "{% if data.spellTradition %}{{data.spellTradition.tradition|map: 'SpellTradition'|l}}{% endif %}{% if data.spellType and data.spellTradition %} • {% endif %}{% if data.spellType %}{{data.spellType|map: 'SpellType'|l}}{% endif %} {% if data.spellRank or data.spellRank == 0 %}{{data.spellRank}}{% endif %}{% if data.spellTradition.darkMagic == true %} {{'Magic.Dark'|l|lowercase|brackets}}{% endif %}{% if data.spellTradition.psychicTradition == true %} {{'Magic.Psychic'|l|lowercase|brackets}}{% endif %}{% if data.spellTradition.onlyIncantation == true %} {{'Magic.Incantation'|l|lowercase|brackets}}{% endif %}"
+            }
+        },
+        "Tables": {
+            "collection": {
+                "detail": ""
+            }
+        },
+        "Vehicle": {
+            "collection": {
+                "detail": "{% if data.size %}{{'Characteristics.Size'|l}} {{data.size}}{% endif %}{% if data.cargo %} • {{'Vehicle.Cargo'|l}} {{data.cargo}}{% endif %}"
+            },
+            "combatant": {
+                "image": "token"
+            }
         }
-      }
     },
-    "metric": {
-      "title": "MeasurementSystem.Metric",
-      "units": ["m", "km", "kg"],
-      "format": "@value @unit",
-      "conversion": {
+    "measurement": {
         "imperial": {
-          "m": {
-            "ft": "@value / 0.3"
-          },
-          "km": {
-            "mi": "@value / 1.5"
-          },
-          "kg": {
-            "lb": "@value * 2"
-          }
+            "default": true,
+            "title": "MeasurementSystem.Imperial",
+            "units": [
+                "ft",
+                "mi",
+                "lb"
+            ],
+            "format": "@value @unit.",
+            "conversion": {
+                "metric": {
+                    "ft": {
+                        "m": "@value * 0.3"
+                    },
+                    "mi": {
+                        "km": "@value * 1.5"
+                    },
+                    "lb": {
+                        "kg": "@value * 0.5"
+                    }
+                }
+            }
+        },
+        "metric": {
+            "title": "MeasurementSystem.Metric",
+            "units": [
+                "m",
+                "km",
+                "kg"
+            ],
+            "format": "@value @unit",
+            "conversion": {
+                "imperial": {
+                    "m": {
+                        "ft": "@value / 0.3"
+                    },
+                    "km": {
+                        "mi": "@value / 1.5"
+                    },
+                    "kg": {
+                        "lb": "@value * 2"
+                    }
+                }
+            }
         }
-      }
     }
-  },
-  "combat": {
-    "combatants": {
-      "default": {
-        "defeated": "#{{data.hp.current|default: 1}} <= -{{data.hp.maximum|default: 0}}",
-        "bars": [
-          {
-            "attribute": "data.hp",
-            "title": "Characteristics.Health",
-            "label": "Common.HP",
-            "temporary": true
-          }
-        ]
-  }
 }
-  }
-}
+    
+
+
+

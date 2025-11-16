@@ -1,210 +1,369 @@
 {
-  "Ancestry": {
-    "params": [
-      {
-        "attribute": "sources.name",
-        "title": "Source",
-        "dynamic": true
-      }
-    ]
-  },
-  "Complication": {
-    "params": [
-      {
-        "attribute": "source",
-        "title": "Source",
-        "dynamic": true
-      }
-    ],
-    "group": [
-      {
-        "attribute": "name",
-        "title": "Common.Name"
-      }
-    ]
-  },
-  "Creature": {
-    "params": [
-      {
-        "attribute": "data.size",
-        "attributeType": "Size",
-        "title": "Creature.Size"
-      },
-      {
-        "attribute": "data.creatureDescriptors",
-        "title": "Creature.Descriptors",
-        "dynamic": "true"
-      },
-      {
-        "attribute": "data.cr",
-        "title": "Creature.Difficulty",
-        "dynamic": true
-      },
-      {
-        "attribute": "sources.name",
-        "title": "Source",
-        "dynamic": true
-      }
-    ],
-    "group": [
-      {
-        "attribute": "data.cr",
-        "attributeType": "CreatureDifficulty",
-        "text": "{{'Creature.Difficulty'|l}} {{value}}",
-        "title": "Creature.Difficulty"
-      },
-      {
-        "attribute": "name",
-        "title": "Common.Name"
-      }
-    ],
-    "sort": [
-      {
-        "attribute": "name",
-        "title": "Common.Name"
-      },
-      {
-        "attribute": "data.cr",
-        "title": "Creature.Difficulty",
-        "text": "{{value}}"
-      }
-    ]
-  },
-
-  "Item": {
-    "params": [
-      {
-        "attribute": "data.itemType",
-        "attributeType": "ItemType",
-        "title": "Item.Type"
-      },
-      {
-        "attribute": "data.availability",
-        "attributeType": "Availability",
-        "title": "Item.Availability"
-      },
-      {
-        "attribute": "sources.name",
-        "title": "Source",
-        "dynamic": true
-      }
-    ],
-    "group": [
-      {
-        "attribute": "data.itemType",
-        "attributeType": "ItemType",
-        "title": "Item.Type"
-      },
-      {
-        "attribute": "name",
-        "title": "Common.Name"
-      }
-    ]
-  },
-  "Path": {
-    "params": [
-      {
-        "attribute": "data.pathType",
-        "attributeType": "PathType",
-        "title": "Path.Type"
-      },
-      {
-        "attribute": "source",
-        "title": "Source",
-        "dynamic": true
-      }
-    ],
-    "group": [
-      {
-        "attribute": "data.pathType",
-        "attributeType": "PathType",
-        "title": "Path.Type"
-      },
-      {
-        "attribute": "name",
-        "title": "Common.Name"
-      }
-    ],
-    "sort": [
-      {
-        "attribute": "name",
-        "title": "Common.Name"
-      }
-    ]
-  },
-
+    "Ancestry": {
+        "params": [
+            {
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true  
+            }
+        ],
+        "group": [
+            {
+                "attribute": "name",
+                "title": "Common.Name",
+                "dynamic": true
+            }
+        ],
+        "sort": [
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            }
+        ]
+    },
+    "Creature": {
+        "params": [
+            {
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.creatureDescriptors",
+                "title": "Creature.Descriptors",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.cr",
+                "title": "Creature.Difficulty",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.size",
+                "title": "Characteristics.Size",
+                "dynamic": true
+            }
+        ],
+        "group": [
+            {
+                "attribute": "data.cr",
+                "attributeType": "data.cr",
+                "text": "{{'Creature.Difficulty'|l}} {{value}}",
+                "title": "Creature.Difficulty"
+            },
+            {
+                "attribute": "data.size",
+                "attributeType": "data.size",
+                "text": "{{'Characteristics.Size'|l}} {{value}}",
+                "title": "Characteristics.Size"
+            },
+            {
+                "attribute": "data.creatureDescriptors",
+                "attributeType": "data.creatureDescriptors",
+                "text": "{{value}}",
+                "title": "Creature.Descriptors"
+            }
+        ],
+        "sort": [
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            },
+            {
+                "attribute": "data.size",
+                "attributeType": "data.size",
+                "text": "{{'Characteristics.Size'|l}} {{value}}",
+                "title": "Characteristics.Size"
+            }
+        ]
+    },
+    "Item": {
+        "params": [
+            {
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.itemType",
+                "attributeType": "ItemType",
+                "title": "Item.Type"
+            },
+            {
+                "attribute": "data.gearType",
+                "attributeType": "GearType",
+                "title": "Item.GearType"
+            },
+            {
+                "attribute": "data.marvelType",
+                "attributeType": "MarvelType",
+                "title": "Item.MarvelType"
+            },
+            {
+                "attribut": "data.weaponType",
+                "attributeType": "WeaponType",
+                "title": "Item.WeaponType"
+            },
+            {
+                "attribut": "data.weaponHands",
+                "attributeType": "WeaponHands",
+                "title": "Weapon.Hands"
+            }
+        ],
+        "group": [
+            {
+                "attribute": "data.itemType",
+                "attributeType": "ItemType",
+                "title": "Item.Type"
+            },
+            {
+                "attribute": "data.availability",
+                "attributeType": "Availability",
+                "title": "Item.Availability"
+            }
+        ],
+        "sort": [
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            },
+            {
+                "attribute": "data.availability",
+                "title": "Item.Availability"
+            },
+            {
+                "attribute": "data.price",
+                "title": "Item.Price"
+            }
+        ]
+    },
+    "Path": {
+        "params": [
+            {
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.pathType",
+                "attributeType": "PathType",
+                "title": "Path.Type"
+            },
+            {
+                "attribute": "data.expertCategory",
+                "attributeType": "PathECategory",
+                "title": "Path.ExpertCategory"
+            },
+            {
+                "attribute": "data.masterCategory",
+                "attributeType": "PathMCategory",
+                "title": "Path.MasterCategory"
+            }
+        ],
+        "group": [
+            {
+                "attribute": "data.pathType",
+                "attributeType": "PathType",
+                "title": "Path.Type"
+            }
+        ],
+        "sort": [
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            }
+        ]
+    },
+    "NPC": {
+        "params": [
+            {
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.creatureDescriptors",
+                "title": "Creature.Descriptors",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.cr",
+                "title": "Creature.Difficulty",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.size",
+                "title": "Characteristics.Size",
+                "dynamic": true
+            }
+        ],
+        "group": [
+            {
+                "attribute": "data.cr",
+                "attributeType": "data.cr",
+                "text": "{{'Creature.Difficulty'|l}} {{value}}",
+                "title": "Creature.Difficulty"
+            },
+            {
+                "attribute": "data.size",
+                "attributeType": "data.size",
+                "text": "{{'Characteristics.Size'|l}} {{value}}",
+                "title": "Characteristics.Size"
+            },
+            {
+                "attribute": "data.creatureDescriptors",
+                "attributeType": "data.creatureDescriptors",
+                "text": "{{value}}",
+                "title": "Creature.Descriptors"
+            }
+        ],
+        "sort": [
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            },
+            {
+                "attribute": "data.size",
+                "attributeType": "data.size",
+                "text": "{{'Characteristics.Size'|l}} {{value}}",
+                "title": "Characteristics.Size"
+            }
+        ]
+    },
     "Rule": {
         "params": [
             {
-              "attribute": "type",
-              "attributeType": "RuleType",
-              "title": "Type"
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true
             },
             {
-              "attribute": "sources.name",
-              "title": "Source",
-              "dynamic": true
-            }
-          ],
-          "group": [
+                "attribute": "data.edition",
+                "title": "Source.Edition",
+                "dynamic": true
+            },
             {
-              "attribute": "type",
-              "attributeType": "RuleType",
-              "title": "Type"
-            },      
-            {
-              "attribute": "sources.name",
-              "title": "Source",
-              "dynamic": true
+                "attribute": "data.serie",
+                "title": "Source.Serie",
+                "dynamic": true
             }
-          ],
-          "sort": [
+        ],
+        "group": [
             {
-              "attribute": "name",
-              "title": "Common.Name"
+                "attribute": "data.ruleType",
+                "attributeType": "RuleType",
+                "title": "Rule.Type"
+            },
+            {
+                "attribute": "data.serie",
+                "attributeType": "Serie",
+                "title": "Source.Serie"
             }
-          ]
+        ],
+        "sort": [
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            }
+        ]
     },
-
     "Spell": {
-      "params": [
-        {
-          "attribute": "data.spellTradition",
-          "attributeType": "SpellTradition",
-          "title": "Spell.Tradition"
-        },
-        {
-          "attribute": "data.spellType",
-          "attributeType": "SpellType",
-          "title": "Spell.Type"
-        },
-        {
-          "attribute": "sources.name",
-          "title": "Source",
-          "dynamic": true
-        }
-      ],
-      "group": [
-        {
-          "attribute": "data.spellTradition",
-          "attributeType": "SpellTradition",
-          "title": "Spell.Tradition"
-        },
-        {
-          "attribute": "data.spellRank",
-          "text": "{{'Spell.Rank'|l}} {{value}}",
-          "title": "Spell.Rank"
-        }
-      ],
-      "sort": [
-        {
-          "attribute": "data.spellRank",
-          "title": "Spell.Rank"
-        },
-        {
-          "attribute": "name",
-          "title": "Common.Name"
-        }
-      ]
+        "params": [
+             {
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.spellTradition.tradition",
+                "attributeType": "SpellTradition",
+                "title": "Spell.Tradition"
+            },
+            {
+                "attribute": "data.spellType",
+                "attributeType": "SpellType",
+                "title": "Spell.Type"
+            }
+        ],
+        "group": [
+            {
+                "attribute": "data.spellTradition.tradition",
+                "attributeType": "SpellTradition",
+                "title": "Spell.Tradition"
+            },
+            {
+                "attribute": "data.spellRank",
+                "text": "{{'Spell.Rank'|l}} {{value}}",
+                "title": "Spell.Rank"
+            }
+        ],
+        "sort": [
+            {
+                "attribute": "data.spellRank",
+                "title": "Spell.Rank"
+            },
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            }
+        ]
+    },
+    "Table": {
+        "params": [
+            {
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true  
+            }
+        ],
+        "group": [
+            {
+                "attribute": "name",
+                "title": "Common.Name",
+                "dynamic": true
+            }
+        ],
+        "sort": [
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            }
+        ]
+    },
+    "Vehicle": {
+        "params": [
+            {
+                "attribute": "sources.name",
+                "title": "Source",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.vehicleDescriptors",
+                "title": "Vehicle.Descriptors",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.size",
+                "title": "Characteristics.Size",
+                "dynamic": true
+            },
+            {
+                "attribute": "data.cargo",
+                "title": "Vehicle.Cargo",
+                "dynamic": true
+            }
+        ],
+        "sort": [
+            {
+                "attribute": "name",
+                "title": "Common.Name"
+            },
+            {
+                "attribute": "data.size",
+                "attributeType": "data.size",
+                "text": "{{'Characteristics.Size'|l}} {{value}}",
+                "title": "Characteristics.Size"
+            }
+        ]
     }
 }

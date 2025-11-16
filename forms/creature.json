@@ -1,104 +1,172 @@
 {
-  "title": "Creature",
-  "sections": [
-    {
-      "type": "group",
-      "fields": [
-        { "title": "Creature.Difficulty", "attribute": "data.cr", "type": "number" },
-        { "title": "Characteristics.Size", "attribute": "data.size", "type": "text" },
-        { "title": "Creature.Descriptors", "attribute": "data.creatureDescriptors", "type": "text" }
-      ]
-    },
-    {
-      "type": "group",
-      "title": "Creature.Attributes",
-      "fields": [
+    "title": "Creature",
+    "sections": [
         {
-          "type": "hStack",
-          "fields": [
-            { "title": "Attributes.STR", "type": "text", "alignment": "top", "attribute": "data.STR" },
-            { "title": "Attributes.AGI", "type": "text", "alignment": "top", "attribute": "data.AGI" },
-            { "title": "Attributes.INT", "type": "text", "alignment": "top", "attribute": "data.INT" },
-            { "title": "Attributes.WIL", "type": "text", "alignment": "top", "attribute": "data.WIL" }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "title": "Common.Characteristics",
-      "fields": [
-        { "title": "Characteristics.Perception", "attribute": "data.perception", "type": "number" },
-        { "title": "Characteristics.SpecialSenses", "attribute": "data.senses", "type": "multiPicker", "attributeType": "SpecialSenses" },
-        { "title": "Characteristics.Defense", "attribute": "data.ac", "type": "number" },
-        { "title": "Characteristics.Armor", "attribute": "data.armor", "type": "text" },
-        {
-          "title": "Characteristics.Health",
-          "type": "number",
-          "attribute": "data.hp"
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Creature.Difficulty",
+                    "attribute": "data.cr",
+                    "type": "number"
+                },
+                {
+                    "title": "Characteristics.Size",
+                    "attribute": "data.size",
+                    "type": "text"
+                },
+                {
+                    "title": "Creature.Descriptors",
+                    "attribute": "data.creatureDescriptors",
+                    "type": "text"
+                }
+            ]
         },
-        { "title": "Characteristics.Insanity", "attribute": "data.insanity", "type": "text" },
-        { "title": "Characteristics.Corruption", "attribute": "data.corruption", "type": "text" },
-        { "title": "Characteristics.Power", "attribute": "data.power", "type": "number" },
-        { "title": "Characteristics.Speed", "attribute": "data.speed", "type": "number" },
-        { "title": "Characteristics.SpecialMovementTraits", "attribute": "data.specialMovementTraits", "type": "multiPicker", "attributeType": "SpecialMovementTraits" },
-        { "title": "Characteristics.Immunities", "attribute": "data.immunities", "type": "multiPicker", "attributeType": "Immunities" },
-        { "title": "Characteristics.Vulnerabilities", "attribute": "data.vulnerabilities", "type": "multiPicker", "attributeType": "Vulnerabilities" }
-      ]
-    },
-    {
-      "title": "Creature.Traits",
-      "type": "list",
-      "attribute": "data.creatureTraits",
-      "form": {
-        "title": "Creature.Traits",
-        "partial": "generic-feature"
-      }
-    },
-    {
-      "title": "Combat.AttackOptions",
-      "type": "list",
-      "attribute": "data.creatureAttacks",
-      "form": {
-        "title": "Combat.AttackOptions",
-        "partial": "generic-feature"
-      }
-    },
-    {
-      "title": "Combat.SpecialAttacks",
-      "type": "list",
-      "attribute": "data.creatureSpecialAttacks",
-      "form": {
-        "title": "Combat.SpecialAttack",
-        "partial": "generic-feature"
-      }
-    },
-    {
-      "title": "Combat.SpecialActions",
-      "type": "list",
-      "attribute": "data.creatureSpecialActions",
-      "form": {
-        "title": "Combat.SpecialAction",
-        "partial": "generic-feature"
-      }
-    },
-    {
-      "title": "Round.EndEffect",
-      "type": "list",
-      "attribute": "data.creatureEndOfRoundEffect",
-      "form": {
-        "title": "Round.Effect",
-        "partial": "generic-feature"
-      }
-    },
-    {
-      "title": "Creature.Magic",
-      "type": "list",
-      "attribute": "data.creatureMagic",
-      "form": {
-        "title": "Magic.Spell",
-        "partial": "creature-magic"
-      }
-    }
- ]
+        {
+            "type": "group",
+            "title": "Creature.Attributes",
+            "fields": [
+                {
+                    "type": "hStack",
+                    "fields": [
+                        {
+                            "title": "Attributes.STR",
+                            "type": "text",
+                            "alignment": "top",
+                            "attribute": "data.STR"
+                        },
+                        {
+                            "title": "Attributes.AGI",
+                            "type": "text",
+                            "alignment": "top",
+                            "attribute": "data.AGI"
+                        },
+                        {
+                            "title": "Attributes.INT",
+                            "type": "text",
+                            "alignment": "top",
+                            "attribute": "data.INT"
+                        },
+                        {
+                            "title": "Attributes.WIL",
+                            "type": "text",
+                            "alignment": "top",
+                            "attribute": "data.WIL"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "title": "Common.Characteristics",
+            "fields": [
+                {
+                    "title": "Characteristics.Perception",
+                    "attribute": "data.perception",
+                    "type": "number"
+                },
+                {
+                    "title": "Characteristics.SpecialSenses",
+                    "attribute": "data.senses",
+                    "type": "multiPicker",
+                    "attributeType": "SpecialSenses"
+                },
+                {
+                    "title": "Characteristics.Defense",
+                    "attribute": "data.ac",
+                    "type": "text"
+                },
+                {
+                    "title": "Characteristics.Armor",
+                    "attribute": "data.armor",
+                    "type": "text"
+                },
+                {
+                    "title": "Characteristics.Health",
+                    "type": "text",
+                    "attribute": "data.hp"
+                },
+                {
+                    "title": "Characteristics.Insanity",
+                    "attribute": "data.insanity",
+                    "type": "text"
+                },
+                {
+                    "title": "Characteristics.Corruption",
+                    "attribute": "data.corruption",
+                    "type": "text"
+                },
+                {
+                    "title": "Characteristics.Power",
+                    "attribute": "data.power",
+                    "type": "number"
+                },
+                {
+                    "title": "Characteristics.Speed",
+                    "attribute": "data.speed",
+                    "type": "number"
+                },
+                {
+                    "title": "Characteristics.SpecialMovementTraits",
+                    "attribute": "data.specialMovementTraits",
+                    "type": "multiPicker",
+                    "attributeType": "SpecialMovementTraits"
+                }
+            ]
+        },
+        {
+            "title": "Ancestry.TalentImmunitiesVulnerabilities",
+            "type": "list",
+            "attribute": "data.creatureTraits",
+            "form": {
+                "title": "Creature.Traits",
+                "partial": "generic-feature"
+            }
+        },
+        {
+            "title": "Combat.AttackOptions",
+            "type": "list",
+            "attribute": "data.creatureAttacks",
+            "form": {
+                "title": "Combat.AttackOptions",
+                "partial": "generic-feature"
+            }
+        },
+        {
+            "title": "Combat.SpecialAttacks",
+            "type": "list",
+            "attribute": "data.creatureSpecialAttacks",
+            "form": {
+                "title": "Combat.SpecialAttack",
+                "partial": "generic-feature"
+            }
+        },
+        {
+            "title": "Combat.SpecialActions",
+            "type": "list",
+            "attribute": "data.creatureSpecialActions",
+            "form": {
+                "title": "Combat.SpecialAction",
+                "partial": "generic-feature"
+            }
+        },
+        {
+            "title": "Round.EndEffect",
+            "type": "list",
+            "attribute": "data.creatureEndOfRoundEffect",
+            "form": {
+                "title": "Round.Effect",
+                "partial": "generic-feature"
+            }
+        },
+        {
+            "title": "Creature.Magic",
+            "type": "list",
+            "attribute": "data.creatureMagic",
+            "form": {
+                "title": "Magic.Spell",
+                "partial": "creature-magic"
+            }
+        }
+    ]
 }

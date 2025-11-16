@@ -1,0 +1,23 @@
+{
+    "sections": [
+        {
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Path.TalentName",
+                    "type": "text",
+                    "attribute": "talentName"
+                }
+            ]
+        },
+        {
+            "title": "Common.Talent",
+            "type": "list",
+            "attribute": "data.otherTalents",
+            "form": {
+                "title": "Common.Talent",
+                "partial": "generic-feature"
+            }
+        }
+    ]
+}

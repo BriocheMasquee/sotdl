@@ -1,24 +1,24 @@
 {
-  "sections": [
-    {
-      "type": "group",
-      "fields": [
+    "sections": [
         {
-          "placeholder": "Spell.Tradition",
-          "attribute": "name"
-        }
-      ]
-    },
-    {
-      "title": "Common.Description",
-      "type": "group",
-      "fields": [
+            "type": "group",
+            "fields": [
+                {
+                    "placeholder": "Spell.Tradition",
+                    "attribute": "name"
+                }
+            ]
+        },
         {
-          "title": "Spells.List",
-          "type": "textArea",
-          "attribute": "text"
+            "title": "Common.Description",
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Spells.List",
+                    "type": "textArea",
+                    "attribute": "text"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

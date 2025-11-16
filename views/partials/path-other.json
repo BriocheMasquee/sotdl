@@ -1,0 +1,41 @@
+{
+    "views": [
+        {
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [10,0,0,0],
+            "views": [
+                {
+                    "style": "entitySubtitle",
+                    "value": "**{{data.talentList.talentName}}**"
+                }
+            ]
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "vStack",
+            "padding": [5,5,0,5],
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.otherTalents",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

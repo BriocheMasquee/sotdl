@@ -1,0 +1,52 @@
+{
+    "title": "Rule",
+    "sections": [
+        {
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Rule.Type",
+                    "type": "picker",
+                    "attribute": "data.ruleType",
+                    "attributeType": "RuleType"
+                },
+                {
+                    "title": "Source.Author",
+                    "type": "text",
+                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "attribute": "data.author"
+                },
+                {
+                    "title": "Source.Translator",
+                    "type": "text",
+                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "attribute": "data.translator"
+                },
+                {
+                    "title": "Source.Edition",
+                    "type": "text",
+                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "attribute": "data.edition"
+                },
+                {
+                    "title": "Source.Type",
+                    "type": "text",
+                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "attribute": "data.sourceType"
+                },
+                {
+                    "title": "Source.Serie",
+                    "type": "text",
+                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "attribute": "data.serie"
+                },
+                {
+                    "title": "Source.Pages",
+                    "type": "text",
+                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "attribute": "data.pages"
+                }
+            ]
+        }
+    ]
+}

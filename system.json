@@ -5,9 +5,10 @@
   "id" : "sotdl",
   "image" : "sotdl_icon.png",
   "name" : "Shadow of the Demon Lord",
-  "repository" : "https:\/\/github.com\/BriocheMasquee\/sotdl",
+  "package" : "https://github.com/BriocheMasquee/sotdl/releases/latest/download/manifest.json",
+  "repository" : "https://github.com/BriocheMasquee/sotdl",
   "shortDescr" : "The End is just the Beginning.",
   "shortName" : "SotDL",
-  "version" : "0.9.1",
-  "website" : "https:\/\/schwalbentertainment.com"
+  "version" : "0.9.2",
+  "website" : "https://schwalbentertainment.com"
 }

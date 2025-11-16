@@ -1,123 +1,143 @@
 {
-  "debug": false,
-  "spacing": 0,
-  "padding": [
-    20
-  ],
-  "views": [
-    {
-      "type": "hStack",
-      "views": [
+    "debug": false,
+    "spacing": 0,
+    "padding": [15],
+    "views": [
         {
-          "type": "text",
-          "style": "entityTitle",
-          "value": "**{{name|uppercase}}**"
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [0,5],
+            "views": [
+                {
+                    "style": "spellTitle",
+                    "value": "**{{name}}**"
+                },
+                {
+                    "type": "image",
+                    "value": "/icons/tradition/darkmagic.png",
+                    "height": 20,
+                    "custom": {
+                        "renderingMode": "original"
+                    },
+                    "visibleIf": "{{data.spellTradition.darkMagic == true}}"
+                },
+                {
+                    "type": "image",
+                    "value": "/icons/tradition/psychic.png",
+                    "height": 20,
+                    "custom": {
+                        "renderingMode": "original"
+                    },
+                    "visibleIf": "{{data.spellTradition.psychicTradition == true}}"
+                },
+                {
+                    "type": "image",
+                    "value": "/icons/tradition/incantation.png",
+                    "height": 20,
+                    "custom": {
+                        "renderingMode": "original"
+                    },
+                    "visibleIf": "{{data.spellTradition.onlyIncantation == true}}"
+                },
+                {
+                    "style": "spellSubtitle",
+                    "alignment": "trailing",
+                    "width": -1,
+                    "value": "{% if data.spellTradition %}**{{data.spellTradition.tradition|map: 'SpellTradition'}}**{% endif %} • {% if data.spellType %}**{{data.spellType|map: 'SpellType'}}**{% endif %}{% if data.spellRank or data.spellRank == 0 %} **{{data.spellRank}}**{% endif%}"
+                }
+            ]
         },
         {
-          "style": "entitySubtitle",
-          "value": "{% if data.spellTradition %}**{{data.spellTradition|map: 'SpellTradition'|uppercase}}**{% endif %} • {% if data.spellType %}**{{data.spellType|map: 'SpellType'|uppercase}}**{% endif %} **{{data.spellRank|uppercase}}**",
-          "alignment": "trailing"
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 2.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "spacer",
-      "visibleIf": "{% if data.spellOptions or data.spellDuration or data.spellEffects %}true{% endif %}"
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 2.5,
+            "padding": [0]
+        },
         {
-          "type": "list",
-          "attribute": "data.spellOptions",
-          "views": [
-            {
-              "type": "text",
-              "style": "sotdlbody",
-              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
-            }
-          ]
+            "type": "spacer"
+        },
+        {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Spell.Requirement'|l}}.** {{data.spellRequirement}}",
+                    "visibleIf": "{{data.spellRequirement}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Spell.Target'|l}}.** {{data.spellTarget}}",
+                    "visibleIf": "{{data.spellTarget}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Spell.Area'|l}}.** {{data.spellArea}}",
+                    "visibleIf": "{{data.spellArea}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Spell.Duration'|l}}.** {{data.spellDuration}}",
+                    "visibleIf": "{{data.spellDuration}}"
+                }
+            ]
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{data.spellRequirement or data.spellTarget or data.spellArea or data.spellDuration}}"
+        },
+        {
+            "type": "divider",
+            "bgColor": "#9B0619",
+            "height": 2,
+            "padding": [0],
+            "visibleIf": "{{data.spellRequirement or data.spellTarget or data.spellArea or data.spellDuration}}"
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{data.spellRequirement or data.spellTarget or data.spellArea or data.spellDuration}}"
+        },
+        {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "{{descr}}"
+                },
+                {
+                    "type": "list",
+                    "attribute": "data.spellEffects",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
         },
         {
           "type": "text",
-          "style": "sotdlbody",
-          "value": "{% if data.spellDuration %}**{{'Spell.Duration'|l}}.**{% endif %} {{data.spellDuration}}",
-          "visibleIf": "{% if data.spellDuration %}true{% endif %}"
+          "style": "source",
+          "padding": [5,0,0,0],
+          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
+          "visibleIf": "{{sourceFormatted}}"
         }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#9B0619",
-      "visibleIf": "{% if data.spellOptions or data.spellDuration or data.spellEffects %}true{% endif %}",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "spacer",
-      "visibleIf": "{% if data.spellOptions or data.spellDuration or data.spellEffects %}true{% endif %}"
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "{{descr}}"
-        },
-        {
-          "type": "list",
-          "attribute": "data.spellEffects",
-          "views": [
-            {
-              "type": "text",
-              "style": "sotdlbody",
-              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "spacer"
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8,
-        0
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sourceText",
-          "value": "{{footer}}"
-        }
-      ]
-    }
-  ]
+    ]
 }

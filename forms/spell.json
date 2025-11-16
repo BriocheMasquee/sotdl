@@ -1,51 +1,90 @@
 {
-  "title": "Spell",
-  "sections": [
-    {
-      "title": "Common.Informations",
-      "type": "group",
-      "fields": [
+    "title": "Spell",
+    "sections": [
         {
-          "title": "Spell.Tradition",
-          "type": "picker",
-          "attribute": "data.spellTradition",
-          "attributeType": "SpellTradition"
+            "title": "Spell.Header",
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Spell.Tradition",
+                    "type": "form",
+                    "attribute": "data.spellTradition",
+                    "text": "{% include 'tradition.md' data %}",
+                    "form": {
+                        "title": "Spell.Tradition",
+                        "partial": "spell-tradition"
+                    }
+                },
+                {
+                    "title": "Spell.Type",
+                    "type": "picker",
+                    "attribute": "data.spellType",
+                    "attributeType": "SpellType"
+                },
+                {
+                    "title": "Spell.Rank",
+                    "type": "number",
+                    "attribute": "data.spellRank"
+                }
+            ]
         },
         {
-          "title": "Spell.Type",
-          "type": "picker",
-          "attribute": "data.spellType",
-          "attributeType": "SpellType"
+            "type": "group",
+            "fields": [
+                {
+                    "title": "Spell.Requirement",
+                    "type": "toggle",
+                    "attribute": "data.requirement"
+                },
+                {
+                    "title": "Spell.Requirement",
+                    "type": "textArea",
+                    "attribute": "data.spellRequirement",
+                    "visibleIf": "{{data.requirement}}"
+                },
+                {
+                    "title": "Spell.Target",
+                    "type": "toggle",
+                    "attribute": "data.target"
+                },
+                {
+                    "title": "Spell.Target",
+                    "type": "textArea",
+                    "attribute": "data.spellTarget",
+                    "visibleIf": "{{data.target}}"
+                },
+                {
+                    "title": "Spell.Area",
+                    "type": "toggle",
+                    "attribute": "data.area"
+                },
+                {
+                    "title": "Spell.Area",
+                    "type": "textArea",
+                    "attribute": "data.spellArea",
+                    "visibleIf": "{{data.area}}"
+                },
+                {
+                    "title": "Spell.Duration",
+                    "type": "toggle",
+                    "attribute": "data.duration"
+                },
+                {
+                    "title": "Spell.Duration",
+                    "type": "textArea",
+                    "attribute": "data.spellDuration",
+                    "visibleIf": "{{data.duration}}"
+                }
+            ] 
         },
         {
-          "title": "Spell.Rank",
-          "type": "number",
-          "attribute": "data.spellRank"
-        },
-        {
-          "title": "Spell.Duration",
-          "type": "text",
-          "attribute": "data.spellDuration"
+            "title": "Spell.Effects",
+            "type": "list",
+            "attribute": "data.spellEffects",
+            "form": {
+                "title": "Spell.Effects",
+                "partial": "spell-effects"
+            }
         }
-      ]
-    },
-    {
-      "title": "Spell.Options",
-      "type": "list",
-      "attribute": "data.spellOptions",
-      "form": {
-        "title": "Spell.Options",
-        "partial": "spell-options"
-      }
-    },
-    {
-      "title": "Spell.Effects",
-      "type": "list",
-      "attribute": "data.spellEffects",
-      "form": {
-        "title": "Spell.Effects",
-        "partial": "spell-effects"
-      }
-    }
-  ]
+    ]
 }

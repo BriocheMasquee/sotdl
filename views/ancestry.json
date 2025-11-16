@@ -1,250 +1,196 @@
 {
-  "debug": false,
-  "spacing": 0,
-  "padding": [ 
-    20
-  ],
-  "views": [
-    {
-      "style": "entityTitle",
-      "value": "{% if name %}**{{name|uppercase}}**{% endif %}",
-      "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 2.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "spacer"
-    },
-    {
-      "type": "text",
-      "value": "{{descr}}"
-    },
-    {
-      "type": "spacer"
-    },
-    {
-      "type": "vStack",
-      "views": [
+    "debug": false,
+    "spacing": 0,
+    "padding": [15],
+    "views": [
+        {
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [0,5],
+            "views": [
+                {
+                    "style": "entityTitle",
+                    "value": "**{{name}}**",
+                    "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
+                }
+            ]
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 2.5,
+            "padding": [0]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "text",
+            "value": "{{descr}}"
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [10,0,0,0],
+            "views": [
+                {
+                    "style": "entitySubtitle",
+                    "value": "{% if name %}**{{'Ancestry.Creating'|l}} {{name}}*{% endif %}*"
+                }
+            ]
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Ancestry.StartingAttributes'|l}} :** {{'Attributes.STR'|l}} {{data.STR|default: 10}},  {{'Attributes.AGI'|l}} {{data.AGI|default: 10}}, {{'Attributes.INT'|l}} {{data.INT|default: 10}},  {{'Attributes.WIL'|l}} {{data.WIL|default: 10}}\n{{data.attributeMod}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Characteristics.Perception'|l}}** {{data.perception}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Characteristics.Defense'|l}}** {{data.ac}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Characteristics.Health'|l}}** {{data.hp}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Characteristics.HealingRate'|l}}** {{data.healingRate}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Characteristics.Size'|l}}** {{data.size|map: 'Size'}},  **{{'Characteristics.Speed'|l}}** {{data.speed}},  **{{'Characteristics.Power'|l}}** {{data.power|default: 0}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Characteristics.Damage'|l}}** {{data.damage|default: 0}},  **{{'Characteristics.Insanity'|l}}** {{data.insanity|default: 0}},  **{{'Characteristics.Corruption'|l}}** {{data.corruption|default: 0}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Common.Language&Profession'|l}}.** {{data.LangProf}}",
+                    "visibleIf": "{% if data.LangProf %}true{% endif %}"
+                }
+            ]
+        },
+        {
+            "type": "vStack",
+            "padding": [5,5,0,5],
+            "views": [
+                {
+                    "type": "list",
+                    "attribute": "data.talent",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "hStack",
+            "alignment": "bottom",
+            "padding": [10,0,0,0],
+            "views": [
+                {
+                    "style": "entitySubtitle",
+                    "value": "{{'Level4.Expert'|l}}"
+                }
+            ]
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "vStack",
+            "padding": [0,5],
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "**{{'Common.Characteristics'|l}} :** {{data.ancestryLevel4.level4Increase}}",
+                    "visibleIf": "{{data.ancestryLevel4.level4Increase}}"
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "{{data.ancestryLevel4.level4Options}}",
+                    "visibleIf": "{{data.ancestryLevel4.level4Options}}"
+                },
+                {
+                    "type": "list",
+                    "attribute": "data.level4Talent",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{image}}"
+        },
+        {
+            "type": "image",
+            "value": "{{image}}",
+            "link": "{{image}}"
+        },
+        {
+            "type": "spacer"
+        },
+        {
+            "type": "divider",
+            "bgColor": "#000000",
+            "height": 1.5,
+            "padding": [0]
+        },
         {
           "type": "text",
-          "style": "ancestrySection",
-          "value": "{% if name %}**{{'Ancestry.Creating'|l|uppercase}} {{name|uppercase}}*{% endif %}*",
-          "padding": [
-            4,
-            0,
-            0,
-            0
-          ]
+          "style": "source",
+          "padding": [5,0,0,0],
+          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
+          "visibleIf": "{{sourceFormatted}}"
         }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Ancestry.StartingAttributes'|l}} :** {{'Attributes.STR'|l}} {{data.STR|default: 10}}, {{'Attributes.AGI'|l}} {{data.AGI|default: 10}}, {{'Attributes.INT'|l}} {{data.INT|default: 10}}, {{'Attributes.WIL'|l}} {{data.WIL|default: 10}}.\n{{data.attributeMod}}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Characteristics.Perception'|l}}** {{data.perception}}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Characteristics.Defense'|l}}** {{data.ac}}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Characteristics.Health'|l}}** {{data.hp}}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Characteristics.HealingRate'|l}}** {{data.healingRate}}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Characteristics.Size'|l}}** {{data.size|map: 'Size'}}, **{{'Characteristics.Speed'|l}}** {{data.speed}}, **{{'Characteristics.Power'|l}}** {{data.power|default: 0}}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Characteristics.Damage'|l}}** {{data.damage|default: 0}}, **{{'Characteristics.Insanity'|l}}** {{data.insanity|default: 0}}, **{{'Characteristics.Corruption'|l}}** {{data.corruption|default: 0}}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Common.Language&Profession'|l}}.** {{data.LangProf}}",
-          "visibleIf": "{% if data.LangProf %}true{% endif %}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Characteristics.Immunities'|l}} :** {{data.immunities|map: 'Immunities'|l|lowercase}}",
-          "visibleIf": "{% if data.immunities %}true{% endif %}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Characteristics.Vulnerabilities'|l}} :** {{data.vulnerabilities|map: 'Vulnerabilities'|l|lowercase}}",
-          "visibleIf": "{% if data.vulnerabilities %}true{% endif %}"
-        },
-        {
-          "type": "list",
-          "attribute": "data.talent",
-          "views": [
-            {
-              "type": "text",
-              "style": "sotdlbody",
-              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "vStack",
-      "views": [
-        {
-          "type": "text",
-          "style": "ancestrySection",
-          "value": "{% if name %}**{{name|uppercase}} • {{'Level4.Expert'|l|uppercase}}**{% endif %}",
-          "padding": [
-            4,
-            0,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "**{{'Common.Characteristics'|l}} :** {{data.level4Increase}}",
-          "visibleIf": "{% if data.level4Increase %}true{% endif %}"
-        },
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "{{data.level4Options}}",
-          "visibleIf": "{% if data.level4Options %}true{% endif %}"
-        },
-        {
-          "type": "list",
-          "attribute": "data.level4Talent",
-          "views": [
-            {
-              "type": "text",
-              "style": "sotdlbody",
-              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "vStack",
-      "views": [
-        {
-          "type": "text",
-          "style": "ancestrySection",
-          "value": "{% if notes %}**{{'Ancestry.Tables'|l|uppercase}}**{% endif %}",
-          "padding": [
-            4,
-            0,
-            0,
-            0
-          ]
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sotdlbody",
-          "value": "{{notes}}"
-        }
-      ]
-    },
-    {
-      "type": "spacer"
-    },
-    {
-      "type": "image",
-      "value": "{{image}}",
-      "link": "{{image}}"
-    },
-    {
-      "type": "divider",
-      "bgColor": "#000000",
-      "height": 1.5,
-      "padding": [
-        0
-      ]
-    },
-    {
-      "type": "vStack",
-      "padding": [
-        8,
-        0
-      ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sourceText",
-          "value": "{{footer}}"
-        }
-      ]
-    }
-  ]
+    ]
 }
