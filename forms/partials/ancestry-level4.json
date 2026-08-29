@@ -19,7 +19,7 @@
         {
             "title": "Level4.Talent",
             "type": "list",
-            "attribute": "data.level4Talent",
+            "attribute": "level4Talent",
             "form": {
                 "title": "Common.Talent",
                 "partial": "generic-feature"

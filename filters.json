@@ -100,12 +100,12 @@
                 "title": "Item.MarvelType"
             },
             {
-                "attribut": "data.weaponType",
+                "attribute": "data.weaponType",
                 "attributeType": "WeaponType",
                 "title": "Item.WeaponType"
             },
             {
-                "attribut": "data.weaponHands",
+                "attribute": "data.weaponHands",
                 "attributeType": "WeaponHands",
                 "title": "Weapon.Hands"
             }

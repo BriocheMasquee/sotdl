@@ -156,6 +156,17 @@
                 },
                 {
                     "type": "list",
+                    "attribute": "data.ancestryLevel4.level4Talent",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+                        }
+                    ]
+                },
+                {
+                    "type": "list",
                     "attribute": "data.level4Talent",
                     "views": [
                         {

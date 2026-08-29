@@ -1,17 +1,5 @@
 {
     "entities": {
-        "Default": {
-            "combatant": {
-                "bars": [
-                    {
-                        "attribute": "data.hp",
-                        "title": "Common.HitPoints",
-                        "label": "Common.HP",
-                        "temporary": true
-                    }
-                ]
-            }
-        },
         "Ancestry": {
             "collection": {
                 "detail": ""
@@ -22,7 +10,15 @@
                 "detail": "{% if data.creatureDescriptors %}{{data.creatureDescriptors}}{% endif %}{% if data.size and data.creatureDescriptors %} • {% endif %}{% if data.size %}{{'Characteristics.Size'|l}} {% endif %}{{data.size}}"
             },
             "combatant": {
-                "image": "token"
+                "image": "token",
+                "bars": [
+                    {
+                        "attribute": "data.hp",
+                        "title": "Common.HitPoints",
+                        "label": "Common.HP",
+                        "temporary": true
+                    }
+                ]
             }
         },
         "Item": {
@@ -35,7 +31,15 @@
                 "detail": "{% if data.creatureDescriptors %}{{data.creatureDescriptors}}{% endif %}{% if data.size and data.creatureDescriptors %} • {% endif %}{% if data.size %}{{'Characteristics.Size'|l}} {% endif %}{{data.size}}"
             },
             "combatant": {
-                "image": "token"
+                "image": "token",
+                "bars": [
+                    {
+                        "attribute": "data.hp",
+                        "title": "Common.HitPoints",
+                        "label": "Common.HP",
+                        "temporary": true
+                    }
+                ]
             }
         },
         "Path": {
@@ -53,7 +57,7 @@
                 "detail": "{% if data.spellTradition %}{{data.spellTradition.tradition|map: 'SpellTradition'|l}}{% endif %}{% if data.spellType and data.spellTradition %} • {% endif %}{% if data.spellType %}{{data.spellType|map: 'SpellType'|l}}{% endif %} {% if data.spellRank or data.spellRank == 0 %}{{data.spellRank}}{% endif %}{% if data.spellTradition.darkMagic == true %} {{'Magic.Dark'|l|lowercase|brackets}}{% endif %}{% if data.spellTradition.psychicTradition == true %} {{'Magic.Psychic'|l|lowercase|brackets}}{% endif %}{% if data.spellTradition.onlyIncantation == true %} {{'Magic.Incantation'|l|lowercase|brackets}}{% endif %}"
             }
         },
-        "Tables": {
+        "Table": {
             "collection": {
                 "detail": ""
             }
@@ -115,7 +119,3 @@
         }
     }
 }
-    
-
-
-
