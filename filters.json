@@ -236,16 +236,6 @@
                 "attribute": "sources.name",
                 "title": "Source",
                 "dynamic": true
-            },
-            {
-                "attribute": "data.edition",
-                "title": "Source.Edition",
-                "dynamic": true
-            },
-            {
-                "attribute": "data.serie",
-                "title": "Source.Serie",
-                "dynamic": true
             }
         ],
         "group": [
@@ -253,11 +243,6 @@
                 "attribute": "type",
                 "attributeType": "RuleType",
                 "title": "Rule.Type"
-            },
-            {
-                "attribute": "data.serie",
-                "attributeType": "Serie",
-                "title": "Source.Serie"
             }
         ],
         "sort": [

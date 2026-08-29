@@ -221,13 +221,6 @@
     "RuleType.Affliction": "Affliction",
     "RuleType.Language": "Langue",
 
-    "Source.Author": "Auteur",
-    "Source.Edition": "Édition",
-    "Source.Pages": "Pages",
-    "Source.Serie": "Série",
-    "Source.Translator": "Traduction",
-    "Source.Type": "Type de source",
-
     "SpecialMovementTraits.Climber": "Grimpeur",
     "SpecialMovementTraits.Flier": "Volant",
     "SpecialMovementTraits.Swoop": "(Piqué)",

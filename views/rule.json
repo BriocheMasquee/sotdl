@@ -29,63 +29,15 @@
         },
         {
             "type": "spacer",
-            "visibleIf": "{{type == 'Source'}}"
+            "visibleIf": "{{type == 'Source' and image}}"
         },
         {
-            "type": "hStack",
-            "visibleIf": "{{type == 'Source'}}",
-            "padding": [0,5],
-            "views": [
-                {
-                    "type": "image",
-                    "padding": [8],
-                    "height": 230,
-                    "value": "{{image}}",
-                    "link": "{{image}}"
-                },
-                {
-                    "type": "vStack",
-                    "padding": [8],
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Source.Author'|l}} :** {{data.author}}",
-                            "visibleIf": "{{data.author}}"
-                        },
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Source.Translator'|l}} :** {{data.translator}}",
-                            "visibleIf": "{{data.translator}}"
-                        },
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Source.Edition'|l}} :** {{data.edition}}",
-                            "visibleIf": "{{data.edition}}"
-                        },
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Source.Type'|l}} :** {{data.sourceType}}",
-                            "visibleIf": "{{data.sourceType}}"
-                        },
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Source.Serie'|l}} :** {{data.serie}}",
-                            "visibleIf": "{{data.serie}}"
-                        },
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Source.Pages'|l}} :** {{data.pages}}",
-                            "visibleIf": "{{data.pages}}"
-                        }
-                    ]
-                }
-            ]
+            "type": "image",
+            "visibleIf": "{{type == 'Source' and image}}",
+            "padding": [8],
+            "height": 230,
+            "value": "{{image}}",
+            "link": "{{image}}"
         },
         {
             "type": "spacer",
