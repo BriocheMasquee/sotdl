@@ -1,0 +1,423 @@
+{
+  "debug": false,
+  "spacing": 8,
+  "padding": [16],
+  "views": [
+    {
+      "type": "vStack",
+      "spacing": 2,
+      "alignment": "leading",
+      "views": [
+        { "style": "entityTitle", "alignment": "leading", "value": "**{{name}}**" },
+        {
+          "style": "characterIdentitySubtitle",
+          "alignment": "leading",
+          "value": "**{{data.ancestry.name}} - {{'Character.Level'|l}} {{data.level}}**"
+        }
+      ]
+    },
+    { "type": "spacer", "height": 10 },
+    {
+      "type": "hStack",
+      "spacing": 8,
+      "views": [
+        {
+          "type": "zStack",
+          "width": -1,
+          "frame": { "minHeight": 108, "maxHeight": 108 },
+          "views": [
+            { "type": "spacer", "bgColor": "#FFFFFF40", "borderWidth": 1, "borderColor": "#9B061980", "cornerRadius": 10 },
+            {
+              "type": "vStack",
+              "spacing": 8,
+              "padding": [12, 8],
+              "alignment": "center",
+              "views": [
+                { "style": "characterAttribute", "alignment": "center", "value": "**{{'Attributes.STR'|l}} {{data.STR}}**" },
+                { "style": "characterModifier", "alignment": "center", "frame": { "minWidth": 36, "maxWidth": 36, "minHeight": 36, "maxHeight": 36 }, "borderWidth": 1, "borderColor": "#9B061980", "cornerRadius": 10, "value": "**{{data.strengthModifier|signed}}**", "link": "/roll/d20{{data.strengthModifier|signed}}/{{'Attributes.STR'|l}}/check" },
+                { "type": "spacer" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "zStack",
+          "width": -1,
+          "frame": { "minHeight": 108, "maxHeight": 108 },
+          "views": [
+            { "type": "spacer", "bgColor": "#FFFFFF40", "borderWidth": 1, "borderColor": "#9B061980", "cornerRadius": 10 },
+            {
+              "type": "vStack",
+              "spacing": 8,
+              "padding": [12, 8],
+              "alignment": "center",
+              "views": [
+                { "style": "characterAttribute", "alignment": "center", "value": "**{{'Attributes.AGI'|l}} {{data.AGI}}**" },
+                { "style": "characterModifier", "alignment": "center", "frame": { "minWidth": 36, "maxWidth": 36, "minHeight": 36, "maxHeight": 36 }, "borderWidth": 1, "borderColor": "#9B061980", "cornerRadius": 10, "value": "**{{data.agilityModifier|signed}}**", "link": "/roll/d20{{data.agilityModifier|signed}}/{{'Attributes.AGI'|l}}/check" },
+                { "type": "spacer" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "zStack",
+          "width": -1,
+          "frame": { "minHeight": 108, "maxHeight": 108 },
+          "views": [
+            { "type": "spacer", "bgColor": "#FFFFFF40", "borderWidth": 1, "borderColor": "#9B061980", "cornerRadius": 10 },
+            {
+              "type": "vStack",
+              "spacing": 8,
+              "padding": [12, 8],
+              "alignment": "center",
+              "views": [
+                { "style": "characterAttribute", "alignment": "center", "value": "**{{'Attributes.INT'|l}} {{data.INT}}**" },
+                { "style": "characterModifier", "alignment": "center", "frame": { "minWidth": 36, "maxWidth": 36, "minHeight": 36, "maxHeight": 36 }, "borderWidth": 1, "borderColor": "#9B061980", "cornerRadius": 10, "value": "**{{data.intellectModifier|signed}}**", "link": "/roll/d20{{data.intellectModifier|signed}}/{{'Attributes.INT'|l}}/check" },
+                { "type": "spacer" }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "zStack",
+          "width": -1,
+          "frame": { "minHeight": 108, "maxHeight": 108 },
+          "views": [
+            { "type": "spacer", "bgColor": "#FFFFFF40", "borderWidth": 1, "borderColor": "#9B061980", "cornerRadius": 10 },
+            {
+              "type": "vStack",
+              "spacing": 8,
+              "padding": [12, 8],
+              "alignment": "center",
+              "views": [
+                { "style": "characterAttribute", "alignment": "center", "value": "**{{'Attributes.WIL'|l}} {{data.WIL}}**" },
+                { "style": "characterModifier", "alignment": "center", "frame": { "minWidth": 36, "maxWidth": 36, "minHeight": 36, "maxHeight": 36 }, "borderWidth": 1, "borderColor": "#9B061980", "cornerRadius": 10, "value": "**{{data.willModifier|signed}}**", "link": "/roll/d20{{data.willModifier|signed}}/{{'Attributes.WIL'|l}}/check" },
+                { "type": "spacer" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    { "type": "spacer", "height": 10 },
+    {
+      "id": "characterTabs",
+      "type": "tabs",
+      "custom": {
+        "buttonStyle": {
+          "selected": "prominent"
+        }
+      },
+      "views": [
+        {
+          "id": "profile",
+          "title": "Character.Profile",
+          "type": "vStack",
+          "spacing": 8,
+          "views": [
+            {
+              "type": "vStack",
+              "spacing": 2,
+              "views": [
+                { "type": "text", "style": "characterSection", "alignment": "center", "padding": [8, 0, 0, 0], "value": "{{'Character.AncestryTalents'|l}}" },
+                { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] }
+              ]
+            },
+            {
+              "type": "list",
+              "attribute": "data.ancestry.talent",
+              "spacing": 3,
+              "views": [
+                {
+                  "type": "disclosureGroup",
+                  "title": "{{name}}",
+                  "style": "characterTraitTitle",
+                  "spacing": 0,
+                  "padding": [0],
+                  "views": [{ "type": "text", "style": "body-info", "padding": [-8, 0, 0, 0], "value": "{{text}}" }]
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "attribute": "data.ancestry.ancestryLevel4.level4Talent",
+              "spacing": 3,
+              "visibleIf": "{% if data.level >= 4 %}true{% endif %}",
+              "views": [
+                {
+                  "type": "disclosureGroup",
+                  "title": "{{name}}",
+                  "style": "characterTraitTitle",
+                  "spacing": 0,
+                  "padding": [0],
+                  "views": [{ "type": "text", "style": "body-info", "padding": [-8, 0, 0, 0], "value": "{{text}}" }]
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "attribute": "data.ancestry.level4Talent",
+              "spacing": 3,
+              "visibleIf": "{% if data.level >= 4 %}true{% endif %}",
+              "views": [
+                {
+                  "type": "disclosureGroup",
+                  "title": "{{name}}",
+                  "style": "characterTraitTitle",
+                  "spacing": 0,
+                  "padding": [0],
+                  "views": [{ "type": "text", "style": "body-info", "padding": [-8, 0, 0, 0], "value": "{{text}}" }]
+                }
+              ]
+            },
+            {
+              "type": "vStack",
+              "spacing": 2,
+              "views": [
+                { "type": "text", "style": "characterSection", "alignment": "center", "padding": [8, 0, 0, 0], "value": "{{'Character.History'|l}}" },
+                { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] }
+              ]
+            },
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "**{{'Character.Languages'|l}} :** {% for language in data.languages %}*{{language.name}}*{% if language.spoken or language.read or language.written %} ({% if language.spoken %}{{'Character.Spoken'|l|lowercase}}{% if language.read or language.written %}, {% endif %}{% endif %}{% if language.read %}{{'Character.Read'|l|lowercase}}{% if language.written %}, {% endif %}{% endif %}{% if language.written %}{{'Character.Written'|l|lowercase}}{% endif %}){% endif %}{% if forloop.last == false %}, {% endif %}{% endfor %}"
+            },
+            { "type": "text", "style": "body-info", "value": "**{{'Character.Professions'|l}} :** {{data.professions}}" },
+            { "type": "text", "style": "body-info", "value": "**{{'Character.Religion'|l}} :** {{data.religion}}" },
+            { "type": "text", "style": "body-info", "value": "{{data.history}}" },
+            {
+              "type": "vStack",
+              "spacing": 2,
+              "views": [
+                { "type": "text", "style": "characterSection", "alignment": "center", "padding": [8, 0, 0, 0], "value": "{{'Character.Appearance'|l}}" },
+                { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] }
+              ]
+            },
+            { "type": "text", "style": "body-info", "value": "{{data.appearance}}" },
+            {
+              "type": "vStack",
+              "spacing": 2,
+              "views": [
+                { "type": "text", "style": "characterSection", "alignment": "center", "padding": [8, 0, 0, 0], "value": "{{'Character.Personality'|l}}" },
+                { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] }
+              ]
+            },
+            { "type": "text", "style": "body-info", "value": "{{data.personality}}" }
+          ]
+        },
+        {
+          "id": "characteristics",
+          "title": "Character.Stats",
+          "type": "vStack",
+          "spacing": 8,
+          "views": [
+            { "type": "spacer", "height": 8 },
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "**{{'Characteristics.Defense'|l}}** {{data.ac}} • **{{'Characteristics.Perception'|l}}** {{data.perception}} • **{{'Characteristics.Speed'|l}}** {{data.speed}} • **{{'Characteristics.Size'|l}}** {{data.size}}"
+            },
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "**{{'Characteristics.Insanity'|l}}** {{data.insanity}} • **{{'Characteristics.Corruption'|l}}** {{data.corruption}}"
+            }
+          ]
+        },
+        {
+          "id": "talents",
+          "title": "Entity.Path.many",
+          "type": "vStack",
+          "spacing": 8,
+          "views": [
+            {
+              "type": "list",
+              "attribute": "data.paths",
+              "views": [
+                {
+                  "type": "vStack",
+                  "spacing": 2,
+                  "visibleIf": "{{pathType == 'Novice'}}",
+                  "views": [
+                    { "type": "text", "style": "characterSection", "alignment": "center", "padding": [8, 0, 0, 0], "value": "{{'Character.NovicePath'|l}}{% if name %} — {{name}}{% endif %}" },
+                    { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] }
+                  ]
+                }
+              ]
+            },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 1 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Novice'}}", "views": [{ "type": "list", "attribute": "level1Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 2 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Novice'}}", "views": [{ "type": "list", "attribute": "level2Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 5 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Novice'}}", "views": [{ "type": "list", "attribute": "level5Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 8 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Novice'}}", "views": [{ "type": "list", "attribute": "level8Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            {
+              "type": "list",
+              "attribute": "data.paths",
+              "views": [
+                {
+                  "type": "vStack",
+                  "spacing": 2,
+                  "visibleIf": "{{pathType == 'Expert'}}",
+                  "views": [
+                    { "type": "text", "style": "characterSection", "alignment": "center", "padding": [8, 0, 0, 0], "value": "{{'Character.ExpertPath'|l}}{% if name %} — {{name}}{% endif %}" },
+                    { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] }
+                  ]
+                }
+              ]
+            },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 3 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Expert'}}", "views": [{ "type": "list", "attribute": "level3Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 6 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Expert'}}", "views": [{ "type": "list", "attribute": "level6Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 9 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Expert'}}", "views": [{ "type": "list", "attribute": "level9Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            {
+              "type": "list",
+              "attribute": "data.paths",
+              "views": [
+                {
+                  "type": "vStack",
+                  "spacing": 2,
+                  "visibleIf": "{{pathType == 'Master'}}",
+                  "views": [
+                    { "type": "text", "style": "characterSection", "alignment": "center", "padding": [8, 0, 0, 0], "value": "{{'Character.MasterPath'|l}}{% if name %} — {{name}}{% endif %}" },
+                    { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] }
+                  ]
+                }
+              ]
+            },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 7 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Master'}}", "views": [{ "type": "list", "attribute": "level7Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            { "type": "list", "attribute": "data.paths", "visibleIf": "{% if data.level >= 10 %}true{% endif %}", "views": [{ "type": "vStack", "spacing": 0, "padding": [0, 0, -12, 0], "visibleIf": "{{pathType == 'Master'}}", "views": [{ "type": "list", "attribute": "level10Talent", "spacing": 3, "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [6, 0], "views": [{ "type": "text", "style": "body-info", "padding": [-15, 0, 0, 0], "value": "{{text}}" }] }] }] }] },
+            {
+              "type": "vStack",
+              "spacing": 2,
+              "views": [
+                { "type": "text", "style": "characterSection", "alignment": "center", "padding": [8, 0, 0, 0], "value": "{{'Character.AdditionalTalents'|l}}" },
+                { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] }
+              ]
+            },
+            {
+              "type": "list",
+              "attribute": "data.otherTalents",
+              "spacing": 3,
+              "views": [{ "type": "disclosureGroup", "title": "{{name}}", "style": "characterTraitTitle", "spacing": 0, "padding": [0], "views": [{ "type": "text", "style": "body-info", "padding": [-8, 0, 0, 0], "value": "{{text}}" }] }]
+            }
+          ]
+        },
+        {
+          "id": "combatEquipment",
+          "title": "Character.CombatEquipment",
+          "type": "vStack",
+          "spacing": 8,
+          "views": [
+            { "type": "text", "style": "characterSection", "padding": [8, 0, 0, 0], "value": "{{'Character.Resources'|l}}" },
+            { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] },
+            {
+              "type": "hStack",
+              "spacing": 8,
+              "views": [
+                {
+                  "type": "zStack",
+                  "width": -1,
+                  "frame": { "minHeight": 72, "maxHeight": 72 },
+                  "views": [
+                    { "type": "vStack", "spacing": 6, "padding": [10, 6], "alignment": "center", "views": [
+                      { "style": "characterResourceLabel", "alignment": "center", "value": "**{{'Character.Shards'|l}}**" },
+                      { "style": "characterResourceValue", "alignment": "center", "value": "**{{data.currency.shards|default: 0}}**" }
+                    ] }
+                  ]
+                },
+                {
+                  "type": "zStack",
+                  "width": -1,
+                  "frame": { "minHeight": 72, "maxHeight": 72 },
+                  "views": [
+                    { "type": "vStack", "spacing": 6, "padding": [10, 6], "alignment": "center", "views": [
+                      { "style": "characterResourceLabel", "alignment": "center", "value": "**{{'Character.SC'|l}}**" },
+                      { "style": "characterResourceValue", "alignment": "center", "value": "**{{data.currency.sc|default: 0}}**" }
+                    ] }
+                  ]
+                },
+                {
+                  "type": "zStack",
+                  "width": -1,
+                  "frame": { "minHeight": 72, "maxHeight": 72 },
+                  "views": [
+                    { "type": "vStack", "spacing": 6, "padding": [10, 6], "alignment": "center", "views": [
+                      { "style": "characterResourceLabel", "alignment": "center", "value": "**{{'Character.CA'|l}}**" },
+                      { "style": "characterResourceValue", "alignment": "center", "value": "**{{data.currency.ca|default: 0}}**" }
+                    ] }
+                  ]
+                },
+                {
+                  "type": "zStack",
+                  "width": -1,
+                  "frame": { "minHeight": 72, "maxHeight": 72 },
+                  "views": [
+                    { "type": "vStack", "spacing": 6, "padding": [10, 6], "alignment": "center", "views": [
+                      { "style": "characterResourceLabel", "alignment": "center", "value": "**{{'Character.CO'|l}}**" },
+                      { "style": "characterResourceValue", "alignment": "center", "value": "**{{data.currency.co|default: 0}}**" }
+                    ] }
+                  ]
+                }
+              ]
+            },
+            { "type": "text", "style": "characterSection", "padding": [8, 0, 0, 0], "value": "{{'Entity.Item.many'|l}}" },
+            { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] },
+            {
+              "type": "hStack",
+              "spacing": 6,
+              "views": [
+                { "style": "characterSpellSubtitle", "alignment": "center", "width": 60, "value": "{{'Character.Quantity'|l}}" },
+                { "type": "spacer", "width": -1 },
+                { "style": "characterSpellSubtitle", "alignment": "center", "width": 60, "value": "{{'Character.Equipped'|l}}" }
+              ]
+            },
+            {
+              "type": "list",
+              "attribute": "data.items",
+              "spacing": 8,
+              "views": [
+                { "type": "partial", "value": "character-item" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "magic",
+          "title": "Character.Magic",
+          "type": "vStack",
+          "spacing": 8,
+          "views": [
+            { "type": "text", "style": "characterSection", "padding": [8, 0, 0, 0], "value": "{{'Character.MagicAptitudes'|l}}" },
+            { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] },
+            { "type": "text", "style": "body-info", "value": "**{{'Characteristics.Power'|l}}** {{data.power}}" },
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "**{{'Character.DiscoveredTraditions'|l}} :** {% for tradition in data.traditions %}{{tradition|map: 'SpellTradition'|l}}{% if forloop.last == false %}, {% endif %}{% endfor %}"
+            },
+            { "type": "text", "style": "characterSection", "padding": [8, 0, 0, 0], "value": "{{'Character.Spells'|l}}" },
+            { "type": "divider", "bgColor": "#000000", "height": 1, "padding": [0] },
+            {
+              "type": "list",
+              "attribute": "data.spellbook",
+              "views": [
+                {
+                  "type": "list",
+                  "attribute": "spells",
+                  "views": [
+                    {
+                      "type": "vStack",
+                      "spacing": 4,
+                      "views": [
+                        { "type": "partial", "value": "character-spell" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

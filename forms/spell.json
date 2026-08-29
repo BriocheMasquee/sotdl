@@ -23,8 +23,9 @@
                 },
                 {
                     "title": "Spell.Rank",
-                    "type": "number",
-                    "attribute": "data.spellRank"
+                    "type": "picker",
+                    "attribute": "data.spellRank",
+                    "attributeType": "SpellRank"
                 }
             ]
         },

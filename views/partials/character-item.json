@@ -1,0 +1,46 @@
+{
+  "type": "hStack",
+  "alignment": "center",
+  "spacing": 6,
+  "views": [
+    {
+      "style": "body-info",
+      "alignment": "center",
+      "width": 60,
+      "value": "{{quantity|default: 1}}"
+    },
+    {
+      "type": "vStack",
+      "spacing": 0,
+      "width": -1,
+      "link": "{{reference}}",
+      "views": [
+        {
+          "style": "characterTraitTitle",
+          "value": "{{name}}"
+        },
+        {
+          "style": "characterSpellSubtitle",
+          "alignment": "leading",
+          "value": "{{itemType|map: 'ItemType'|l}}{% if availability %} • {{availability|map: 'Availability'|l}}{% endif %}"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "attribute": "equipped",
+      "width": 60,
+      "alignment": "center",
+      "custom": {
+        "checkboxStyle": {
+          "default": {
+            "tintColor": "#9B0619"
+          },
+          "checked": {
+            "tintColor": "#9B0619"
+          }
+        }
+      }
+    }
+  ]
+}

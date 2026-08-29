@@ -1,5 +1,14 @@
 [
     {
+        "name": "Character",
+        "label": "character",
+        "collection": {
+            "label": "characters"
+        },
+        "loadable": true,
+        "standalone": true
+    },
+    {
         "name": "Creature",
         "label": "creature",
         "collection": {
@@ -21,7 +30,8 @@
         "label": "spell",
         "collection": {
             "label": "spells"
-        }
+        },
+        "loadable": true
     },
     {
         "name": "Item",

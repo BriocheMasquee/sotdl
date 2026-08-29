@@ -61,7 +61,35 @@
         "Novice": "Path.Novice",
         "Expert": "Path.Expert",
         "Master": "Path.Master"
-    }, 
+    },
+
+    "CharacterLevel": {
+        "0": "SpellRank.0",
+        "1": "SpellRank.1",
+        "2": "SpellRank.2",
+        "3": "SpellRank.3",
+        "4": "SpellRank.4",
+        "5": "SpellRank.5",
+        "6": "SpellRank.6",
+        "7": "SpellRank.7",
+        "8": "SpellRank.8",
+        "9": "SpellRank.9",
+        "10": "SpellRank.10"
+    },
+
+    "SpellRank": {
+        "0": "SpellRank.0",
+        "1": "SpellRank.1",
+        "2": "SpellRank.2",
+        "3": "SpellRank.3",
+        "4": "SpellRank.4",
+        "5": "SpellRank.5",
+        "6": "SpellRank.6",
+        "7": "SpellRank.7",
+        "8": "SpellRank.8",
+        "9": "SpellRank.9",
+        "10": "SpellRank.10"
+    },
 
     "RuleType": {
         "Affliction": "RuleType.Affliction",
@@ -146,7 +174,7 @@
     },
 
     "WeaponProperty": {
-        "Cumbersone": "Property.Cumbersone",
+        "Cumbersome": "Property.Cumbersome",
         "Finesse": "Property.Finesse",
         "Misfire": "Property.Misfire",
         "Short range": "Property.Short",
@@ -160,7 +188,7 @@
     "WeaponType": {
         "BasicMelee": "Weapon.Basic",
         "MilitaryMelee": "Weapon.Military",
-        "SwiftMelee": "Wepaon.Swift",
+        "SwiftMelee": "Weapon.Swift",
         "HeavyMelee": "Weapon.Heavy",
         "Ranged": "Weapon.Ranged",
         "Shield": "Weapon.Shield",

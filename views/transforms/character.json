@@ -1,0 +1,29 @@
+{
+  "references": [
+    "data.spells",
+    "data.items"
+  ],
+  "attributes": [
+    {
+      "data.strengthModifier": "#{% eval %}{{data.STR|default: 10}}-10{% endeval %}",
+      "data.agilityModifier": "#{% eval %}{{data.AGI|default: 10}}-10{% endeval %}",
+      "data.intellectModifier": "#{% eval %}{{data.INT|default: 10}}-10{% endeval %}",
+      "data.willModifier": "#{% eval %}{{data.WIL|default: 10}}-10{% endeval %}"
+    },
+    {
+      "data.spells": {
+        "attribute": "data.spells",
+        "map": {
+          "level": "#{{self.spellRank|default: 0}}",
+          "usesMaximum": "#{% if self.usesMaximumOverride %}{{self.usesMaximumOverride}}{% elif self.spellRank == 0 or self.spellRank == '0' %}{{data.power|default: 0}} + 1{% elif self.spellRank == 1 or self.spellRank == '1' %}{% if data.power >= 5 %}3{% elif data.power >= 2 %}2{% elif data.power >= 1 %}1{% else %}0{% endif %}{% elif self.spellRank == 2 or self.spellRank == '2' %}{% if data.power >= 8 %}3{% elif data.power >= 4 %}2{% elif data.power >= 2 %}1{% else %}0{% endif %}{% elif self.spellRank == 3 or self.spellRank == '3' %}{% if data.power >= 9 %}3{% elif data.power >= 5 %}2{% elif data.power >= 3 %}1{% else %}0{% endif %}{% elif self.spellRank == 4 or self.spellRank == '4' %}{% if data.power >= 10 %}3{% elif data.power >= 6 %}2{% elif data.power >= 4 %}1{% else %}0{% endif %}{% elif self.spellRank == 5 or self.spellRank == '5' %}{% if data.power >= 8 %}2{% elif data.power >= 5 %}1{% else %}0{% endif %}{% elif self.spellRank == 6 or self.spellRank == '6' %}{% if data.power >= 6 %}1{% else %}0{% endif %}{% elif self.spellRank == 7 or self.spellRank == '7' %}{% if data.power >= 7 %}1{% else %}0{% endif %}{% elif self.spellRank == 8 or self.spellRank == '8' %}{% if data.power >= 8 %}1{% else %}0{% endif %}{% elif self.spellRank == 9 or self.spellRank == '9' %}{% if data.power >= 9 %}1{% else %}0{% endif %}{% elif self.spellRank == 10 or self.spellRank == '10' %}{% if data.power >= 10 %}1{% else %}0{% endif %}{% else %}0{% endif %}"
+        }
+      }
+    },
+    {
+      "data.spellbook": {
+        "attribute": "data.spells",
+        "transform": "spellbook"
+      }
+    }
+  ]
+}
