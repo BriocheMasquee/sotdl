@@ -5,12 +5,6 @@
             "type": "group",
             "fields": [
                 {
-                    "title": "Rule.Type",
-                    "type": "picker",
-                    "attribute": "type",
-                    "attributeType": "RuleType"
-                },
-                {
                     "title": "Source.Author",
                     "type": "text",
                     "visibleIf": "{{type == 'Source'}}",
