@@ -2,8 +2,8 @@
     "id": "sotdl",
     "name": "Shadow of the Demon Lord",
     "type": "system",
-    "version": "0.10.0",
+    "version": "0.11.0",
     "description": "Shadow of the Demon Lord is a dark fantasy role-playing game that depicts a world in agony, riven by famine, war and epidemic, on the verge of tipping over into the darkness and horrors of the end times.",
-    "download": "https://github.com/BriocheMasquee/sotdl/releases/download/V0.10.0/sotdl.system"
+    "download": "https://github.com/BriocheMasquee/sotdl/releases/download/V0.11.0/sotdl.system"
   }
 
