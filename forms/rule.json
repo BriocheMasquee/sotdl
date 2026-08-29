@@ -11,12 +11,6 @@
                     "attributeType": "RuleType"
                 },
                 {
-                    "title": "Rule.Icon",
-                    "type": "image",
-                    "visibleIf": "{{type == 'Affliction'}}",
-                    "attribute": "icon"
-                },
-                {
                     "title": "Source.Author",
                     "type": "text",
                     "visibleIf": "{{type == 'Source'}}",
