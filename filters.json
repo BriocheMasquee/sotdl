@@ -250,7 +250,7 @@
         ],
         "group": [
             {
-                "attribute": "data.ruleType",
+                "attribute": "type",
                 "attributeType": "RuleType",
                 "title": "Rule.Type"
             },

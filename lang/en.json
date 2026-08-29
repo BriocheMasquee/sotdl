@@ -217,6 +217,7 @@
 
     "Round.EndEffect": "End of the Round",
 
+    "Rule.Icon": "Status Icon",
     "Rule.Type": "Type",
     "RuleType.Affliction": "Affliction",
     "RuleType.Language": "Languague",

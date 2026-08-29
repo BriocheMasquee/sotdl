@@ -7,43 +7,49 @@
                 {
                     "title": "Rule.Type",
                     "type": "picker",
-                    "attribute": "data.ruleType",
+                    "attribute": "type",
                     "attributeType": "RuleType"
+                },
+                {
+                    "title": "Rule.Icon",
+                    "type": "image",
+                    "visibleIf": "{{type == 'Affliction'}}",
+                    "attribute": "icon"
                 },
                 {
                     "title": "Source.Author",
                     "type": "text",
-                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "visibleIf": "{{type == 'Source'}}",
                     "attribute": "data.author"
                 },
                 {
                     "title": "Source.Translator",
                     "type": "text",
-                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "visibleIf": "{{type == 'Source'}}",
                     "attribute": "data.translator"
                 },
                 {
                     "title": "Source.Edition",
                     "type": "text",
-                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "visibleIf": "{{type == 'Source'}}",
                     "attribute": "data.edition"
                 },
                 {
                     "title": "Source.Type",
                     "type": "text",
-                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "visibleIf": "{{type == 'Source'}}",
                     "attribute": "data.sourceType"
                 },
                 {
                     "title": "Source.Serie",
                     "type": "text",
-                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "visibleIf": "{{type == 'Source'}}",
                     "attribute": "data.serie"
                 },
                 {
                     "title": "Source.Pages",
                     "type": "text",
-                    "visibleIf": "{{data.ruleType == 'Source'}}",
+                    "visibleIf": "{{type == 'Source'}}",
                     "attribute": "data.pages"
                 }
             ]

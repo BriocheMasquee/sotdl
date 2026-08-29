@@ -17,7 +17,7 @@
                     "style": "spellSubtitle",
                     "alignment": "trailing",
                     "width": -1,
-                    "value": "{% if data.ruleType %}**{{data.ruleType|map: 'RuleType'|uppercase}}**{% endif %}"
+                    "value": "{% if type %}**{{type|map: 'RuleType'|uppercase}}**{% endif %}"
                 }
             ]
         },
@@ -29,11 +29,11 @@
         },
         {
             "type": "spacer",
-            "visibleIf": "{{data.ruleType == 'Source'}}"
+            "visibleIf": "{{type == 'Source'}}"
         },
         {
             "type": "hStack",
-            "visibleIf": "{{data.ruleType == 'Source'}}",
+            "visibleIf": "{{type == 'Source'}}",
             "padding": [0,5],
             "views": [
                 {
@@ -86,6 +86,18 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "spacer",
+            "visibleIf": "{{type == 'Affliction' and icon}}"
+        },
+        {
+            "type": "image",
+            "visibleIf": "{{type == 'Affliction' and icon}}",
+            "padding": [8],
+            "height": 40,
+            "value": "{{icon}}",
+            "link": "{{icon}}"
         },
         {
             "type": "spacer"
