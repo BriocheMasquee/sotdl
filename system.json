@@ -1,14 +1,13 @@
 {
-  "author" : "Robert J. Schwalb, Brioche Masquée",
-  "banner" : "sotdl_banner.png",
-  "descr" : "Shadow of the Demon Lord is a dark fantasy role-playing game that depicts a world in agony, riven by famine, war and epidemic, on the verge of tipping over into the darkness and horrors of the end times.",
-  "id" : "sotdl",
-  "image" : "sotdl_icon.png",
-  "name" : "Shadow of the Demon Lord",
-  "package" : "https://github.com/BriocheMasquee/sotdl/releases/latest/download/manifest.json",
-  "repository" : "https://github.com/BriocheMasquee/sotdl",
-  "shortDescr" : "The End is just the Beginning.",
-  "shortName" : "SotDL",
-  "version" : "0.11.0",
-  "website" : "https://schwalbentertainment.com"
+  "id": "sotdl",
+  "name": "Shadow of the Demon Lord",
+  "shortName": "SotDL",
+  "version": "0.12.0",
+  "author": "Robert J. Schwalb (game), Brioche Masquée (system)",
+  "descr": "Shadow of the Demon Lord is a dark fantasy role-playing game of a world in agony, on the verge of the end times.",
+  "shortDescr": "The End is just the Beginning",
+  "banner": "images/banner.webp",
+  "repository": "https://github.com/BriocheMasquee/sotdl",
+  "package": "https://github.com/BriocheMasquee/sotdl/releases/latest/download/manifest.json",
+  "website": "https://schwalbentertainment.com"
 }
