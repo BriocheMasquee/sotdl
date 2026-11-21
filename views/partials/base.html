@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="{{ 'Common.LanguageCode'|l }}" data-entity-id="{{ id }}" data-kind="{% block kind %}{{ kind }}{% endblock %}"{% if type %} data-type="{{ type }}"{% endif %}{% if env.theme %} data-view-theme="{{ env.theme }}"{% endif %}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="color-scheme" content="light">
+    <title>{{ name }}</title>
+    <link href="{{ env.systemURL|default: '/' }}styles/default.css" rel="stylesheet" type="text/css">
+    {% for href in env.styles %}<link href="{{ href }}" rel="stylesheet" type="text/css">{% endfor %}
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+    <script>
+      /* Les bonus seuls (« +2 », « −1 ») ne sont pas des jets de dés : l'application les lie à un jet « CUSTOM:ROLL ».
+         On retire le lien des formules sans dé et on garde le texte. Les vraies formules (1d6, 2d6+3) restent cliquables */
+      (function () {
+        function flatRolls() {
+          var main = document.querySelector('main');
+          if (!main) { return; }
+          Array.prototype.slice.call(main.querySelectorAll('a[href^="/roll/"]')).forEach(function (link) {
+            var formula = decodeURIComponent(link.getAttribute('href').slice('/roll/'.length));
+            if (!/d/i.test(formula)) {
+              link.parentNode.replaceChild(document.createTextNode(link.textContent), link);
+            }
+          });
+        }
+        flatRolls();
+        document.addEventListener('DOMContentLoaded', flatRolls);
+        window.addEventListener('load', flatRolls);
+      })();
+    </script>
+    <script>
+      /* Dans les descriptions, le gras n'est rouge que s'il ouvre un paragraphe ou une puce (« **Ethnies variées :** … ») ;
+         ailleurs il reste de la couleur du texte. CSS ne sait pas tester « rien avant », d'où la classe posée ici */
+      (function () {
+        function markLeadBold() {
+          Array.prototype.slice.call(document.querySelectorAll('.description p > strong, .description li > strong')).forEach(function (el) {
+            var node = el.previousSibling;
+            while (node && node.nodeType === 3 && !node.nodeValue.trim()) { node = node.previousSibling; }
+            if (!node) { el.classList.add('lead'); }
+          });
+        }
+        markLeadBold();
+        document.addEventListener('DOMContentLoaded', markLeadBold);
+      })();
+    </script>
+    {% for src in env.scripts %}<script src="{{ src }}"></script>{% endfor %}
+  </body>
+</html>

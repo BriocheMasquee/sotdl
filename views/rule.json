@@ -1,85 +1,105 @@
 {
-    "debug": false,
-    "spacing": 0,
-    "padding": [15],
-    "views": [
+  "debug": false,
+  "spacing": 0,
+  "padding": [
+    15
+  ],
+  "views": [
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
         {
-            "type": "hStack",
-            "alignment": "bottom",
-            "padding": [0,5],
-            "views": [
-                {
-                    "style": "entityTitle",
-                    "value": "**{{name}}**",
-                    "link": "https://www.google.com/search?tbm=isch&q=book+{{name}}"
-                },
-                {
-                    "style": "spellSubtitle",
-                    "alignment": "trailing",
-                    "width": -1,
-                    "value": "{% if type %}**{{type|map: 'RuleType'|uppercase}}**{% endif %}"
-                }
-            ]
+          "style": "entityTitle",
+          "value": "**{{name}}**"
         },
         {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 2.5,
-            "padding": [0]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{type == 'Source' and image}}"
-        },
-        {
-            "type": "image",
-            "visibleIf": "{{type == 'Source' and image}}",
-            "padding": [8],
-            "height": 230,
-            "value": "{{image}}",
-            "link": "{{image}}"
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{type == 'Affliction' and icon}}"
-        },
-        {
-            "type": "image",
-            "visibleIf": "{{type == 'Affliction' and icon}}",
-            "padding": [8],
-            "height": 40,
-            "value": "{{icon}}",
-            "link": "{{icon}}"
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "vStack",
-            "padding": [0,5],
-            "views": [
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "{{descr}}"
-                }
-            ]
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 1.5,
-            "padding": [0]
-        },
+          "style": "spellSubtitle",
+          "alignment": "trailing",
+          "width": -1,
+          "value": "{% if type %}**{{type|map: 'RuleType'|uppercase}}**{% endif %}"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 2.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{{type == 'Affliction' and icon}}"
+    },
+    {
+      "type": "image",
+      "visibleIf": "{{type == 'Affliction' and icon}}",
+      "padding": [
+        8
+      ],
+      "height": 40,
+      "value": "{{icon}}",
+      "link": "{{icon}}"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
         {
           "type": "text",
-          "style": "source",
-          "padding": [5,0,0,0],
-          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
-          "visibleIf": "{{sourceFormatted}}"
+          "style": "body-info",
+          "value": "{{descr}}"
         }
-    ]
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{{type == 'Source' and image}}"
+    },
+    {
+      "type": "image",
+      "visibleIf": "{{type == 'Source' and image}}",
+      "padding": [
+        8
+      ],
+      "height": 230,
+      "value": "{{image}}",
+      "link": "{{image}}"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "text",
+      "style": "source",
+      "padding": [
+        5,
+        0,
+        0,
+        0
+      ],
+      "value": "*{{'Common.Source'|l}} : {{ sourceFormatted }}*",
+      "visibleIf": "{{sourceFormatted}}"
+    }
+  ]
 }

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="entity vehicle">
+  {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>{% endif %}
+  <section class="statblock">
+    <div class="sb-banner">
+      <h1 class="sb-title">{{ name }}</h1>
+      {% if data.price %}<span class="sb-label">{{ 'Vehicle.Price'|l|uppercase }} {{ data.price|uppercase }}</span>{% endif %}
+    </div>
+    {% if data.gabarit != nil %}<p class="sb-band">{% if data.vehicleDescriptors %}{{ data.vehicleDescriptors }}{% else %}{{ 'Vehicle.Object'|l }}{% endif %} {{ 'Vehicle.OfSize'|l }} {{ data.gabarit }}{% if data.vehicleKind %} ({{ data.vehicleKind|map: 'VehicleKind'|l|lowercase }}){% endif %}</p>{% endif %}
+    <div class="sb-lines">
+    {% if data.availability %}<div class="sb-line">{% markdown -%}**{{ 'Item.Availability'|l }}** {{ data.availability|map: 'Availability'|l }}{% endmarkdown %}</div>{% endif %}
+    <div class="sb-line">{% markdown -%}**{{ 'Characteristics.Defense'|l }}** {{ data.defenseValue }}{% if data.armor %} ({{ data.armor|lowercase }}){% endif %} ; **{{ 'Characteristics.Health'|l }}** {{ data.hp }}{% if data.vehicleKind == 'WarMachine' %} ; **{{ 'Attributes.STR'|l }}** {{ data.strengthValue }} ({{ data.strengthModifier|signed }}), **{{ 'Attributes.AGI'|l }}** {{ data.agilityValue }} ({{ data.agilityModifier|signed }}){% endif %}{% endmarkdown %}</div>
+    {% if data.vehicleKind != 'WarMachine' %}<div class="sb-line">{% markdown -%}**{{ 'Attributes.STR'|l }}** {{ data.strengthValue }} ({{ data.strengthModifier|signed }}), **{{ 'Attributes.AGI'|l }}** {{ data.agilityValue }} ({{ data.agilityModifier|signed }}), **{{ 'Attributes.INT'|l }}** {% if data.INT != nil %}{{ data.INT }} ({{ data.intellectModifier|signed }}){% else %}—{% endif %}, **{{ 'Attributes.WIL'|l }}** {% if data.WIL != nil %}{{ data.WIL }} ({{ data.willModifier|signed }}){% else %}—{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% if data.vehicleKind == 'Ship' %}
+    {% if data.space or data.draft %}<div class="sb-line">{% markdown -%}{% if data.space %}**{{ 'Vehicle.Space'|l }}** {{ data.space }}{% endif %}{% if data.space and data.draft %} ; {% endif %}{% if data.draft %}**{{ 'Vehicle.Draft'|l }}** {{ data.draft }}{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% if data.maxSpeed %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Speed'|l }}** {{ data.maxSpeed }}{% endmarkdown %}</div>{% endif %}
+    {% if data.crew %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Crew'|l }}** {{ data.crew }}{% endmarkdown %}</div>{% endif %}
+    {% if data.passengers %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Passengers'|l }}** {{ data.passengers }}{% endmarkdown %}</div>{% endif %}
+    {% if data.cargo %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Cargo'|l }}** {{ data.cargo }}{% endmarkdown %}</div>{% endif %}
+    {% if data.seaworthiness %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Seaworthiness'|l }}** {{ data.seaworthiness }}{% endmarkdown %}</div>{% endif %}
+    {% if data.handling %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Handling'|l }}** {{ data.handling }}{% endmarkdown %}</div>{% endif %}
+    {% elif data.vehicleKind == 'WarMachine' %}
+    {% if data.space or data.crew %}<div class="sb-line">{% markdown -%}{% if data.space %}**{{ 'Vehicle.Space'|l }}** {{ data.space }}{% endif %}{% if data.space and data.crew %} ; {% endif %}{% if data.crew %}**{{ 'Vehicle.Crew'|l }}** {{ data.crew }}{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% else %}
+    {% if data.space or data.maxSpeed or data.specialMovementTraits %}<div class="sb-line">{% markdown -%}{% if data.space %}**{{ 'Vehicle.Space'|l }}** {{ data.space }}{% endif %}{% if data.maxSpeed %}{% if data.space %} ; {% endif %}**{{ 'Vehicle.MaxSpeed'|l }}** {{ data.maxSpeed }}{% if data.acceleration != nil %} ({{ 'Vehicle.AccSpeed'|l|lowercase }} {{ data.acceleration }}/{{ 'Vehicle.DecSpeed'|l|lowercase }} {{ data.deceleration }}){% endif %}{% endif %}{% if data.specialMovementTraits %} ; {% if data.specialMovementTraits %}{{ data.specialMovementTraits|map: 'SpecialMovementTraits'|lowercase }}{% endif %}{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% if data.crew %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Crew'|l }}.** {{ data.crew }}{% endmarkdown %}</div>{% endif %}
+    {% if data.cargo %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Cargo'|l }}** {{ data.cargo }}{% endmarkdown %}</div>{% endif %}
+    {% endif %}
+    {% if data.standardImmunities %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Immunities'|l }}.** {% if data.vehicleKind == 'Ship' or data.vehicleKind == 'WarMachine' %}{{ 'Vehicle.ImmunitiesText.Ship'|l }}{% else %}{{ 'Vehicle.ImmunitiesText.Vehicle'|l }}{% endif %}.{% endmarkdown %}</div>{% endif %}
+    {% if data.vehicleKind == 'WarMachine' and data.ammunition %}<div class="sb-line">{% markdown -%}**{{ 'Vehicle.Ammunition'|l }}** {{ data.ammunition }}{% endmarkdown %}</div>{% endif %}
+    {% for e in data.vehicleTraits %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}
+    </div>
+  {% if data.vehicleAttacks %}<div class="sb-section">{{ 'Combat.AttackOptions'|l }}</div><div class="sb-body">
+  {% for e in data.vehicleAttacks %}<div class="sb-line">{% markdown -%}{% if e.bonus != nil %}**{{ e.name }}**{% if e.range %} ({{ e.range|lowercase }}){% endif %} [{{ e.bonus|signed }}](</roll/{{ e.rollFormula }}/{{ e.name }}/attack>){% if e.boonsText %} {{ e.boonsText }}{% endif %}{% if e.text %} {{ e.text }}{% endif %}{% else %}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endif %}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  {% if data.vehicleSpecialAttacks %}<div class="sb-section">{{ 'Combat.SpecialAttacks'|l }}</div><div class="sb-body">
+  {% for e in data.vehicleSpecialAttacks %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  {% if data.vehicleSpecialActions %}<div class="sb-section">{{ 'Combat.SpecialActions'|l }}</div><div class="sb-body">
+  {% for e in data.vehicleSpecialActions %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  </section>
+  {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
+  {% if image %}<div class="entity-image"><img src="{{ image|resolvePath }}" alt="{{ name }}"></div>{% endif %}
+</main>
+{% endblock %}

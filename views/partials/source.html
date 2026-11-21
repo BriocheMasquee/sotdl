@@ -1,0 +1,14 @@
+<span class="src-text">{% markdown -%}{{ sourceFormatted }}{% endmarkdown %}</span>
+<script>
+  /* E+ fournit « [Nom](/source/slug) pg. 10 » : le lien reste cliquable, on met l'abréviation de la langue à la place de « pg. » */
+  (function () {
+    var abbr = "{{ 'Common.PageAbbr'|l }}";
+    document.querySelectorAll('.src-text:not([data-clean])').forEach(function (el) {
+      el.setAttribute('data-clean', '1');
+      var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      var nodes = [];
+      while (walker.nextNode()) { nodes.push(walker.currentNode); }
+      nodes.forEach(function (n) { n.nodeValue = n.nodeValue.replace(/\s*\bpg\.\s*/g, ', ' + abbr + ' '); });
+    });
+  })();
+</script>

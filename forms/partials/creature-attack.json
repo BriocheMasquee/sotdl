@@ -1,0 +1,59 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "placeholder": "Common.Name",
+          "attribute": "name"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Creature.AttackRange",
+          "type": "text",
+          "attribute": "range"
+        },
+        {
+          "type": "hStack",
+          "fields": [
+            {
+              "title": "Creature.AttackBonus",
+              "type": "number",
+              "placeholder": "—",
+              "alignment": "top",
+              "attribute": "bonus"
+            },
+            {
+              "title": "Creature.AttackBoons",
+              "type": "number",
+              "placeholder": "—",
+              "alignment": "top",
+              "attribute": "boons"
+            },
+            {
+              "title": "Creature.AttackBanes",
+              "type": "number",
+              "placeholder": "—",
+              "alignment": "top",
+              "attribute": "banes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Creature.AttackText",
+          "type": "textArea",
+          "attribute": "text"
+        }
+      ]
+    }
+  ]
+}

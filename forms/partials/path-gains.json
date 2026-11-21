@@ -1,0 +1,64 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.Perception",
+          "type": "number",
+          "attribute": "perception"
+        },
+        {
+          "title": "Characteristics.Defense",
+          "type": "number",
+          "attribute": "defense"
+        },
+        {
+          "title": "Characteristics.DefenseFixed",
+          "type": "number",
+          "attribute": "defenseFixed"
+        },
+        {
+          "title": "Characteristics.Health",
+          "type": "number",
+          "attribute": "health"
+        },
+        {
+          "title": "Characteristics.Speed",
+          "type": "number",
+          "attribute": "speed"
+        },
+        {
+          "title": "Characteristics.Power",
+          "type": "number",
+          "attribute": "power"
+        },
+        {
+          "title": "Characteristics.Insanity",
+          "type": "number",
+          "attribute": "insanity"
+        },
+        {
+          "title": "Characteristics.Corruption",
+          "type": "number",
+          "attribute": "corruption"
+        },
+        {
+          "title": "Characteristics.SizeBonus",
+          "type": "number",
+          "attribute": "size"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.GainsCustom",
+          "type": "text",
+          "attribute": "custom"
+        }
+      ]
+    }
+  ]
+}

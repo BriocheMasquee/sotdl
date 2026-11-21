@@ -1,0 +1,44 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.Perception",
+          "type": "number",
+          "attribute": "perception"
+        },
+        {
+          "title": "Characteristics.Defense",
+          "type": "number",
+          "attribute": "defense"
+        },
+        {
+          "title": "Characteristics.Health",
+          "type": "number",
+          "attribute": "health"
+        },
+        {
+          "title": "Characteristics.Speed",
+          "type": "number",
+          "attribute": "speed"
+        },
+        {
+          "title": "Characteristics.Power",
+          "type": "number",
+          "attribute": "power"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.GainsCustom",
+          "type": "text",
+          "attribute": "custom"
+        }
+      ]
+    }
+  ]
+}

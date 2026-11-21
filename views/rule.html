@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="entity rule">
+  <header class="entity-header">
+    <div class="title-row">
+      <h1 class="entity-title">{{ name }}</h1>
+      {% if type %}<span class="entity-kind">{{ type|map: 'RuleType'|l }}</span>{% endif %}
+    </div>
+    {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>{% endif %}
+  </header>
+  {% if type == 'Affliction' and icon %}<div class="entity-icon"><img src="{{ icon|resolvePath }}" alt="{{ name }}"></div>{% endif %}
+  {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
+  {% if type == 'Source' and image %}<div class="entity-image"><img src="{{ image|resolvePath }}" alt="{{ name }}"></div>{% endif %}
+</main>
+{% endblock %}

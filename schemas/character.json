@@ -1,0 +1,576 @@
+// Modèle du personnage : ce que le formulaire (forms/character.json) et, plus tard, la fiche interactive
+// (sheets/) ÉCRIVENT. Format : https://docs.encounter.plus/system-development/schemas/ (aperçu).
+//
+// ATTENTION (doc E+ 5.2) : les éditeurs d'entité valident aussi ce schéma avant d'enregistrer ; une valeur
+// hors limites ou d'un mauvais type est refusée, et un schéma qui ne charge pas BLOQUE toute sauvegarde
+// d'un Personnage. Pour revenir en arrière : supprimer ce fichier. Les clés non déclarées restent
+// enregistrées telles quelles (avertissement dans le journal) et lisibles par la fiche, mais la fiche ne
+// peut pas les écrire.
+//
+// Premier jet (2026-11-18) : seulement les clés dont le type est établi. Ne sont PAS déclarées (à ajouter
+// avec la fiche) : talents (`talent`, `levelNTalent`), gains et attributs de niveau, `pathType`,
+// `spellEffects`, `uses`, armes (portée, propriétés), munitions, tables, variantes d'ascendance.
+// Les valeurs calculées (Santé, Défense, Perception, Vitesse, Taille, Pouvoir, `hp.maximum`…) viennent de
+// views/transforms/character.json et ne sont jamais écrites.
+//
+// Énumérations à clés numériques (SpellRank) : déclarées par leur nom d'énumération. Un essai en `string`
+// (2026-11-19) a été refusé à l'enregistrement (« data.spells[0].spellRank: expected text ») : le formulaire
+// du sort enregistre un nombre. Les vues comparent déjà les deux formes (`== 0 or == '0'`).
+{
+  "defs": {
+    // Un réglage de caractéristique : calculée par défaut, ajustée par bonus ou remplacée de force.
+    "Adjust": {
+      "base": "integer",
+      "bonus": "integer",
+      "override": "integer"
+    },
+
+    // Un attribut (Force, Agilité, Intellect, Volonté) : valeur de base, bonus d'ascendance, valeur forcée.
+    "AttributeAdjust": {
+      "base": "integer",
+      "ancestryBonus": "integer",
+      // +1 d'attribut gagnés au choix à la montée de niveau (fiche interactive, 2026-11-21)
+      "levelBonus": { "type": "integer", "play": true },
+      "override": "integer"
+    },
+
+    // Folie ou corruption : valeur de départ et valeur actuelle.
+    "StartCurrent": {
+      "start": { "type": "integer", "min": 0 },
+      "current": { "type": "integer", "min": 0, "play": true }
+    },
+
+    // Un talent donné par une origine ou une voie : texte et utilisations (`usesSpent` = utilisations dépensées).
+    "Talent": {
+      "name": "string",
+      "text": "text",
+      "usesBase": "integer",
+      "usesPower": "boolean",
+      "usesLevel": "boolean",
+      "usesSpent": { "type": "integer", "min": 0, "play": true }
+    },
+
+    // Un choix proposé par un niveau (ascendance, transformation, voie) : coché quand il est retenu.
+    "Choice": {
+      "name": "string",
+      "text": "text",
+      "chosen": { "type": "boolean", "play": true },
+      "usesBase": "integer",
+      "usesPower": "boolean",
+      "usesLevel": "boolean",
+      "usesSpent": { "type": "integer", "min": 0, "play": true }
+    },
+
+    // Un sort appris d'office à un niveau : nom (et adresse du sort de la bibliothèque, facultative)
+    "AutoSpell": {
+      "name": "string",
+      "reference": "string"
+    },
+
+    // Gains d'attributs fixes d'un niveau (texte libre : `custom`)
+    "LevelAttrs": {
+      "STR": "integer",
+      "AGI": "integer",
+      "INT": "integer",
+      "WIL": "integer",
+      "custom": "string"
+    },
+
+    // Gains de caractéristiques d'un niveau
+    "LevelGains": {
+      "perception": "integer",
+      "defense": "integer",
+      "defenseFixed": "integer",
+      "health": "integer",
+      "speed": "integer",
+      "power": "integer",
+      "insanity": "integer",
+      "corruption": "integer",
+      "size": "integer",
+      "custom": "string"
+    },
+
+    // Folie ou Corruption d'une ascendance ou d'une transformation : valeur fixe ou dés
+    "StartRule": {
+      "mode": "string",
+      "value": "integer",
+      "dice": "string"
+    },
+
+    // Les talents, choix, gains et interrupteurs d'un niveau d'ascendance ou de transformation
+    "LevelChoices": {
+      "talent": ["Talent"],
+      "choice": ["Choice"],
+      "attrs": "LevelAttrs",
+      "gains": "LevelGains",
+      "options": "text",
+      "levelAttrChoice": "integer",
+      "levelLang": "boolean",
+      "levelProf": "boolean",
+      "levelLangProfOne": "boolean",
+      "levelTradition": "boolean",
+      "levelSpell": "boolean",
+      "levelMagicChoices": "integer",
+      "levelMagicOne": "boolean",
+      "levelCantrip": "boolean",
+      "levelSpellsAuto": ["AutoSpell"],
+      "levelChoicePick": "integer",
+      "levelSpellInstead": "boolean"
+    },
+
+    // Données d'un niveau de voie (sous-objet `data` du niveau)
+    "PathLevelData": {
+      "attrs": "LevelAttrs",
+      "gains": "LevelGains",
+      "levelLangProf": "text",
+      "levelOptions": "text",
+      "levelAttrChoice": "integer",
+      "levelLang": "boolean",
+      "levelProf": "boolean",
+      "levelLangProfOne": "boolean",
+      "levelTradition": "boolean",
+      "levelSpell": "boolean",
+      "levelMagicChoices": "integer",
+      "levelMagicOne": "boolean",
+      "levelCantrip": "boolean",
+      "levelSpellsAuto": ["AutoSpell"],
+      "levelChoicePick": "integer",
+      "levelSpellInstead": "boolean"
+    },
+    "PathLevel": {
+      "data": "PathLevelData"
+    },
+
+    // Réglage d'un attribut par une transformation
+    "TransfAttr": {
+      "value": "integer",
+      "removed": "boolean",
+      "replace": "integer"
+    },
+    "TransfAttrs": {
+      "STR": "TransfAttr",
+      "AGI": "TransfAttr",
+      "INT": "TransfAttr",
+      "WIL": "TransfAttr"
+    },
+
+    // Une langue du personnage : `reference` = adresse de la règle de type Langue choisie dans la bibliothèque
+    "Language": {
+      "name": "string",
+      "reference": "string",
+      "spoken": "boolean",
+      "read": "boolean",
+      "written": "boolean"
+    },
+
+    "Profession": {
+      "name": "string",
+      "detail": "string"
+    },
+
+    // Entrée spéciale d'un sort (ex. « Jet d'attaque 20+ »).
+    "SpellEffect": {
+      "name": "string",
+      "text": "text"
+    },
+
+    // Un trait de complication : nom, texte, et choix éventuel (cases du formulaire de la complication)
+    "ComplicationTrait": {
+      "name": "string",
+      "text": "text",
+      "choiceOn": "boolean",
+      "choice": "text"
+    },
+
+    "ExtraTalent": {
+      "name": "string",
+      "text": "text"
+    },
+
+    // Une étape de montée de niveau ou de création déjà réalisée (clé : « origine / niveau / étape »)
+    "LevelStep": {
+      "key": "string",
+      // résultat affiché (texte) et recette d'annulation (JSON en texte) : l'étape peut être annulée depuis la fenêtre
+      "info": "string",
+      "undo": "text"
+    },
+
+        // Un lien vers une règle de la bibliothèque (fiche interactive, 2026-11-21) : nom et adresse de la règle.
+    "RuleLink": {
+      "name": "string",
+      "reference": "string"
+    }
+  },
+
+  "data": {
+    // 0 à 10
+    "level": { "type": "integer", "min": 0, "max": 10 },
+
+    // ORIGINES : copies de la fiche choisie ; seuls les choix par niveau sont déclarés (voir plus haut)
+    "ancestry": {
+      "ref": "Ancestry",
+      "properties": {
+        "talent": ["Talent"],
+        "STR": "integer", "AGI": "integer", "INT": "integer", "WIL": "integer",
+        "attributeChoice": "text",
+        "startMode": "string",
+        "STRRoll": "string", "AGIRoll": "string", "INTRoll": "string", "WILRoll": "string",
+        "perception": "integer",
+        "defense": "integer",
+        "health": { "properties": { "attribute": "string", "bonus": "integer" } },
+        "size": "string",
+        "speed": "integer",
+        "insanity": "StartRule",
+        "corruption": "StartRule",
+        "languagesProfessions": "text",
+        "powerfulAncestry": "boolean",
+        "startLanguages": ["Language"],
+        "startProfessions": ["Profession"],
+        "creationAttrChoice": "integer",
+        "creationLang": "boolean",
+        "creationProf": "boolean",
+        "creationLangProfOne": "boolean",
+        "ancestryLevel1": "LevelChoices",
+        "ancestryLevel2": "LevelChoices",
+        "ancestryLevel4": "LevelChoices",
+        "ancestryLevel5": "LevelChoices",
+        "ancestryLevel8": "LevelChoices"
+      }
+    },
+    "transformation": {
+      "ref": "Transformation",
+      "properties": {
+        "talent": ["Talent"],
+        "attrs": "TransfAttrs",
+        "perception": "integer",
+        "defense": "integer",
+        "health": "integer",
+        "speed": "integer",
+        "corruptionFactor": "integer",
+        "healingZero": "boolean",
+        "insanity": "StartRule",
+        "corruption": "StartRule",
+        "insanityRemoved": "boolean",
+        "powerfulAncestry": "boolean",
+        "replaceLevel4": "boolean",
+        "transfLevel1": "LevelChoices",
+        "transfLevel2": "LevelChoices",
+        "transfLevel4": "LevelChoices",
+        "transfLevel5": "LevelChoices",
+        "transfLevel8": "LevelChoices"
+      }
+    },
+    // copie de la complication choisie ; `descr` (texte de la fiche) est copié par la fiche : il doit être déclaré (sinon « not declared in the schema »)
+    "complication": {
+      "ref": "Complication",
+      "properties": {
+        "descr": "text",
+        "trait": ["ComplicationTrait"],
+        "tables": "text"
+      }
+    },
+
+    // VOIES : novice (niveaux 1, 2, 5, 8), expert (3, 6, 9), maître (7, 10), seconde voie (7, 10)
+    "novicePath": {
+      "ref": "Path",
+      "properties": {
+        "pathType": "string",
+        "level1": "PathLevel",
+        "level1Talent": ["Talent"],
+        "level1Choice": ["Choice"],
+        "level2": "PathLevel",
+        "level2Talent": ["Talent"],
+        "level2Choice": ["Choice"],
+        "level3": "PathLevel",
+        "level3Talent": ["Talent"],
+        "level3Choice": ["Choice"],
+        "level4": "PathLevel",
+        "level4Talent": ["Talent"],
+        "level4Choice": ["Choice"],
+        "level5": "PathLevel",
+        "level5Talent": ["Talent"],
+        "level5Choice": ["Choice"],
+        "level6": "PathLevel",
+        "level6Talent": ["Talent"],
+        "level6Choice": ["Choice"],
+        "level7": "PathLevel",
+        "level7Talent": ["Talent"],
+        "level7Choice": ["Choice"],
+        "level8": "PathLevel",
+        "level8Talent": ["Talent"],
+        "level8Choice": ["Choice"],
+        "level9": "PathLevel",
+        "level9Talent": ["Talent"],
+        "level9Choice": ["Choice"],
+        "level10": "PathLevel",
+        "level10Talent": ["Talent"],
+        "level10Choice": ["Choice"]
+      }
+    },
+    "expertPath": {
+      "ref": "Path",
+      "properties": {
+        "pathType": "string",
+        "level1": "PathLevel",
+        "level1Talent": ["Talent"],
+        "level1Choice": ["Choice"],
+        "level2": "PathLevel",
+        "level2Talent": ["Talent"],
+        "level2Choice": ["Choice"],
+        "level3": "PathLevel",
+        "level3Talent": ["Talent"],
+        "level3Choice": ["Choice"],
+        "level4": "PathLevel",
+        "level4Talent": ["Talent"],
+        "level4Choice": ["Choice"],
+        "level5": "PathLevel",
+        "level5Talent": ["Talent"],
+        "level5Choice": ["Choice"],
+        "level6": "PathLevel",
+        "level6Talent": ["Talent"],
+        "level6Choice": ["Choice"],
+        "level7": "PathLevel",
+        "level7Talent": ["Talent"],
+        "level7Choice": ["Choice"],
+        "level8": "PathLevel",
+        "level8Talent": ["Talent"],
+        "level8Choice": ["Choice"],
+        "level9": "PathLevel",
+        "level9Talent": ["Talent"],
+        "level9Choice": ["Choice"],
+        "level10": "PathLevel",
+        "level10Talent": ["Talent"],
+        "level10Choice": ["Choice"]
+      }
+    },
+    "masterPath": {
+      "ref": "Path",
+      "properties": {
+        "pathType": "string",
+        "level1": "PathLevel",
+        "level1Talent": ["Talent"],
+        "level1Choice": ["Choice"],
+        "level2": "PathLevel",
+        "level2Talent": ["Talent"],
+        "level2Choice": ["Choice"],
+        "level3": "PathLevel",
+        "level3Talent": ["Talent"],
+        "level3Choice": ["Choice"],
+        "level4": "PathLevel",
+        "level4Talent": ["Talent"],
+        "level4Choice": ["Choice"],
+        "level5": "PathLevel",
+        "level5Talent": ["Talent"],
+        "level5Choice": ["Choice"],
+        "level6": "PathLevel",
+        "level6Talent": ["Talent"],
+        "level6Choice": ["Choice"],
+        "level7": "PathLevel",
+        "level7Talent": ["Talent"],
+        "level7Choice": ["Choice"],
+        "level8": "PathLevel",
+        "level8Talent": ["Talent"],
+        "level8Choice": ["Choice"],
+        "level9": "PathLevel",
+        "level9Talent": ["Talent"],
+        "level9Choice": ["Choice"],
+        "level10": "PathLevel",
+        "level10Talent": ["Talent"],
+        "level10Choice": ["Choice"]
+      }
+    },
+    "secondPath": {
+      "ref": "Path",
+      "properties": {
+        "pathType": "string",
+        "level1": "PathLevel",
+        "level1Talent": ["Talent"],
+        "level1Choice": ["Choice"],
+        "level2": "PathLevel",
+        "level2Talent": ["Talent"],
+        "level2Choice": ["Choice"],
+        "level3": "PathLevel",
+        "level3Talent": ["Talent"],
+        "level3Choice": ["Choice"],
+        "level4": "PathLevel",
+        "level4Talent": ["Talent"],
+        "level4Choice": ["Choice"],
+        "level5": "PathLevel",
+        "level5Talent": ["Talent"],
+        "level5Choice": ["Choice"],
+        "level6": "PathLevel",
+        "level6Talent": ["Talent"],
+        "level6Choice": ["Choice"],
+        "level7": "PathLevel",
+        "level7Talent": ["Talent"],
+        "level7Choice": ["Choice"],
+        "level8": "PathLevel",
+        "level8Talent": ["Talent"],
+        "level8Choice": ["Choice"],
+        "level9": "PathLevel",
+        "level9Talent": ["Talent"],
+        "level9Choice": ["Choice"],
+        "level10": "PathLevel",
+        "level10Talent": ["Talent"],
+        "level10Choice": ["Choice"]
+      }
+    },
+    "otherTalents": ["ExtraTalent"],
+
+    // ACTIONS du personnage : liens vers des règles de type Action (le jet éventuel vient de la règle : data.rollAttribute) — aucune action n'est écrite dans le système
+    "actions": ["RuleLink"],
+    // AFFLICTIONS-LIEES (début) : un drapeau par règle de type Affliction (clé = slug de la règle). Généré par outils/generer-liens-afflictions.py.
+    "conditions": {
+      "properties": {
+        "a-terre": "boolean",
+        "affaibli": "boolean",
+        "assourdi": "boolean",
+        "aveugle": "boolean",
+        "charme": "boolean",
+        "contraint": "boolean",
+        "effraye": "boolean",
+        "empoisonne": "boolean",
+        "endormi": "boolean",
+        "etourdi": "boolean",
+        "fatigue": "boolean",
+        "immobilise": "boolean",
+        "inconscient": "boolean",
+        "malade": "boolean",
+        "maudit-test": "boolean",
+        "neutralise": "boolean",
+        "ralenti": "boolean",
+        "stupefait": "boolean",
+        "vulnerable": "boolean"
+      }
+    },
+    // AFFLICTIONS-LIEES (fin)
+
+    // IDENTITÉ
+    "history": "text",
+    "religion": "string",
+    // âge (texte libre), histoire du personnage, chance (la possède-t-il ?), notes du sac (fiche interactive, 2026-11-21)
+    "age": "string",
+    // démence (conséquence de la folie, texte libre) et marque des ténèbres (corruption)
+    "dementia": "string",
+    "darkMark": "text",
+    "story": "text",
+    "luck": { "type": "boolean", "play": true },
+    "bagNotes": "text",
+    // montée de niveau et création : étapes déjà faites (une entrée par étape, présence = faite) ; `created` = création du personnage terminée
+    "levelSteps": ["LevelStep"],
+    "created": { "type": "boolean", "play": true },
+    "languages": ["Language"],
+    "professionList": ["Profession"],
+
+    // CARACTÉRISTIQUES : réglages saisis (les valeurs finales sont calculées)
+    "attrAdjust": {
+      "properties": {
+        "STR": "AttributeAdjust",
+        "AGI": "AttributeAdjust",
+        "INT": "AttributeAdjust",
+        "WIL": "AttributeAdjust"
+      }
+    },
+    "perceptionAdjust": "Adjust",
+    "defenseAdjust": "Adjust",
+    "healthAdjust": "Adjust",
+    "healingAdjust": "Adjust",
+    "powerAdjust": "Adjust",
+    "speedAdjust": "Adjust",
+    // Gabarit : de base (BodySize), bonus en crans de gabarit (+1 = un cran plus grand), forcé (remplace tout le reste)
+    "sizeAdjust": {
+      "properties": {
+        "base": "BodySize",
+        "bonus": "integer",
+        "override": "BodySize"
+      }
+    },
+
+    // SANTÉ ET ÉTATS : `hp.current` est les DÉGÂTS subis (barre `marked` de config.json, depuis le
+    // 2026-11-18) : 0 au départ, blessé à la moitié de la Santé, neutralisé au maximum. Le maximum
+    // (`hp.maximum` = Santé) est calculé.
+    "hp": {
+      "properties": {
+        "current": { "type": "integer", "min": 0, "play": true }
+      }
+    },
+    "insanity": "StartCurrent",
+    "corruption": "StartCurrent",
+    // avantages et désavantages sur les jets (aucun, 1 à 4) : lu par views/transforms/character.json
+    "rollEdge": "RollEdge",
+
+    // MAGIE
+    "traditions": ["SpellTradition"],
+    "spells": {
+      "type": [{
+        "ref": "Spell",
+        "properties": {
+          "descr": "text",
+          "spellType": "SpellType",
+          "spellRank": "SpellRank",
+          "spellEffects": ["SpellEffect"],
+          // lancers : `usesMaximumOverride` remplace le maximum calculé (rang et Puissance) ; `usesSpent` = lancers dépensés
+          "usesMaximumOverride": { "type": "integer", "min": 0 },
+          "usesSpent": { "type": "integer", "min": 0, "play": true },
+          "spellRequirement": "text",
+          "spellTarget": "text",
+          "spellArea": "text",
+          "spellDuration": "text",
+          "spellTradition": {
+            "properties": {
+              "tradition": "SpellTradition",
+              "darkMagic": "boolean",
+              "psychicTradition": "boolean",
+              "onlyIncantation": "boolean"
+            }
+          }
+        }
+      }]
+    },
+
+    // SAC : monnaie et objets (copies de la bibliothèque ou saisis à la main)
+    "currency": {
+      "properties": {
+        "shards": { "type": "integer", "min": 0 },
+        "sc": { "type": "integer", "min": 0 },
+        "ca": { "type": "integer", "min": 0 },
+        "co": { "type": "integer", "min": 0 }
+      }
+    },
+    "items": {
+      "type": [{
+        "ref": "Item",
+        "properties": {
+          "descr": "text",
+          "quantity": { "type": "integer", "min": 0 },
+          "equipped": { "type": "boolean", "play": true },
+          "itemType": "ItemType",
+          "gearType": "GearType",
+          "marvelType": "MarvelType",
+          "price": "string",
+          "availability": "Availability",
+          "armorType": "ArmorType",
+          "armorRequirement": "string",
+          "armorDefenseFixed": "integer",
+          "armorDefenseAgility": "integer",
+          // effets de jeu d'une relique : liste { name, text }
+          "relic": ["ExtraTalent"],
+          "weaponType": "WeaponType",
+          "weaponRequirement": "string",
+          "weaponDamage": "string",
+          "weaponHands": "WeaponHands",
+          "weaponDefensive": "boolean",
+          "defensiveValue": "integer",
+          "weaponReach": "boolean",
+          "reachValue": "integer",
+          "weaponProperty": ["WeaponProperty"],
+          // munitions : `uses` = nombre d'utilisations, `usesSpent` = utilisations dépensées (cases cochées)
+          "ammunitionRequirement": "boolean",
+          "ammunitionType": "Ammunition",
+          "uses": { "type": "integer", "min": 0 },
+          "usesSpent": { "type": "integer", "min": 0, "play": true }
+        }
+      }]
+    }
+  }
+}

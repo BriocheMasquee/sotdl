@@ -1,175 +1,169 @@
 {
-    "debug": false,
-    "spacing": 0,
-    "padding": [15],
-    "views": [
+  "debug": false,
+  "spacing": 0,
+  "padding": [
+    15
+  ],
+  "views": [
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
         {
-            "type": "hStack",
-            "alignment": "bottom",
-            "padding": [0,5],
-            "views": [
-                {
-                    "style": "entityTitle",
-                    "value": "**{{name}}**"
-                },
-                {
-                    "style": "spellSubtitle",
-                    "alignment": "trailing",
-                    "width": -1,
-                    "value": "**{{data.itemType|map: 'ItemType'}}**{% if data.availability %} • **{{data.availability|map: 'Availability'}}**{% endif %}"
-                }
-            ]
+          "style": "entityTitle",
+          "value": "**{{name}}**"
         },
         {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 2.5,
-            "padding": [0]
-        },
+          "style": "spellSubtitle",
+          "alignment": "trailing",
+          "width": -1,
+          "value": "**{% if data.itemType == 'AdventuringGear' and data.gearType %}{{data.gearType|map: 'GearType'|l}}{% else %}{% if data.itemType == 'Special' and data.marvelType %}{{data.marvelType|map: 'MarvelType'|l}}{% else %}{% if data.itemType == 'Armor' and data.armorType %}{{data.armorType|map: 'ArmorType'|l}}{% else %}{% if data.itemType == 'Weapon' and data.weaponType %}{{data.weaponType|map: 'WeaponType'|l}}{% else %}{{data.itemType|map: 'ItemType'|l}}{% endif %}{% endif %}{% endif %}{% endif %}**"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 2.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
         {
-            "type": "spacer"
-        },
-        {
-            "type": "vStack",
-            "padding": [0,5],
-            "views": [
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Item.Price'|l}} :** {{data.price}}",
-                    "visibleIf": "{{data.itemType == 'Armor' or data.itemType == 'Weapon' or data.itemType == 'AdventuringGear' or data.itemType == 'Special' or data.itemType == 'Potion'}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Item.ArmorType'|l}} :** {{data.armorType|map: 'ArmorType'|lowercase}} {% if data.armorRequirement %}{{data.armorRequirement|brackets|lowercase}}{% endif %}",
-                    "visibleIf": "{% if data.itemType == 'Armor' %}true{% endif %}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Defense'|l}} :** {{data.armorDefense}}",
-                    "visibleIf": "{% if data.itemType == 'Armor' %}true{% endif %}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Item.WeaponType'|l}} :** {{data.weaponType|map: 'WeaponType'|lowercase}} {% if data.weaponRequirement %}{{data.weaponRequirement|brackets|lowercase}}{% endif %}",
-                    "visibleIf": "{% if data.itemType == 'Weapon' %}true{% endif %}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Weapon.AmmunitionRequirement'|l}} :** {{data.ammunitionType|map: 'Ammunition'|lowercase}}",
-                    "visibleIf": "{% if data.itemType == 'Weapon' %}true{% endif %}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Damage'|l}} :** {{data.weaponDamage}}, **{{'Weapon.Hands'|l}} :** {{data.weaponHands|map: 'WeaponHands'|lowercase}}",
-                    "visibleIf": "{% if data.itemType == 'Weapon' %}true{% endif %}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Weapon.Property'|l}} :** {% include 'weapon-property.md' data %}",
-                    "visibleIf": "{% if data.itemType == 'Weapon' %}true{% endif %}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Item.GearType'|l}} :** {{data.gearType|map: 'GearType'|lowercase}}",
-                    "visibleIf": "{% if data.itemType == 'AdventuringGear' %}true{% endif %}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Item.MarvelType'|l}} :** {{data.marvelType|map: 'MarvelType'|lowercase}}",
-                    "visibleIf": "{% if data.itemType == 'Special' %}true{% endif %}"
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{data.itemType == 'Armor' or data.itemType == 'Weapon' or data.itemType == 'AdventuringGear' or data.itemType == 'Special' or data.itemType == 'Potion'}}"
-        },
-        {
-            "type": "divider",
-            "bgColor": "#9B0619",
-            "height": 2,
-            "padding": [0],
-            "visibleIf": "{{data.itemType == 'Armor' or data.itemType == 'Weapon' or data.itemType == 'AdventuringGear' or data.itemType == 'Special' or data.itemType == 'Potion'}}"
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{data.itemType == 'Armor' or data.itemType == 'Weapon' or data.itemType == 'AdventuringGear' or data.itemType == 'Special' or data.itemType == 'Potion'}}"
-        },
-        {
-            "type": "vStack",
-            "padding": [0,5],
-            "views": [
-                {
-                    "type": "text",
-                    "value": "{{descr}}"
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{data.itemType == 'Relic'}}"
-        },
-        {
-            "type": "text",
-            "style": "relicSubtitle",
-            "value": "{% if data.relic %}**{{'Item.RelicEffects'|l}}**{% endif %}",
-            "padding": [4,0,0,0]              
-        },
-        {
-            "type": "divider",
-            "bgColor": "#9B0619",
-            "height": 2,
-            "padding": [0],
-            "visibleIf": "{{data.itemType == 'Relic'}}"
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{data.itemType == 'Relic'}}"
-        },
-        {
-            "type": "list",
-            "attribute": "data.relic",
-            "views": [
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{image}}"
-        },
-        {
-            "type": "image",
-            "value": "{{image}}",
-            "link": "{{image}}"
-        },       
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 1.5,
-            "padding": [0]
+          "type": "text",
+          "style": "body-info",
+          "value": "{% if data.price %}**{{'Item.Price'|l}}** {{data.price}}{% endif %}{% if data.price and data.availability %} · {% endif %}{% if data.availability %}**{{'Item.Availability'|l}}** {{data.availability|map: 'Availability'|l}}{% endif %}",
+          "visibleIf": "{% if data.price or data.availability %}true{% endif %}"
         },
         {
           "type": "text",
-          "style": "source",
-          "padding": [5,0,0,0],
-          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
-          "visibleIf": "{{sourceFormatted}}"
+          "style": "body-info",
+          "value": "**{{'Item.Uses'|l}}** {{data.uses}}",
+          "visibleIf": "{% if data.uses %}true{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Item.Requirement'|l}}** {{data.armorRequirement}}",
+          "visibleIf": "{% if data.itemType == 'Armor' and data.armorRequirement %}true{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.Defense'|l}}** {% if data.armorDefenseFixed != nil %}{{data.armorDefenseFixed}}{% else %}{{'Attributes.AGI'|l}}{% if data.armorDefenseAgility != 0 %} + {{data.armorDefenseAgility}}{% endif %}{% endif %}",
+          "visibleIf": "{% if data.itemType == 'Armor' %}{% if data.armorDefenseFixed != nil or data.armorDefenseAgility != nil %}true{% endif %}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.Damage'|l}}** {{data.weaponDamage}}{% if data.weaponHands %} · **{{'Weapon.Hands'|l}}** {{data.weaponHands|map: 'WeaponHands'|l}}{% endif %}{% if data.weaponRequirement %} · **{{'Item.Requirement'|l}}** {{data.weaponRequirement}}{% endif %}",
+          "visibleIf": "{% if data.itemType == 'Weapon' and data.weaponDamage %}true{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Weapon.Property'|l}}** {% include 'weapon-property.md' data %}",
+          "visibleIf": "{% if data.itemType == 'Weapon' %}{% if data.weaponProperty or data.weaponReach or data.weaponDefensive %}true{% endif %}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Weapon.AmmunitionRequirement'|l}}** {{data.ammunitionType|map: 'Ammunition'|l|lowercase}}",
+          "visibleIf": "{% if data.itemType == 'Weapon' and data.ammunitionRequirement and data.ammunitionType %}true{% endif %}"
         }
-    ]
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.price or data.availability or data.uses or data.itemType == 'Armor' or data.itemType == 'Weapon' %}true{% endif %}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#980C14",
+      "height": 2,
+      "padding": [
+        0
+      ],
+      "visibleIf": "{% if data.price or data.availability or data.uses or data.itemType == 'Armor' or data.itemType == 'Weapon' %}true{% endif %}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.price or data.availability or data.uses or data.itemType == 'Armor' or data.itemType == 'Weapon' %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "text",
+          "value": "{{descr}}"
+        }
+      ]
+    },
+    {
+      "type": "list",
+      "attribute": "data.relic",
+      "views": [
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+        }
+      ],
+      "spacing": 4,
+      "padding": [
+        0,
+        5
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{{image}}"
+    },
+    {
+      "type": "image",
+      "value": "{{image}}",
+      "link": "{{image}}"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "text",
+      "style": "source",
+      "padding": [
+        5,
+        0,
+        0,
+        0
+      ],
+      "value": "*{{'Common.Source'|l}} : {{ sourceFormatted }}*",
+      "visibleIf": "{{sourceFormatted}}"
+    }
+  ]
 }

@@ -3,38 +3,51 @@
         {
             "type": "hStack",
             "alignment": "bottom",
-            "padding": [10,0,0,0],
+            "padding": [
+                10,
+                0,
+                0,
+                0
+            ],
             "views": [
                 {
                     "style": "entitySubtitle",
                     "value": "**{{'Path.Novice'|l}}** • **{{'Path.Level1'|l}}**"
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil or data.level1.data.attrs.custom or data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil or data.level1.data.gains.custom or data.level1.data.levelLangProf or data.level1.data.levelOptions or data.level1Talent or data.level1Choice %}true{% endif %}"
         },
         {
             "type": "divider",
             "bgColor": "#000000",
             "height": 1.5,
-            "padding": [0]
+            "padding": [
+                0
+            ],
+            "visibleIf": "{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil or data.level1.data.attrs.custom or data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil or data.level1.data.gains.custom or data.level1.data.levelLangProf or data.level1.data.levelOptions or data.level1Talent or data.level1Choice %}true{% endif %}"
         },
         {
-            "type": "spacer"
+            "type": "spacer",
+            "visibleIf": "{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil or data.level1.data.attrs.custom or data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil or data.level1.data.gains.custom or data.level1.data.levelLangProf or data.level1.data.levelOptions or data.level1Talent or data.level1Choice %}true{% endif %}"
         },
         {
             "type": "vStack",
-            "padding": [0,5],
+            "padding": [
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "text",
                     "style": "body-info",
-                    "value": "**{{'Common.Attributes'|l}}.** {{data.level1.data.levelAttribute}}",
-                    "visibleIf": "{% if data.level1.data.levelAttribute %}true{% endif %}"
+                    "value": "**{{'Common.Attributes'|l}}.** {% if data.level1.data.attrs.STR != nil %}{{'Attributes.STR'|l}} {{data.level1.data.attrs.STR|signed}}{% endif %}{% if data.level1.data.attrs.AGI != nil %}{% if data.level1.data.attrs.STR != nil %}, {% endif %}{{'Attributes.AGI'|l}} {{data.level1.data.attrs.AGI|signed}}{% endif %}{% if data.level1.data.attrs.INT != nil %}{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil %}, {% endif %}{{'Attributes.INT'|l}} {{data.level1.data.attrs.INT|signed}}{% endif %}{% if data.level1.data.attrs.WIL != nil %}{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil %}, {% endif %}{{'Attributes.WIL'|l}} {{data.level1.data.attrs.WIL|signed}}{% endif %}{% if data.level1.data.attrs.custom %}{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil %}, {% endif %}{{data.level1.data.attrs.custom}}{% endif %}",
+                    "visibleIf": "{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil or data.level1.data.attrs.custom %}true{% endif %}"
                 },
                 {
                     "type": "text",
                     "style": "body-info",
-                    "value": "**{{'Common.Characteristics'|l}}.** {{data.level1.data.levelCharacteristics}}",
-                    "visibleIf": "{% if data.level1.data.levelCharacteristics %}true{% endif %}"
+                    "value": "**{{'Common.Characteristics'|l}}.** {% if data.level1.data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.level1.data.gains.perception|signed}}{% endif %}{% if data.level1.data.gains.defense != nil %}{% if data.level1.data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.level1.data.gains.defense|signed}}{% endif %}{% if data.level1.data.gains.defenseFixed != nil %}{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.level1.data.gains.defenseFixed}}{% endif %}{% if data.level1.data.gains.health != nil %}{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.level1.data.gains.health|signed}}{% endif %}{% if data.level1.data.gains.speed != nil %}{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.level1.data.gains.speed|signed}}{% endif %}{% if data.level1.data.gains.power != nil %}{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.level1.data.gains.power|signed}}{% endif %}{% if data.level1.data.gains.insanity != nil %}{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{data.level1.data.gains.insanity|signed}}{% endif %}{% if data.level1.data.gains.corruption != nil %}{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{data.level1.data.gains.corruption|signed}}{% endif %}{% if data.level1.data.gains.size != nil %}{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{data.level1.data.gains.size|signed}}{% endif %}{% if data.level1.data.gains.custom %}{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil %}, {% endif %}{{data.level1.data.gains.custom}}{% endif %}",
+                    "visibleIf": "{% if data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil or data.level1.data.gains.custom %}true{% endif %}"
                 },
                 {
                     "type": "text",
@@ -42,11 +55,17 @@
                     "value": "**{{'Common.Language&Profession'|l}}.** {{data.level1.data.levelLangProf}}",
                     "visibleIf": "{% if data.level1.data.levelLangProf %}true{% endif %}"
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil or data.level1.data.attrs.custom or data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil or data.level1.data.gains.custom or data.level1.data.levelLangProf or data.level1.data.levelOptions or data.level1Talent or data.level1Choice %}true{% endif %}"
         },
         {
             "type": "vStack",
-            "padding": [5,5,0,5],
+            "padding": [
+                5,
+                5,
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "list",
@@ -58,47 +77,85 @@
                             "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
                         }
                     ]
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "{{data.level1.data.levelOptions}}",
+                    "visibleIf": "{% if data.level1.data.levelOptions %}true{% endif %}"
+                },
+                {
+                    "type": "list",
+                    "attribute": "data.level1Choice",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil or data.level1.data.attrs.custom or data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil or data.level1.data.gains.custom or data.level1.data.levelLangProf or data.level1.data.levelOptions or data.level1Talent or data.level1Choice %}true{% endif %}"
         },
         {
-            "type": "spacer"
+            "type": "spacer",
+            "visibleIf": "{% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil or data.level1.data.attrs.custom or data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil or data.level1.data.gains.custom or data.level1.data.levelLangProf or data.level1.data.levelOptions or data.level1Talent or data.level1Choice %}true{% endif %}"
         },
         {
             "type": "hStack",
             "alignment": "bottom",
-            "padding": [10,0,0,0],
+            "padding": [
+                10,
+                0,
+                0,
+                0
+            ],
             "views": [
                 {
                     "style": "entitySubtitle",
                     "value": "**{{'Path.Novice'|l}}** • **{{'Path.Level2'|l}}**"
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level2.data.attrs.STR != nil or data.level2.data.attrs.AGI != nil or data.level2.data.attrs.INT != nil or data.level2.data.attrs.WIL != nil or data.level2.data.attrs.custom or data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil or data.level2.data.gains.size != nil or data.level2.data.gains.custom or data.level2.data.levelLangProf or data.level2.data.levelOptions or data.level2Talent or data.level2Choice %}true{% endif %}"
         },
         {
             "type": "divider",
             "bgColor": "#000000",
             "height": 1.5,
-            "padding": [0]
+            "padding": [
+                0
+            ],
+            "visibleIf": "{% if data.level2.data.attrs.STR != nil or data.level2.data.attrs.AGI != nil or data.level2.data.attrs.INT != nil or data.level2.data.attrs.WIL != nil or data.level2.data.attrs.custom or data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil or data.level2.data.gains.size != nil or data.level2.data.gains.custom or data.level2.data.levelLangProf or data.level2.data.levelOptions or data.level2Talent or data.level2Choice %}true{% endif %}"
         },
         {
-            "type": "spacer"
+            "type": "spacer",
+            "visibleIf": "{% if data.level2.data.attrs.STR != nil or data.level2.data.attrs.AGI != nil or data.level2.data.attrs.INT != nil or data.level2.data.attrs.WIL != nil or data.level2.data.attrs.custom or data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil or data.level2.data.gains.size != nil or data.level2.data.gains.custom or data.level2.data.levelLangProf or data.level2.data.levelOptions or data.level2Talent or data.level2Choice %}true{% endif %}"
         },
         {
             "type": "vStack",
-            "padding": [0,5],
+            "padding": [
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "text",
                     "style": "body-info",
-                    "value": "**{{'Common.Characteristics'|l}}.** {{data.level2.data.levelCharacteristics}}",
-                    "visibleIf": "{% if data.level2.data.levelCharacteristics %}true{% endif %}"
+                    "value": "**{{'Common.Characteristics'|l}}.** {% if data.level2.data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.level2.data.gains.perception|signed}}{% endif %}{% if data.level2.data.gains.defense != nil %}{% if data.level2.data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.level2.data.gains.defense|signed}}{% endif %}{% if data.level2.data.gains.defenseFixed != nil %}{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.level2.data.gains.defenseFixed}}{% endif %}{% if data.level2.data.gains.health != nil %}{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.level2.data.gains.health|signed}}{% endif %}{% if data.level2.data.gains.speed != nil %}{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.level2.data.gains.speed|signed}}{% endif %}{% if data.level2.data.gains.power != nil %}{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.level2.data.gains.power|signed}}{% endif %}{% if data.level2.data.gains.insanity != nil %}{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{data.level2.data.gains.insanity|signed}}{% endif %}{% if data.level2.data.gains.corruption != nil %}{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{data.level2.data.gains.corruption|signed}}{% endif %}{% if data.level2.data.gains.size != nil %}{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{data.level2.data.gains.size|signed}}{% endif %}{% if data.level2.data.gains.custom %}{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil or data.level2.data.gains.size != nil %}, {% endif %}{{data.level2.data.gains.custom}}{% endif %}",
+                    "visibleIf": "{% if data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil or data.level2.data.gains.size != nil or data.level2.data.gains.custom %}true{% endif %}"
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level2.data.attrs.STR != nil or data.level2.data.attrs.AGI != nil or data.level2.data.attrs.INT != nil or data.level2.data.attrs.WIL != nil or data.level2.data.attrs.custom or data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil or data.level2.data.gains.size != nil or data.level2.data.gains.custom or data.level2.data.levelLangProf or data.level2.data.levelOptions or data.level2Talent or data.level2Choice %}true{% endif %}"
         },
         {
             "type": "vStack",
-            "padding": [5,5,0,5],
+            "padding": [
+                5,
+                5,
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "list",
@@ -110,47 +167,85 @@
                             "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
                         }
                     ]
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "{{data.level2.data.levelOptions}}",
+                    "visibleIf": "{% if data.level2.data.levelOptions %}true{% endif %}"
+                },
+                {
+                    "type": "list",
+                    "attribute": "data.level2Choice",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level2.data.attrs.STR != nil or data.level2.data.attrs.AGI != nil or data.level2.data.attrs.INT != nil or data.level2.data.attrs.WIL != nil or data.level2.data.attrs.custom or data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil or data.level2.data.gains.size != nil or data.level2.data.gains.custom or data.level2.data.levelLangProf or data.level2.data.levelOptions or data.level2Talent or data.level2Choice %}true{% endif %}"
         },
         {
-            "type": "spacer"
+            "type": "spacer",
+            "visibleIf": "{% if data.level2.data.attrs.STR != nil or data.level2.data.attrs.AGI != nil or data.level2.data.attrs.INT != nil or data.level2.data.attrs.WIL != nil or data.level2.data.attrs.custom or data.level2.data.gains.perception != nil or data.level2.data.gains.defense != nil or data.level2.data.gains.defenseFixed != nil or data.level2.data.gains.health != nil or data.level2.data.gains.speed != nil or data.level2.data.gains.power != nil or data.level2.data.gains.insanity != nil or data.level2.data.gains.corruption != nil or data.level2.data.gains.size != nil or data.level2.data.gains.custom or data.level2.data.levelLangProf or data.level2.data.levelOptions or data.level2Talent or data.level2Choice %}true{% endif %}"
         },
         {
             "type": "hStack",
             "alignment": "bottom",
-            "padding": [10,0,0,0],
+            "padding": [
+                10,
+                0,
+                0,
+                0
+            ],
             "views": [
                 {
                     "style": "entitySubtitle",
                     "value": "**{{'Path.Expert'|l}} • {{'Path.Level5'|l}}**"
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level5.data.attrs.STR != nil or data.level5.data.attrs.AGI != nil or data.level5.data.attrs.INT != nil or data.level5.data.attrs.WIL != nil or data.level5.data.attrs.custom or data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil or data.level5.data.gains.size != nil or data.level5.data.gains.custom or data.level5.data.levelLangProf or data.level5.data.levelOptions or data.level5Talent or data.level5Choice %}true{% endif %}"
         },
         {
             "type": "divider",
             "bgColor": "#000000",
             "height": 1.5,
-            "padding": [0]
+            "padding": [
+                0
+            ],
+            "visibleIf": "{% if data.level5.data.attrs.STR != nil or data.level5.data.attrs.AGI != nil or data.level5.data.attrs.INT != nil or data.level5.data.attrs.WIL != nil or data.level5.data.attrs.custom or data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil or data.level5.data.gains.size != nil or data.level5.data.gains.custom or data.level5.data.levelLangProf or data.level5.data.levelOptions or data.level5Talent or data.level5Choice %}true{% endif %}"
         },
         {
-            "type": "spacer"
+            "type": "spacer",
+            "visibleIf": "{% if data.level5.data.attrs.STR != nil or data.level5.data.attrs.AGI != nil or data.level5.data.attrs.INT != nil or data.level5.data.attrs.WIL != nil or data.level5.data.attrs.custom or data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil or data.level5.data.gains.size != nil or data.level5.data.gains.custom or data.level5.data.levelLangProf or data.level5.data.levelOptions or data.level5Talent or data.level5Choice %}true{% endif %}"
         },
         {
             "type": "vStack",
-            "padding": [0,5],
+            "padding": [
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "text",
                     "style": "body-info",
-                    "value": "**{{'Common.Characteristics'|l}}.** {{data.level5.data.levelCharacteristics}}",
-                    "visibleIf": "{% if data.level5.data.levelCharacteristics %}true{% endif %}"
+                    "value": "**{{'Common.Characteristics'|l}}.** {% if data.level5.data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.level5.data.gains.perception|signed}}{% endif %}{% if data.level5.data.gains.defense != nil %}{% if data.level5.data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.level5.data.gains.defense|signed}}{% endif %}{% if data.level5.data.gains.defenseFixed != nil %}{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.level5.data.gains.defenseFixed}}{% endif %}{% if data.level5.data.gains.health != nil %}{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.level5.data.gains.health|signed}}{% endif %}{% if data.level5.data.gains.speed != nil %}{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.level5.data.gains.speed|signed}}{% endif %}{% if data.level5.data.gains.power != nil %}{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.level5.data.gains.power|signed}}{% endif %}{% if data.level5.data.gains.insanity != nil %}{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{data.level5.data.gains.insanity|signed}}{% endif %}{% if data.level5.data.gains.corruption != nil %}{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{data.level5.data.gains.corruption|signed}}{% endif %}{% if data.level5.data.gains.size != nil %}{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{data.level5.data.gains.size|signed}}{% endif %}{% if data.level5.data.gains.custom %}{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil or data.level5.data.gains.size != nil %}, {% endif %}{{data.level5.data.gains.custom}}{% endif %}",
+                    "visibleIf": "{% if data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil or data.level5.data.gains.size != nil or data.level5.data.gains.custom %}true{% endif %}"
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level5.data.attrs.STR != nil or data.level5.data.attrs.AGI != nil or data.level5.data.attrs.INT != nil or data.level5.data.attrs.WIL != nil or data.level5.data.attrs.custom or data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil or data.level5.data.gains.size != nil or data.level5.data.gains.custom or data.level5.data.levelLangProf or data.level5.data.levelOptions or data.level5Talent or data.level5Choice %}true{% endif %}"
         },
         {
             "type": "vStack",
-            "padding": [5,5,0,5],
+            "padding": [
+                5,
+                5,
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "list",
@@ -162,47 +257,85 @@
                             "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
                         }
                     ]
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "{{data.level5.data.levelOptions}}",
+                    "visibleIf": "{% if data.level5.data.levelOptions %}true{% endif %}"
+                },
+                {
+                    "type": "list",
+                    "attribute": "data.level5Choice",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level5.data.attrs.STR != nil or data.level5.data.attrs.AGI != nil or data.level5.data.attrs.INT != nil or data.level5.data.attrs.WIL != nil or data.level5.data.attrs.custom or data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil or data.level5.data.gains.size != nil or data.level5.data.gains.custom or data.level5.data.levelLangProf or data.level5.data.levelOptions or data.level5Talent or data.level5Choice %}true{% endif %}"
         },
         {
-            "type": "spacer"
+            "type": "spacer",
+            "visibleIf": "{% if data.level5.data.attrs.STR != nil or data.level5.data.attrs.AGI != nil or data.level5.data.attrs.INT != nil or data.level5.data.attrs.WIL != nil or data.level5.data.attrs.custom or data.level5.data.gains.perception != nil or data.level5.data.gains.defense != nil or data.level5.data.gains.defenseFixed != nil or data.level5.data.gains.health != nil or data.level5.data.gains.speed != nil or data.level5.data.gains.power != nil or data.level5.data.gains.insanity != nil or data.level5.data.gains.corruption != nil or data.level5.data.gains.size != nil or data.level5.data.gains.custom or data.level5.data.levelLangProf or data.level5.data.levelOptions or data.level5Talent or data.level5Choice %}true{% endif %}"
         },
         {
             "type": "hStack",
             "alignment": "bottom",
-            "padding": [10,0,0,0],
+            "padding": [
+                10,
+                0,
+                0,
+                0
+            ],
             "views": [
                 {
                     "style": "entitySubtitle",
                     "value": "**{{'Path.Master'|l}} • {{'Path.Level8'|l}}**"
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level8.data.attrs.STR != nil or data.level8.data.attrs.AGI != nil or data.level8.data.attrs.INT != nil or data.level8.data.attrs.WIL != nil or data.level8.data.attrs.custom or data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil or data.level8.data.gains.corruption != nil or data.level8.data.gains.size != nil or data.level8.data.gains.custom or data.level8.data.levelLangProf or data.level8.data.levelOptions or data.level8Talent or data.level8Choice %}true{% endif %}"
         },
         {
             "type": "divider",
             "bgColor": "#000000",
             "height": 1.5,
-            "padding": [0]
+            "padding": [
+                0
+            ],
+            "visibleIf": "{% if data.level8.data.attrs.STR != nil or data.level8.data.attrs.AGI != nil or data.level8.data.attrs.INT != nil or data.level8.data.attrs.WIL != nil or data.level8.data.attrs.custom or data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil or data.level8.data.gains.corruption != nil or data.level8.data.gains.size != nil or data.level8.data.gains.custom or data.level8.data.levelLangProf or data.level8.data.levelOptions or data.level8Talent or data.level8Choice %}true{% endif %}"
         },
         {
-            "type": "spacer"
+            "type": "spacer",
+            "visibleIf": "{% if data.level8.data.attrs.STR != nil or data.level8.data.attrs.AGI != nil or data.level8.data.attrs.INT != nil or data.level8.data.attrs.WIL != nil or data.level8.data.attrs.custom or data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil or data.level8.data.gains.corruption != nil or data.level8.data.gains.size != nil or data.level8.data.gains.custom or data.level8.data.levelLangProf or data.level8.data.levelOptions or data.level8Talent or data.level8Choice %}true{% endif %}"
         },
         {
             "type": "vStack",
-            "padding": [0,5],
+            "padding": [
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "text",
                     "style": "body-info",
-                    "value": "**{{'Common.Characteristics'|l}}.** {{data.level8.data.levelCharacteristics}}",
-                    "visibleIf": "{% if data.level8.data.levelCharacteristics %}true{% endif %}"
+                    "value": "**{{'Common.Characteristics'|l}}.** {% if data.level8.data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.level8.data.gains.perception|signed}}{% endif %}{% if data.level8.data.gains.defense != nil %}{% if data.level8.data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.level8.data.gains.defense|signed}}{% endif %}{% if data.level8.data.gains.defenseFixed != nil %}{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.level8.data.gains.defenseFixed}}{% endif %}{% if data.level8.data.gains.health != nil %}{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.level8.data.gains.health|signed}}{% endif %}{% if data.level8.data.gains.speed != nil %}{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.level8.data.gains.speed|signed}}{% endif %}{% if data.level8.data.gains.power != nil %}{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.level8.data.gains.power|signed}}{% endif %}{% if data.level8.data.gains.insanity != nil %}{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{data.level8.data.gains.insanity|signed}}{% endif %}{% if data.level8.data.gains.corruption != nil %}{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{data.level8.data.gains.corruption|signed}}{% endif %}{% if data.level8.data.gains.size != nil %}{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil or data.level8.data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{data.level8.data.gains.size|signed}}{% endif %}{% if data.level8.data.gains.custom %}{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil or data.level8.data.gains.corruption != nil or data.level8.data.gains.size != nil %}, {% endif %}{{data.level8.data.gains.custom}}{% endif %}",
+                    "visibleIf": "{% if data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil or data.level8.data.gains.corruption != nil or data.level8.data.gains.size != nil or data.level8.data.gains.custom %}true{% endif %}"
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level8.data.attrs.STR != nil or data.level8.data.attrs.AGI != nil or data.level8.data.attrs.INT != nil or data.level8.data.attrs.WIL != nil or data.level8.data.attrs.custom or data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil or data.level8.data.gains.corruption != nil or data.level8.data.gains.size != nil or data.level8.data.gains.custom or data.level8.data.levelLangProf or data.level8.data.levelOptions or data.level8Talent or data.level8Choice %}true{% endif %}"
         },
         {
             "type": "vStack",
-            "padding": [5,5,0,5],
+            "padding": [
+                5,
+                5,
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "list",
@@ -214,8 +347,26 @@
                             "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
                         }
                     ]
+                },
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "{{data.level8.data.levelOptions}}",
+                    "visibleIf": "{% if data.level8.data.levelOptions %}true{% endif %}"
+                },
+                {
+                    "type": "list",
+                    "attribute": "data.level8Choice",
+                    "views": [
+                        {
+                            "type": "text",
+                            "style": "body-info",
+                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+                        }
+                    ]
                 }
-            ]
+            ],
+            "visibleIf": "{% if data.level8.data.attrs.STR != nil or data.level8.data.attrs.AGI != nil or data.level8.data.attrs.INT != nil or data.level8.data.attrs.WIL != nil or data.level8.data.attrs.custom or data.level8.data.gains.perception != nil or data.level8.data.gains.defense != nil or data.level8.data.gains.defenseFixed != nil or data.level8.data.gains.health != nil or data.level8.data.gains.speed != nil or data.level8.data.gains.power != nil or data.level8.data.gains.insanity != nil or data.level8.data.gains.corruption != nil or data.level8.data.gains.size != nil or data.level8.data.gains.custom or data.level8.data.levelLangProf or data.level8.data.levelOptions or data.level8Talent or data.level8Choice %}true{% endif %}"
         }
     ]
 }

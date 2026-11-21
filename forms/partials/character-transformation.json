@@ -1,0 +1,39 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "placeholder": "Common.Name",
+          "attribute": "name"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Common.Attributes",
+          "type": "form",
+          "attribute": "attrs",
+          "form": {
+            "title": "Common.Attributes",
+            "partial": "transformation-attributes"
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Entity.Transformation",
+      "fields": [
+        {
+          "title": "Entity.Transformation",
+          "type": "reference",
+          "attribute": "reference",
+          "attributeType": "Transformation"
+        }
+      ]
+    }
+  ]
+}

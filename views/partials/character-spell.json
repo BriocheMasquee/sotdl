@@ -1,72 +1,81 @@
 {
-  "type": "hStack",
-  "alignment": "bottom",
+  "type": "vStack",
+  "spacing": 2,
   "views": [
     {
-      "type": "vStack",
-      "link": "{{reference}}",
+      "type": "disclosureGroup",
+      "title": "{{name}}{% if spellRank != nil %} · {{'Spell.Rank'|l|lowercase}} {{spellRank}}{% endif %}",
+      "style": "characterTraitTitle",
+      "spacing": 0,
+      "padding": [
+        0
+      ],
       "views": [
         {
-          "value": "**{{name}}**",
-          "style": "characterTraitTitle"
+          "type": "text",
+          "style": "characterBody",
+          "value": "**{% if spellTradition.tradition %}{{spellTradition.tradition|map: 'SpellTradition'|l}}{% endif %}{% if spellType %} • {{spellType|map: 'SpellType'|l}}{% endif %}**{% if spellRequirement %}\n\n**{{'Spell.Requirement'|l}}.** {{spellRequirement}}{% endif %}{% if spellTarget %}\n\n**{{'Spell.Target'|l}}.** {{spellTarget}}{% endif %}{% if spellArea %}\n\n**{{'Spell.Area'|l}}.** {{spellArea}}{% endif %}{% if spellDuration %}\n\n**{{'Spell.Duration'|l}}.** {{spellDuration}}{% endif %}{% if descr %}\n\n{{descr}}{% endif %}{% for e in spellEffects %}\n\n{% if e.name %}**{{e.name}}.** {% endif %}{{e.text}}{% endfor %}"
         }
       ]
     },
     {
-      "type": "image",
-      "value": "/icons/tradition/darkmagic.png",
-      "height": 20,
-      "custom": {
-        "renderingMode": "original"
-      },
-      "visibleIf": "{{spellTradition.darkMagic == true}}"
-    },
-    {
-      "type": "image",
-      "value": "/icons/tradition/psychic.png",
-      "height": 20,
-      "custom": {
-        "renderingMode": "original"
-      },
-      "visibleIf": "{{spellTradition.psychicTradition == true}}"
-    },
-    {
-      "type": "image",
-      "value": "/icons/tradition/incantation.png",
-      "height": 20,
-      "custom": {
-        "renderingMode": "original"
-      },
-      "visibleIf": "{{spellTradition.onlyIncantation == true}}"
-    },
-    {
-      "type": "spacer",
-      "width": -1
-    },
-    {
-      "style": "characterSpellSubtitle",
-      "alignment": "trailing",
-      "value": "{{definition.data.spellTradition.tradition|map: 'SpellTradition'|l}} • {{definition.data.spellType|map: 'SpellType'|l}} {{definition.data.spellRank}}"
-    },
-    {
-      "type": "checkboxGroup",
-      "attribute": "usesSpent",
-      "action": {
-        "attribute": "{{keyPath}}.usesSpent"
-      },
-      "custom": {
-        "range": {
-          "max": "usesMaximum"
-        },
-        "checkboxStyle": {
-          "default": {
-            "tintColor": "#9B0619"
+      "type": "hStack",
+      "alignment": "center",
+      "visibleIf": "{% if usesMaximum > 0 %}true{% elif spellTradition.darkMagic == true %}true{% elif spellTradition.psychicTradition == true %}true{% elif spellTradition.onlyIncantation == true %}true{% endif %}",
+      "views": [
+        {
+          "type": "checkboxGroup",
+          "attribute": "usesSpent",
+          "action": {
+            "attribute": "{{keyPath}}.usesSpent"
           },
-          "checked": {
-            "tintColor": "#9B0619"
-          }
+          "custom": {
+            "range": {
+              "max": "usesMaximum"
+            },
+            "checkboxStyle": {
+              "default": {
+                "tintColor": "#980C14"
+              },
+              "checked": {
+                "tintColor": "#980C14"
+              }
+            }
+          },
+          "width": 150,
+          "visibleIf": "{% if usesMaximum > 0 %}true{% endif %}"
+        },
+        {
+          "type": "spacer"
+        },
+        {
+          "type": "image",
+          "value": "/icons/tradition/darkmagic.png",
+          "height": 20,
+          "custom": {
+            "renderingMode": "original"
+          },
+          "visibleIf": "{{spellTradition.darkMagic == true}}"
+        },
+        {
+          "type": "image",
+          "value": "/icons/tradition/psychic.png",
+          "height": 20,
+          "custom": {
+            "renderingMode": "original"
+          },
+          "visibleIf": "{{spellTradition.psychicTradition == true}}"
+        },
+        {
+          "type": "image",
+          "value": "/icons/tradition/incantation.png",
+          "height": 20,
+          "custom": {
+            "renderingMode": "original"
+          },
+          "visibleIf": "{{spellTradition.onlyIncantation == true}}"
         }
-      }
+      ]
     }
   ]
 }

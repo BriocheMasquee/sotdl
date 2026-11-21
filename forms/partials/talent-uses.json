@@ -1,0 +1,45 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "placeholder": "Common.Name",
+          "attribute": "name"
+        }
+      ]
+    },
+    {
+      "title": "Common.Description",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Common.Description",
+          "type": "textArea",
+          "attribute": "text"
+        }
+      ]
+    },
+    {
+      "title": "Character.Uses",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Character.UsesCount",
+          "type": "number",
+          "attribute": "usesBase"
+        },
+        {
+          "title": "Character.UsesPower",
+          "type": "toggle",
+          "attribute": "usesPower"
+        },
+        {
+          "title": "Character.UsesLevel",
+          "type": "toggle",
+          "attribute": "usesLevel"
+        }
+      ]
+    }
+  ]
+}

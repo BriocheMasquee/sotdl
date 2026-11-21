@@ -1,0 +1,179 @@
+{
+  "title": "Entity.Transformation",
+  "sections": [
+    {
+      "title": "Transformation.Eligibility",
+      "type": "group",
+      "fields": [
+        {
+          "type": "textArea",
+          "attribute": "data.eligibility"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Common.Attributes",
+          "type": "form",
+          "attribute": "data.attrs",
+          "form": {
+            "title": "Common.Attributes",
+            "partial": "transformation-attributes"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Common.Characteristics",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.PerceptionBonus",
+          "type": "number",
+          "attribute": "data.perception",
+          "placeholder": "0"
+        },
+        {
+          "title": "Transformation.DefenseRelative",
+          "type": "number",
+          "attribute": "data.defense",
+          "placeholder": "0"
+        },
+        {
+          "title": "Characteristics.HealthBonus",
+          "type": "number",
+          "attribute": "data.health",
+          "placeholder": "0"
+        },
+        {
+          "title": "Characteristics.HealthCorruption",
+          "type": "number",
+          "attribute": "data.corruptionFactor",
+          "placeholder": "0"
+        },
+        {
+          "title": "Transformation.SpeedRelative",
+          "type": "number",
+          "attribute": "data.speed",
+          "placeholder": "0"
+        },
+        {
+          "title": "Transformation.HealingZero",
+          "type": "toggle",
+          "attribute": "data.healingZero"
+        },
+        {
+          "title": "Transformation.InsanityRelative",
+          "type": "form",
+          "attribute": "data.insanity",
+          "form": {
+            "title": "Characteristics.Insanity",
+            "partial": "ancestry-insanity"
+          },
+          "text": "{% if data.insanity.mode == 'variable' %}{% if data.insanity.dice != nil %}{{data.insanity.dice}}{% else %}—{% endif %}{% else %}{% if data.insanity.value != nil %}{{data.insanity.value|signed}}{% else %}—{% endif %}{% endif %}"
+        },
+        {
+          "title": "Transformation.CorruptionRelative",
+          "type": "form",
+          "attribute": "data.corruption",
+          "form": {
+            "title": "Characteristics.Corruption",
+            "partial": "ancestry-corruption"
+          },
+          "text": "{% if data.corruption.mode == 'variable' %}{% if data.corruption.dice != nil %}{{data.corruption.dice}}{% else %}—{% endif %}{% else %}{% if data.corruption.value != nil %}{{data.corruption.value|signed}}{% else %}—{% endif %}{% endif %}"
+        },
+        {
+          "title": "Transformation.InsanityRemoved",
+          "type": "toggle",
+          "attribute": "data.insanityRemoved"
+        }
+      ]
+    },
+    {
+      "title": "Ancestry.TalentImmunitiesVulnerabilities",
+      "type": "list",
+      "attribute": "data.talent",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    },
+    {
+      "title": "Level.Advantages",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Ancestry.PowerfulAncestry",
+          "type": "toggle",
+          "attribute": "data.powerfulAncestry"
+        },
+        {
+          "title": "Transformation.ReplaceLevel4",
+          "type": "toggle",
+          "attribute": "data.replaceLevel4"
+        },
+        {
+          "title": "Level1.Title",
+          "attribute": "data.transfLevel1",
+          "type": "form",
+          "form": {
+            "title": "Level1.Title",
+            "partial": "transformation-level"
+          },
+          "visibleIf": "{% if data.powerfulAncestry %}true{% endif %}"
+        },
+        {
+          "title": "Level2.Title",
+          "attribute": "data.transfLevel2",
+          "type": "form",
+          "form": {
+            "title": "Level2.Title",
+            "partial": "transformation-level"
+          },
+          "visibleIf": "{% if data.powerfulAncestry %}true{% endif %}"
+        },
+        {
+          "title": "Level4.Expert",
+          "attribute": "data.transfLevel4",
+          "type": "form",
+          "form": {
+            "title": "Level4.Expert",
+            "partial": "transformation-level"
+          }
+        },
+        {
+          "title": "Level5.Title",
+          "attribute": "data.transfLevel5",
+          "type": "form",
+          "form": {
+            "title": "Level5.Title",
+            "partial": "transformation-level"
+          },
+          "visibleIf": "{% if data.powerfulAncestry %}true{% endif %}"
+        },
+        {
+          "title": "Level8.Title",
+          "attribute": "data.transfLevel8",
+          "type": "form",
+          "form": {
+            "title": "Level8.Title",
+            "partial": "transformation-level"
+          },
+          "visibleIf": "{% if data.powerfulAncestry %}true{% endif %}"
+        }
+      ]
+    },
+    {
+      "title": "Transformation.Tables",
+      "type": "group",
+      "fields": [
+        {
+          "type": "textArea",
+          "attribute": "data.tables"
+        }
+      ]
+    }
+  ]
+}

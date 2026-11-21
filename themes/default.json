@@ -1,128 +1,302 @@
 {
-    "tintColor": "#58180D",
-    "primaryColor": "#9C2B1B",
-    "textColor": "#222222",
-    "dividerColor": "#cccccc",
-    "bgColor": "#f5f5f5",
-    "bgImage": "/images/sotdl_paper.png",
-
-    "buttonStyles": {
-        "default": {
-            "color": "#fff",
-            "bgColor": "#9B0619",
-            "cornerRadius": 6,
-            "body": {
-                "font": "Aquifer",
-                "color": "fff",
-                "size": 18,
-                "alignment": "center"
-            }
-        }
+  "tintColor": "#980C14",
+  "primaryColor": "#980C14",
+  "textColor": "#222222",
+  "dividerColor": "#cccccc",
+  "bgColor": "#f5f5f5",
+  "bgImage": "/images/sotdl_paper.png",
+  "buttonStyles": {
+    "default": {
+      "color": "#6A6A6A",
+      "bgColor": "#00000000",
+      "borderWidth": 0,
+      "cornerRadius": 0,
+      "padding": [
+        4,
+        6
+      ],
+      "body": {
+        "font": "Montserrat-Bold",
+        "size": 11,
+        "color": "#6A6A6A",
+        "alignment": "center"
+      }
     },
-
-
-    "tableStyles": {
-        "default": {
-            "rowColor": "#FFFFFF",
-            "rowStyle": "odd",
-            "head": {
-                "font": "Montserrat",
-                "size": 16,
-                "color": "#FFFFFF",
-                "bgColor": "#000000"
-            },
-            "body": {
-                "font": "Montserrat",
-                "size": 13
-            }
-        },
-        "clean": {
-            "rowLineWidth": 0.5
-        }
+    "prominent": {
+      "color": "#980C14",
+      "bgColor": "#00000000",
+      "borderWidth": 0,
+      "cornerRadius": 0,
+      "padding": [
+        4,
+        6
+      ],
+      "body": {
+        "font": "Montserrat-Bold",
+        "size": 11,
+        "color": "#980C14",
+        "alignment": "center"
+      }
     },
-
-
-
-
-
-
-
-
-
-
-
-    "textStyles": {
-        "body": {
-            "font": "Athelas",
-            "size": 17,
-            "lineHeight": 24
-        },
-        "body-info": {
-            "font": "Montserrat",
-            "size": 13,
-            "color": "#222222",
-            "lineHeight": 18
-        },
-        "source": {
-            "font": "Montserrat",
-            "size": 10
-        },
-        "entityTitle": {
-            "font": "Aquifer",
-            "size": 20,
-            "color": "#9B0619",
-            "case": "uppercase"
-        },
-        "entitySubtitle": {
-            "font": "Aquifer",
-            "size": 14,
-            "color": "#9B0619",
-            "case": "uppercase",
-            "alignment": "center"
-        },
-        "spellTitle": {
-            "font": "Athelas",
-            "size": 20,
-            "color": "#9B0619",
-            "case": "uppercase"
-        },
-        "spellSubtitle": {
-            "font": "Athelas",
-            "size": 14,
-            "color": "#9B0619",
-            "case": "uppercase"
-        },
-        "creatureTitle": {
-            "font": "Athelas",
-            "size": 20,
-            "color": "#FFFFFF",
-            "case": "uppercase"
-        },
-        "creatureSubtitle": {
-            "font": "Athelas",
-            "size": 14,
-            "color": "#FFFFFF"
-        },
-        "creatureSection": {
-            "font": "Athelas",
-            "size": 14,
-            "color": "#000000",
-            "case": "uppercase"
-        },
-        "relicSubtitle": {
-            "font": "Aquifer",
-            "size": 14,
-            "color": "#000000",
-            "case": "uppercase"
-        },
-        "title": {
-            "font": "Aquifer",
-            "size": 20,
-            "color": "#9B0619",
-            "case": "uppercase"
-        },
-        "subtitle": {
-            "font": "Montserrat"
-        }
+    "pill": {
+      "color": "#980C14",
+      "bgColor": "#FFFFFFBF",
+      "borderColor": "#980C14",
+      "borderWidth": 1,
+      "cornerRadius": 12,
+      "padding": [
+        3,
+        9
+      ],
+      "body": {
+        "font": "Montserrat",
+        "size": 11,
+        "color": "#980C14",
+        "alignment": "center"
+      }
+    },
+    "pillOn": {
+      "color": "#FFFFFF",
+      "bgColor": "#980C14",
+      "borderColor": "#980C14",
+      "borderWidth": 1,
+      "cornerRadius": 12,
+      "padding": [
+        3,
+        9
+      ],
+      "body": {
+        "font": "Montserrat",
+        "size": 11,
+        "color": "#FFFFFF",
+        "alignment": "center",
+        "traits": [
+          "bold"
+        ]
+      }
+    },
+    "pillFixed": {
+      "color": "#980C14",
+      "bgColor": "#FFFFFFBF",
+      "borderColor": "#980C14",
+      "borderWidth": 1,
+      "cornerRadius": 12,
+      "padding": [
+        3,
+        0
+      ],
+      "body": {
+        "font": "Montserrat",
+        "size": 11,
+        "color": "#980C14",
+        "alignment": "center"
+      }
     }
+  },
+  "tableStyles": {
+    "default": {
+      "rowColor": "#FFFFFF",
+      "rowStyle": "odd",
+      "head": {
+        "font": "Montserrat",
+        "size": 16,
+        "color": "#FFFFFF",
+        "bgColor": "#000000"
+      },
+      "body": {
+        "font": "Montserrat",
+        "size": 13
+      }
+    }
+  },
+  "textStyles": {
+    "body": {
+      "font": "Athelas",
+      "size": 17,
+      "lineHeight": 24
+    },
+    "body-info": {
+      "font": "Montserrat",
+      "size": 13,
+      "color": "#222222",
+      "lineHeight": 18
+    },
+    "source": {
+      "font": "Montserrat",
+      "size": 10
+    },
+    "entityTitle": {
+      "font": "Aquifer",
+      "size": 17,
+      "color": "#980C14",
+      "case": "uppercase"
+    },
+    "entitySubtitle": {
+      "font": "Aquifer",
+      "size": 14,
+      "color": "#980C14",
+      "case": "uppercase",
+      "alignment": "center"
+    },
+    "spellTitle": {
+      "font": "Aquifer",
+      "size": 17,
+      "color": "#980C14",
+      "case": "uppercase"
+    },
+    "spellSubtitle": {
+      "font": "Aquifer",
+      "size": 14,
+      "color": "#980C14",
+      "case": "uppercase"
+    },
+    "creatureTitle": {
+      "font": "Athelas",
+      "size": 17,
+      "color": "#FFFFFF",
+      "case": "uppercase"
+    },
+    "creatureSubtitle": {
+      "font": "Athelas",
+      "size": 14,
+      "color": "#FFFFFF"
+    },
+    "creatureSection": {
+      "font": "Athelas",
+      "size": 14,
+      "color": "#000000",
+      "case": "uppercase"
+    },
+    "title": {
+      "font": "Aquifer",
+      "size": 20,
+      "color": "#980C14",
+      "case": "uppercase"
+    },
+    "appNote": {
+      "font": "Montserrat",
+      "size": 11,
+      "color": "#2F5D7C",
+      "lineHeight": 15,
+      "traits": [
+        "italic"
+      ],
+      "bgColor": "#2F5D7C17",
+      "padding": [
+        4,
+        8
+      ],
+      "prefix": "ⓘ  "
+    },
+    "description": {
+      "font": "Athelas",
+      "size": 17,
+      "lineHeight": 24,
+      "traitStyles": {
+        "strong": "leadIn"
+      }
+    },
+    "characterAttributeLabel": {
+      "font": "Montserrat",
+      "size": 9,
+      "color": "#6A6A6A",
+      "case": "uppercase",
+      "traits": [
+        "bold"
+      ],
+      "lineHeight": 11
+    },
+    "characterPill": {
+      "font": "Montserrat",
+      "size": 11,
+      "color": "#980C14",
+      "lineHeight": 14
+    },
+    "characterTraitTitle": {
+      "font": "Athelas",
+      "size": 14,
+      "color": "#222222",
+      "lineHeight": 18
+    },
+    "characterNote": {
+      "font": "Montserrat",
+      "size": 9.5,
+      "color": "#2F5D7C",
+      "lineHeight": 13,
+      "traits": [
+        "italic"
+      ],
+      "bgColor": "#2F5D7C17",
+      "padding": [
+        4,
+        8
+      ]
+    },
+    "characterState": {
+      "font": "Montserrat",
+      "size": 10,
+      "color": "#980C14",
+      "case": "uppercase",
+      "traits": [
+        "bold"
+      ],
+      "lineHeight": 12
+    },
+    "characterBody": {
+      "font": "Montserrat",
+      "size": 11,
+      "color": "#222222",
+      "lineHeight": 15
+    },
+    "characterHint": {
+      "font": "Montserrat",
+      "size": 9.5,
+      "color": "#666666",
+      "lineHeight": 13
+    },
+    "characterTitle": {
+      "font": "Aquifer",
+      "size": 26,
+      "color": "#980C14",
+      "case": "uppercase",
+      "lineHeight": 30
+    },
+    "characterAttrValue": {
+      "font": "Athelas",
+      "size": 32,
+      "color": "#1A1A1A",
+      "traits": [
+        "bold"
+      ],
+      "lineHeight": 36
+    },
+    "characterValue": {
+      "font": "Athelas",
+      "size": 13,
+      "color": "#555555",
+      "lineHeight": 16
+    },
+    "characterLevel": {
+      "font": "Montserrat",
+      "size": 10,
+      "color": "#FFFFFF",
+      "case": "uppercase",
+      "lineHeight": 12
+    },
+    "characterLink": {
+      "font": "Athelas",
+      "size": 13,
+      "color": "#980C14",
+      "lineHeight": 16
+    },
+    "characterHintSmall": {
+      "font": "Montserrat",
+      "size": 8.5,
+      "color": "#6A6A6A",
+      "lineHeight": 11,
+      "traits": [
+        "italic"
+      ]
+    }
+  }
 }

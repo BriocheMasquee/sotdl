@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="entity creature">
+  {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>{% endif %}
+  <section class="statblock">
+    <div class="sb-banner">
+      <h1 class="sb-title">{{ name }}</h1>
+      {% if data.cr != nil %}<span class="sb-label">{{ 'Creature.Difficulty'|l|uppercase }} {{ data.cr }}</span>{% endif %}
+    </div>
+    {% if data.creatureDescriptors or data.gabarit %}<p class="sb-band">{% if data.creatureDescriptors %}{{ data.creatureDescriptors }}{% if data.fearText %} {{ data.fearText }}{% endif %}{% if data.gabarit %} {{ 'Creature.OfSize'|l }} {{ data.gabarit|map: 'BodySize' }}{% endif %}{% else %}{{ 'Characteristics.Size'|l }} {{ data.gabarit|map: 'BodySize' }}{% endif %}</p>{% endif %}
+    <div class="sb-lines">
+    <div class="sb-line">{% markdown -%}**{{ 'Characteristics.Perception'|l }}** {% if data.perception != nil %}{{ data.perception }} ([{{ data.perceptionModifier|signed }}](/roll/d20{{ data.perceptionModifier|signed }}/{{ 'Characteristics.Perception'|l }}/check)){% else %}—{% endif %}{% if data.senses %} ; {{ data.senses|map: 'SpecialSenses'|lowercase }}{% endif %}{% endmarkdown %}</div>
+    <div class="sb-line">{% markdown -%}**{{ 'Characteristics.Defense'|l }}** {% if data.acText %}{{ data.acText }}{% elif data.ac != nil %}{{ data.ac }}{% else %}—{% endif %}{% if data.armor %} ({{ data.armor|lowercase }}){% endif %} ; **{{ 'Characteristics.Health'|l }}** {% if data.hpText %}{{ data.hpText }}{% elif data.hp != nil %}{{ data.hp }}{% else %}—{% endif %}{% if data.insanity != nil and data.insanity != '' %} ; **{{ 'Characteristics.Insanity'|l }}** {{ data.insanity }}{% endif %}{% if data.corruption != nil and data.corruption != '' %} ; **{{ 'Characteristics.Corruption'|l }}** {{ data.corruption }}{% endif %}{% endmarkdown %}</div>
+    <div class="sb-line">{% markdown -%}**{{ 'Attributes.STR'|l }}** {% if data.STR != nil %}{{ data.STR }} ([{{ data.strengthModifier|signed }}](/roll/d20{{ data.strengthModifier|signed }}/{{ 'Attributes.STR'|l }}/check)){% else %}—{% endif %}, **{{ 'Attributes.AGI'|l }}** {% if data.AGI != nil %}{{ data.AGI }} ([{{ data.agilityModifier|signed }}](/roll/d20{{ data.agilityModifier|signed }}/{{ 'Attributes.AGI'|l }}/check)){% else %}—{% endif %}, **{{ 'Attributes.INT'|l }}** {% if data.INT != nil %}{{ data.INT }} ([{{ data.intellectModifier|signed }}](/roll/d20{{ data.intellectModifier|signed }}/{{ 'Attributes.INT'|l }}/check)){% else %}—{% endif %}, **{{ 'Attributes.WIL'|l }}** {% if data.WIL != nil %}{{ data.WIL }} ([{{ data.willModifier|signed }}](/roll/d20{{ data.willModifier|signed }}/{{ 'Attributes.WIL'|l }}/check)){% else %}—{% endif %}{% endmarkdown %}</div>
+    <div class="sb-line">{% markdown -%}**{{ 'Characteristics.Speed'|l }}** {% if data.speed != nil %}{{ data.speed }}{% else %}—{% endif %}{% if data.specialMovementTraits %} ; {{ data.specialMovementTraits|map: 'SpecialMovementTraits'|lowercase }}{% endif %}{% endmarkdown %}</div>
+    {% for e in data.creatureTraits %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}
+    </div>
+  {% if data.creatureAttacks %}<div class="sb-section">{{ 'Combat.AttackOptions'|l }}</div><div class="sb-body">
+  {% for e in data.creatureAttacks %}<div class="sb-line">{% markdown -%}{% if e.bonus != nil %}**{{ e.name }}**{% if e.range %} ({{ e.range|lowercase }}){% endif %} [{{ e.bonus|signed }}](</roll/{{ e.rollFormula }}/{{ e.name }}/attack>){% if e.boonsText %} {{ e.boonsText }}{% endif %}{% if e.text %} {{ e.text }}{% endif %}{% else %}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endif %}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  {% if data.creatureSpecialAttacks %}<div class="sb-section">{{ 'Combat.SpecialAttacks'|l }}</div><div class="sb-body">
+  {% for e in data.creatureSpecialAttacks %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  {% if data.creatureSpecialActions %}<div class="sb-section">{{ 'Combat.SpecialActions'|l }}</div><div class="sb-body">
+  {% for e in data.creatureSpecialActions %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  {% if data.creatureMagic or data.power %}<div class="sb-section">{{ 'Creature.Magic'|l }}</div><div class="sb-body">
+  {% if data.power %}<div class="sb-line">{% markdown -%}**{{ 'Characteristics.Power'|l }}** {{ data.power }}{% endmarkdown %}</div>{% endif %}
+  {% for e in data.creatureMagic %}<div class="sb-line">{% markdown -%}{% if e.tradition %}**{{ e.tradition|map: 'SpellTradition'|l }}** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  {% if data.creatureEndOfRoundEffect %}<div class="sb-section">{{ 'Round.EndEffect'|l }}</div><div class="sb-body">
+  {% for e in data.creatureEndOfRoundEffect %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  </section>
+  {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
+  {% if image %}<div class="entity-image"><img src="{{ image|resolvePath }}" alt="{{ name }}"></div>{% endif %}
+</main>
+{% endblock %}

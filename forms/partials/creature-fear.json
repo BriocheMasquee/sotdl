@@ -1,0 +1,24 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "FearLevel.Frightening",
+          "type": "toggle",
+          "attribute": "frightening"
+        },
+        {
+          "title": "FearLevel.Terrifying",
+          "type": "toggle",
+          "attribute": "terrifying"
+        },
+        {
+          "title": "Creature.FearFeminine",
+          "type": "toggle",
+          "attribute": "feminine"
+        }
+      ]
+    }
+  ]
+}

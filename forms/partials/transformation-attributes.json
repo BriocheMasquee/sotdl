@@ -1,0 +1,104 @@
+{
+  "sections": [
+    {
+      "title": "Attributes.STR",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Transformation.RemoveAttribute",
+          "type": "toggle",
+          "attribute": "STR.removed"
+        },
+        {
+          "title": "Transformation.RelativeValue",
+          "type": "number",
+          "attribute": "STR.value",
+          "placeholder": "0",
+          "visibleIf": "{% if not STR.removed %}true{% endif %}"
+        },
+        {
+          "title": "Transformation.ReplaceValue",
+          "type": "number",
+          "attribute": "STR.replace",
+          "placeholder": "—",
+          "visibleIf": "{% if not STR.removed %}true{% endif %}"
+        }
+      ]
+    },
+    {
+      "title": "Attributes.AGI",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Transformation.RemoveAttribute",
+          "type": "toggle",
+          "attribute": "AGI.removed"
+        },
+        {
+          "title": "Transformation.RelativeValue",
+          "type": "number",
+          "attribute": "AGI.value",
+          "placeholder": "0",
+          "visibleIf": "{% if not AGI.removed %}true{% endif %}"
+        },
+        {
+          "title": "Transformation.ReplaceValue",
+          "type": "number",
+          "attribute": "AGI.replace",
+          "placeholder": "—",
+          "visibleIf": "{% if not AGI.removed %}true{% endif %}"
+        }
+      ]
+    },
+    {
+      "title": "Attributes.INT",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Transformation.RemoveAttribute",
+          "type": "toggle",
+          "attribute": "INT.removed"
+        },
+        {
+          "title": "Transformation.RelativeValue",
+          "type": "number",
+          "attribute": "INT.value",
+          "placeholder": "0",
+          "visibleIf": "{% if not INT.removed %}true{% endif %}"
+        },
+        {
+          "title": "Transformation.ReplaceValue",
+          "type": "number",
+          "attribute": "INT.replace",
+          "placeholder": "—",
+          "visibleIf": "{% if not INT.removed %}true{% endif %}"
+        }
+      ]
+    },
+    {
+      "title": "Attributes.WIL",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Transformation.RemoveAttribute",
+          "type": "toggle",
+          "attribute": "WIL.removed"
+        },
+        {
+          "title": "Transformation.RelativeValue",
+          "type": "number",
+          "attribute": "WIL.value",
+          "placeholder": "0",
+          "visibleIf": "{% if not WIL.removed %}true{% endif %}"
+        },
+        {
+          "title": "Transformation.ReplaceValue",
+          "type": "number",
+          "attribute": "WIL.replace",
+          "placeholder": "—",
+          "visibleIf": "{% if not WIL.removed %}true{% endif %}"
+        }
+      ]
+    }
+  ]
+}

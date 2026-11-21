@@ -1,17 +1,29 @@
 {
   "attributes": [
     {
-        "data.xp": "#{{data.cr}}",
-        "data.perceptionModifier": "{% if data.perception %}#{% eval %}{{data.perception}}-10{% endeval %}{% endif %}",
-        "data.strengthModifier": "#{% eval %}{{data.STR}}-10{% endeval %}",
-        "data.agilityModifier": "#{% eval %}{{data.AGI}}-10{% endeval %}",
-        "data.intellectModifier": "#{% eval %}{{data.INT}}-10{% endeval %}",
-        "data.willModifier": "#{% eval %}{{data.WIL}}-10{% endeval %}"
-      },
+      "data.xp": "{% if data.cr != nil %}#{{data.cr}}{% endif %}",
+      "data.perceptionModifier": "{% if data.perception != nil %}#{% eval %}{{data.perception}}-10{% endeval %}{% endif %}",
+      "data.strengthModifier": "{% if data.STR != nil %}#{% eval %}{{data.STR}}-10{% endeval %}{% endif %}",
+      "data.agilityModifier": "{% if data.AGI != nil %}#{% eval %}{{data.AGI}}-10{% endeval %}{% endif %}",
+      "data.intellectModifier": "{% if data.INT != nil %}#{% eval %}{{data.INT}}-10{% endeval %}{% endif %}",
+      "data.willModifier": "{% if data.WIL != nil %}#{% eval %}{{data.WIL}}-10{% endeval %}{% endif %}",
+      "data.fearText": "{% if data.fear.terrifying %}{% if data.fear.feminine %}{{'FearLevel.TerrifyingF'|l|lowercase}}{% else %}{{'FearLevel.Terrifying'|l|lowercase}}{% endif %}{% elif data.fear.frightening %}{% if data.fear.feminine %}{{'FearLevel.FrighteningF'|l|lowercase}}{% else %}{{'FearLevel.Frightening'|l|lowercase}}{% endif %}{% endif %}"
+    },
     {
-        "inCombatDetail": "{{'Characteristics.Defense'|l}} {{data.ac}}", 
-        "outCombatDetail": "{{data.creatureDescriptors}} • {{'Characteristics.Perception'|l}} {{data.perception}}"
+      "inCombatDetail": "{{'Characteristics.Defense'|l}} {% if data.acText %}{{data.acText}}{% elif data.ac != nil %}{{data.ac}}{% else %}—{% endif %}",
+      "outCombatDetail": "{{data.creatureDescriptors}}{% if data.fearText %} {{data.fearText}}{% endif %} • {{'Characteristics.Perception'|l}} {% if data.perception != nil %}{{data.perception}}{% else %}—{% endif %}"
+    },
+    {
+      "data.size": "{% if data.gabarit == 'g1_12' or data.gabarit == 'g1_8' or data.gabarit == 'g1_4' %}T{% elif data.gabarit == 'g1_2' %}S{% elif data.gabarit == 'g1' %}M{% elif data.gabarit == 'g2' or data.gabarit == 'g3' %}L{% elif data.gabarit == 'g4' or data.gabarit == 'g5' %}H{% elif data.gabarit == 'g6' or data.gabarit == 'g8' %}G{% elif data.gabarit == 'g10' or data.gabarit == 'g12' or data.gabarit == 'g15' or data.gabarit == 'g20' %}C{% endif %}"
+    },
+    {
+      "data.creatureAttacks": {
+        "attribute": "data.creatureAttacks",
+        "map": {
+          "rollFormula": "d20{{self.bonus|signed}}{% if self.boons > 0 %}+{{self.boons}}d6kh1{% elif self.banes > 0 %}-{{self.banes}}d6kh1{% endif %}",
+          "boonsText": "{% if self.boons > 0 %}{{'Creature.With'|l}} {{self.boons}} {% if self.boons == 1 %}{{'Creature.Boon'|l}}{% else %}{{'Creature.Boons'|l}}{% endif %}{% elif self.banes > 0 %}{{'Creature.With'|l}} {{self.banes}} {% if self.banes == 1 %}{{'Creature.Bane'|l}}{% else %}{{'Creature.Banes'|l}}{% endif %}{% endif %}"
+        }
+      }
     }
   ]
 }
-

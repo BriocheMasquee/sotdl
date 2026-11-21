@@ -4,9 +4,34 @@
     {
       "type": "group",
       "fields": [
-        { "title": "Vehicle.Price", "attribute": "data.price", "type": "text" },
-        { "title": "Characteristics.Size", "attribute": "data.size", "type": "text" },
-        { "title": "Vehicle.Descriptors", "attribute": "data.vehicleDescriptors", "type": "text" }
+        {
+          "title": "Vehicle.Kind",
+          "type": "picker",
+          "attribute": "data.vehicleKind",
+          "attributeType": "VehicleKind"
+        },
+        {
+          "title": "Vehicle.Price",
+          "type": "text",
+          "attribute": "data.price"
+        },
+        {
+          "title": "Item.Availability",
+          "type": "picker",
+          "attribute": "data.availability",
+          "attributeType": "Availability",
+          "visibleIf": "{{data.vehicleKind == 'Ship' or data.vehicleKind == 'WarMachine'}}"
+        },
+        {
+          "title": "Characteristics.Size",
+          "type": "number",
+          "attribute": "data.gabarit"
+        },
+        {
+          "title": "Vehicle.Descriptors",
+          "type": "text",
+          "attribute": "data.vehicleDescriptors"
+        }
       ]
     },
     {
@@ -16,10 +41,34 @@
         {
           "type": "hStack",
           "fields": [
-            { "title": "Attributes.STR", "type": "text", "alignment": "top", "attribute": "data.STR" },
-            { "title": "Attributes.AGI", "type": "text", "alignment": "top", "attribute": "data.AGI" },
-            { "title": "Attributes.INT", "type": "text", "alignment": "top", "attribute": "data.INT" },
-            { "title": "Attributes.WIL", "type": "text", "alignment": "top", "attribute": "data.WIL" }
+            {
+              "title": "Attributes.STR",
+              "type": "number",
+              "placeholder": "0",
+              "alignment": "top",
+              "attribute": "data.STR"
+            },
+            {
+              "title": "Attributes.AGI",
+              "type": "number",
+              "placeholder": "0",
+              "alignment": "top",
+              "attribute": "data.AGI"
+            },
+            {
+              "title": "Attributes.INT",
+              "type": "number",
+              "placeholder": "—",
+              "alignment": "top",
+              "attribute": "data.INT"
+            },
+            {
+              "title": "Attributes.WIL",
+              "type": "number",
+              "placeholder": "—",
+              "alignment": "top",
+              "attribute": "data.WIL"
+            }
           ]
         }
       ]
@@ -28,39 +77,135 @@
       "type": "group",
       "title": "Common.Characteristics",
       "fields": [
-        { "title": "Characteristics.Defense", "attribute": "data.ac", "type": "number" },
-        { "title": "Characteristics.Armor", "attribute": "data.armor", "type": "text" },
+        {
+          "title": "Characteristics.Defense",
+          "type": "number",
+          "placeholder": "5",
+          "attribute": "data.ac"
+        },
+        {
+          "title": "Characteristics.Armor",
+          "type": "text",
+          "attribute": "data.armor"
+        },
         {
           "title": "Characteristics.Health",
           "type": "number",
           "attribute": "data.hp"
         },
-        { "title": "Vehicle.Space", "attribute": "data.space", "type": "text" },
-        { "title": "Vehicle.MaxSpeed", "attribute": "data.maxSpeed", "type": "text" },
-        { "title": "Vehicle.AccSpeed", "attribute": "data.acceleration", "type": "number" },
-        { "title": "Vehicle.DecSpeed", "attribute": "data.deceleration", "type": "number" },
-        { "title": "Characteristics.SpecialMovementTraits", "attribute": "data.specialMovementTraits", "type": "multiPicker", "attributeType": "SpecialMovementTraits" },
-        { "title": "Vehicle.Crew", "attribute": "data.crew", "type": "text" },
-        { "title": "Vehicle.Cargo", "attribute": "data.cargo", "type": "text" }
+        {
+          "title": "Vehicle.Space",
+          "type": "text",
+          "attribute": "data.space"
+        },
+        {
+          "title": "Vehicle.Draft",
+          "type": "text",
+          "attribute": "data.draft",
+          "visibleIf": "{{data.vehicleKind == 'Ship'}}"
+        },
+        {
+          "title": "Vehicle.MaxSpeed",
+          "type": "text",
+          "attribute": "data.maxSpeed",
+          "visibleIf": "{{data.vehicleKind != 'WarMachine'}}"
+        },
+        {
+          "title": "Vehicle.AccSpeed",
+          "type": "number",
+          "attribute": "data.acceleration",
+          "visibleIf": "{{data.vehicleKind != 'WarMachine' and data.vehicleKind != 'Ship'}}"
+        },
+        {
+          "title": "Vehicle.DecSpeed",
+          "type": "number",
+          "attribute": "data.deceleration",
+          "visibleIf": "{{data.vehicleKind != 'WarMachine' and data.vehicleKind != 'Ship'}}"
+        },
+        {
+          "title": "Characteristics.SpecialMovementTraits",
+          "type": "multiPicker",
+          "attribute": "data.specialMovementTraits",
+          "attributeType": "SpecialMovementTraits",
+          "visibleIf": "{{data.vehicleKind != 'WarMachine' and data.vehicleKind != 'Ship'}}"
+        },
+        {
+          "title": "Vehicle.Crew",
+          "type": "text",
+          "attribute": "data.crew"
+        },
+        {
+          "title": "Vehicle.Passengers",
+          "type": "text",
+          "attribute": "data.passengers",
+          "visibleIf": "{{data.vehicleKind == 'Ship'}}"
+        },
+        {
+          "title": "Vehicle.Cargo",
+          "type": "text",
+          "attribute": "data.cargo",
+          "visibleIf": "{{data.vehicleKind != 'WarMachine'}}"
+        },
+        {
+          "title": "Vehicle.Seaworthiness",
+          "type": "text",
+          "attribute": "data.seaworthiness",
+          "visibleIf": "{{data.vehicleKind == 'Ship'}}"
+        },
+        {
+          "title": "Vehicle.Handling",
+          "type": "text",
+          "attribute": "data.handling",
+          "visibleIf": "{{data.vehicleKind == 'Ship'}}"
+        },
+        {
+          "title": "Vehicle.Ammunition",
+          "type": "text",
+          "attribute": "data.ammunition",
+          "visibleIf": "{{data.vehicleKind == 'WarMachine'}}"
+        },
+        {
+          "title": "Vehicle.StandardImmunities",
+          "type": "toggle",
+          "attribute": "data.standardImmunities"
+        }
       ]
     },
     {
-      "title": "Ancestry.TalentImmunitiesVulnerabilities",
+      "title": "Vehicle.Traits",
       "type": "list",
       "attribute": "data.vehicleTraits",
       "form": {
-                "title": "Common.Trait.many",
-                "partial": "generic-feature"
-            }
+        "title": "Common.Trait.many",
+        "partial": "generic-feature"
+      }
     },
     {
-      "title": "Vehicle.AttackOptions",
+      "title": "Combat.AttackOptions",
       "type": "list",
       "attribute": "data.vehicleAttacks",
       "form": {
-        "title": "Vehicle.AttackOptions",
+        "title": "Combat.AttackOptions",
+        "partial": "creature-attack"
+      }
+    },
+    {
+      "title": "Combat.SpecialAttacks",
+      "type": "list",
+      "attribute": "data.vehicleSpecialAttacks",
+      "form": {
+        "title": "Combat.SpecialAttacks",
+        "partial": "generic-feature"
+      }
+    },
+    {
+      "title": "Combat.SpecialActions",
+      "type": "list",
+      "attribute": "data.vehicleSpecialActions",
+      "form": {
+        "title": "Combat.SpecialActions",
         "partial": "generic-feature"
       }
     }
- ]
+  ]
 }

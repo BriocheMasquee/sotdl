@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="entity spell">
+  <header class="entity-header">
+    <div class="title-row">
+      <h1 class="entity-title">{{ name }}<span class="spell-icons">{% if data.spellTradition.darkMagic == true %}<img src="{{ env.systemURL|default: '/' }}icons/tradition/darkmagic.png" alt="{{ 'Magic.Dark'|l }}">{% endif %}{% if data.spellTradition.psychicTradition == true %}<img src="{{ env.systemURL|default: '/' }}icons/tradition/psychic.png" alt="{{ 'Magic.Psychic'|l }}">{% endif %}{% if data.spellTradition.onlyIncantation == true %}<img src="{{ env.systemURL|default: '/' }}icons/tradition/incantation.png" alt="{{ 'Magic.Incantation'|l }}">{% endif %}</span></h1>
+      {% if data.spellTradition.tradition or data.spellType or data.spellRank != nil %}<span class="entity-kind">{% if data.spellTradition.tradition %}{{ data.spellTradition.tradition|map: 'SpellTradition'|l }}{% endif %}{% if data.spellType %} {{ data.spellType|map: 'SpellType'|l }}{% endif %}{% if data.spellRank != nil %} {{ data.spellRank }}{% endif %}</span>{% endif %}
+    </div>
+    {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>{% endif %}
+  </header>
+  {% if data.spellTradition.darkMagic == true or data.spellTradition.psychicTradition == true or data.spellTradition.onlyIncantation == true %}<div class="app-note">{% if data.spellTradition.darkMagic == true %}{{ 'Magic.Dark'|l }}{% endif %}{% if data.spellTradition.psychicTradition == true %}{% if data.spellTradition.darkMagic == true %} · {% endif %}{{ 'Magic.Psychic'|l }}{% endif %}{% if data.spellTradition.onlyIncantation == true %}{% if data.spellTradition.darkMagic == true or data.spellTradition.psychicTradition == true %} · {% endif %}{{ 'Magic.Incantation'|l }}{% endif %}</div>{% endif %}
+  {% if data.spellRequirement or data.spellTarget or data.spellArea or data.spellDuration %}<div class="create spell-lines">
+    {% if data.spellRequirement %}<div class="line">{% markdown -%}**{{ 'Spell.Requirement'|l }}.** {{ data.spellRequirement }}{% endmarkdown %}</div>{% endif %}
+    {% if data.spellTarget %}<div class="line">{% markdown -%}**{{ 'Spell.Target'|l }}.** {{ data.spellTarget }}{% endmarkdown %}</div>{% endif %}
+    {% if data.spellArea %}<div class="line">{% markdown -%}**{{ 'Spell.Area'|l }}.** {{ data.spellArea }}{% endmarkdown %}</div>{% endif %}
+    {% if data.spellDuration %}<div class="line">{% markdown -%}**{{ 'Spell.Duration'|l }}.** {{ data.spellDuration }}{% endmarkdown %}</div>{% endif %}
+  </div>{% endif %}
+  {% if descr %}<div class="description spell-text">{{ descr|md }}</div>{% endif %}
+  {% for e in data.spellEffects %}<div class="line justify spell-entry">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}
+</main>
+{% endblock %}

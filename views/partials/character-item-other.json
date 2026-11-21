@@ -1,0 +1,93 @@
+{
+  "type": "hStack",
+  "spacing": 6,
+  "alignment": "center",
+  "padding": [
+    4,
+    0
+  ],
+  "views": [
+    {
+      "type": "flow",
+      "spacing": 8,
+      "views": [
+        {
+          "style": "characterTraitTitle",
+          "value": "**{{name}}**",
+          "alignment": "leading",
+          "link": "{{reference}}"
+        },
+        {
+          "style": "characterValue",
+          "value": "{% if itemType == 'Armor' %}{% if armorDefenseFixed != nil %}{{'Characteristics.Defense'|l}} {{armorDefenseFixed}}{% elif armorDefenseAgility != nil %}{{'Item.ArmorDefenseAgility'|l}} {{armorDefenseAgility}}{% endif %}{% elif itemType == 'Weapon' %}{% if weaponType == 'Ammunition' %}{{'Character.ItemAmmunition'|l}}{% elif weaponDefensive == true %}{{'Characteristics.Defense'|l}} +{{defensiveValue|default: 0}}{% elif weaponDamage %}{{weaponDamage}}{% endif %}{% endif %}",
+          "alignment": "leading",
+          "visibleIf": "{% if itemType == 'Armor' or itemType == 'Weapon' %}true{% endif %}"
+        }
+      ]
+    },
+    {
+      "type": "checkboxGroup",
+      "attribute": "usesSpent",
+      "action": {
+        "attribute": "{{keyPath}}.usesSpent"
+      },
+      "visibleIf": "{% if uses %}true{% endif %}",
+      "width": 150,
+      "custom": {
+        "range": {
+          "max": "uses"
+        },
+        "checkboxStyle": {
+          "default": {
+            "tintColor": "#980C14"
+          },
+          "checked": {
+            "tintColor": "#980C14"
+          }
+        }
+      }
+    },
+    {
+      "type": "menuButton",
+      "value": "**× {% if quantity != nil %}{{quantity}}{% else %}1{% endif %}**",
+      "style": "pillFixed",
+      "width": 44,
+      "frame": {
+        "width": 44
+      },
+      "alignment": "center",
+      "views": [
+        {
+          "type": "button",
+          "title": "Common.Increase",
+          "action": {
+            "set": {
+              "quantity": "#{% if self.quantity == nil %}2{% else %}{{self.quantity}} + 1{% endif %}"
+            }
+          }
+        },
+        {
+          "type": "button",
+          "title": "Common.Decrease",
+          "action": {
+            "set": {
+              "quantity": "#{% if self.quantity == nil %}0{% elif self.quantity > 0 %}{{self.quantity}} - 1{% else %}0{% endif %}"
+            }
+          }
+        },
+        {
+          "type": "divider"
+        },
+        {
+          "type": "button",
+          "title": "Common.ResetValue",
+          "action": {
+            "set": {
+              "quantity": null
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

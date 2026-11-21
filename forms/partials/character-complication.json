@@ -1,0 +1,37 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "placeholder": "Common.Name",
+          "attribute": "name"
+        }
+      ]
+    },
+    {
+      "title": "Common.Trait",
+      "type": "list",
+      "attribute": "trait",
+      "custom": {
+        "itemTitle": "{{name}}"
+      },
+      "form": {
+        "title": "Common.Trait",
+        "partial": "character-complication-trait"
+      }
+    },
+    {
+      "type": "group",
+      "title": "Entity.Complication",
+      "fields": [
+        {
+          "title": "Entity.Complication",
+          "type": "reference",
+          "attribute": "reference",
+          "attributeType": "Complication"
+        }
+      ]
+    }
+  ]
+}

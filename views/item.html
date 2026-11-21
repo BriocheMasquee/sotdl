@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="entity item">
+  <header class="entity-header">
+    <div class="title-row">
+      <h1 class="entity-title">{{ name }}</h1>
+      {% if data.itemType %}<span class="entity-kind">{% if data.itemType == 'AdventuringGear' and data.gearType %}{{ data.gearType|map: 'GearType'|l }}{% else %}{% if data.itemType == 'Special' and data.marvelType %}{{ data.marvelType|map: 'MarvelType'|l }}{% else %}{% if data.itemType == 'Armor' and data.armorType %}{{ data.armorType|map: 'ArmorType'|l }}{% else %}{% if data.itemType == 'Weapon' and data.weaponType %}{{ data.weaponType|map: 'WeaponType'|l }}{% else %}{{ data.itemType|map: 'ItemType'|l }}{% endif %}{% endif %}{% endif %}{% endif %}</span>{% endif %}
+    </div>
+    {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>{% endif %}
+  </header>
+  {% if data.price or data.availability or data.uses or data.itemType == 'Armor' or data.itemType == 'Weapon' %}<div class="create item-lines">
+    {% if data.price or data.availability %}<div class="line">{% markdown -%}{% if data.price %}**{{ 'Item.Price'|l }}** {{ data.price }}{% endif %}{% if data.price and data.availability %} · {% endif %}{% if data.availability %}**{{ 'Item.Availability'|l }}** {{ data.availability|map: 'Availability'|l }}{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% if data.uses %}<div class="line">{% markdown -%}**{{ 'Item.Uses'|l }}** {{ data.uses }}{% endmarkdown %}</div>{% endif %}
+    {% if data.itemType == 'Armor' %}
+    {% if data.armorRequirement %}<div class="line">{% markdown -%}**{{ 'Item.Requirement'|l }}** {{ data.armorRequirement }}{% endmarkdown %}</div>{% endif %}
+    {% if data.armorDefenseFixed != nil or data.armorDefenseAgility != nil %}<div class="line">{% markdown -%}**{{ 'Characteristics.Defense'|l }}** {% if data.armorDefenseFixed != nil %}{{ data.armorDefenseFixed }}{% else %}{{ 'Attributes.AGI'|l }}{% if data.armorDefenseAgility != 0 %} + {{ data.armorDefenseAgility }}{% endif %}{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% endif %}
+    {% if data.itemType == 'Weapon' %}
+    {% if data.weaponDamage %}<div class="line">{% markdown -%}**{{ 'Characteristics.Damage'|l }}** {{ data.weaponDamage }}{% if data.weaponHands %} · **{{ 'Weapon.Hands'|l }}** {{ data.weaponHands|map: 'WeaponHands'|l }}{% endif %}{% if data.weaponRequirement %} · **{{ 'Item.Requirement'|l }}** {{ data.weaponRequirement }}{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% if data.weaponProperty or data.weaponReach or data.weaponDefensive %}<div class="line">{% markdown -%}**{{ 'Weapon.Property'|l }}** {% if data.weaponReach and data.reachValue != nil %}{{ 'Weapon.Reach'|l|lowercase }} +{{ data.reachValue }}{% endif %}{% if data.weaponDefensive and data.defensiveValue != nil %}{% if data.weaponReach and data.reachValue != nil %}, {% endif %}{{ 'Weapon.Defensive'|l|lowercase }} +{{ data.defensiveValue }}{% endif %}{% if data.weaponProperty %}{% if data.weaponReach and data.reachValue != nil %}, {% else %}{% if data.weaponDefensive and data.defensiveValue != nil %}, {% endif %}{% endif %}{{ data.weaponProperty|map: 'WeaponProperty'|l|lowercase }}{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% if data.ammunitionRequirement and data.ammunitionType %}<div class="line">{% markdown -%}**{{ 'Weapon.AmmunitionRequirement'|l }}** {{ data.ammunitionType|map: 'Ammunition'|l|lowercase }}{% endmarkdown %}</div>{% endif %}
+    {% endif %}
+  </div>{% endif %}
+  {% if descr %}<div class="description item-text">{{ descr|md }}</div>{% endif %}
+  {% for e in data.relic %}<div class="line talent">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}
+</main>
+{% endblock %}

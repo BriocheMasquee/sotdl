@@ -1,0 +1,29 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.CorruptionStart",
+          "type": "picker",
+          "placeholder": "ValueMode.Fixed",
+          "attribute": "mode",
+          "attributeType": "ValueMode"
+        },
+        {
+          "title": "Characteristics.StartFixed",
+          "type": "number",
+          "attribute": "value",
+          "visibleIf": "{% if mode != 'variable' %}true{% endif %}"
+        },
+        {
+          "title": "Characteristics.StartDice",
+          "type": "text",
+          "placeholder": "Ancestry.ExampleFormulaShort",
+          "attribute": "dice",
+          "visibleIf": "{% if mode == 'variable' %}true{% endif %}"
+        }
+      ]
+    }
+  ]
+}

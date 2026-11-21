@@ -3,14 +3,21 @@
     {
       "type": "group",
       "fields": [
-        { "placeholder": "Common.Name", "attribute": "name" }
+        {
+          "placeholder": "Common.Name",
+          "attribute": "name"
+        }
       ]
     },
     {
       "title": "Common.Description",
       "type": "group",
       "fields": [
-        { "title": "Common.Description", "type": "textArea", "attribute": "descr" }
+        {
+          "title": "Common.Description",
+          "type": "textArea",
+          "attribute": "descr"
+        }
       ]
     },
     {
@@ -18,39 +25,150 @@
       "type": "group",
       "fields": [
         {
+          "title": "Ancestry.StartingValuesMode",
+          "type": "picker",
+          "attribute": "startMode",
+          "attributeType": "StartingValues",
+          "placeholder": "StartingValues.Fixed"
+        },
+        {
           "type": "hStack",
           "fields": [
-            { "title": "Attributes.STR", "type": "text", "attribute": "STR", "placeholder": "10", "alignment": "top" },
-            { "title": "Attributes.AGI", "type": "text", "attribute": "AGI", "placeholder": "10", "alignment": "top" },
-            { "title": "Attributes.INT", "type": "text", "attribute": "INT", "placeholder": "10", "alignment": "top" },
-            { "title": "Attributes.WIL", "type": "text", "attribute": "WIL", "placeholder": "10", "alignment": "top" }
-          ]
+            {
+              "title": "Attributes.STR",
+              "type": "number",
+              "attribute": "STR",
+              "placeholder": "—",
+              "alignment": "top"
+            },
+            {
+              "title": "Attributes.AGI",
+              "type": "number",
+              "attribute": "AGI",
+              "placeholder": "—",
+              "alignment": "top"
+            },
+            {
+              "title": "Attributes.INT",
+              "type": "number",
+              "attribute": "INT",
+              "placeholder": "—",
+              "alignment": "top"
+            },
+            {
+              "title": "Attributes.WIL",
+              "type": "number",
+              "attribute": "WIL",
+              "placeholder": "—",
+              "alignment": "top"
+            }
+          ],
+          "visibleIf": "{% if startMode == 'random' %}{% else %}true{% endif %}"
         },
-        { "title": "Attributes.Mod", "type": "toggle", "attribute": "attributeDetail" },
-        { "title": "Common.Description", "type": "textArea", "attribute": "attributeMod", "visibleIf": "{{attributeDetail}}" }
+        {
+          "title": "Attributes.STR",
+          "type": "text",
+          "attribute": "STRRoll",
+          "placeholder": "Ancestry.ExampleFormula",
+          "visibleIf": "{% if startMode == 'variant' or startMode == 'random' %}true{% endif %}"
+        },
+        {
+          "title": "Attributes.AGI",
+          "type": "text",
+          "attribute": "AGIRoll",
+          "placeholder": "Ancestry.ExampleFormula",
+          "visibleIf": "{% if startMode == 'variant' or startMode == 'random' %}true{% endif %}"
+        },
+        {
+          "title": "Attributes.INT",
+          "type": "text",
+          "attribute": "INTRoll",
+          "placeholder": "Ancestry.ExampleFormula",
+          "visibleIf": "{% if startMode == 'variant' or startMode == 'random' %}true{% endif %}"
+        },
+        {
+          "title": "Attributes.WIL",
+          "type": "text",
+          "attribute": "WILRoll",
+          "placeholder": "Ancestry.ExampleFormula",
+          "visibleIf": "{% if startMode == 'variant' or startMode == 'random' %}true{% endif %}"
+        },
+        {
+          "title": "Attributes.Mod",
+          "type": "textArea",
+          "attribute": "attributeChoice"
+        }
       ]
     },
     {
       "title": "Common.Characteristics",
       "type": "group",
       "fields": [
-        { "title": "Characteristics.Perception", "type": "text", "attribute": "perception" },
-        { "title": "Characteristics.Defense", "type": "text", "attribute": "ac" },
-        { "title": "Characteristics.Health", "type": "text", "attribute": "hp" },
-        { "title": "Characteristics.HealingRate", "type": "text", "attribute": "healingRate" },
-        { "title": "Characteristics.Size", "type": "text", "attribute": "size" },
-        { "title": "Characteristics.Speed", "type": "number", "attribute": "speed" },
-        { "title": "Characteristics.Power", "type": "number", "attribute": "power" },
-        { "title": "Characteristics.Damage", "type": "number", "attribute": "damage" },
-        { "title": "Characteristics.Insanity", "type": "number", "attribute": "insanity" },
-        { "title": "Characteristics.Corruption", "type": "number", "attribute": "corruption" }
+        {
+          "title": "Characteristics.PerceptionBonus",
+          "type": "number",
+          "attribute": "perception",
+          "placeholder": "0"
+        },
+        {
+          "title": "Characteristics.DefenseFixed",
+          "type": "number",
+          "placeholder": "Characteristics.FromAgility",
+          "attribute": "defense"
+        },
+        {
+          "title": "Characteristics.Health",
+          "type": "form",
+          "attribute": "health",
+          "form": {
+            "title": "Characteristics.Health",
+            "partial": "ancestry-health"
+          },
+          "text": "{{health.attribute|default: 'STR'|map: 'HealthAttribute'|l}}{% if health.bonus %} {{health.bonus|signed}}{% endif %}"
+        },
+        {
+          "title": "Characteristics.Size",
+          "type": "picker",
+          "placeholder": "—",
+          "attribute": "size",
+          "attributeType": "BodySize"
+        },
+        {
+          "title": "Characteristics.Speed",
+          "type": "number",
+          "attribute": "speed"
+        },
+        {
+          "title": "Characteristics.Insanity",
+          "type": "form",
+          "attribute": "insanity",
+          "form": {
+            "title": "Characteristics.Insanity",
+            "partial": "ancestry-insanity"
+          },
+          "text": "{% if insanity.mode == 'variable' %}{% if insanity.dice != nil %}{{insanity.dice}}{% else %}—{% endif %}{% else %}{% if insanity.value != nil %}{{insanity.value}}{% else %}0{% endif %}{% endif %}"
+        },
+        {
+          "title": "Characteristics.Corruption",
+          "type": "form",
+          "attribute": "corruption",
+          "form": {
+            "title": "Characteristics.Corruption",
+            "partial": "ancestry-corruption"
+          },
+          "text": "{% if corruption.mode == 'variable' %}{% if corruption.dice != nil %}{{corruption.dice}}{% else %}—{% endif %}{% else %}{% if corruption.value != nil %}{{corruption.value}}{% else %}0{% endif %}{% endif %}"
+        }
       ]
     },
     {
       "title": "Common.Language&Profession",
       "type": "group",
       "fields": [
-        { "title": "Common.Description", "type": "textArea", "attribute": "LangProf" }
+        {
+          "title": "Common.Description",
+          "type": "textArea",
+          "attribute": "languagesProfessions"
+        }
       ]
     },
     {
@@ -59,31 +177,78 @@
       "attribute": "talent",
       "form": {
         "title": "Common.Talent",
-        "partial": "generic-feature"
+        "partial": "talent-uses"
       }
     },
     {
+      "title": "Level.Advantages",
       "type": "group",
       "fields": [
+        {
+          "title": "Ancestry.PowerfulAncestry",
+          "type": "toggle",
+          "attribute": "powerfulAncestry"
+        },
+        {
+          "title": "Level1.Title",
+          "attribute": "ancestryLevel1",
+          "type": "form",
+          "form": {
+            "title": "Level1.Title",
+            "partial": "character-ancestry-level"
+          },
+          "visibleIf": "{% if powerfulAncestry %}true{% endif %}"
+        },
+        {
+          "title": "Level2.Title",
+          "attribute": "ancestryLevel2",
+          "type": "form",
+          "form": {
+            "title": "Level2.Title",
+            "partial": "character-ancestry-level"
+          },
+          "visibleIf": "{% if powerfulAncestry %}true{% endif %}"
+        },
         {
           "title": "Level4.Expert",
           "attribute": "ancestryLevel4",
           "type": "form",
           "form": {
             "title": "Level4.Expert",
-            "partial": "ancestry-level4"
+            "partial": "character-ancestry-level"
           }
+        },
+        {
+          "title": "Level5.Title",
+          "attribute": "ancestryLevel5",
+          "type": "form",
+          "form": {
+            "title": "Level5.Title",
+            "partial": "character-ancestry-level"
+          },
+          "visibleIf": "{% if powerfulAncestry %}true{% endif %}"
+        },
+        {
+          "title": "Level8.Title",
+          "attribute": "ancestryLevel8",
+          "type": "form",
+          "form": {
+            "title": "Level8.Title",
+            "partial": "character-ancestry-level"
+          },
+          "visibleIf": "{% if powerfulAncestry %}true{% endif %}"
         }
       ]
     },
     {
-      "title": "Level4.Talent",
-      "type": "list",
-      "attribute": "level4Talent",
-      "form": {
-        "title": "Common.Talent",
-        "partial": "generic-feature"
-      }
+      "type": "group",
+      "fields": [
+        {
+          "title": "Common.Modifiers",
+          "type": "modifiers",
+          "attribute": "modifiers"
+        }
+      ]
     },
     {
       "title": "Entity.Ancestry",

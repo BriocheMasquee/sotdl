@@ -1,24 +1,23 @@
 {
-    "sections": [
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
         {
-            "type": "group",
-            "fields": [
-                {
-                    "placeholder": "Spell.Effect",
-                    "attribute": "name"
-                }
-            ]
-        },
-        {
-            "title": "Common.Description",
-            "type": "group",
-            "fields": [
-                {
-                    "title": "Common.Description",
-                    "type": "textArea",
-                    "attribute": "text"
-                }
-            ]
+          "placeholder": "Spell.Effect",
+          "attribute": "name"
         }
-    ]
+      ]
+    },
+    {
+      "title": "Common.Description",
+      "type": "group",
+      "fields": [
+        {
+          "type": "textArea",
+          "attribute": "text"
+        }
+      ]
+    }
+  ]
 }

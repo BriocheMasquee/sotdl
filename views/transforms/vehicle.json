@@ -1,14 +1,31 @@
 {
   "attributes": [
     {
-        "data.strengthModifier": "#{% eval %}{{data.STR}}-10{% endeval %}",
-        "data.agilityModifier": "#{% eval %}{{data.AGI}}-10{% endeval %}",
-        "data.intellectModifier": "#{% eval %}{{data.INT}}-10{% endeval %}",
-        "data.willModifier": "#{% eval %}{{data.WIL}}-10{% endeval %}"
-      },
+      "data.strengthValue": "#{% if data.STR != nil %}{{data.STR}}{% else %}0{% endif %}",
+      "data.agilityValue": "#{% if data.AGI != nil %}{{data.AGI}}{% else %}0{% endif %}",
+      "data.defenseValue": "#{% if data.ac != nil %}{{data.ac}}{% else %}5{% endif %}"
+    },
     {
-        "inCombatDetail": "{{'Characteristics.Defense'|l}} {{data.ac}}", 
-        "outCombatDetail": "{{data.vehicleDescriptors}}"
+      "data.strengthModifier": "#{% eval %}{{data.strengthValue}}-10{% endeval %}",
+      "data.agilityModifier": "#{% eval %}{{data.agilityValue}}-10{% endeval %}",
+      "data.intellectModifier": "{% if data.INT != nil %}#{% eval %}{{data.INT}}-10{% endeval %}{% endif %}",
+      "data.willModifier": "{% if data.WIL != nil %}#{% eval %}{{data.WIL}}-10{% endeval %}{% endif %}"
+    },
+    {
+      "inCombatDetail": "{{'Characteristics.Defense'|l}} {{data.defenseValue}}",
+      "outCombatDetail": "{{data.vehicleDescriptors}}"
+    },
+    {
+      "data.size": "{% if data.gabarit != nil %}{% if data.gabarit <= 1 %}M{% elif data.gabarit <= 3 %}L{% elif data.gabarit <= 5 %}H{% elif data.gabarit < 10 %}G{% else %}C{% endif %}{% endif %}"
+    },
+    {
+      "data.vehicleAttacks": {
+        "attribute": "data.vehicleAttacks",
+        "map": {
+          "rollFormula": "d20{{self.bonus|signed}}{% if self.boons > 0 %}+{{self.boons}}d6kh1{% elif self.banes > 0 %}-{{self.banes}}d6kh1{% endif %}",
+          "boonsText": "{% if self.boons > 0 %}{{'Creature.With'|l}} {{self.boons}} {% if self.boons == 1 %}{{'Creature.Boon'|l}}{% else %}{{'Creature.Boons'|l}}{% endif %}{% elif self.banes > 0 %}{{'Creature.With'|l}} {{self.banes}} {% if self.banes == 1 %}{{'Creature.Bane'|l}}{% else %}{{'Creature.Banes'|l}}{% endif %}{% endif %}"
+        }
+      }
     }
   ]
 }

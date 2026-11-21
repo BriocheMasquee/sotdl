@@ -1,0 +1,28 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.HealthAttribute",
+          "type": "picker",
+          "placeholder": "Attributes.STR",
+          "attribute": "attribute",
+          "attributeType": "HealthAttribute"
+        },
+        {
+          "title": "Characteristics.HealthBonus",
+          "type": "number",
+          "placeholder": "0",
+          "attribute": "bonus"
+        },
+        {
+          "title": "Characteristics.HealthCorruption",
+          "type": "number",
+          "placeholder": "0",
+          "attribute": "corruptionFactor"
+        }
+      ]
+    }
+  ]
+}

@@ -1,12 +1,17 @@
 {
     "debug": false,
     "spacing": 0,
-    "padding": [15],
+    "padding": [
+        15
+    ],
     "views": [
         {
             "type": "hStack",
             "alignment": "bottom",
-            "padding": [0,5],
+            "padding": [
+                0,
+                5
+            ],
             "views": [
                 {
                     "style": "entityTitle",
@@ -19,7 +24,9 @@
             "type": "divider",
             "bgColor": "#000000",
             "height": 2.5,
-            "padding": [0]
+            "padding": [
+                0
+            ]
         },
         {
             "type": "spacer"
@@ -50,10 +57,15 @@
             "type": "partial",
             "value": "path-other",
             "visibleIf": "{% if data.other %}true{% endif %}"
-        },        
+        },
         {
             "type": "vStack",
-            "padding": [5,5,0,5],
+            "padding": [
+                5,
+                5,
+                0,
+                5
+            ],
             "views": [
                 {
                     "type": "list",
@@ -81,20 +93,44 @@
             "link": "{{image}}"
         },
         {
+            "type": "vStack",
+            "padding": [
+                5,
+                5,
+                0,
+                5
+            ],
+            "visibleIf": "{% if data.tables %}true{% endif %}",
+            "views": [
+                {
+                    "type": "text",
+                    "style": "body-info",
+                    "value": "{{data.tables}}"
+                }
+            ]
+        },
+        {
             "type": "spacer"
         },
         {
             "type": "divider",
             "bgColor": "#000000",
             "height": 1.5,
-            "padding": [0]
+            "padding": [
+                0
+            ]
         },
         {
-          "type": "text",
-          "style": "source",
-          "padding": [5,0,0,0],
-          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
-          "visibleIf": "{{sourceFormatted}}"
+            "type": "text",
+            "style": "source",
+            "padding": [
+                5,
+                0,
+                0,
+                0
+            ],
+            "value": "*{{'Common.Source'|l}} : {{ sourceFormatted }}*",
+            "visibleIf": "{{sourceFormatted}}"
         }
     ]
 }

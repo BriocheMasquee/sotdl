@@ -1,0 +1,20 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.Value",
+          "type": "number",
+          "placeholder": "—",
+          "attribute": "ac"
+        },
+        {
+          "title": "Characteristics.AltText",
+          "type": "text",
+          "attribute": "acText"
+        }
+      ]
+    }
+  ]
+}

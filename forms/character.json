@@ -1,511 +1,489 @@
 {
-  "title": "Entity.Character",
-  "tabs": [
-    {
-      "title": "Character.Profile",
-      "icon": "person",
-      "sections": [
+    "title": "Entity.Character",
+    "tabs": [
         {
-          "type": "group",
-          "fields": [
-            {
-              "title": "Character.Level",
-              "type": "picker",
-              "attribute": "data.level",
-              "attributeType": "CharacterLevel"
-            }
-          ]
-        },
-        {
-          "title": "Entity.Ancestry",
-          "type": "group",
-          "fields": [
-            {
-              "type": "form",
-              "title": "{{data.ancestry.name}}",
-              "attribute": "data.ancestry",
-              "attributeType": "Ancestry",
-              "custom": {
-                "map": {
-                  "STR": "data.STR",
-                  "AGI": "data.AGI",
-                  "INT": "data.INT",
-                  "WIL": "data.WIL",
-                  "attributeDetail": "data.attributeDetail",
-                  "attributeMod": "data.attributeMod",
-                  "perception": "data.perception",
-                  "ac": "data.ac",
-                  "hp": "data.hp",
-                  "healingRate": "data.healingRate",
-                  "size": "data.size",
-                  "speed": "data.speed",
-                  "power": "data.power",
-                  "damage": "data.damage",
-                  "insanity": "data.insanity",
-                  "corruption": "data.corruption",
-                  "LangProf": "data.LangProf",
-                  "talent": "data.talent",
-                  "ancestryLevel4": "data.ancestryLevel4",
-                  "level4Talent": "data.level4Talent"
-                }
-              },
-              "form": {
-                "title": "Entity.Ancestry",
-                "partial": "character-ancestry"
-              }
-            }
-          ]
-        },
-        {
-          "title": "Character.History",
-          "type": "group",
-          "fields": [
-            { "title": "Character.History", "type": "textArea", "attribute": "data.history" }
-          ]
-        },
-        {
-          "type": "list",
-          "attribute": "data.languages",
-          "custom": {
-            "itemTitle": "{{name}}{% if spoken or read or written %} ({% if spoken %}{{'Character.Spoken'|l}}{% if read or written %}, {% endif %}{% endif %}{% if read %}{{'Character.Read'|l}}{% if written %}, {% endif %}{% endif %}{% if written %}{{'Character.Written'|l}}{% endif %}){% endif %}"
-          },
-          "form": {
-            "title": "Common.Language",
+            "title": "Character.IdentitySection",
+            "icon": "person",
             "sections": [
-              {
-                "type": "group",
-                "fields": [
-                  {
-                    "placeholder": "Common.Name",
-                    "attribute": "name"
-                  }
-                ]
-              },
-              {
-                "type": "group",
-                "fields": [
-                  {
-                    "title": "Character.Spoken",
-                    "type": "toggle",
-                    "attribute": "spoken"
-                  },
-                  {
-                    "title": "Character.Read",
-                    "type": "toggle",
-                    "attribute": "read"
-                  },
-                  {
-                    "title": "Character.Written",
-                    "type": "toggle",
-                    "attribute": "written"
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "type": "group",
-          "fields": [
-            {
-              "title": "Character.Professions",
-              "type": "text",
-              "attribute": "data.professions"
-            },
-            {
-              "title": "Character.Religion",
-              "type": "text",
-              "attribute": "data.religion"
-            }
-          ]
-        },
-        {
-          "title": "Character.Appearance",
-          "type": "group",
-          "fields": [
-            { "title": "Character.Appearance", "type": "textArea", "attribute": "data.appearance" }
-          ]
-        },
-        {
-          "title": "Character.Personality",
-          "type": "group",
-          "fields": [
-            { "title": "Character.Personality", "type": "textArea", "attribute": "data.personality" }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Character.Stats",
-      "icon": "flag.fill",
-      "sections": [
-        {
-          "title": "Common.Attributes",
-          "type": "group",
-          "fields": [
-            {
-              "type": "hStack",
-              "fields": [
                 {
-                  "title": "Attributes.STR",
-                  "type": "text",
-                  "alignment": "top",
-                  "attribute": "data.STR"
-                },
-                {
-                  "title": "Attributes.AGI",
-                  "type": "text",
-                  "alignment": "top",
-                  "attribute": "data.AGI"
-                },
-                {
-                  "title": "Attributes.INT",
-                  "type": "text",
-                  "alignment": "top",
-                  "attribute": "data.INT"
-                },
-                {
-                  "title": "Attributes.WIL",
-                  "type": "text",
-                  "alignment": "top",
-                  "attribute": "data.WIL"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "group",
-          "fields": [
-            {
-              "title": "Characteristics.Defense",
-              "type": "number",
-              "attribute": "data.ac"
-            },
-            {
-              "title": "Characteristics.Perception",
-              "type": "number",
-              "attribute": "data.perception"
-            },
-            {
-              "title": "Characteristics.Speed",
-              "type": "number",
-              "attribute": "data.speed"
-            },
-            {
-              "title": "Characteristics.Size",
-              "type": "text",
-              "attribute": "data.size"
-            },
-            {
-              "title": "Characteristics.Insanity",
-              "type": "number",
-              "attribute": "data.insanity"
-            },
-            {
-              "title": "Characteristics.Corruption",
-              "type": "number",
-              "attribute": "data.corruption"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Entity.Path.many",
-      "icon": "star.fill",
-      "sections": [
-        {
-          "title": "Entity.Path.many",
-          "type": "list",
-          "attribute": "data.paths",
-          "attributeType": "Path",
-          "custom": {
-            "map": {
-              "pathType": "data.pathType",
-              "expertCategory": "data.expertCategory",
-              "masterCategory": "data.masterCategory",
-              "other": "data.other",
-              "level1": "data.level1",
-              "level1Talent": "data.level1Talent",
-              "level2": "data.level2",
-              "level2Talent": "data.level2Talent",
-              "level3": "data.level3",
-              "level3Talent": "data.level3Talent",
-              "level5": "data.level5",
-              "level5Talent": "data.level5Talent",
-              "level6": "data.level6",
-              "level6Talent": "data.level6Talent",
-              "level7": "data.level7",
-              "level7Talent": "data.level7Talent",
-              "level8": "data.level8",
-              "level8Talent": "data.level8Talent",
-              "level9": "data.level9",
-              "level9Talent": "data.level9Talent",
-              "level10": "data.level10",
-              "level10Talent": "data.level10Talent",
-              "talentList": "data.talentList",
-              "otherTalents": "data.otherTalents"
-            }
-          },
-          "form": {
-            "title": "Entity.Path",
-            "partial": "character-path"
-          }
-        },
-        {
-          "title": "Character.AdditionalTalents",
-          "type": "list",
-          "attribute": "data.otherTalents",
-          "form": {
-            "title": "Common.Talent",
-            "sections": [
-              {
-                "type": "group",
-                "fields": [
-                  { "placeholder": "Common.Name", "attribute": "name" }
-                ]
-              },
-              {
-                "title": "Common.Description",
-                "type": "group",
-                "fields": [
-                  { "title": "Common.Description", "type": "textArea", "attribute": "text" }
-                ]
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "title": "Character.CombatEquipment",
-      "icon": "shield.fill",
-      "sections": [
-        {
-          "title": "Character.Resources",
-          "type": "group",
-          "fields": [
-            {
-              "type": "hStack",
-              "fields": [
-                { "title": "Character.Shards", "type": "number", "alignment": "top", "attribute": "data.currency.shards" },
-                { "title": "Character.SC", "type": "number", "alignment": "top", "attribute": "data.currency.sc" },
-                { "title": "Character.CA", "type": "number", "alignment": "top", "attribute": "data.currency.ca" },
-                { "title": "Character.CO", "type": "number", "alignment": "top", "attribute": "data.currency.co" }
-              ]
-            }
-          ]
-        },
-        {
-          "title": "Entity.Item.many",
-          "type": "list",
-          "attribute": "data.items",
-          "attributeType": "Item",
-          "custom": {
-            "map": {
-              "name": "name",
-              "descr": "descr",
-              "itemType": "data.itemType",
-              "gearType": "data.gearType",
-              "marvelType": "data.marvelType",
-              "price": "data.price",
-              "availability": "data.availability",
-              "armorType": "data.armorType",
-              "armorRequirement": "data.armorRequirement",
-              "armorDefense": "data.armorDefense",
-              "weaponType": "data.weaponType",
-              "weaponRequirement": "data.weaponRequirement",
-              "weaponDamage": "data.weaponDamage",
-              "weaponHands": "data.weaponHands",
-              "weaponReach": "data.weaponReach",
-              "reachValue": "data.reachValue",
-              "weaponDefensive": "data.weaponDefensive",
-              "defensiveValue": "data.defensiveValue",
-              "ammunitionRequirement": "data.ammunitionRequirement",
-              "ammunitionType": "data.ammunitionType",
-              "weaponProperty": "data.weaponProperty",
-              "relic": "data.relic"
-            },
-            "itemDetail": "{{definition.detail}}"
-          },
-          "form": {
-            "title": "Entity.Item",
-            "partial": "character-item"
-          }
-        }
-      ]
-    },
-    {
-      "title": "Character.Magic",
-      "icon": "sparkles",
-      "sections": [
-        {
-          "type": "group",
-          "fields": [
-            {
-              "title": "Characteristics.Power",
-              "type": "number",
-              "attribute": "data.power"
-            }
-          ]
-        },
-        {
-          "title": "Character.Traditions",
-          "type": "group",
-          "fields": [
-            {
-              "title": "Spell.Tradition",
-              "type": "multiPicker",
-              "attribute": "data.traditions",
-              "attributeType": "SpellTradition"
-            }
-          ]
-        },
-        {
-          "title": "Character.Spells",
-          "type": "list",
-          "attribute": "data.spells",
-          "attributeType": "Spell",
-          "custom": {
-            "map": {
-              "name": "name",
-              "spellTradition": "data.spellTradition",
-              "spellType": "data.spellType",
-              "spellRank": "data.spellRank",
-              "requirement": "data.requirement",
-              "spellRequirement": "data.spellRequirement",
-              "target": "data.target",
-              "spellTarget": "data.spellTarget",
-              "area": "data.area",
-              "spellArea": "data.spellArea",
-              "duration": "data.duration",
-              "spellDuration": "data.spellDuration",
-              "descr": "descr",
-              "spellEffects": "data.spellEffects"
-            },
-            "itemDetail": "{{definition.detail}}"
-          },
-          "form": {
-            "title": "Entity.Spell",
-            "sections": [
-              {
-                "type": "group",
-                "fields": [
-                  {
-                    "title": "Character.UsesMaximumOverride",
-                    "type": "number",
-                    "attribute": "usesMaximumOverride"
-                  }
-                ]
-              },
-              {
-                "title": "Spell.Header",
-                "type": "group",
-                "fields": [
-                  {
-                    "title": "Spell.Tradition",
-                    "type": "form",
-                    "attribute": "spellTradition",
-                    "text": "{{spellTradition.tradition|map: 'SpellTradition'|l}}",
-                    "form": {
-                      "title": "Spell.Tradition",
-                      "sections": [
+                    "type": "group",
+                    "fields": [
                         {
-                          "type": "group",
-                          "fields": [
-                            {
-                              "title": "Spell.Tradition",
-                              "type": "picker",
-                              "attribute": "tradition",
-                              "attributeType": "SpellTradition"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "group",
-                          "fields": [
-                            { "title": "Spell.DarkMagic", "type": "toggle", "attribute": "darkMagic" },
-                            { "title": "Spell.PsychicTradition", "type": "toggle", "attribute": "psychicTradition" },
-                            { "title": "Spell.OnlyIncantation", "type": "toggle", "attribute": "onlyIncantation" }
-                          ]
+                            "title": "Character.Level",
+                            "type": "picker",
+                            "attribute": "data.level",
+                            "attributeType": "CharacterLevel"
                         }
-                      ]
-                    }
-                  },
-                  {
-                    "title": "Spell.Type",
-                    "type": "picker",
-                    "attribute": "spellType",
-                    "attributeType": "SpellType"
-                  },
-                  {
-                    "title": "Spell.Rank",
-                    "type": "picker",
-                    "attribute": "spellRank",
-                    "attributeType": "SpellRank"
-                  }
-                ]
-              },
-              {
-                "type": "group",
-                "fields": [
-                  { "title": "Spell.Requirement", "type": "toggle", "attribute": "requirement" },
-                  { "title": "Spell.Requirement", "type": "textArea", "attribute": "spellRequirement", "visibleIf": "{{requirement}}" },
-                  { "title": "Spell.Target", "type": "toggle", "attribute": "target" },
-                  { "title": "Spell.Target", "type": "textArea", "attribute": "spellTarget", "visibleIf": "{{target}}" },
-                  { "title": "Spell.Area", "type": "toggle", "attribute": "area" },
-                  { "title": "Spell.Area", "type": "textArea", "attribute": "spellArea", "visibleIf": "{{area}}" },
-                  { "title": "Spell.Duration", "type": "toggle", "attribute": "duration" },
-                  { "title": "Spell.Duration", "type": "textArea", "attribute": "spellDuration", "visibleIf": "{{duration}}" }
-                ]
-              },
-              {
-                "title": "Common.Description",
-                "type": "group",
-                "fields": [
-                  { "title": "Common.Description", "type": "textArea", "attribute": "descr" }
-                ]
-              },
-              {
-                "title": "Spell.Effects",
-                "type": "list",
-                "attribute": "spellEffects",
-                "form": {
-                  "title": "Spell.Effects",
-                  "sections": [
-                    {
-                      "type": "group",
-                      "fields": [
-                        { "placeholder": "Spell.Effect", "attribute": "name" }
-                      ]
+                    ]
+                },
+                {
+                    "title": "Entity.Ancestry",
+                    "type": "group",
+                    "fields": [
+                        {
+                            "type": "form",
+                            "title": "{{data.ancestry.name}}",
+                            "attribute": "data.ancestry",
+                            "attributeType": "Ancestry",
+                            "custom": {
+                                "map": {
+                                    "STR": "data.STR",
+                                    "AGI": "data.AGI",
+                                    "INT": "data.INT",
+                                    "WIL": "data.WIL",
+                                    "attributeChoice": "data.attributeChoice",
+                                    "startMode": "data.startMode",
+                                    "STRRoll": "data.STRRoll",
+                                    "AGIRoll": "data.AGIRoll",
+                                    "INTRoll": "data.INTRoll",
+                                    "WILRoll": "data.WILRoll",
+                                    "perception": "data.perception",
+                                    "defense": "data.defense",
+                                    "health": "data.health",
+                                    "size": "data.size",
+                                    "speed": "data.speed",
+                                    "insanity": "data.insanity",
+                                    "corruption": "data.corruption",
+                                    "languagesProfessions": "data.languagesProfessions",
+                                    "startLanguages": "data.startLanguages",
+                                    "startProfessions": "data.startProfessions",
+                                    "creationAttrChoice": "data.creationAttrChoice",
+                                    "creationLang": "data.creationLang",
+                                    "creationProf": "data.creationProf",
+                                    "creationLangProfOne": "data.creationLangProfOne",
+                                    "talent": "data.talent",
+                                    "powerfulAncestry": "data.powerfulAncestry",
+                                    "ancestryLevel1": "data.ancestryLevel1",
+                                    "ancestryLevel2": "data.ancestryLevel2",
+                                    "ancestryLevel4": "data.ancestryLevel4",
+                                    "ancestryLevel5": "data.ancestryLevel5",
+                                    "ancestryLevel8": "data.ancestryLevel8",
+                                    "modifiers": "modifiers"
+                                }
+                            },
+                            "form": {
+                                "title": "Entity.Ancestry",
+                                "partial": "character-ancestry"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "title": "Entity.Transformation",
+                    "type": "group",
+                    "fields": [
+                        {
+                            "type": "form",
+                            "title": "{{data.transformation.name}}",
+                            "attribute": "data.transformation",
+                            "attributeType": "Transformation",
+                            "custom": {
+                                "map": {
+                                    "attrs": "data.attrs",
+                                    "modifiers": "modifiers",
+                                    "perception": "data.perception",
+                                    "defense": "data.defense",
+                                    "health": "data.health",
+                                    "corruptionFactor": "data.corruptionFactor",
+                                    "speed": "data.speed",
+                                    "healingZero": "data.healingZero",
+                                    "insanity": "data.insanity",
+                                    "corruption": "data.corruption",
+                                    "insanityRemoved": "data.insanityRemoved",
+                                    "talent": "data.talent",
+                                    "powerfulAncestry": "data.powerfulAncestry",
+                                    "replaceLevel4": "data.replaceLevel4",
+                                    "transfLevel1": "data.transfLevel1",
+                                    "transfLevel2": "data.transfLevel2",
+                                    "transfLevel4": "data.transfLevel4",
+                                    "transfLevel5": "data.transfLevel5",
+                                    "transfLevel8": "data.transfLevel8"
+                                }
+                            },
+                            "form": {
+                                "title": "Entity.Transformation",
+                                "partial": "character-transformation"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "title": "Entity.Complication",
+                    "type": "group",
+                    "fields": [
+                        {
+                            "type": "form",
+                            "title": "{{data.complication.name}}",
+                            "attribute": "data.complication",
+                            "attributeType": "Complication",
+                            "custom": {
+                                "map": {
+                                    "trait": "data.trait"
+                                }
+                            },
+                            "form": {
+                                "title": "Entity.Complication",
+                                "partial": "character-complication"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "title": "Character.NovicePath",
+                    "fields": [
+                        {
+                            "type": "form",
+                            "title": "{{data.novicePath.name}}",
+                            "attribute": "data.novicePath",
+                            "attributeType": "Path",
+                            "custom": {
+                                "map": {
+                                    "pathType": "data.pathType",
+                                    "level1": "data.level1",
+                                    "level1Talent": "data.level1Talent",
+                                    "level1Choice": "data.level1Choice",
+                                    "level2": "data.level2",
+                                    "level2Talent": "data.level2Talent",
+                                    "level2Choice": "data.level2Choice",
+                                    "level5": "data.level5",
+                                    "level5Talent": "data.level5Talent",
+                                    "level5Choice": "data.level5Choice",
+                                    "level8": "data.level8",
+                                    "level8Talent": "data.level8Talent",
+                                    "level8Choice": "data.level8Choice"
+                                }
+                            },
+                            "form": {
+                                "title": "Entity.Path",
+                                "partial": "character-path-novice"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "title": "Character.ExpertPath",
+                    "fields": [
+                        {
+                            "type": "form",
+                            "title": "{{data.expertPath.name}}",
+                            "attribute": "data.expertPath",
+                            "attributeType": "Path",
+                            "custom": {
+                                "map": {
+                                    "pathType": "data.pathType",
+                                    "level3": "data.level3",
+                                    "level3Talent": "data.level3Talent",
+                                    "level3Choice": "data.level3Choice",
+                                    "level6": "data.level6",
+                                    "level6Talent": "data.level6Talent",
+                                    "level6Choice": "data.level6Choice",
+                                    "level9": "data.level9",
+                                    "level9Talent": "data.level9Talent",
+                                    "level9Choice": "data.level9Choice"
+                                }
+                            },
+                            "form": {
+                                "title": "Entity.Path",
+                                "partial": "character-path-expert"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "title": "Character.MasterPath",
+                    "visibleIf": "{% if data.secondPath.name %}{% else %}true{% endif %}",
+                    "fields": [
+                        {
+                            "type": "form",
+                            "title": "{{data.masterPath.name}}",
+                            "attribute": "data.masterPath",
+                            "attributeType": "Path",
+                            "custom": {
+                                "map": {
+                                    "pathType": "data.pathType",
+                                    "level7": "data.level7",
+                                    "level7Talent": "data.level7Talent",
+                                    "level7Choice": "data.level7Choice",
+                                    "level10": "data.level10",
+                                    "level10Talent": "data.level10Talent",
+                                    "level10Choice": "data.level10Choice"
+                                }
+                            },
+                            "form": {
+                                "title": "Entity.Path",
+                                "partial": "character-path-master"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "group",
+                    "visibleIf": "{% if data.masterPath.name %}{% else %}true{% endif %}",
+                    "fields": [
+                        {
+                            "title": "{{data.secondPath.name}}",
+                            "type": "form",
+                            "attribute": "data.secondPath",
+                            "attributeType": "Path",
+                            "custom": {
+                                "map": {
+                                    "pathType": "data.pathType",
+                                    "level7": "data.level3",
+                                    "level7Talent": "data.level3Talent",
+                                    "level10": "data.level6",
+                                    "level10Talent": "data.level6Talent",
+                                    "level7Choice": "data.level3Choice",
+                                    "level10Choice": "data.level6Choice"
+                                }
+                            },
+                            "form": {
+                                "title": "Entity.Path",
+                                "partial": "character-second-path"
+                            }
+                        }
+                    ],
+                    "title": "Path.Second"
+                },
+                {
+                    "title": "Character.Languages",
+                    "type": "list",
+                    "attribute": "data.languages",
+                    "attributeType": "Rule",
+                    "custom": {
+                        "map": {
+                            "name": "name"
+                        },
+                        "itemTitle": "{{name}}{% if spoken or read or written %} ({% if spoken %}{{'Character.Spoken'|l}}{% if read or written %}, {% endif %}{% endif %}{% if read %}{{'Character.Read'|l}}{% if written %}, {% endif %}{% endif %}{% if written %}{{'Character.Written'|l}}{% endif %}){% endif %}"
                     },
-                    {
-                      "title": "Common.Description",
-                      "type": "group",
-                      "fields": [
-                        { "title": "Common.Description", "type": "textArea", "attribute": "text" }
-                      ]
+                    "form": {
+                        "title": "Common.Language",
+                        "sections": [
+                            {
+                                "type": "group",
+                                "fields": [
+                                    {
+                                        "placeholder": "Common.Name",
+                                        "attribute": "name"
+                                    },
+                                    {
+                                        "title": "Entity.Rule",
+                                        "type": "reference",
+                                        "attribute": "reference",
+                                        "attributeType": "Rule"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "fields": [
+                                    {
+                                        "title": "Character.Spoken",
+                                        "type": "toggle",
+                                        "attribute": "spoken"
+                                    },
+                                    {
+                                        "title": "Character.Read",
+                                        "type": "toggle",
+                                        "attribute": "read"
+                                    },
+                                    {
+                                        "title": "Character.Written",
+                                        "type": "toggle",
+                                        "attribute": "written"
+                                    }
+                                ]
+                            }
+                        ]
                     }
-                  ]
                 }
-              },
-              {
-                "title": "Entity.Spell",
-                "type": "group",
-                "fields": [
-                  {
-                    "title": "Entity.Spell",
-                    "type": "reference",
-                    "attribute": "reference",
-                    "attributeType": "Spell"
-                  }
-                ]
-              }
             ]
-          }
+        },
+        {
+            "title": "Character.Magic",
+            "icon": "sparkles",
+            "sections": [
+                {
+                    "title": "Character.Traditions",
+                    "type": "group",
+                    "fields": [
+                        {
+                            "title": "Spell.Tradition",
+                            "type": "multiPicker",
+                            "attribute": "data.traditions",
+                            "attributeType": "SpellTradition"
+                        }
+                    ]
+                },
+                {
+                    "title": "Character.Spells",
+                    "type": "list",
+                    "attribute": "data.spells",
+                    "attributeType": "Spell",
+                    "custom": {
+                        "map": {
+                            "name": "name",
+                            "spellTradition": "data.spellTradition",
+                            "spellType": "data.spellType",
+                            "spellRank": "data.spellRank",
+                            "spellRequirement": "data.spellRequirement",
+                            "spellTarget": "data.spellTarget",
+                            "spellArea": "data.spellArea",
+                            "spellDuration": "data.spellDuration",
+                            "descr": "descr",
+                            "spellEffects": "data.spellEffects"
+                        },
+                        "itemDetail": "{{definition.detail}}"
+                    },
+                    "form": {
+                        "title": "Entity.Spell",
+                        "sections": [
+                            {
+                                "type": "group",
+                                "fields": [
+                                    {
+                                        "title": "Character.UsesMaximumOverride",
+                                        "type": "number",
+                                        "attribute": "usesMaximumOverride"
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Spell.Header",
+                                "type": "group",
+                                "fields": [
+                                    {
+                                        "title": "Spell.Tradition",
+                                        "type": "form",
+                                        "attribute": "spellTradition",
+                                        "text": "{{spellTradition.tradition|map: 'SpellTradition'|l}}",
+                                        "form": {
+                                            "title": "Spell.Tradition",
+                                            "partial": "spell-tradition"
+                                        }
+                                    },
+                                    {
+                                        "title": "Spell.Type",
+                                        "type": "picker",
+                                        "attribute": "spellType",
+                                        "attributeType": "SpellType"
+                                    },
+                                    {
+                                        "title": "Spell.Rank",
+                                        "type": "picker",
+                                        "attribute": "spellRank",
+                                        "attributeType": "SpellRank"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "group",
+                                "fields": [
+                                    {
+                                        "title": "Spell.Requirement",
+                                        "type": "textArea",
+                                        "attribute": "spellRequirement"
+                                    },
+                                    {
+                                        "title": "Spell.Target",
+                                        "type": "textArea",
+                                        "attribute": "spellTarget"
+                                    },
+                                    {
+                                        "title": "Spell.Area",
+                                        "type": "textArea",
+                                        "attribute": "spellArea"
+                                    },
+                                    {
+                                        "title": "Spell.Duration",
+                                        "type": "textArea",
+                                        "attribute": "spellDuration"
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Common.Description",
+                                "type": "group",
+                                "fields": [
+                                    {
+                                        "title": "Common.Description",
+                                        "type": "textArea",
+                                        "attribute": "descr"
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Spell.Effects",
+                                "type": "list",
+                                "attribute": "spellEffects",
+                                "form": {
+                                    "title": "Spell.Effects",
+                                    "partial": "spell-effects"
+                                }
+                            },
+                            {
+                                "title": "Entity.Spell",
+                                "type": "group",
+                                "fields": [
+                                    {
+                                        "title": "Entity.Spell",
+                                        "type": "reference",
+                                        "attribute": "reference",
+                                        "attributeType": "Spell"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Sheet.Tab.Bag",
+            "icon": "bag.fill",
+            "sections": [
+                {
+                    "title": "Entity.Item.many",
+                    "type": "list",
+                    "attribute": "data.items",
+                    "attributeType": "Item",
+                    "custom": {
+                        "map": {
+                            "name": "name",
+                            "descr": "descr",
+                            "itemType": "data.itemType",
+                            "gearType": "data.gearType",
+                            "marvelType": "data.marvelType",
+                            "price": "data.price",
+                            "uses": "data.uses",
+                            "availability": "data.availability",
+                            "armorType": "data.armorType",
+                            "armorRequirement": "data.armorRequirement",
+                            "armorDefenseFixed": "data.armorDefenseFixed",
+                            "armorDefenseAgility": "data.armorDefenseAgility",
+                            "weaponType": "data.weaponType",
+                            "weaponRequirement": "data.weaponRequirement",
+                            "weaponDamage": "data.weaponDamage",
+                            "weaponHands": "data.weaponHands",
+                            "weaponReach": "data.weaponReach",
+                            "reachValue": "data.reachValue",
+                            "weaponDefensive": "data.weaponDefensive",
+                            "defensiveValue": "data.defensiveValue",
+                            "ammunitionRequirement": "data.ammunitionRequirement",
+                            "ammunitionType": "data.ammunitionType",
+                            "weaponProperty": "data.weaponProperty",
+                            "relic": "data.relic"
+                        },
+                        "itemDetail": "{{definition.detail}}"
+                    },
+                    "form": {
+                        "title": "Entity.Item",
+                        "partial": "character-item"
+                    }
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

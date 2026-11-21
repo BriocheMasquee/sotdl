@@ -1,0 +1,138 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Common.Characteristics",
+          "type": "form",
+          "attribute": "gains",
+          "text": "{% if gains.perception != nil %}{{'Characteristics.Perception'|l}} {{gains.perception|signed}}{% endif %}{% if gains.defense != nil %}{% if gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{gains.defense|signed}}{% endif %}{% if gains.health != nil %}{% if gains.perception != nil or gains.defense != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{gains.health|signed}}{% endif %}{% if gains.speed != nil %}{% if gains.perception != nil or gains.defense != nil or gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{gains.speed|signed}}{% endif %}{% if gains.power != nil %}{% if gains.perception != nil or gains.defense != nil or gains.health != nil or gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{gains.power|signed}}{% endif %}{% if gains.custom %}{% if gains.perception != nil or gains.defense != nil or gains.health != nil or gains.speed != nil or gains.power != nil %}, {% endif %}{{gains.custom}}{% endif %}",
+          "form": {
+            "title": "Common.Characteristics",
+            "partial": "level-gains"
+          }
+        }
+      ]
+    },
+    {
+      "title": "Level.Automation",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Level.AttrChoice",
+          "type": "number",
+          "attribute": "levelAttrChoice"
+        },
+        {
+          "title": "Level.Lang",
+          "type": "toggle",
+          "attribute": "levelLang"
+        },
+        {
+          "title": "Level.Prof",
+          "type": "toggle",
+          "attribute": "levelProf"
+        },
+        {
+          "title": "Level.LangProfOne",
+          "type": "toggle",
+          "attribute": "levelLangProfOne",
+          "visibleIf": "{% if levelLang and levelProf %}true{% endif %}"
+        },
+        {
+          "title": "Level.Tradition",
+          "type": "toggle",
+          "attribute": "levelTradition"
+        },
+        {
+          "title": "Level.Spell",
+          "type": "toggle",
+          "attribute": "levelSpell"
+        },
+        {
+          "title": "Level.MagicOne",
+          "type": "toggle",
+          "attribute": "levelMagicOne",
+          "visibleIf": "{% if levelTradition and levelSpell %}true{% endif %}"
+        },
+        {
+          "title": "Level.MagicChoices",
+          "type": "number",
+          "attribute": "levelMagicChoices"
+        },
+        {
+          "title": "Level.Cantrip",
+          "type": "toggle",
+          "attribute": "levelCantrip"
+        },
+        {
+          "title": "Level.SpellInstead",
+          "type": "toggle",
+          "attribute": "levelSpellInstead"
+        },
+        {
+          "title": "Level.ChoicePick",
+          "type": "number",
+          "attribute": "levelChoicePick"
+        }
+      ]
+    },
+    {
+      "title": "Level.SpellsAuto",
+      "type": "list",
+      "attribute": "levelSpellsAuto",
+      "custom": {
+        "itemTitle": "{{name}}"
+      },
+      "form": {
+        "title": "Entity.Spell",
+        "sections": [
+          {
+            "type": "group",
+            "fields": [
+              {
+                "placeholder": "Common.Name",
+                "attribute": "name"
+              },
+              {
+                "title": "Entity.Spell",
+                "type": "reference",
+                "attribute": "reference",
+                "attributeType": "Spell"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Level.Talents",
+      "type": "list",
+      "attribute": "talent",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Level.Options",
+          "type": "textArea",
+          "attribute": "options"
+        }
+      ]
+    },
+    {
+      "title": "Level.Choices",
+      "type": "list",
+      "attribute": "choice",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    }
+  ]
+}

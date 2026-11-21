@@ -1,0 +1,54 @@
+{
+  "StartingValues": [
+    "fixed",
+    "variant",
+    "random"
+  ],
+  "Size": [
+    "T",
+    "S",
+    "M",
+    "L",
+    "H",
+    "G",
+    "C"
+  ],
+  "BodySize": [
+    "g1_12",
+    "g1_8",
+    "g1_4",
+    "g1_2",
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "g5",
+    "g6",
+    "g8",
+    "g10",
+    "g12",
+    "g15",
+    "g20"
+  ],
+  "ValueMode": [
+    "fixed",
+    "variable"
+  ],
+  "HealthAttribute": [
+    "STR",
+    "AGI",
+    "INT",
+    "WIL"
+  ],
+  "HealthPhrase": [
+    "STR",
+    "AGI",
+    "INT",
+    "WIL"
+  ],
+  "VehicleKind": [
+    "Vehicle",
+    "Ship",
+    "WarMachine"
+  ]
+}

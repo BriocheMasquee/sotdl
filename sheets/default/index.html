@@ -1,0 +1,1729 @@
+<!doctype html>
+<html lang="fr">
+<!--
+  Fiche de personnage interactive SotDL, style « Grimoire » (2026-11-20), d'après sotdl-rapports/maquette-fiche-pj-visuel.html.
+  FICHIER GÉNÉRÉ par sotdl-system/outils/construire-fiche-grimoire.py à partir de outils/fiche-grimoire.modele.html :
+  modifier le modèle, pas ce fichier.
+  Adresse : /sheets/default/?id=<id-du-personnage> ; dans l'app (modale) et dans un navigateur (serveur web activé).
+  Lit les valeurs calculées (views/transforms/character.json) ; n'écrit que des clés déclarées dans schemas/character.json.
+  Compatibilité : le webview d'E+ est WebKit : aucun filtre SVG sur des éléments HTML (traits irréguliers = SVG pré-calculés).
+  Doc : https://docs.encounter.plus/system-development/sheets/ (aperçu, interface non stable).
+-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-t="Sheet.PageTitle"></title>
+  <style>
+    :root { color-scheme: light; --ink:#17120f; --blood:#8e0e14; --blood2:#b3151e; --bone:#efe8d8; --parch:#eee7d6; --line:#bdb7aa;
+      --f-title:'Aquifer','Athelas',ui-serif,serif; --f-body:'Athelas',ui-serif,Georgia,serif; --f-ui:'Montserrat',system-ui,sans-serif; }
+    * { box-sizing:border-box; }
+    [hidden] { display:none !important; }
+    /* page noire : l'app peint la zone sous sa barre avec la couleur de <html> ; le papier est sur la fiche seulement */
+    html { background:#101010; }
+    html, body { margin:0; min-height:100%; }
+    body { background:#101010; color:var(--ink); font:14px/1.45 var(--f-ui); padding-top:8px; }
+    button, input, select, textarea { font:inherit; color:inherit; }
+    button { cursor:pointer; background:none; border:0; padding:0; }
+    button:disabled, input:disabled, select:disabled, textarea:disabled { opacity:.45; cursor:not-allowed; }
+    .app { position:relative; max-width:960px; min-height:calc(100vh - 8px); margin:0 auto; display:flex; flex-direction:column; overflow:hidden;
+      background-color:#d9dde3; background-image:var(--paper,none); background-size:256px; border-top:5px solid var(--blood); box-shadow:0 0 0 1px #000, 0 0 24px #000a; }
+    .app::before { content:''; position:absolute; right:-250px; bottom:-210px; width:640px; height:640px; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27400%27%20height%3D%27400%27%20viewBox%3D%270%200%20400%20400%27%3E%3Cg%20fill%3D%27%238e0e14%27%3E%3Cpath%20d%3D%27M200.0%20328.0Q167.3%20210.6%20124.8%2096.4Q157.4%20213.8%20200.0%20328.0ZM124.8%2096.4Q220.2%20172.2%20321.7%20239.6Q226.3%20163.8%20124.8%2096.4ZM321.7%20239.6Q200.0%20234.4%2078.3%20239.6Q200.0%20244.8%20321.7%20239.6ZM78.3%20239.6Q179.8%20172.2%20275.2%2096.4Q173.7%20163.8%2078.3%20239.6ZM275.2%2096.4Q232.7%20210.6%20200.0%20328.0Q242.6%20213.8%20275.2%2096.4Z%27/%3E%3C/g%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%238e0e14%27%20stroke-width%3D%271.3%27%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27142%27/%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27150%27%20stroke-dasharray%3D%271%203%27/%3E%3Cline%20x1%3D%22350.0%22%20y1%3D%22200.0%22%20x2%3D%22360.0%22%20y2%3D%22200.0%22/%3E%3Cline%20x1%3D%22349.2%22%20y1%3D%22215.7%22%20x2%3D%22354.2%22%20y2%3D%22216.2%22/%3E%3Cline%20x1%3D%22346.7%22%20y1%3D%22231.2%22%20x2%3D%22351.6%22%20y2%3D%22232.2%22/%3E%3Cline%20x1%3D%22342.7%22%20y1%3D%22246.4%22%20x2%3D%22352.2%22%20y2%3D%22249.4%22/%3E%3Cline%20x1%3D%22337.0%22%20y1%3D%22261.0%22%20x2%3D%22341.6%22%20y2%3D%22263.0%22/%3E%3Cline%20x1%3D%22329.9%22%20y1%3D%22275.0%22%20x2%3D%22338.6%22%20y2%3D%22280.0%22/%3E%3Cline%20x1%3D%22321.4%22%20y1%3D%22288.2%22%20x2%3D%22325.4%22%20y2%3D%22291.1%22/%3E%3Cline%20x1%3D%22311.5%22%20y1%3D%22300.4%22%20x2%3D%22315.2%22%20y2%3D%22303.7%22/%3E%3Cline%20x1%3D%22300.4%22%20y1%3D%22311.5%22%20x2%3D%22303.7%22%20y2%3D%22315.2%22/%3E%3Cline%20x1%3D%22288.2%22%20y1%3D%22321.4%22%20x2%3D%22291.1%22%20y2%3D%22325.4%22/%3E%3Cline%20x1%3D%22275.0%22%20y1%3D%22329.9%22%20x2%3D%22280.0%22%20y2%3D%22338.6%22/%3E%3Cline%20x1%3D%22261.0%22%20y1%3D%22337.0%22%20x2%3D%22263.0%22%20y2%3D%22341.6%22/%3E%3Cline%20x1%3D%22246.4%22%20y1%3D%22342.7%22%20x2%3D%22247.9%22%20y2%3D%22347.4%22/%3E%3Cline%20x1%3D%22231.2%22%20y1%3D%22346.7%22%20x2%3D%22232.2%22%20y2%3D%22351.6%22/%3E%3Cline%20x1%3D%22215.7%22%20y1%3D%22349.2%22%20x2%3D%22216.2%22%20y2%3D%22354.2%22/%3E%3Cline%20x1%3D%22200.0%22%20y1%3D%22350.0%22%20x2%3D%22200.0%22%20y2%3D%22360.0%22/%3E%3Cline%20x1%3D%22184.3%22%20y1%3D%22349.2%22%20x2%3D%22183.8%22%20y2%3D%22354.2%22/%3E%3Cline%20x1%3D%22168.8%22%20y1%3D%22346.7%22%20x2%3D%22167.8%22%20y2%3D%22351.6%22/%3E%3Cline%20x1%3D%22153.6%22%20y1%3D%22342.7%22%20x2%3D%22152.1%22%20y2%3D%22347.4%22/%3E%3Cline%20x1%3D%22139.0%22%20y1%3D%22337.0%22%20x2%3D%22137.0%22%20y2%3D%22341.6%22/%3E%3Cline%20x1%3D%22125.0%22%20y1%3D%22329.9%22%20x2%3D%22120.0%22%20y2%3D%22338.6%22/%3E%3Cline%20x1%3D%22111.8%22%20y1%3D%22321.4%22%20x2%3D%22108.9%22%20y2%3D%22325.4%22/%3E%3Cline%20x1%3D%2299.6%22%20y1%3D%22311.5%22%20x2%3D%2296.3%22%20y2%3D%22315.2%22/%3E%3Cline%20x1%3D%2288.5%22%20y1%3D%22300.4%22%20x2%3D%2284.8%22%20y2%3D%22303.7%22/%3E%3Cline%20x1%3D%2278.6%22%20y1%3D%22288.2%22%20x2%3D%2274.6%22%20y2%3D%22291.1%22/%3E%3Cline%20x1%3D%2270.1%22%20y1%3D%22275.0%22%20x2%3D%2261.4%22%20y2%3D%22280.0%22/%3E%3Cline%20x1%3D%2263.0%22%20y1%3D%22261.0%22%20x2%3D%2258.4%22%20y2%3D%22263.0%22/%3E%3Cline%20x1%3D%2257.3%22%20y1%3D%22246.4%22%20x2%3D%2247.8%22%20y2%3D%22249.4%22/%3E%3Cline%20x1%3D%2253.3%22%20y1%3D%22231.2%22%20x2%3D%2248.4%22%20y2%3D%22232.2%22/%3E%3Cline%20x1%3D%2250.8%22%20y1%3D%22215.7%22%20x2%3D%2245.8%22%20y2%3D%22216.2%22/%3E%3Cline%20x1%3D%2250.0%22%20y1%3D%22200.0%22%20x2%3D%2240.0%22%20y2%3D%22200.0%22/%3E%3Cline%20x1%3D%2250.8%22%20y1%3D%22184.3%22%20x2%3D%2245.8%22%20y2%3D%22183.8%22/%3E%3Cline%20x1%3D%2253.3%22%20y1%3D%22168.8%22%20x2%3D%2248.4%22%20y2%3D%22167.8%22/%3E%3Cline%20x1%3D%2257.3%22%20y1%3D%22153.6%22%20x2%3D%2252.6%22%20y2%3D%22152.1%22/%3E%3Cline%20x1%3D%2263.0%22%20y1%3D%22139.0%22%20x2%3D%2258.4%22%20y2%3D%22137.0%22/%3E%3Cline%20x1%3D%2270.1%22%20y1%3D%22125.0%22%20x2%3D%2261.4%22%20y2%3D%22120.0%22/%3E%3Cline%20x1%3D%2278.6%22%20y1%3D%22111.8%22%20x2%3D%2274.6%22%20y2%3D%22108.9%22/%3E%3Cline%20x1%3D%2288.5%22%20y1%3D%2299.6%22%20x2%3D%2284.8%22%20y2%3D%2296.3%22/%3E%3Cline%20x1%3D%2299.6%22%20y1%3D%2288.5%22%20x2%3D%2296.3%22%20y2%3D%2284.8%22/%3E%3Cline%20x1%3D%22111.8%22%20y1%3D%2278.6%22%20x2%3D%22106.0%22%20y2%3D%2270.6%22/%3E%3Cline%20x1%3D%22125.0%22%20y1%3D%2270.1%22%20x2%3D%22120.0%22%20y2%3D%2261.4%22/%3E%3Cline%20x1%3D%22139.0%22%20y1%3D%2263.0%22%20x2%3D%22137.0%22%20y2%3D%2258.4%22/%3E%3Cline%20x1%3D%22153.6%22%20y1%3D%2257.3%22%20x2%3D%22152.1%22%20y2%3D%2252.6%22/%3E%3Cline%20x1%3D%22168.8%22%20y1%3D%2253.3%22%20x2%3D%22167.8%22%20y2%3D%2248.4%22/%3E%3Cline%20x1%3D%22184.3%22%20y1%3D%2250.8%22%20x2%3D%22183.8%22%20y2%3D%2245.8%22/%3E%3Cline%20x1%3D%22200.0%22%20y1%3D%2250.0%22%20x2%3D%22200.0%22%20y2%3D%2240.0%22/%3E%3Cline%20x1%3D%22215.7%22%20y1%3D%2250.8%22%20x2%3D%22216.2%22%20y2%3D%2245.8%22/%3E%3Cline%20x1%3D%22231.2%22%20y1%3D%2253.3%22%20x2%3D%22232.2%22%20y2%3D%2248.4%22/%3E%3Cline%20x1%3D%22246.4%22%20y1%3D%2257.3%22%20x2%3D%22247.9%22%20y2%3D%2252.6%22/%3E%3Cline%20x1%3D%22261.0%22%20y1%3D%2263.0%22%20x2%3D%22263.0%22%20y2%3D%2258.4%22/%3E%3Cline%20x1%3D%22275.0%22%20y1%3D%2270.1%22%20x2%3D%22280.0%22%20y2%3D%2261.4%22/%3E%3Cline%20x1%3D%22288.2%22%20y1%3D%2278.6%22%20x2%3D%22294.0%22%20y2%3D%2270.6%22/%3E%3Cline%20x1%3D%22300.4%22%20y1%3D%2288.5%22%20x2%3D%22303.7%22%20y2%3D%2284.8%22/%3E%3Cline%20x1%3D%22311.5%22%20y1%3D%2299.6%22%20x2%3D%22315.2%22%20y2%3D%2296.3%22/%3E%3Cline%20x1%3D%22321.4%22%20y1%3D%22111.8%22%20x2%3D%22325.4%22%20y2%3D%22108.9%22/%3E%3Cline%20x1%3D%22329.9%22%20y1%3D%22125.0%22%20x2%3D%22338.6%22%20y2%3D%22120.0%22/%3E%3Cline%20x1%3D%22337.0%22%20y1%3D%22139.0%22%20x2%3D%22341.6%22%20y2%3D%22137.0%22/%3E%3Cline%20x1%3D%22342.7%22%20y1%3D%22153.6%22%20x2%3D%22347.4%22%20y2%3D%22152.1%22/%3E%3Cline%20x1%3D%22346.7%22%20y1%3D%22168.8%22%20x2%3D%22351.6%22%20y2%3D%22167.8%22/%3E%3Cline%20x1%3D%22349.2%22%20y1%3D%22184.3%22%20x2%3D%22354.2%22%20y2%3D%22183.8%22/%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27170%27%20stroke-width%3D%27.8%27/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat; opacity:.13; pointer-events:none; z-index:1; }
+    .lbl { font:700 9.5px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; color:#5b5045; }
+    .sub { color:#5b5045; font:11px var(--f-ui); }
+    .empty { color:#6a5f52; font:italic 13px var(--f-body); margin:6px 0; }
+    .error { color:var(--blood); font-weight:700; }
+    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .right { margin-left:auto; }
+    /* ---- boutons ---- */
+    .roll { display:inline-block; min-width:46px; padding:4px 12px; text-align:center; background:linear-gradient(180deg,var(--blood2),var(--blood)); color:var(--bone); font:700 15px/20px var(--f-ui); border-radius:6px 6px 14px 14px; box-shadow:0 2px 0 #000a, inset 0 1px 0 #ff9a9a55; letter-spacing:.03em; }
+    .roll.dmg { background:linear-gradient(180deg,#2c231d,#0f0a08); }
+    .roll.sm { min-width:42px; font-size:13px; padding:2px 10px; }
+    .roll:hover:not(:disabled) { filter:brightness(1.15); }
+    .plaque { display:inline-block; text-align:center; background:linear-gradient(180deg,#2c231d,#0f0a08); color:var(--bone); padding:4px 16px 5px; border-radius:5px 5px 14px 14px; box-shadow:0 2px 0 #000a, inset 0 1px 0 #ffffff22; min-width:84px; }
+    .plaque b { display:block; font:700 15px/18px var(--f-ui); } .plaque em { display:block; font:italic 400 11px var(--f-body); color:#efe8d8; text-decoration:none; border:0; }
+    .plaque:hover:not(:disabled) { filter:brightness(1.25); }
+    .btn { display:inline-block; border:1.5px solid var(--blood); color:var(--blood); padding:4px 16px; border-radius:14px; font:700 12px var(--f-ui); background:#fff8; letter-spacing:.04em; }
+    .btn.on { background:linear-gradient(180deg,var(--blood2),var(--blood)); color:var(--bone); box-shadow:0 2px 0 #000a; }
+    .btn.big { padding:8px 26px; font-size:14px; }
+    .btn:hover:not(:disabled) { filter:brightness(1.1); }
+    .add { display:inline-block; border:1.5px dashed var(--blood); color:var(--blood); padding:3px 14px; border-radius:14px; font:700 12px var(--f-ui); background:#fff5; }
+    .add:hover:not(:disabled) { background:var(--blood); color:var(--bone); }
+    .seal2 { background:linear-gradient(180deg,var(--blood2),var(--blood)); color:var(--bone); font:700 11px var(--f-ui); letter-spacing:.08em; text-transform:uppercase; padding:4px 14px; border-radius:50px; box-shadow:0 2px 0 #000a, inset 0 1px 0 #ff9a9a55; }
+    .del { width:22px; height:22px; border-radius:50%; background:var(--blood); color:var(--bone); font:700 12px/22px var(--f-ui); text-align:center; flex:none; }
+    .pm { position:relative; width:32px; height:32px; border-radius:50%; background:#0b0807; border:1.5px solid #8b7b6b; color:var(--bone); font-size:0; line-height:0; flex:none; --pw:12px; --pt:2.4px; }
+    /* signes − et + dessinés (le glyphe du texte se centre mal) : la barre horizontale est en ::before, la verticale (boutons +) en ::after */
+    .pm::before, #hp-plus::after, .pm[data-d="1"]::after, .pm[data-e="1"]::after, .pm[data-md="1"]::after { content:''; position:absolute; left:50%; top:50%; background:currentColor; border-radius:1px; transform:translate(-50%,-50%); }
+    .pm::before { width:var(--pw); height:var(--pt); } #hp-plus::after, .pm[data-d="1"]::after, .pm[data-e="1"]::after, .pm[data-md="1"]::after { width:var(--pt); height:var(--pw); }
+    .pm.d { background:#fff8; border-color:#17120f66; color:var(--ink); width:28px; height:28px; --pw:11px; --pt:2.2px; }
+    .pm:hover:not(:disabled) { border-color:var(--blood2); }
+    .tg { width:42px; height:24px; border-radius:12px; background:#8a8174; position:relative; flex:none; box-shadow:inset 0 2px 4px #0006; }
+    .tg i { position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:var(--bone); box-shadow:0 1px 3px #0008; transition:left .15s; }
+    .tg.on { background:var(--blood); } .tg.on i { left:21px; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 4px; align-items:center; }
+    .chip { padding:4px 15px; border:1.5px solid var(--ink); border-radius:14px; font:700 11px var(--f-ui); letter-spacing:.1em; text-transform:uppercase; background:#fff8; color:var(--ink); }
+    .chip.on { background:var(--ink); color:var(--bone); box-shadow:0 0 0 2px #fff8, 0 0 0 3.5px var(--blood); }
+    .chip.tool { margin-left:auto; border-color:#8c8274; color:#5b5045; font-weight:600; text-transform:none; letter-spacing:0; }
+    .chip .x { margin-left:6px; color:var(--blood2); }
+    /* ---- bandeau d'en-tête ---- */
+    .hero { position:relative; z-index:2; background:linear-gradient(180deg,#1f1813,#110c0a); color:var(--bone); padding:20px 30px 40px; overflow:hidden; }
+    .hero::before { content:''; position:absolute; inset:0; background-image:var(--paper,none); background-size:256px; opacity:.09; mix-blend-mode:screen; }
+    .hero::after { content:''; position:absolute; left:-80px; bottom:-120px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,#8e0e1477,transparent 65%); }
+    .hero > * { position:relative; z-index:1; }
+    .hero > i.pent { position:absolute; right:-130px; top:-215px; width:470px; height:470px; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27400%27%20height%3D%27400%27%20viewBox%3D%270%200%20400%20400%27%3E%3Cg%20fill%3D%27%23efe8d8%27%3E%3Cpath%20d%3D%27M200.0%20328.0Q167.3%20210.6%20124.8%2096.4Q157.4%20213.8%20200.0%20328.0ZM124.8%2096.4Q220.2%20172.2%20321.7%20239.6Q226.3%20163.8%20124.8%2096.4ZM321.7%20239.6Q200.0%20234.4%2078.3%20239.6Q200.0%20244.8%20321.7%20239.6ZM78.3%20239.6Q179.8%20172.2%20275.2%2096.4Q173.7%20163.8%2078.3%20239.6ZM275.2%2096.4Q232.7%20210.6%20200.0%20328.0Q242.6%20213.8%20275.2%2096.4Z%27/%3E%3C/g%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23efe8d8%27%20stroke-width%3D%271.3%27%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27142%27/%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27150%27%20stroke-dasharray%3D%271%203%27/%3E%3Cline%20x1%3D%22350.0%22%20y1%3D%22200.0%22%20x2%3D%22360.0%22%20y2%3D%22200.0%22/%3E%3Cline%20x1%3D%22349.2%22%20y1%3D%22215.7%22%20x2%3D%22354.2%22%20y2%3D%22216.2%22/%3E%3Cline%20x1%3D%22346.7%22%20y1%3D%22231.2%22%20x2%3D%22351.6%22%20y2%3D%22232.2%22/%3E%3Cline%20x1%3D%22342.7%22%20y1%3D%22246.4%22%20x2%3D%22352.2%22%20y2%3D%22249.4%22/%3E%3Cline%20x1%3D%22337.0%22%20y1%3D%22261.0%22%20x2%3D%22341.6%22%20y2%3D%22263.0%22/%3E%3Cline%20x1%3D%22329.9%22%20y1%3D%22275.0%22%20x2%3D%22338.6%22%20y2%3D%22280.0%22/%3E%3Cline%20x1%3D%22321.4%22%20y1%3D%22288.2%22%20x2%3D%22325.4%22%20y2%3D%22291.1%22/%3E%3Cline%20x1%3D%22311.5%22%20y1%3D%22300.4%22%20x2%3D%22315.2%22%20y2%3D%22303.7%22/%3E%3Cline%20x1%3D%22300.4%22%20y1%3D%22311.5%22%20x2%3D%22303.7%22%20y2%3D%22315.2%22/%3E%3Cline%20x1%3D%22288.2%22%20y1%3D%22321.4%22%20x2%3D%22291.1%22%20y2%3D%22325.4%22/%3E%3Cline%20x1%3D%22275.0%22%20y1%3D%22329.9%22%20x2%3D%22280.0%22%20y2%3D%22338.6%22/%3E%3Cline%20x1%3D%22261.0%22%20y1%3D%22337.0%22%20x2%3D%22263.0%22%20y2%3D%22341.6%22/%3E%3Cline%20x1%3D%22246.4%22%20y1%3D%22342.7%22%20x2%3D%22247.9%22%20y2%3D%22347.4%22/%3E%3Cline%20x1%3D%22231.2%22%20y1%3D%22346.7%22%20x2%3D%22232.2%22%20y2%3D%22351.6%22/%3E%3Cline%20x1%3D%22215.7%22%20y1%3D%22349.2%22%20x2%3D%22216.2%22%20y2%3D%22354.2%22/%3E%3Cline%20x1%3D%22200.0%22%20y1%3D%22350.0%22%20x2%3D%22200.0%22%20y2%3D%22360.0%22/%3E%3Cline%20x1%3D%22184.3%22%20y1%3D%22349.2%22%20x2%3D%22183.8%22%20y2%3D%22354.2%22/%3E%3Cline%20x1%3D%22168.8%22%20y1%3D%22346.7%22%20x2%3D%22167.8%22%20y2%3D%22351.6%22/%3E%3Cline%20x1%3D%22153.6%22%20y1%3D%22342.7%22%20x2%3D%22152.1%22%20y2%3D%22347.4%22/%3E%3Cline%20x1%3D%22139.0%22%20y1%3D%22337.0%22%20x2%3D%22137.0%22%20y2%3D%22341.6%22/%3E%3Cline%20x1%3D%22125.0%22%20y1%3D%22329.9%22%20x2%3D%22120.0%22%20y2%3D%22338.6%22/%3E%3Cline%20x1%3D%22111.8%22%20y1%3D%22321.4%22%20x2%3D%22108.9%22%20y2%3D%22325.4%22/%3E%3Cline%20x1%3D%2299.6%22%20y1%3D%22311.5%22%20x2%3D%2296.3%22%20y2%3D%22315.2%22/%3E%3Cline%20x1%3D%2288.5%22%20y1%3D%22300.4%22%20x2%3D%2284.8%22%20y2%3D%22303.7%22/%3E%3Cline%20x1%3D%2278.6%22%20y1%3D%22288.2%22%20x2%3D%2274.6%22%20y2%3D%22291.1%22/%3E%3Cline%20x1%3D%2270.1%22%20y1%3D%22275.0%22%20x2%3D%2261.4%22%20y2%3D%22280.0%22/%3E%3Cline%20x1%3D%2263.0%22%20y1%3D%22261.0%22%20x2%3D%2258.4%22%20y2%3D%22263.0%22/%3E%3Cline%20x1%3D%2257.3%22%20y1%3D%22246.4%22%20x2%3D%2247.8%22%20y2%3D%22249.4%22/%3E%3Cline%20x1%3D%2253.3%22%20y1%3D%22231.2%22%20x2%3D%2248.4%22%20y2%3D%22232.2%22/%3E%3Cline%20x1%3D%2250.8%22%20y1%3D%22215.7%22%20x2%3D%2245.8%22%20y2%3D%22216.2%22/%3E%3Cline%20x1%3D%2250.0%22%20y1%3D%22200.0%22%20x2%3D%2240.0%22%20y2%3D%22200.0%22/%3E%3Cline%20x1%3D%2250.8%22%20y1%3D%22184.3%22%20x2%3D%2245.8%22%20y2%3D%22183.8%22/%3E%3Cline%20x1%3D%2253.3%22%20y1%3D%22168.8%22%20x2%3D%2248.4%22%20y2%3D%22167.8%22/%3E%3Cline%20x1%3D%2257.3%22%20y1%3D%22153.6%22%20x2%3D%2252.6%22%20y2%3D%22152.1%22/%3E%3Cline%20x1%3D%2263.0%22%20y1%3D%22139.0%22%20x2%3D%2258.4%22%20y2%3D%22137.0%22/%3E%3Cline%20x1%3D%2270.1%22%20y1%3D%22125.0%22%20x2%3D%2261.4%22%20y2%3D%22120.0%22/%3E%3Cline%20x1%3D%2278.6%22%20y1%3D%22111.8%22%20x2%3D%2274.6%22%20y2%3D%22108.9%22/%3E%3Cline%20x1%3D%2288.5%22%20y1%3D%2299.6%22%20x2%3D%2284.8%22%20y2%3D%2296.3%22/%3E%3Cline%20x1%3D%2299.6%22%20y1%3D%2288.5%22%20x2%3D%2296.3%22%20y2%3D%2284.8%22/%3E%3Cline%20x1%3D%22111.8%22%20y1%3D%2278.6%22%20x2%3D%22106.0%22%20y2%3D%2270.6%22/%3E%3Cline%20x1%3D%22125.0%22%20y1%3D%2270.1%22%20x2%3D%22120.0%22%20y2%3D%2261.4%22/%3E%3Cline%20x1%3D%22139.0%22%20y1%3D%2263.0%22%20x2%3D%22137.0%22%20y2%3D%2258.4%22/%3E%3Cline%20x1%3D%22153.6%22%20y1%3D%2257.3%22%20x2%3D%22152.1%22%20y2%3D%2252.6%22/%3E%3Cline%20x1%3D%22168.8%22%20y1%3D%2253.3%22%20x2%3D%22167.8%22%20y2%3D%2248.4%22/%3E%3Cline%20x1%3D%22184.3%22%20y1%3D%2250.8%22%20x2%3D%22183.8%22%20y2%3D%2245.8%22/%3E%3Cline%20x1%3D%22200.0%22%20y1%3D%2250.0%22%20x2%3D%22200.0%22%20y2%3D%2240.0%22/%3E%3Cline%20x1%3D%22215.7%22%20y1%3D%2250.8%22%20x2%3D%22216.2%22%20y2%3D%2245.8%22/%3E%3Cline%20x1%3D%22231.2%22%20y1%3D%2253.3%22%20x2%3D%22232.2%22%20y2%3D%2248.4%22/%3E%3Cline%20x1%3D%22246.4%22%20y1%3D%2257.3%22%20x2%3D%22247.9%22%20y2%3D%2252.6%22/%3E%3Cline%20x1%3D%22261.0%22%20y1%3D%2263.0%22%20x2%3D%22263.0%22%20y2%3D%2258.4%22/%3E%3Cline%20x1%3D%22275.0%22%20y1%3D%2270.1%22%20x2%3D%22280.0%22%20y2%3D%2261.4%22/%3E%3Cline%20x1%3D%22288.2%22%20y1%3D%2278.6%22%20x2%3D%22294.0%22%20y2%3D%2270.6%22/%3E%3Cline%20x1%3D%22300.4%22%20y1%3D%2288.5%22%20x2%3D%22303.7%22%20y2%3D%2284.8%22/%3E%3Cline%20x1%3D%22311.5%22%20y1%3D%2299.6%22%20x2%3D%22315.2%22%20y2%3D%2296.3%22/%3E%3Cline%20x1%3D%22321.4%22%20y1%3D%22111.8%22%20x2%3D%22325.4%22%20y2%3D%22108.9%22/%3E%3Cline%20x1%3D%22329.9%22%20y1%3D%22125.0%22%20x2%3D%22338.6%22%20y2%3D%22120.0%22/%3E%3Cline%20x1%3D%22337.0%22%20y1%3D%22139.0%22%20x2%3D%22341.6%22%20y2%3D%22137.0%22/%3E%3Cline%20x1%3D%22342.7%22%20y1%3D%22153.6%22%20x2%3D%22347.4%22%20y2%3D%22152.1%22/%3E%3Cline%20x1%3D%22346.7%22%20y1%3D%22168.8%22%20x2%3D%22351.6%22%20y2%3D%22167.8%22/%3E%3Cline%20x1%3D%22349.2%22%20y1%3D%22184.3%22%20x2%3D%22354.2%22%20y2%3D%22183.8%22/%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27170%27%20stroke-width%3D%27.8%27/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat; opacity:.11; z-index:0; }
+    .top { display:flex; align-items:center; gap:18px; }
+    .portrait { position:relative; width:74px; height:74px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#3a2d25,#120d0b); display:flex; align-items:center; justify-content:center; flex:none; overflow:visible; }
+    .portrait::before { pointer-events:none; content:''; position:absolute; inset:-3px; border-radius:50%; border:3px solid var(--blood2); }
+    .portrait img.zoom { cursor:zoom-in; }
+    .dlg.lbx { top:50%; transform:translate(-50%,-50%); width:auto; background:none; padding:0; box-shadow:none; } .dlg.lbx::before { display:none; } .lbx img { display:block; max-width:min(92vw,900px); max-height:86vh; border:4px solid var(--blood2); box-shadow:0 10px 40px #000c; background:#120d0b; }
+    .portrait img { width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
+    .portrait span { font:34px var(--f-title); color:var(--bone); }
+    .who { flex:1; min-width:0; }
+    input.name { width:100%; font:50px/1 var(--f-title); color:var(--bone); text-transform:uppercase; letter-spacing:.03em; text-shadow:0 2px 0 #000, 0 0 22px #b3151e99; background:transparent; border:0; padding:0; }
+    .orig { margin-top:6px; font:700 11px var(--f-ui); letter-spacing:.2em; text-transform:uppercase; color:#d49a8a; min-height:14px; }
+    .lv { display:flex; flex-direction:column; align-items:center; gap:8px; flex:none; }
+    .seal { position:relative; width:86px; height:86px; border-radius:50%; background:radial-gradient(circle at 35% 28%,#32261f,#0a0706); border:3px solid var(--bone); box-shadow:0 0 0 3px var(--blood), 0 0 0 5px #000, 0 6px 18px #000b; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .seal b { font:40px/1 var(--f-title); color:var(--bone); position:relative; top:-10px; } .seal span { font:700 7.5px var(--f-ui); letter-spacing:.2em; text-transform:uppercase; color:#d49a8a; margin-top:2px; }
+    .lvbtn { display:block; text-align:center; font:700 8.5px/1.2 var(--f-ui); letter-spacing:.12em; text-transform:uppercase; color:var(--bone); border:1.5px solid #efe8d8aa; border-radius:11px; padding:4px 10px; background:#0007; }
+    .lvbtn em { display:block; font:italic 400 10px var(--f-body); letter-spacing:0; text-transform:none; margin-top:1px; }
+    .lvbtn.hot { background:linear-gradient(180deg,var(--blood2),var(--blood)); border-color:#ff9a8f; box-shadow:0 0 12px #ff3b3088, 0 2px 0 #000a; }
+    .lvbtn:hover:not(:disabled) { border-color:#fff; }
+    .vial { display:flex; align-items:center; gap:12px; margin-top:22px; }
+    .vtrack { position:relative; flex:1; height:38px; border-radius:19px; background:#0a0706; border:2px solid #54443a; box-shadow:inset 0 3px 9px #000; overflow:hidden; display:block; }
+    .vtrack .fill { position:absolute; inset:0 auto 0 0; width:0; background:linear-gradient(180deg,#d42028,#7a0b10); box-shadow:inset 0 2px 0 #ff7a7a55; transition:width .2s; }
+    .vtrack.down .fill { background:linear-gradient(180deg,#6a6a6a,#2a2a2a); }
+    .vtrack .tick { position:absolute; top:0; bottom:0; left:50%; width:2px; background:#efe8d8aa; z-index:1; } .vtrack .tick em { position:absolute; top:3px; left:6px; font:700 8px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; font-style:normal; color:#efe8d8aa; }
+    .vtrack b.r { left:auto; padding-left:0; padding-right:22px; text-align:right; color:#ffd9d4; }
+    .vtrack b { position:absolute; inset:0; z-index:2; padding-left:20px; text-align:left; font:700 13px/38px var(--f-ui); letter-spacing:.18em; text-transform:uppercase; color:var(--bone); text-shadow:0 1px 3px #000; }
+    /* ---- bande des attributs (bord déchiré) ---- */
+    .band { position:relative; z-index:3; margin-top:-16px; padding:34px 30px 14px; background-color:#d9dde3; background-image:var(--paper,none); background-size:256px; clip-path:polygon(0 14px, 2.1% 12px, 5.0% 8px, 7.1% 12px, 10.1% 3px, 11.6% 12px, 13.8% 12px, 16.6% 0px, 18.7% 3px, 20.0% 8px, 23.0% 4px, 24.3% 9px, 27.4% 4px, 30.1% 4px, 31.6% 0px, 34.5% 0px, 35.8% 3px, 38.8% 12px, 40.0% 9px, 41.9% 12px, 44.8% 12px, 46.4% 6px, 48.6% 4px, 50.0% 4px, 51.8% 12px, 55.0% 8px, 56.3% 6px, 58.1% 3px, 60.4% 0px, 61.7% 8px, 63.1% 0px, 66.0% 9px, 67.4% 0px, 70.3% 0px, 71.9% 0px, 74.0% 4px, 76.0% 0px, 78.3% 3px, 81.1% 6px, 83.0% 6px, 84.8% 9px, 87.6% 0px, 89.0% 4px, 90.4% 0px, 92.6% 9px, 94.1% 12px, 95.7% 12px, 97.3% 4px, 100.0% 9px, 100% 14px, 100% 100%, 0 100%); }
+    .sigs { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
+    .sig { display:flex; flex-direction:column; align-items:center; gap:7px; } .sig .nm { font:700 11px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; color:#3d342b; }
+    .ring { position:relative; width:84px; height:84px; display:flex; align-items:center; justify-content:center; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Cpath%20d%3D%27M96.1%2050.0%20L96.1%2052.1%20L96.0%2054.1%20L95.3%2056.2%20L95.5%2058.2%20L95.1%2060.2%20L94.3%2062.2%20L93.8%2064.2%20L92.8%2066.1%20L92.2%2068.2%20L91.6%2069.9%20L90.7%2071.7%20L89.5%2073.5%20L88.1%2075.5%20L87.1%2076.9%20L86.2%2078.8%20L84.5%2080.4%20L83.3%2081.9%20L81.7%2083.4%20L80.3%2084.9%20L78.8%2085.9%20L77.0%2087.1%20L75.2%2088.2%20L73.5%2089.5%20L71.7%2090.6%20L69.9%2091.3%20L68.2%2092.3%20L66.1%2093.1%20L64.3%2093.5%20L62.3%2094.1%20L60.3%2095.0%20L58.2%2095.4%20L56.2%2095.6%20L54.1%2095.5%20L52.1%2096.2%20L50.0%2096.2%20L47.9%2096.2%20L45.9%2095.7%20L43.8%2095.7%20L41.8%2095.4%20L39.7%2095.1%20L37.8%2094.6%20L35.9%2093.7%20L33.8%2093.3%20L32.0%2092.5%20L30.0%2091.3%20L28.3%2090.3%20L26.5%2089.3%20L24.6%2088.6%20L23.1%2087.0%20L21.1%2086.0%20L19.8%2084.5%20L18.2%2083.4%20L16.8%2081.8%20L15.6%2080.4%20L14.3%2078.7%20L12.6%2076.9%20L11.5%2075.5%20L10.4%2073.7%20L9.7%2071.8%20L8.7%2070.0%20L7.8%2068.1%20L6.7%2066.2%20L6.0%2064.2%20L5.7%2062.3%20L5.2%2060.2%20L4.8%2058.2%20L4.5%2056.2%20L3.9%2054.1%20L4.0%2052.1%20L4.2%2050.0%20L3.9%2047.9%20L4.3%2045.9%20L4.3%2043.8%20L4.6%2041.8%20L5.2%2039.7%20L5.8%2037.8%20L6.1%2035.7%20L7.0%2033.7%20L7.6%2031.9%20L8.8%2030.0%20L9.6%2028.2%20L10.5%2026.3%20L11.5%2024.6%20L12.9%2022.9%20L13.9%2021.2%20L15.4%2019.6%20L16.6%2018.1%20L18.0%2016.6%20L19.7%2015.3%20L21.4%2013.9%20L22.8%2012.8%20L24.6%2011.5%20L26.3%2010.7%20L28.1%209.4%20L30.0%208.6%20L31.9%207.6%20L33.8%206.8%20L35.9%206.4%20L37.8%205.6%20L39.8%205.0%20L41.8%205.0%20L43.8%204.6%20L45.9%204.4%20L47.9%204.2%20L50.0%204.3%20L52.1%204.1%20L54.1%204.1%20L56.2%204.2%20L58.2%204.8%20L60.2%205.2%20L62.2%205.5%20L64.2%206.5%20L66.2%207.2%20L68.1%207.8%20L70.0%208.3%20L71.9%209.5%20L73.7%2010.4%20L75.3%2011.8%20L77.1%2012.8%20L78.9%2013.8%20L80.3%2015.4%20L82.0%2017.0%20L83.1%2018.2%20L84.7%2019.9%20L86.0%2021.2%20L87.2%2023.0%20L88.3%2024.7%20L89.7%2026.4%20L90.8%2028.1%20L91.5%2030.1%20L92.6%2031.9%20L93.0%2033.9%20L94.0%2035.8%20L94.2%2037.8%20L94.6%2039.7%20L95.2%2041.8%20L95.8%2043.8%20L95.5%2045.9%20L95.8%2047.9Z%27%20fill%3D%27none%27%20stroke%3D%27%2317120f%27%20stroke-width%3D%273.4%27%20stroke-linejoin%3D%27round%27/%3E%3C/svg%3E") center/100% 100% no-repeat; }
+    .ring::after { content:''; position:absolute; inset:8px; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Cpath%20d%3D%27M89.9%2050.0%20L89.8%2052.1%20L89.6%2054.2%20L89.8%2056.2%20L89.2%2058.3%20L88.6%2060.4%20L87.9%2062.4%20L87.2%2064.3%20L86.3%2066.2%20L85.6%2068.3%20L84.6%2069.9%20L83.4%2071.9%20L82.2%2073.5%20L81.0%2075.2%20L79.7%2076.8%20L78.3%2078.3%20L76.9%2079.8%20L75.1%2080.9%20L73.6%2082.4%20L71.7%2083.7%20L70.0%2084.7%20L68.2%2085.5%20L66.2%2086.7%20L64.3%2087.5%20L62.3%2088.1%20L60.4%2088.9%20L58.4%2089.1%20L56.2%2089.3%20L54.2%2089.8%20L52.1%2090.1%20L50.0%2090.1%20L47.9%2089.8%20L45.8%2089.7%20L43.8%2089.5%20L41.7%2089.3%20L39.6%2088.5%20L37.7%2087.9%20L35.6%2087.6%20L33.8%2086.7%20L31.9%2085.4%20L29.9%2084.6%20L28.3%2083.5%20L26.6%2082.3%20L24.8%2081.1%20L23.2%2079.6%20L21.9%2078.1%20L20.4%2076.8%20L19.0%2075.3%20L17.6%2073.6%20L16.3%2071.7%20L15.6%2069.9%20L14.4%2068.2%20L13.3%2066.2%20L12.4%2064.2%20L11.8%2062.3%20L11.2%2060.3%20L10.6%2058.3%20L10.3%2056.3%20L10.4%2054.2%20L10.1%2052.1%20L9.9%2050.0%20L10.1%2047.9%20L10.4%2045.8%20L10.5%2043.8%20L10.9%2041.7%20L11.3%2039.7%20L12.0%2037.7%20L12.8%2035.7%20L13.5%2033.8%20L14.3%2031.8%20L15.3%2030.1%20L16.5%2028.2%20L17.8%2026.4%20L18.8%2024.8%20L20.2%2023.3%20L21.8%2021.7%20L23.2%2020.2%20L25.0%2018.9%20L26.4%2017.5%20L28.1%2016.3%20L30.1%2015.4%20L31.8%2014.1%20L33.8%2013.3%20L35.6%2012.6%20L37.6%2011.7%20L39.6%2011.5%20L41.6%2011.0%20L43.8%2010.3%20L45.8%2010.3%20L47.9%2010.0%20L50.0%209.9%20L52.1%209.9%20L54.2%2010.2%20L56.2%2010.5%20L58.3%2010.9%20L60.4%2011.5%20L62.3%2011.8%20L64.3%2012.7%20L66.2%2013.3%20L68.1%2014.5%20L70.1%2015.4%20L71.7%2016.3%20L73.5%2017.7%20L75.3%2018.8%20L76.8%2020.4%20L78.4%2021.7%20L79.8%2023.3%20L81.2%2024.7%20L82.3%2026.4%20L83.7%2028.1%20L84.8%2029.9%20L85.5%2031.8%20L86.6%2033.8%20L87.3%2035.6%20L88.2%2037.6%20L88.4%2039.6%20L89.3%2041.7%20L89.4%2043.8%20L90.0%2045.8%20L90.0%2047.9Z%27%20fill%3D%27none%27%20stroke%3D%27%238e0e14%27%20stroke-width%3D%271%27%20stroke-linejoin%3D%27round%27/%3E%3C/svg%3E") center/100% 100% no-repeat; }
+    .ring b { position:relative; z-index:1; font:42px/1 var(--f-title); color:var(--ink); }
+    .chars { display:flex; justify-content:center; align-items:center; gap:16px; margin-top:16px; padding-top:12px; border-top:2px solid var(--ink); position:relative; flex-wrap:wrap; }
+    .chars::before { content:''; position:absolute; left:0; right:0; top:2px; border-top:1px solid var(--blood); }
+    .ch.def { margin:0 4px; } .shield { display:block; position:relative; width:42px; height:48px; margin:2px auto 0; background:var(--ink); clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%); } .shield::before { content:''; position:absolute; inset:2px; background:linear-gradient(180deg,#f6f0e0,#e2d9c3); clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%); } .shield b { position:absolute; left:0; right:0; top:7px; z-index:1; font:22px/1 var(--f-title); color:var(--ink); }
+    .ch { text-align:center; } .ch .cl { display:block; font:700 9.5px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; color:#5b5045; } .ch b { font:26px/1.1 var(--f-title); color:var(--ink); } .sep { color:var(--blood); font-size:9px; padding-bottom:6px; }
+    .status { position:relative; z-index:2; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px 14px; padding:6px 30px 16px; }
+    .meter { display:inline-flex; align-items:center; gap:8px; } .ml { font:700 9.5px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; color:#5b5045; } .meter b { font:700 13px var(--f-body); color:var(--ink); } .meter b.big { font:20px var(--f-title); }
+    .dias { display:inline-flex; gap:4px; flex-wrap:wrap; } .dia { width:12px; height:12px; border:1.5px solid var(--ink); transform:rotate(45deg); background:#fff9; margin:3px; padding:0; } .dia.on { background:var(--blood); border-color:var(--blood); } .dia:hover:not(:disabled) { background:#e9b3b6; } .dia.on:hover:not(:disabled) { opacity:.7; }
+    button.meter { cursor:pointer; }
+    .pm.sm { width:22px; height:22px; --pw:9px; --pt:2px; } .meter .pm { margin:0 -2px; }
+    .luck { display:inline-flex; align-items:center; gap:6px; padding:2px 11px 2px 6px; border:1.5px solid #7a6f60; border-radius:13px; font:700 9.5px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; color:#5b5045; background:#fff8; } .luck i { width:13px; height:13px; border-radius:50%; background:#c9bfae; box-shadow:inset 0 0 0 1.5px #7a6f60; } .luck.on { border-color:#8a6a10; color:#4a3604; background:linear-gradient(180deg,#f3de8a,#d5b24a); } .luck.on i { background:radial-gradient(circle at 35% 30%,#fff7c8,#d9a91f 60%,#8a6a10); box-shadow:0 0 0 1.5px #8a6a10, 0 0 6px #f0c53a; }
+    .luck.dem.on { border-color:#2a1445; color:#efe3ff; background:linear-gradient(180deg,#5b3a8c,#2e1a52); } .luck.dem.on i { background:radial-gradient(circle at 35% 30%,#e3ccff,#8a5cc8 60%,#2a1445); box-shadow:0 0 0 1.5px #2a1445, 0 0 6px #9b6be0; }
+    .luck.mark.on { border-color:#0d2f26; color:#dcf5ea; background:linear-gradient(180deg,#2c7a62,#124236); } .luck.mark.on i { background:radial-gradient(circle at 35% 30%,#c7f2e1,#3fb58f 60%,#0d2f26); box-shadow:0 0 0 1.5px #0d2f26, 0 0 6px #3fb58f; }
+    .brk { flex-basis:100%; height:0; margin:-6px 0 0; } .aff.mind, .aff.mark { max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; background:#3a2a40; } .aff.mark { background:#4a1218; } .aff.mind span, .aff.mark span { opacity:.7; font-weight:400; }
+    .dlg .lbl { display:block; margin:14px 0 3px; } .mhead { display:flex; align-items:baseline; gap:10px; } .mhead b { font:20px var(--f-title); }
+    .dias.big { display:flex; flex-wrap:wrap; gap:8px; margin:8px 4px 4px; } .dias.big .dia { width:14px; height:14px; margin:4px; }
+    .db input:focus, .db textarea:focus { outline:0; border-color:var(--blood2); box-shadow:0 0 0 2px #b3151e33; }
+    .gj { width:64px; height:9px; border-radius:5px; background:#17120f33; box-shadow:inset 0 1px 2px #0006; overflow:hidden; flex:none; } .gj i { display:block; height:100%; background:linear-gradient(180deg,var(--blood2),var(--blood)); }
+    .status.tight { gap:8px 8px; } .status.tight .vr { margin:0 1px; } .status.tight .luck { padding:2px 8px 2px 5px; letter-spacing:.08em; } .status.tight .ml { letter-spacing:.1em; } .status.tight .dia { margin:2px; width:10px; height:10px; } .status.tight .gj { width:44px; }
+    .vr { width:2px; height:20px; background:#8a8174aa; margin:0 4px; flex:none; }
+    .aff { background:var(--ink); color:var(--bone); padding:2px 12px; border-radius:3px 11px 3px 11px; font:700 11px var(--f-ui); letter-spacing:.06em; box-shadow:0 1px 0 #0008; } .aff.more { background:var(--blood); }
+    .aff:hover { filter:brightness(1.4); }
+    .hint { text-align:center; font:italic 11px var(--f-body); color:#6a5f52; margin-top:8px; }
+    .status .add { font-size:11px; padding:1px 12px; } button.ml { cursor:pointer; } button.ml:hover { color:var(--blood); }
+    /* ---- corps, encadrés ---- */
+    .body { position:relative; z-index:2; flex:1; padding:6px 30px 14px; }
+    .cols2 { display:grid; grid-template-columns:1fr 1fr; gap:0 30px; align-items:start; }
+    .cols2 > div { min-width:0; }
+    .cols2 .ban span { font-size:18px; line-height:22px; padding:4px 24px 3px; }
+    .box { position:relative; margin:34px 0 8px; padding:28px 18px 10px; background:linear-gradient(180deg,#f2ecdc,#e9e1cd); box-shadow:0 2px 0 #0004, 0 8px 18px #0003; }
+    .box::before { content:''; position:absolute; inset:-3px; border:4px solid transparent; border-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%3E%3Cpath%20d%3D%27M0.0%202.5%20L6.0%203.1%20L12.0%202.7%20L18.0%203.2%20L24.0%203.3%20L30.0%202.1%20L36.0%202.0%20L42.0%203.7%20L48.0%202.5%20L54.0%202.5%20L60.0%204.0%20L56.9%206.0%20L57.7%2012.0%20L57.0%2018.0%20L57.3%2024.0%20L56.3%2030.0%20L57.3%2036.0%20L57.7%2042.0%20L57.0%2048.0%20L57.5%2054.0%20L57.3%2060.0%20L54.0%2056.1%20L48.0%2057.5%20L42.0%2057.2%20L36.0%2056.6%20L30.0%2056.1%20L24.0%2057.7%20L18.0%2056.9%20L12.0%2057.4%20L6.0%2057.8%20L0.0%2057.4%20L3.8%2054.0%20L2.8%2048.0%20L3.6%2042.0%20L2.9%2036.0%20L3.9%2030.0%20L3.8%2024.0%20L2.2%2018.0%20L2.3%2012.0%20L2.4%206.0Z%27%20fill%3D%27none%27%20stroke%3D%27%238e0e14%27%20stroke-width%3D%273%27%20stroke-linejoin%3D%27round%27/%3E%3C/svg%3E") 6 stretch; pointer-events:none; }
+    .ban { position:absolute; left:50%; top:-17px; transform:translateX(-50%); margin:0; white-space:nowrap; max-width:96%; }
+    .ban span { display:block; padding:4px 36px 3px; background:linear-gradient(180deg,var(--blood2),var(--blood)); color:var(--bone); font:22px/26px var(--f-title); text-transform:uppercase; letter-spacing:.05em; clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,14px 100%,0 50%); text-shadow:0 1px 0 #0008; filter:drop-shadow(0 2px 0 #000a); overflow:hidden; text-overflow:ellipsis; }
+    .wp { background:#fffdf5aa; border:1px solid #17120f33; border-radius:4px; padding:8px 12px; margin-bottom:8px; position:relative; }
+    .wp.eq { border-color:var(--blood); box-shadow:inset 0 0 0 2px #fff9, inset 0 0 0 3px #8e0e1444; }
+    .wl { display:flex; align-items:center; gap:10px; } .wl .ic { color:var(--blood); flex:none; }
+    .nm { flex:1; min-width:0; font:19px/22px var(--f-title); color:var(--ink); letter-spacing:.02em; text-align:left; } .nm small { display:block; font:11px var(--f-ui); color:#6a5f52; letter-spacing:0; margin-top:1px; }
+    .lk { border-bottom:1.5px dotted #7a6f60; cursor:pointer; }
+    .rk { width:30px; height:30px; border-radius:50%; border:2px solid var(--ink); font:700 14px/26px var(--f-title); text-align:center; flex:none; background:#fff9; }
+    .am { display:flex; align-items:center; gap:10px; margin-top:6px; padding-top:6px; border-top:1px dashed #17120f33; flex-wrap:wrap; } .al { font:700 9.5px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; color:#6a5f52; } .auto { margin-left:auto; font:10px var(--f-ui); color:#8a7f70; }
+    .pips { display:inline-flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+    .pip { position:relative; width:20px; height:20px; border:2px solid var(--ink); border-radius:3px; background:#fffc; }
+    .pip.u::before, .pip.u::after { content:''; position:absolute; left:50%; top:-3px; width:3px; height:24px; background:var(--blood); transform:translateX(-50%) rotate(45deg); } .pip.u::after { transform:translateX(-50%) rotate(-45deg); }
+    .pip:hover:not(:disabled) { background:#f3c5c8; }
+    .cnt { display:inline-flex; align-items:center; gap:8px; font:11px var(--f-ui); color:#6a5f52; } .cnt b { font:20px var(--f-title); color:var(--ink); }
+    .gauge { display:inline-block; width:70px; height:7px; border-radius:4px; background:#17120f22; overflow:hidden; box-shadow:inset 0 1px 2px #0005; } .gauge i { display:block; height:100%; background:linear-gradient(180deg,var(--blood2),var(--blood)); } .gauge.wide { flex:1; height:10px; width:auto; }
+    .adesc { white-space:normal !important; }
+    /* boutons de jet DANS un texte : petits, sans casser les lignes ; un texte long (« jet d'attaque d'Intellect ») reste un lien discret coloré */
+    button.roll.inl { display:inline; min-width:0; padding:0 7px; margin:0 1px; font:700 11.5px/1.5 var(--f-ui); letter-spacing:.02em; border-radius:4px 4px 9px 9px; vertical-align:baseline; box-shadow:0 1px 0 #000a; white-space:nowrap; }
+    button.roll.inl.txt { padding:0; margin:0; font:inherit; font-weight:700; letter-spacing:0; color:var(--blood); background:none; box-shadow:none; border-radius:0; border-bottom:1.5px dotted var(--blood); white-space:normal; text-align:inherit; }
+    button.roll.inl.txt.dmg { color:var(--ink); border-bottom-color:var(--ink); }
+    .bdr { display:flex; align-items:flex-start; gap:8px; margin:0 0 8px; } .bdr details { flex:1; min-width:0; } .bdr .del { margin-top:6px; }
+    details.bd > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px; padding:6px 10px 6px 14px; background:linear-gradient(180deg,#e4d9bf,#d6c9a9); color:var(--ink); border-radius:3px 12px 3px 12px; box-shadow:inset 0 -2px 0 #8e0e14aa, 0 1px 0 #0003; } details.bd > summary::-webkit-details-marker { display:none; }
+    details.bd .tn { font:15px/1.15 var(--f-title); text-transform:uppercase; letter-spacing:.05em; flex:1; min-width:0; color:var(--ink); } details.bd .tn small { display:block; font:11px var(--f-ui); letter-spacing:.04em; text-transform:none; color:#5b5045; margin-top:1px; }
+    details.bd > summary::after { content:'+'; width:22px; height:22px; border-radius:50%; border:1.5px solid #17120f88; color:var(--ink); text-align:center; font:700 15px/19px var(--f-ui); flex:none; } details.bd[open] > summary::after { content:'−'; background:var(--blood); border-color:var(--blood); color:var(--bone); }
+    details.bd .lvb { width:24px; height:24px; border-radius:50%; border:1.5px solid #17120f88; font:700 13px/21px var(--f-title); text-align:center; flex:none; }
+    details.bd .bu { flex:none; display:inline-flex; } details.bd .bu .pip { border-color:var(--ink); background:#fffc; } details.bd .bu .pip:hover:not(:disabled) { background:#f3c5c8; } details.bd .bu .cnt { color:var(--ink); }
+    details.bd .bdb { padding:8px 12px 6px; border-left:3px solid var(--blood); margin:0 0 0 8px; background:#fffdf5aa; } .acl { text-align:right; margin-top:4px; font:11px var(--f-ui); color:var(--blood); }
+    .ar { display:flex; align-items:center; gap:10px; padding:7px 4px; border-bottom:1px dotted #17120f44; } .nr { font:italic 11px var(--f-ui); color:#8a7f70; }
+    .rest { display:flex; align-items:center; gap:8px; padding:10px 4px 4px; } .rest.med { padding-top:2px; } .rest .nm small { font-size:11px; }
+    .addrow { margin:14px 0 4px; display:flex; justify-content:flex-end; align-items:center; gap:12px; flex-wrap:wrap; }
+    .edgebar { display:flex; align-items:center; gap:10px; margin:14px 0 0; } .edgebar select { border:1.5px solid var(--ink); border-radius:4px; background:#fffdf5; padding:3px 8px; font:13px var(--f-body); }
+    select { font:13px var(--f-body); }
+    .rkgrid { display:grid; grid-template-columns:1fr 1fr; gap:0 30px; align-items:start; }
+    details.sd { flex:1; min-width:0; } details.sd summary { list-style:none; cursor:pointer; } details.sd summary::-webkit-details-marker { display:none; } details.sd summary::after { content:' ▾'; color:var(--blood); font-size:11px; }
+    .ttext { white-space:pre-wrap; margin:6px 0 2px; font:13px/1.45 var(--f-body); color:#2b241d; }
+    .box.tl .ban span { font-size:19px; padding:4px 28px 3px; } .sb { font:700 10px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; color:var(--blood); margin:0 0 4px 2px; }
+    .ti { display:flex; gap:12px; align-items:flex-start; padding:7px 0; border-bottom:1px dotted #17120f44; } .ti:last-child { border-bottom:0; }
+    .lvs2 { width:30px; height:30px; border-radius:50%; border:2px solid var(--ink); font:700 15px/26px var(--f-title); text-align:center; flex:none; background:#fff9; margin-top:2px; } .tb { flex:1; min-width:0; }
+    .th { display:flex; align-items:center; gap:10px; flex-wrap:wrap; } .tn { font:20px var(--f-title); } .tu { margin-left:auto; } .tx { font:13.5px/1.45 var(--f-body); color:#2b241d; margin-top:2px; white-space:pre-wrap; }
+    .toast { position:fixed; left:50%; bottom:76px; transform:translateX(-50%); z-index:40; background:#3a1215; color:#fff; padding:10px 16px; border:1px solid #ff9a8f; border-radius:6px; max-width:92vw; font:13px/1.35 var(--f-ui); box-shadow:0 6px 24px #000a; cursor:pointer; }
+    .res { display:flex; align-items:center; gap:8px; font:12px/1.5 var(--f-ui); color:#4d443a; padding:1px 0; } .res .undo { margin-left:auto; font-size:11px; color:#8a7f70; padding:0 6px; } .res .undo:hover:not(:disabled) { color:var(--blood); } .resbox { margin:8px 0 2px; padding-top:6px; border-top:1px dotted #17120f44; }
+    .or { text-align:center; font:700 11px var(--f-ui); letter-spacing:.24em; color:#8a7f70; margin:12px 0 8px; } .btn.wide { display:block; width:100%; text-align:center; }
+    .rrow { display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px dotted #17120f44; } .rrow .rn { flex:1; font:17px var(--f-title); } .rv { min-width:64px; text-align:right; font:22px var(--f-title); color:#8a7f70; } .rin { width:72px !important; text-align:center; margin:0 !important; padding:3px 6px !important; }
+    .stp { display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px dotted #17120f44; } .stp .sl { flex:1; font:15px var(--f-body); } .stp.done .sl { opacity:.6; } .stp .btn { padding:2px 14px; min-width:84px; text-align:center; } .stp .skip { min-width:56px; text-align:right; } .skip { font:700 10px var(--f-ui); letter-spacing:.1em; text-transform:uppercase; color:#8a7f70; text-decoration:underline; } .sub.book { font-style:italic; margin:4px 0 0; }
+    .qin { width:38px; height:24px; text-align:center; font:700 14px var(--f-ui); color:var(--ink); background:transparent; border:0; border-bottom:1.5px dotted #7a6f60; border-radius:0; padding:0; flex:none; -moz-appearance:textfield; } .qin::-webkit-inner-spin-button, .qin::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; } .qin:focus { border-bottom-color:var(--blood2); outline:0; }
+    .rg { margin-left:auto; display:flex; align-items:center; gap:12px; flex:none; } .wl .btn, .wl .seal2 { min-width:80px; text-align:center; flex:none; }
+    .qs { display:inline-flex; align-items:center; gap:2px; margin-left:4px; } .qs .qt { min-width:30px; text-align:center; margin:0; }
+    .qt { font:700 13px var(--f-ui); color:#5b5045; margin-left:4px; } .ur { margin-left:auto; }
+    .coins { display:flex; justify-content:space-around; margin:20px 0 6px; } .coin { display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .disc { position:relative; display:flex; width:64px; height:64px; border-radius:50%; align-items:center; justify-content:center; background:radial-gradient(circle at 35% 30%,#fff7,#0000 40%), var(--g); border:3px solid var(--ink); box-shadow:0 0 0 3px #fff8, 0 3px 8px #0006, inset 0 0 0 5px #0002; }
+    .disc input { width:48px; text-align:center; font:25px var(--f-title); color:var(--ink); text-shadow:0 1px 0 #fff8; background:transparent; border:0; padding:0; -moz-appearance:textfield; } .disc input::-webkit-inner-spin-button, .disc input::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+    .cn { display:block; margin-top:8px; max-width:130px; text-align:center; font:700 10px/1.25 var(--f-ui); letter-spacing:.1em; text-transform:uppercase; color:#5b5045; }
+    .c1 { --g:#b9b3a8; } .c2 { --g:#c58a52; } .c3 { --g:#d7d2c6; } .c4 { --g:#d4b04c; }
+    .enc { display:flex; flex-wrap:wrap; align-items:center; gap:4px 12px; margin:14px 0 0; } .encx { flex-basis:100%; color:var(--blood); font-style:italic; } .el { font:700 10px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; color:#5b5045; } .enc b { font:20px var(--f-title); } .enc.over b, .enc.over .el { color:var(--blood); }
+    .defl { font:700 11px var(--f-ui); letter-spacing:.1em; text-transform:uppercase; color:var(--blood); margin:0 0 8px; } .defl em { font:italic 12px var(--f-body); text-transform:none; letter-spacing:0; color:#5b5045; margin-left:8px; }
+    .step { display:flex; align-items:center; gap:12px; padding:6px 2px; border-bottom:1px dotted #17120f44; } .step b { font:24px var(--f-title); min-width:70px; text-align:center; }
+    .lgr { display:flex; align-items:center; gap:8px; padding:6px 2px; border-bottom:1px dotted #17120f44; } .lgr .nm small { font-size:11px; }
+    .lgs { margin-left:auto; display:flex; gap:5px; flex:none; }
+    .lgr.fx .tgl { cursor:default; } .lgr.fx .nm small { color:#8a7f70; }
+    .tgl { padding:2px 9px; border:1px solid #17120f66; border-radius:11px; font:700 10px var(--f-ui); letter-spacing:.08em; text-transform:uppercase; background:#fff8; color:#8a7f70; } .tgl.on { background:var(--ink); color:var(--bone); border-color:var(--ink); }
+    .sub2 { margin:12px 0 2px; } .rc { padding:6px 2px; border-bottom:1px dotted #17120f44; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; } .rc b { font:700 12px var(--f-ui); letter-spacing:.1em; text-transform:uppercase; min-width:92px; } .rc em { font:20px var(--f-title); font-style:normal; color:var(--blood); min-width:26px; text-align:right; } .rc .rp { font:14px var(--f-body); color:#3b322a; flex:1; min-width:200px; }
+    details.calc { margin-top:14px; }
+    .kv { display:flex; align-items:baseline; gap:8px; padding:5px 2px; } .kv span { font:700 10px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; color:#5b5045; } .kv i { flex:1; border-bottom:1.5px dotted #7a6f60; } .kv b { font:17px var(--f-body); }
+    .kv input { font:17px var(--f-body); color:var(--ink); border:0; background:transparent; text-align:right; flex:1; min-width:80px; padding:0; border-bottom:1.5px dotted #7a6f60; } .kv input:focus { outline:0; border-bottom:1.5px solid var(--blood2); }
+    textarea.lined.big { min-height:330px; } #story.big { min-height:200px; }
+    textarea.lined { width:100%; min-height:150px; font:15px/30px var(--f-body); background:repeating-linear-gradient(transparent 0 29px, #17120f33 29px 30px); border:0; padding:0 2px; resize:vertical; }
+    details.calc summary { cursor:pointer; font:700 11px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; color:var(--blood); padding:4px 2px 8px; }
+    .cr { display:grid; grid-template-columns:96px 1fr 46px 62px 62px 62px; gap:8px; align-items:center; padding:4px 2px; border-bottom:1px dotted #17120f44; font:16px var(--f-title); } .cr .cc { text-align:center; font:20px var(--f-title); }
+    .cr .fm { font:13px var(--f-body); color:#3b322a; padding-left:6px; }
+    .cr input, .cr select { width:100%; height:24px; border:1px solid #17120f55; border-radius:3px; background:#fffc; text-align:center; font:13px var(--f-ui); } .cr input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+    .cr.hh { font:700 9px var(--f-ui); letter-spacing:.12em; text-transform:uppercase; color:#5b5045; border-bottom:1px solid var(--ink); margin-top:8px; } .cr.hh span { text-align:center; } .cr.hh span:first-child { text-align:left; }
+    /* ---- barre d'onglets ---- */
+    .nav { position:sticky; bottom:0; z-index:5; display:flex; background:linear-gradient(180deg,#1d1612,#0c0807); border-top:4px solid var(--blood); }
+    .nav button { flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; padding:10px 0 11px; color:#8b7f72; position:relative; }
+    .nav em { font:700 10px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; font-style:normal; }
+    .nav button[aria-selected=true] { color:var(--bone); background:linear-gradient(180deg,#3a1215,#1d0c0e); }
+    .nav button[aria-selected=true] .ic { color:#ff5a4f; filter:drop-shadow(0 0 6px #ff3b30aa); }
+    .nav button[aria-selected=true]::before { content:''; position:absolute; top:-4px; left:50%; width:44px; height:4px; transform:translateX(-50%); background:#ff3b30; box-shadow:0 0 10px #ff3b30; }
+    .nav button:hover { color:var(--bone); }
+    .status-msg { position:sticky; bottom:62px; z-index:4; padding:0 30px; font:11px var(--f-ui); color:#5b5045; }
+    /* ---- menu de jet (clic droit ou appui long) : avantage / désavantage ---- */
+    .rmenu { position:fixed; z-index:20; min-width:220px; background:#17120f; color:var(--bone); border:1px solid #54443a; border-top:3px solid var(--blood2); box-shadow:0 10px 30px #000d; padding:4px 0 6px; }
+    .rmenu .t { font:700 10px var(--f-ui); letter-spacing:.18em; text-transform:uppercase; color:#d49a8a; padding:8px 16px 6px; border-bottom:1px solid #ffffff1f; margin-bottom:4px; }
+    .rmenu button { display:block; width:100%; text-align:left; padding:8px 16px; font:15px var(--f-body); color:var(--bone); }
+    .rmenu button:hover { background:linear-gradient(90deg,var(--blood),#3a1215); }
+    .rmenu hr { border:0; border-top:1px solid #ffffff1f; margin:4px 0; }
+    /* ---- fenêtres et tiroir ---- */
+    .veil { position:fixed; inset:0; background:#000a; z-index:8; }
+    .dlg { position:fixed; left:50%; top:18%; transform:translateX(-50%); width:min(92%,440px); z-index:9; background:linear-gradient(180deg,#f4eedf,#e8e0cb); padding:34px 22px 16px; box-shadow:0 10px 40px #000c; }
+    .dlg::before { content:''; position:absolute; inset:-3px; border:4px solid transparent; border-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2760%27%20height%3D%2760%27%20viewBox%3D%270%200%2060%2060%27%3E%3Cpath%20d%3D%27M0.0%202.5%20L6.0%203.1%20L12.0%202.7%20L18.0%203.2%20L24.0%203.3%20L30.0%202.1%20L36.0%202.0%20L42.0%203.7%20L48.0%202.5%20L54.0%202.5%20L60.0%204.0%20L56.9%206.0%20L57.7%2012.0%20L57.0%2018.0%20L57.3%2024.0%20L56.3%2030.0%20L57.3%2036.0%20L57.7%2042.0%20L57.0%2048.0%20L57.5%2054.0%20L57.3%2060.0%20L54.0%2056.1%20L48.0%2057.5%20L42.0%2057.2%20L36.0%2056.6%20L30.0%2056.1%20L24.0%2057.7%20L18.0%2056.9%20L12.0%2057.4%20L6.0%2057.8%20L0.0%2057.4%20L3.8%2054.0%20L2.8%2048.0%20L3.6%2042.0%20L2.9%2036.0%20L3.9%2030.0%20L3.8%2024.0%20L2.2%2018.0%20L2.3%2012.0%20L2.4%206.0Z%27%20fill%3D%27none%27%20stroke%3D%27%238e0e14%27%20stroke-width%3D%273%27%20stroke-linejoin%3D%27round%27/%3E%3C/svg%3E") 6 stretch; pointer-events:none; }
+    .db { font:14px/1.45 var(--f-body); max-height:52vh; overflow-y:auto; padding:0 2px; }
+    .pk { align-items:flex-start; border-bottom:1px dotted #17120f33; padding:5px 0; } .pk span { display:block; } .pk b { font:17px var(--f-title); font-weight:400; } .pk small { display:block; color:#5b5045; font:11px var(--f-ui); }
+    .picklist.tall { max-height:44vh; }
+    .picklist { max-height:38vh; overflow-y:auto; margin-top:6px; border:1px solid #17120f33; padding:4px 8px; background:#fffdf5; }
+    .afftxt { font:14px/1.5 var(--f-body); white-space:pre-wrap; } .afftxt b { font-weight:700; }
+    details.ad { border-bottom:1px dotted #17120f55; padding:6px 0; } details.ad summary { cursor:pointer; font:18px var(--f-title); } details.ad .afftxt { margin:6px 0 4px; font-size:13.5px; } .db p { margin:4px 0 6px; }
+    .db input[type=number], .db input[type=text], .db textarea, .db select { width:100%; background:#fffdf5; border:1.5px solid var(--ink); border-radius:3px; padding:7px 12px; font:18px var(--f-title); margin:3px 0; }
+    .db input[type=text], .db textarea { font:15px var(--f-body); }
+    .db label.opt { display:flex; align-items:center; gap:10px; padding:3px 0; font:15px var(--f-body); } .db input[type=checkbox], .db input[type=radio] { accent-color:var(--blood); width:18px; height:18px; }
+    .btn .bsub { display:block; font:400 11px var(--f-ui); letter-spacing:0; text-transform:none; margin-top:2px; white-space:normal; }
+    .dbt { display:flex; gap:10px; justify-content:flex-end; margin-top:14px; flex-wrap:wrap; }
+    .drawer { position:fixed; top:0; right:0; bottom:0; width:min(92%,440px); z-index:9; background-color:#d9dde3; background-image:var(--paper,none); background-size:256px; padding:22px 22px 18px; box-shadow:-10px 0 24px #000a; overflow-y:auto; border-left:3px solid var(--blood); }
+    .drawer .ribbon { position:absolute; right:26px; top:0; width:38px; height:64px; background:linear-gradient(180deg,var(--blood2),var(--blood)); clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%); color:var(--bone); text-align:center; font:700 14px/38px var(--f-ui); }
+    .dtitle { margin:0; font:34px var(--f-title); color:var(--blood); text-transform:uppercase; text-shadow:0 1px 0 #fff8; } .dtitle small { font-size:20px; color:var(--ink); margin-left:8px; }
+    .dsub { font:12px var(--f-ui); color:#4d443a; }
+    .box.tight { padding-bottom:6px; margin-top:30px; }
+    .got { font:12px/1.5 var(--f-ui); color:#4d443a; margin:1px 0; } .got small { font:inherit; color:#8a7f70; letter-spacing:0; text-transform:none; } .auto { margin:6px 0 10px; } .auto b { font-weight:700; }
+    .chc { display:flex; gap:10px; align-items:flex-start; padding:4px 0; border-bottom:1px dotted #17120f44; } .chc input { accent-color:var(--blood); width:18px; height:18px; margin-top:2px; } .chc .ctext { flex:1; font:15px var(--f-body); } .chc small { display:block; color:#5b5045; font:11px var(--f-ui); white-space:pre-wrap; }
+    /* ---- étroit (téléphone, iPad vertical) ---- */
+    @media (max-width: 719px) {
+      .cols2, .rkgrid { display:block; }
+      .hero { padding:14px 16px 34px; } .top { gap:10px; } .portrait { width:48px; height:48px; } .portrait span { font-size:22px; }
+      input.name { font-size:30px; } .orig { font-size:9px; letter-spacing:.14em; } .seal { width:64px; height:64px; } .seal b { font-size:28px; top:-7px; } .seal span { font-size:7px; }
+      .lvbtn { font-size:7.5px; padding:3px 7px; } .lvbtn em { font-size:9px; } .lv { gap:5px; }
+      .vial { margin-top:14px; } .vtrack { height:30px; } .vtrack b { line-height:30px; font-size:11px; letter-spacing:.1em; }
+      .band { padding:28px 12px 10px; } .ring { width:56px; height:56px; } .ring::after { inset:6px; } .ring b { font-size:28px; } .sig .nm { font-size:7.5px; letter-spacing:.06em; } .roll { min-width:38px; font-size:12px; padding:2px 8px; }
+      .chars { gap:7px; } .ch b { font-size:18px; } .ch .cl { font-size:7.5px; } .status { padding:6px 14px 12px; gap:8px; } .body { padding:4px 16px 20px; }
+      .nav em { font-size:8.5px; } .box { padding:26px 12px 8px; } .nm { font-size:17px; } .status-msg { padding:0 16px; }
+      .coins .disc { width:52px; height:52px; } .disc input { width:38px; font-size:20px; } .cr { grid-template-columns:70px 1fr 36px 46px 46px 46px; gap:4px; } .cr .fm { font-size:11px; }
+    }
+  </style>
+</head>
+<body>
+<div class="app" id="sheet" hidden>
+  <div class="hero">
+    <i class="pent"></i>
+    <div class="top">
+      <div class="portrait"><span id="portrait-i"></span><img id="portrait" alt="" hidden></div>
+      <div class="who"><input class="name" id="name" data-ta="Common.Name"><div class="orig" id="origins"></div></div>
+      <div class="lv"><div class="seal"><b id="level-n">0</b><span id="lbl-level"></span></div><button type="button" class="lvbtn" id="level-btn" data-tt="Sheet.OpenLevel"></button></div>
+    </div>
+    <div class="vial">
+      <button type="button" class="pm" id="hp-minus" data-ta="Sheet.HealOne" data-tt="Sheet.HealOne">−</button>
+      <button type="button" class="vtrack" id="hp-open" data-tt="Sheet.EditDamage"><i class="fill"></i><i class="tick"><em data-t="Sheet.Wounded"></em></i><b id="hp-text"></b><b class="r" id="hp-down" data-t="Sheet.Down" hidden></b></button>
+      <button type="button" class="pm" id="hp-plus" data-ta="Sheet.HurtOne" data-tt="Sheet.HurtOne">+</button>
+    </div>
+  </div>
+  <div class="band"><div class="sigs" id="attrs"></div><div class="chars" id="stats"></div></div>
+  <div class="status" id="badges"></div>
+
+  <div class="body">
+    <section data-panel="act">
+      <div class="cols2">
+        <div><section class="box"><h3 class="ban"><span id="h-attacks"></span></h3><div id="attacks"></div></section>
+          <section class="box"><h3 class="ban"><span id="h-rest"></span></h3>
+          <div class="rest"><span class="nm"><span class="lk" id="rest-link" data-t="Sheet.Rest"></span><small data-t="Sheet.RestOnce"></small></span>
+            <button type="button" class="plaque" id="rest-8"><b>8 h</b><em id="rest-8-sub"></em></button>
+            <button type="button" class="plaque" id="rest-24"><b>24 h</b><em id="rest-24-sub"></em></button></div>
+          <div class="rest med"><span class="nm"><small data-t="Sheet.Meditate"></small></span>
+            <button type="button" class="tg on" id="rest-spells" role="switch" aria-checked="true" data-ta="Sheet.MeditateAria"><i></i></button></div>
+          </section></div>
+        <div><section class="box"><h3 class="ban"><span id="h-actions"></span></h3><div id="actions"></div></section>
+        <div class="addrow"><button type="button" class="chip tool" data-edit data-t="Sheet.Edit"></button><button type="button" class="add" id="add-action" data-t="Sheet.AddActionBtn"></button></div></div>
+      </div>
+    </section>
+
+    <section data-panel="magic" hidden>
+      <div class="chips" id="traditions"></div>
+      <div class="rkgrid" id="spells"></div>
+      <div class="addrow"><button type="button" class="chip tool" data-edit data-t="Sheet.Edit"></button><button type="button" class="add" id="add-spell" data-t="Sheet.AddSpellBtn"></button></div>
+    </section>
+
+    <section data-panel="talents" hidden>
+      <div id="talents"></div>
+      <div class="addrow"><button type="button" class="chip tool" data-edit data-t="Sheet.Edit"></button><button type="button" class="add" id="add-talent" data-t="Sheet.AddTalentBtn"></button></div>
+    </section>
+
+    <section data-panel="bag" hidden>
+      <div class="coins" id="coins"></div>
+      <div class="enc" id="enc"></div>
+      <div class="cols2"><div id="items-eq"></div><div id="items-bag"></div></div>
+      <div class="addrow"><button type="button" class="chip tool" data-edit data-t="Sheet.Edit"></button><button type="button" class="add" id="add-item" data-t="Sheet.AddItemBtn"></button></div>
+      <section class="box"><h3 class="ban"><span id="h-notes"></span></h3><textarea class="lined" id="bag-notes"></textarea></section>
+    </section>
+
+    <section data-panel="perso" hidden>
+      <div class="cols2">
+        <div>
+          <section class="box"><h3 class="ban"><span id="h-ident" data-t="Sheet.Identity"></span></h3><div id="identity"></div></section>
+          <section class="box"><h3 class="ban"><span id="h-lp"></span></h3><div id="lp"></div></section>
+        </div>
+        <div>
+          <section class="box"><h3 class="ban"><span id="h-hist"></span></h3><textarea class="lined big" id="history"></textarea></section>
+          <section class="box"><h3 class="ban"><span id="h-comp"></span></h3><div id="complication"></div></section>
+        </div>
+      </div>
+      <section class="box"><h3 class="ban"><span id="h-story"></span></h3><textarea class="lined big" id="story"></textarea></section>
+      <section class="box"><h3 class="ban"><span id="h-calc" data-t="Sheet.Calcs"></span></h3><details class="calc"><summary data-t="Sheet.CalcSettings"></summary><div id="calc"></div></details></section>
+      <div class="addrow"><button type="button" class="chip tool" data-edit data-t="Sheet.Edit"></button></div>
+    </section>
+  </div>
+
+  <div class="status-msg" id="status"></div>
+  <nav class="nav" id="tabs" role="tablist"></nav>
+</div>
+<div id="overlay" hidden></div>
+<p id="loading" style="padding:16px;color:#d8d2c6" data-t="Sheet.Loading"></p>
+
+<script src="/_app/js/ep.js"></script>
+<!-- navigateur : fenêtre de bibliothèque et bandeau de résultat des jets -->
+<script src="/_app/js/ep-ui.js"></script>
+<script>
+(async () => {
+  const $ = (id) => document.getElementById(id)
+  const t = key => EP.t(key)
+  const signed = (n) => (n >= 0 ? '+' : '') + n
+  const esc = (v) => String(v ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
+  const text = (el, v) => { if (el.textContent !== String(v)) el.textContent = v }
+  const at = (obj, dotted) => dotted.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj)
+  const box = (title, body, cls) => `<section class="box${cls ? ' ' + cls : ''}"><h3 class="ban"><span>${esc(title)}</span></h3>${body}</section>`
+  const ICONS = {
+    sword: '<path d="M20 4l-1 5-9 9-4-4 9-9z"/><path d="M7 13l4 4M6 18l-3 3"/>',
+    flame: '<path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
+    star: '<path d="M12 3l2.6 6.2 6.4.5-4.9 4.2 1.6 6.3L12 16.9 6.3 20.2l1.6-6.3L3 9.7l6.4-.5z"/>',
+    pouch: '<path d="M9 6l-1-2h8l-1 2c3 2 4 5 4 8 0 3-2 5-4 5H9c-2 0-4-2-4-5 0-3 1-6 4-8z"/><path d="M9 6h6"/>',
+    person: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 4-8 8-8s8 3 8 8"/>',
+    bow: '<path d="M6 3c9 4 9 14 0 18"/><path d="M6 3v18M6 12h14M16.5 8.5L20 12l-3.5 3.5"/>',
+    shield: '<path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6z"/><path d="M12 7v10"/>',
+  }
+  const ic = (name, size = 26) => `<svg class="ic" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]}</svg>`
+
+  // icône d'une arme ou d'une armure : épée (corps à corps), arc (distance), bouclier (armure, bouclier)
+  const iconOf = (x) => (x.itemType === 'Armor' || x.weaponType === 'Shield' ? 'shield' : x.weaponType === 'Ranged' ? 'bow' : 'sword')
+  const hero = EP.entity
+  if (!hero) { $('loading').textContent = t('Sheet.NoCharacter'); return }
+  try { await hero.connect() }
+  catch (e) { $('loading').textContent = t('Sheet.ConnectFail') + ' ' + (e.message || e); return }
+
+  const status = $('status')
+  const toast = (m) => {
+    const el = document.createElement('div'); el.className = 'toast'; el.setAttribute('role', 'alert'); el.textContent = m
+    document.body.appendChild(el); setTimeout(() => el.remove(), 9000); el.addEventListener('click', () => el.remove())
+  }
+  const fail = (e) => {
+    const m = (e && e.errors && e.errors.map((x) => x.message).join(' ; ')) || (e && e.message) || String(e)
+    status.innerHTML = '<span class="error">' + esc(t('Sheet.Refused')) + ' ' + esc(m) + '</span>'
+    toast(t('Sheet.Error').replace('{m}', m))
+  }
+  const note = (m) => { status.textContent = m; setTimeout(() => { if (status.textContent === m) status.textContent = '' }, 4000) }
+  hero.addEventListener('error', (ev) => fail({ errors: ev.detail.errors }))
+  hero.addEventListener('deleted', () => { status.textContent = t('Sheet.Deleted') })
+
+  // ---- état de l'interface ----
+  const ui = { tab: 'act', edit: false, trad: 'all', drawer: false }
+  let last = null // dernier instantané
+  const online = () => !last || last.status === 'connected'
+  const off = () => (online() ? '' : ' disabled')
+
+  const sysURL = (hero.env && hero.env.systemURL) || '/systems/sotdl/'
+  document.documentElement.style.setProperty('--paper', `url('${sysURL}images/sotdl_paper.png')`)
+  // portrait : toucher l'image l'affiche en grand
+  document.querySelector('.portrait').addEventListener('click', () => {
+    const src = $('portrait').getAttribute('src'); if (!src) return
+    const ov = $('overlay')
+    ov.innerHTML = `<div class="veil"></div><div class="dlg lbx" role="dialog" aria-label="${esc(hero.view.name || '')}"><img src="${esc(src)}" alt=""></div>`
+    ov.hidden = false
+    const close = () => { ov.hidden = true; ov.innerHTML = '' }
+    ov.querySelector('.veil').addEventListener('click', close); ov.querySelector('.lbx').addEventListener('click', close)
+  })
+  document.title = hero.view.name || t('Sheet.PageTitle')
+
+  // ---- fenêtres ----
+  // dialog(titre, corps HTML, boutons) : résout { value, data } ; value = null si fermé en touchant le fond
+  function dialog(title, body, buttons, onOpen) {
+    return new Promise((resolve) => {
+      const ov = $('overlay')
+      ov.innerHTML = `<div class="veil"></div><div class="dlg" role="dialog" aria-label="${esc(title)}"><h3 class="ban"><span>${esc(title)}</span></h3><div class="db">${body}</div>
+        <div class="dbt">${buttons.map((b, i) => `<button type="button" class="btn${b.primary ? ' on' : ''}" data-b="${i}">${esc(b.label)}${b.sub ? `<small class="bsub">${esc(b.sub)}</small>` : ''}</button>`).join('')}</div></div>`
+      ov.hidden = false
+      const close = (value) => {
+        const data = {}
+        ov.querySelectorAll('input,select,textarea').forEach((el) => { if (el.type === 'radio') { if (el.checked) data[el.name] = el.value } else data[el.name || el.id] = el.type === 'checkbox' ? el.checked : el.value })
+        ov.hidden = true; ov.innerHTML = ''
+        resolve({ value, data })
+      }
+      ov.querySelector('.veil').addEventListener('click', () => close(null))
+      ov.querySelectorAll('button[data-b]').forEach((b) => b.addEventListener('click', () => close(buttons[Number(b.dataset.b)].value)))
+      ov.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => close(b.dataset.close)))
+      if (onOpen) onOpen(ov)
+      const f = ov.querySelector('input:not([type=checkbox]):not([type=radio]),textarea'); if (f) f.focus()
+    })
+  }
+  // confirmation aux couleurs de la fiche (remplace la boîte du système)
+  async function ask(msg, o = {}) {
+    const r = await dialog(o.title || t('Sheet.Confirm'), `<p>${esc(msg)}</p>`, [{ label: t('Sheet.Cancel'), value: null }, { label: o.action || t('Sheet.Ok'), value: 'ok', primary: true }])
+    return r.value === 'ok'
+  }
+
+  // ---- sélecteur de la bibliothèque aux couleurs de la fiche (remplace celui de l'app) ----
+  async function pickEntries(entity, title, opts = {}) {
+    const picked = new Map()
+    let entries = []
+    const trads = opts.knownTraditions ? (hero.get('data.traditions') || []) : null
+    const tradOf = (e) => { const x = (e.data && e.data.spellTradition) || e['data.spellTradition'] || e.spellTradition; return x && x.tradition }
+    const shown = (ov) => { const only = trads && ov.querySelector('#pknown') && ov.querySelector('#pknown').checked; const base = opts.filter ? entries.filter(opts.filter) : entries; return only ? base.filter((e) => !tradOf(e) || trads.includes(tradOf(e))) : base }
+    const draw = (ov, total) => {
+      const box = ov.querySelector('#plist'), list = shown(ov)
+      box.innerHTML = list.length ? list.map((e) => `<label class="opt pk"><input type="checkbox" data-id="${esc(e.id)}"${picked.has(e.id) ? ' checked' : ''}><span><b>${esc(e.name)}</b>${e.detail ? `<small>${esc(e.detail)}</small>` : ''}</span></label>`).join('') : `<p class="empty">${esc(t('Sheet.NoResults'))}</p>`
+      ov.querySelector('#pinfo').textContent = total > entries.length ? tf('Sheet.PickMore', { n: entries.length, total }) : ''
+      box.querySelectorAll('input').forEach((cb) => cb.addEventListener('change', () => { const e = list.find((x) => x.id === cb.dataset.id); if (cb.checked) { if (opts.single) { picked.clear(); box.querySelectorAll('input').forEach((o) => { if (o !== cb) o.checked = false }) } picked.set(e.id, e) } else picked.delete(e.id) }))
+    }
+    let timer = null
+    const search = async (ov, q) => {
+      try { const lim = trads || opts.filter ? 200 : 60, keys = opts.keys || (trads ? ['data.spellTradition'] : undefined); let r = await EP.query({ entity, search: q || undefined, where: opts.where, sort: 'name', limit: lim, keys }); if (!(r.entries || []).length && opts.where) r = await EP.query({ entity, search: q || undefined, sort: 'name', limit: lim, keys }); entries = r.entries || []; draw(ov, r.total || entries.length) }
+      catch (e) { ov.querySelector('#plist').innerHTML = `<p class="empty">${esc(t('Sheet.LibUnavailable'))}</p>` }
+    }
+    const r = await dialog(title, '<input type="text" id="psearch" placeholder="' + esc(t('Sheet.Search')) + '" autocomplete="off">' + (trads ? `<label class="opt"><input type="checkbox" id="pknown" checked><span><b>${esc(t('Sheet.Step.Known'))}</b></span></label>` : '') + '<div class="picklist tall" id="plist"><p class="empty">' + esc(t('Sheet.Loading')) + '</p></div><p class="sub" id="pinfo"></p>',
+      [{ label: t('Sheet.Cancel'), value: null }, { label: opts.action || t('Sheet.Add'), value: 'ok', primary: true }],
+      (ov) => { search(ov, ''); const kn = ov.querySelector('#pknown'); if (kn) kn.addEventListener('change', () => draw(ov, 0)); ov.querySelector('#psearch').addEventListener('input', (e) => { clearTimeout(timer); timer = setTimeout(() => search(ov, e.target.value.trim()), 250) }) })
+    return r.value === 'ok' ? [...picked.values()] : []
+  }
+
+  // ---- onglets du bas ----
+  const TABS = [['act', t('Sheet.Tab.Act'), 'sword'], ['magic', t('Sheet.Tab.Magic'), 'flame'], ['talents', t('Sheet.Tab.Talents'), 'star'], ['bag', t('Sheet.Tab.Bag'), 'pouch'], ['perso', t('Sheet.Tab.Perso'), 'person']]
+  $('tabs').innerHTML = TABS.map(([k, l, i]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${k === 'act'}">${ic(i)}<em>${l}</em></button>`).join('')
+  function showTab(tab) {
+    ui.tab = tab
+    document.querySelectorAll('#tabs button').forEach((x) => x.setAttribute('aria-selected', String(x.dataset.tab === tab)))
+    document.querySelectorAll('[data-panel]').forEach((x) => { x.hidden = x.dataset.panel !== tab })
+    window.scrollTo(0, 0)
+  }
+  $('tabs').addEventListener('click', (ev) => { const b = ev.target.closest('button[data-tab]'); if (b) showTab(b.dataset.tab) })
+  document.addEventListener('click', (ev) => { if (ev.target.closest('[data-edit]')) { ui.edit = !ui.edit; rerender() } })
+  const rerender = () => { keys = {}; if (last) render(last) }
+  const editLabel = () => (ui.edit ? t('Sheet.EditDone') : t('Sheet.Edit'))
+
+  // ---- champs liés ----
+  EP.field($('name'), { store: hero, path: 'name' })
+  EP.field($('history'), { store: hero, path: 'data.history' })
+  EP.field($('story'), { store: hero, path: 'data.story' })
+  EP.field($('bag-notes'), { store: hero, path: 'data.bagNotes' })
+  document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = t(el.dataset.t) })
+  document.querySelectorAll('[data-tt]').forEach((el) => el.setAttribute('title', t(el.dataset.tt)))
+  document.querySelectorAll('[data-ta]').forEach((el) => el.setAttribute('aria-label', t(el.dataset.ta)))
+  document.title = t('Sheet.PageTitle')
+  $('h-attacks').textContent = t('Character.Attacks')
+  $('h-actions').textContent = t('Character.SecActions')
+  $('h-rest').textContent = t('Sheet.RestTitle')
+  $('h-story').textContent = t('Character.Story'); $('story').setAttribute('aria-label', $('h-story').textContent); $('h-notes').textContent = t('Character.BagNotes'); $('bag-notes').setAttribute('aria-label', $('h-notes').textContent)
+  $('h-hist').textContent = t('Character.HistoryAppearance'); $('history').setAttribute('aria-label', $('h-hist').textContent)
+  $('h-comp').textContent = t('Entity.Complication'); $('h-lp').textContent = t('Common.Language&Profession')
+
+  // ---- jets : d20 + modificateur ; avantage / désavantage au clic droit ou à l'appui long (menu) ----
+  // dés nommés (config.json `dice.labels`) : le d20 est « Test » ou « Attaque », les d6 « Avantage » / « Désavantage » ; `kh1` : on garde le d6 le plus haut
+  const edgeTermOf = (n) => (n ? (n > 0 ? '+' : '-') + Math.abs(n) + 'd6kh1[' + (n > 0 ? t('Sheet.Edge.Adv') : t('Sheet.Edge.Dis')) + ']' : '')
+  // encombré (charge > Force ; au-delà du double la charge est impossible) : tous les jets de Force et d'Agilité se font avec 1 désavantage de plus (livre de règles, p. 99)
+  const encumbered = () => { const str = Number(hero.get('view.data.strength') ?? 0), tot = Number(hero.get('view.data.encumbrance.total') ?? 0); return str > 0 && tot > str }
+  const dmgFormula = (f) => String(f).replace(/(\d*d\d+)/gi, '$1[' + t('Sheet.Die.Damage') + ']')
+  async function doRoll(spec, edge = 0, mode) {
+    if (spec.raw) { try { return await EP.roll(spec.raw, { label: spec.label, type: spec.type }) } catch (e) { fail(e); return null } }
+    if ((spec.attr === 'STR' || spec.attr === 'AGI') && encumbered()) { edge -= 1; note(t('Sheet.EncBane')) }
+    const attack = spec.kind === 'attack'
+    const formula = 'd20[' + (attack ? t('Sheet.Die.Attack') : (spec.die || t('Sheet.Die.Test'))) + ']' + (spec.mod ? signed(spec.mod) : '') + edgeTermOf(edge)
+    const opts = { label: spec.label, type: attack ? 'attack' : 'check' }
+    if (mode) opts.mode = mode
+    let r = null
+    try { r = await EP.roll(formula, opts) } catch (e) { fail(e); return null }
+    // munition : chaque jet d'attaque en retire une (case cochée), si le jet a eu lieu
+    if (r !== null && spec.ammo) hero.increment(spec.ammo, 1).catch(fail)
+    return r
+  }
+  const attrName = (a) => (a[0] === 'PER' ? t('Characteristics.Perception') : t('Attributes.' + a[0]))
+  // spec d'un bouton de jet : data-rs = « a:STR » (attribut), « w:1 » (arme), « x:2 » (action)
+  function specOf(id) {
+    const [k, v] = id.split(':')
+    if (k === 'a') { const a = ATTR.find((x) => x[0] === v); return { attr: v, label: a[3], die: attrName(a), mod: Number(hero.get('view.data.' + a[2]) || 0), kind: 'check' } }
+    if (k === 'l') { const sp = linkSpecs[Number(v)]; return sp.raw ? sp : termsSpec(sp) }
+    const w = weapons[Number(v)]; const m = /^data\.items\.(\d+)$/.exec(w.ammoPath || '')
+    return { attr: w.weaponType === 'Ranged' ? 'AGI' : 'STR', label: w.name, mod: Number(w.attackBonus ?? 0), kind: 'attack', ammo: m && Number(w.ammoUses ?? 0) - Number(w.ammoSpent ?? 0) > 0 ? `data.items[${m[1]}].usesSpent` : null }
+  }
+  // clic droit / appui long sur une pastille de jet : fenêtre où l'on règle le nombre de dés d'avantage ou de désavantage
+  async function openMenu(x, y, id) {
+    if ($('overlay').querySelector('.dlg')) return
+    const spec = specOf(id)
+    if (spec.raw) return
+    const body = `<div class="step"><span class="nm" id="ed-l"></span><button type="button" class="pm d" data-e="-1" aria-label="−1">−</button><b id="ed-n">0</b><button type="button" class="pm d" data-e="1" aria-label="+1">+</button></div>
+      <input type="hidden" id="edge" value="0"><label class="opt"><input type="checkbox" id="priv"><span><b>${esc(t('Sheet.Roll.Private'))}</b></span></label>`
+    const show = (ov) => {
+      const n = Number(ov.querySelector('#edge').value)
+      ov.querySelector('#ed-n').textContent = n > 0 ? '+' + n : String(n)
+      ov.querySelector('#ed-l').textContent = n === 0 ? t('Sheet.Edge.None') : n > 0 ? t('Sheet.Edge.Adv') + ' (d6)' : t('Sheet.Edge.Dis') + ' (d6)'
+    }
+    const r = await dialog(spec.label + ' ' + signed(spec.mod), body, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Roll.Go'), value: 'ok', primary: true }], (ov) => {
+      show(ov)
+      ov.querySelectorAll('button[data-e]').forEach((b) => b.addEventListener('click', () => {
+        const e = ov.querySelector('#edge'); e.value = Math.max(-9, Math.min(9, Number(e.value) + Number(b.dataset.e))); show(ov)
+      }))
+    })
+    if (r.value === 'ok') doRoll(spec, Number(r.data.edge) || 0, r.data.priv ? 'private' : undefined)
+  }
+  document.addEventListener('click', (ev) => {
+    const b = ev.target.closest('button.roll[data-rs]')
+    if (!b) return
+    if (b.dataset.lp) { delete b.dataset.lp; return }
+    doRoll(specOf(b.dataset.rs))
+  })
+  document.addEventListener('contextmenu', (ev) => { const b = ev.target.closest('button.roll[data-rs]'); if (!b) return; ev.preventDefault(); openMenu(ev.clientX, ev.clientY, b.dataset.rs) })
+  // appui long (0,5 s) à la souris comme au doigt : ouvre la fenêtre d'avantages ; le clic qui suit est ignoré
+  let lpTimer = null
+  document.addEventListener('pointerdown', (ev) => {
+    const b = ev.target.closest('button.roll[data-rs]'); if (!b || (ev.pointerType === 'mouse' && ev.button !== 0)) return
+    clearTimeout(lpTimer); delete b.dataset.lp
+    lpTimer = setTimeout(() => { lpTimer = null; b.dataset.lp = '1'; openMenu(ev.clientX, ev.clientY, b.dataset.rs) }, 500)
+  })
+  for (const n of ['pointerup', 'pointermove', 'pointercancel', 'pointerleave']) document.addEventListener(n, (ev) => { if (lpTimer && !(n === 'pointermove' && Math.abs(ev.movementX) + Math.abs(ev.movementY) < 4)) { clearTimeout(lpTimer); lpTimer = null } }, true)
+
+  // ---- règles et fiches de la bibliothèque ----
+  async function openRule(name) {
+    try {
+      const r = await EP.query({ entity: 'Rule', search: name, limit: 10 })
+      const list = r.entries || []
+      const e = list.find((x) => x.name.toLowerCase() === name.toLowerCase()) || list[0]
+      if (e) EP.open(e.reference); else note(tf('Sheet.RuleMissing', { n: name }))
+    } catch (err) { fail(err) }
+  }
+  const openRef = (ref, name) => { if (!ref) openRule(name); else if (String(ref).startsWith('/')) EP.open(ref); else toast(t('Sheet.RefInvalid')) }
+
+  // ---- cases : utilisations dépensées (cases jusqu'à 10, compteur au-delà) ----
+  // accordéon « bandeau » (actions, sorts, talents) : bandeau sombre (niveau, nom, cases d'utilisation, rond + / −) ; le texte se déplie dans un panneau clair
+  function bandRow({ k, name, meta, level, uses, body, del }) {
+    return `<div class="bdr"><details class="bd" data-k="${esc(k)}"${openSet.has(k) ? ' open' : ''}><summary>${level != null ? `<span class="lvb">${esc(level)}</span>` : ''}<span class="tn">${esc(name)}${meta ? `<small>${esc(meta)}</small>` : ''}</span>${uses ? `<span class="bu">${uses}</span>` : ''}</summary><div class="bdb">${body}</div></details>${del || ''}</div>`
+  }
+  function usesHTML(total, spent, path, label, maxPips = 5) {
+    total = Number(total || 0); spent = Math.min(total, Number(spent || 0))
+    if (total <= 0) return ''
+    const d = off()
+    if (total <= maxPips) return `<span class="pips" role="group" aria-label="${esc(label || t('Sheet.Uses'))}">` +
+      Array.from({ length: total }, (_, k) => `<button type="button" class="pip${k < spent ? ' u' : ''}" data-use="${esc(path)}" data-i="${k}" data-spent="${spent}" aria-label="case ${k + 1}"${d}></button>`).join('') + '</span>'
+    return `<button type="button" class="cnt" data-count="${esc(path)}" data-total="${total}" data-spent="${spent}"${d}><b>${total - spent}</b> / ${total}<span class="gauge"><i style="width:${Math.round(100 * (total - spent) / total)}%"></i></span></button>`
+  }
+  document.addEventListener('click', async (ev) => {
+    const p = ev.target.closest('button[data-use]')
+    if (p) {
+      const i = Number(p.dataset.i), spent = Number(p.dataset.spent)
+      try { await hero.set(p.dataset.use, i < spent ? i : i + 1) } catch (e) { fail(e) }
+      return
+    }
+    const c = ev.target.closest('button[data-count]')
+    if (c) {
+      const total = Number(c.dataset.total), spent = Number(c.dataset.spent)
+      const r = await dialog(t('Sheet.UsesLeft'), `<label class="lbl" for="rem">${esc(tf('Sheet.UsesLeftLbl', { n: total }))}</label><input type="number" id="rem" min="0" max="${total}" value="${total - spent}">`,
+        [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
+      if (r.value !== 'ok') return
+      const rem = Math.max(0, Math.min(total, Number(r.data.rem)))
+      if (Number.isFinite(rem)) hero.set(c.dataset.count, total - rem).catch(fail)
+    }
+  })
+
+  // ===== EN-TÊTE =====
+  const ATTR = [['STR', 'strength', 'strengthModifier', t('Attributes.STR')], ['AGI', 'agility', 'agilityModifier', t('Attributes.AGI')], ['INT', 'intellect', 'intellectModifier', t('Attributes.INT')],
+    ['WIL', 'will', 'willModifier', t('Attributes.WIL')], ['PER', 'perceptionFinal', 'perceptionModifier', t('Characteristics.Perception')]]
+  $('attrs').innerHTML = ATTR.map(([k, , , name]) => `<div class="sig"><span class="nm">${esc(k === 'PER' ? t('Characteristics.Perception') : t('Attributes.' + k))}</span><span class="ring"><b data-v="${k}">—</b></span><button type="button" class="roll" data-rs="a:${k}" data-roll="${k}" title="${esc(t('Sheet.ToHitTip'))}">—</button></div>`).join('')
+  $('level-btn').addEventListener('click', () => { ui.drawer = true; renderDrawer() })
+
+  const hpMax = () => hero.get('view.data.hp.maximum')
+  const hpCur = () => Number(hero.get('view.data.hp.current') ?? 0)
+  $('hp-minus').addEventListener('click', () => hero.set('data.hp.current', Math.max(0, hpCur() - 1)).catch(fail))
+  $('hp-plus').addEventListener('click', () => { const m = hpMax(); if (m != null && hpCur() >= m) return; hero.set('data.hp.current', hpCur() + 1).catch(fail) })
+  $('hp-open').addEventListener('click', async () => {
+    const r = await dialog(t('Characteristics.Damage'), `<label class="lbl" for="amt">${esc(t('Character.Quantity'))}</label><input type="number" id="amt" min="0" value="1" inputmode="numeric">`,
+      [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Heal'), value: 'heal' }, { label: t('Sheet.Hurt'), value: 'hit', primary: true }])
+    const n = Math.max(0, Math.floor(Number(r.data.amt) || 0))
+    if (!r.value || !n) return
+    const m = hpMax()
+    const v = r.value === 'hit' ? (m != null ? Math.min(m, hpCur() + n) : hpCur() + n) : Math.max(0, hpCur() - n)
+    hero.set('data.hp.current', v).catch(fail)
+  })
+  // texte d'une affliction : champ descr de la règle de la bibliothèque (mis en cache), Markdown allégé
+  const afflCache = new Map()
+  const mdLite = (md) => esc(md).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>').replace(/^#+\s*/gm, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+  async function afflInfo(a) {
+    if (afflCache.has(a.name)) return afflCache.get(a.name)
+    let info = { text: '', reference: a.reference || '' }
+    try {
+      const r = await EP.query({ entity: 'Rule', search: a.name, limit: 10, keys: ['data.descr'] })
+      const list = r.entries || []
+      const e = list.find((x) => x.name.toLowerCase() === a.name.toLowerCase()) || null
+      if (e) info = { text: String((e.data && e.data.descr) ?? e['data.descr'] ?? e.descr ?? ''), reference: e.reference || info.reference }
+    } catch (err) { /* hors bibliothèque : pas de texte */ }
+    afflCache.set(a.name, info)
+    return info
+  }
+  $('badges').addEventListener('click', async (ev) => {
+    const ins = ev.target.closest('button[data-ins]')
+    if (ins) {
+      const k = Number(ins.dataset.ins), cur = Number(hero.get('view.data.insanityValue') ?? 0)
+      hero.set('data.insanity.current', k < cur ? k : k + 1).catch(fail)
+      return
+    }
+    const cb = ev.target.closest('button[data-c]')
+    if (cb) {
+      const k = cb.dataset.c, cur = Number(hero.get('view.data.' + (k === 'insanity' ? 'insanityValue' : 'corruptionValue')) ?? 0)
+      hero.set(`data.${k}.current`, Math.max(0, cur + Number(cb.dataset.d))).catch(fail)
+      return
+    }
+    const b = ev.target.closest('button[data-b]'); if (!b) return
+    if (b.dataset.b === 'mind') { mindDialog(); return }
+    if (b.dataset.b === 'luck') { hero.set('data.luck', !hero.get('data.luck')).catch(fail); return }
+    if (b.dataset.b === 'aff-add') { afflictionDialog(); return }
+    const list = affList()
+    if (b.dataset.b === 'aff-more') {
+      const infos = await Promise.all(list.map(afflInfo))
+      const dm = []
+      const body = dm.map(([k, v]) => `<div class="afftxt"><b>${esc(k)}.</b> ${esc(v)}</div>`).join('') + (list.length ? list.map((a, i) => `<details class="ad"><summary>${esc(a.name)}</summary><div class="afftxt">${infos[i].text ? mdLite(infos[i].text) : `<span class="empty">${esc(t('Sheet.NoDescr'))}</span>`}</div></details>`).join('') : `<p class="empty">${esc(t('Sheet.NoAfflictions'))}</p>`)
+      const r = await dialog(t('Sheet.AfflictionsNow'), body, [{ label: t('Sheet.Close'), value: null }, { label: t('Sheet.EditList'), value: 'edit', primary: true }])
+      if (r.value === 'edit') afflictionDialog()
+      return
+    }
+    if (b.dataset.b === 'aff') {
+      const a = list[Number(b.dataset.i)]; if (!a) return
+      const info = await afflInfo(a)
+      const r = await dialog(a.name, `<div class="afftxt">${info.text ? mdLite(info.text) : `<span class="empty">${esc(t('Sheet.NoDescr'))}</span>`}</div>`,
+        [{ label: t('Sheet.Close'), value: null }, ...(info.reference ? [{ label: t('Sheet.SeeRule'), value: 'see' }] : []), { label: t('Sheet.Remove'), value: 'del', primary: true }])
+      if (r.value === 'see') openRef(info.reference, a.name)
+      if (r.value === 'del') removeAff(a).catch(fail)
+    }
+  })
+  // afflictions = règles de type Affliction de la bibliothèque (le système n'en contient aucune, et le joueur n'en crée pas : c'est au MJ de créer la règle).
+  // État d'une affliction : drapeau data.conditions.<slug de la règle>, relié au suivi de combat par les liens que génère outils/generer-liens-afflictions.py
+  let afflLib = [], afflLoaded = false
+  // adresse d'une règle : /<type>/<slug>[/<source>] (ex. /Affliction/effraye/osd) : le slug est le 2ᵉ segment, pas le dernier
+  const slugOf = (ref) => { const p = String(ref || '').split('/').filter(Boolean); return p.length > 1 ? p[1] : (p[0] || '') }
+  const humanize = (k) => String(k).replace(/-/g, ' ').replace(/^./, (ch) => ch.toUpperCase())
+  async function loadAfflictions() {
+    try { afflLib = ((await EP.query({ entity: 'Rule', where: { type: 'Affliction' }, sort: 'name', limit: 300 })).entries || []).map((e) => ({ name: e.name, reference: e.reference, slug: slugOf(e.reference) })) } catch (e) { afflLib = [] }
+    afflLoaded = true
+  }
+  const condKeys = () => { const c = hero.get('data.conditions') || {}; return Object.keys(c).filter((k) => c[k] === true) }
+  const affList = () => condKeys().map((k) => { const e = afflLib.find((x) => x.slug === k); return { name: e ? e.name : humanize(k), reference: e ? e.reference : '', flag: k } }).sort((x, y) => x.name.localeCompare(y.name))
+  const removeAff = async (a) => { await hero.set('data.conditions.' + a.flag, false) }
+  async function afflictionDialog() {
+    if (!afflLoaded) await loadAfflictions()
+    const opts = afflLib.map((e) => ({ key: e.slug, name: e.name }))
+      .concat(condKeys().filter((k) => !afflLib.some((e) => e.slug === k)).map((k) => ({ key: k, name: humanize(k) })))
+    const has = (o) => hero.get('data.conditions.' + o.key) === true
+    const body = opts.length ? opts.map((o, i) => `<label class="opt"><input type="checkbox" id="a${i}"${has(o) ? ' checked' : ''}> ${esc(o.name)}</label>`).join('')
+      : `<p class="empty">${esc(t('Sheet.NoAfflictionRules'))}</p>`
+    const r = await dialog(t('Card.Afflictions'), body, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
+    if (r.value !== 'ok') return
+    for (const [i, o] of opts.entries()) {
+      const want = !!r.data['a' + i]; if (want === has(o)) continue
+      try { await hero.set('data.conditions.' + o.key, want) } catch (e) { note(t('Sheet.AfflictionNotLinked')) }
+    }
+  }
+
+  // ===== ACTIONS =====
+  const handsText = { One: t('Character.HandsOne'), Two: t('Character.HandsTwo'), Off: t('Character.HandsOff') }
+  let weapons = []
+  function renderWeapons(d) {
+    weapons = (d.weapons || []).filter((w) => w.weaponType !== 'Shield' && w.weaponType !== 'Ammunition')
+    if (!diff('weapons', [weapons, last.status])) return
+    $('attacks').innerHTML = weapons.length ? weapons.map((w, i) => {
+      const bonus = Number(w.attackBonus ?? 0)
+      const m = /^data\.items\.(\d+)$/.exec(w.ammoPath || '')
+      const ammo = m ? `<div class="am"><span class="al">${esc(w.ammoName || t('Sheet.Ammo'))}</span>${usesHTML(w.ammoUses, w.ammoSpent, `data.items[${m[1]}].usesSpent`, w.ammoName)}<span class="auto">${esc(t('Sheet.AmmoAuto'))}</span></div>` : ''
+      return `<div class="wp"><div class="wl">${ic(iconOf(w), 30)}<span class="nm"><span class="lk" data-open="${i}">${esc(w.name)}</span><small>${esc(handsText[w.weaponHands] || '')}</small></span>
+        <button type="button" class="roll" data-rs="w:${i}" title="Toucher : attaque · clic droit ou appui long : avantage, désavantage"${off()}>${signed(bonus)}</button>
+        ${w.weaponDamage ? `<button type="button" class="roll dmg" data-act="damage" data-i="${i}" title="${esc(t('Characteristics.Damage'))}"${off()}>${esc(w.weaponDamage)}</button>` : ''}</div>${ammo}</div>`
+    }).join('') : `<p class="empty">${esc(t('Sheet.NoWeapon'))}</p>`
+  }
+  $('attacks').addEventListener('click', (ev) => {
+    const o = ev.target.closest('[data-open]')
+    if (o) {
+      const w = weapons[Number(o.dataset.open)]; if (!w) return
+      const list = hero.get('data.items') || [], m = /^data\.items\.(\d+)$/.exec(w.path || '')
+      let ix = m ? Number(m[1]) : list.findIndex((x) => x.name === w.name && x.itemType === 'Weapon' && x.equipped)
+      if (ix >= 0 && list[ix]) editItem(ix); else openRef(w.reference, w.name)
+      return
+    }
+    const b = ev.target.closest('button[data-act=damage]'); if (!b) return
+    const w = weapons[Number(b.dataset.i)]; if (w) EP.roll(dmgFormula(w.weaponDamage), { label: w.name, type: 'damage' }).catch(fail)
+  })
+
+  // actions : liens vers des règles de type Action de la bibliothèque (data.actions). Le bloc affiche la DESCRIPTION de la règle (rendue par l'app) ; les liens de jet écrits dans le Markdown
+  // de la règle deviennent des boutons : [Test](/roll/d20+AGI/Se%20cacher/check) — STR, AGI, INT, WIL, PER sont remplacés par le modificateur du personnage (avantage au clic droit ou appui long)
+  const linkSpecs = []
+  const TERM = /[+-](?:\d+|STR|AGI|INT|WIL|PER)/gi
+  function rollSpec(f, label, type) {
+    const m = String(f).match(/^d20((?:[+-](?:\d+|STR|AGI|INT|WIL|PER))*)$/i)
+    if (!m) return { raw: dmgFormula(String(f)), label, type: type || 'damage' }
+    return { terms: (m[1].match(TERM) || []).map((x) => ({ sign: x[0] === '-' ? -1 : 1, v: x.slice(1).toUpperCase() })), label, kind: type === 'attack' ? 'attack' : 'check' }
+  }
+  function termsSpec(sp) {
+    let mod = 0, attr = null
+    for (const x of sp.terms) { if (/^\d+$/.test(x.v)) mod += x.sign * Number(x.v); else { const a = ATTR.find((y) => y[0] === x.v); mod += x.sign * Number(hero.get('view.data.' + a[2]) || 0); attr = attr || x.v } }
+    const a = attr && ATTR.find((y) => y[0] === attr)
+    return { attr, label: sp.label, die: a ? attrName(a) : t('Sheet.Die.Test'), mod, kind: sp.kind }
+  }
+  // rendu Markdown minimal (repli si l'app ne fournit pas le texte déjà rendu)
+  const DICE = /(^|[\s(])(\d*d\d+(?:[+-]\d+)?)(?![\w\]\d])/gi
+  const mdFull = (md, label) => esc(md).split(/\n{2,}/).map((p) => '<p>' + p.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>').replace(/\[([^\]]+)\]\(&lt;([^)]*?)&gt;\)|\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t1, u1, t2, u2) => `<a href="${u1 || u2}">${t1 || t2}</a>`)
+    .replace(/(<a [^>]*>.*?<\/a>)|([^<]+)/g, (m, link, txt) => link || txt.replace(DICE, (_, pre, f) => `${pre}<a href="/roll/${encodeURIComponent(f)}/${encodeURIComponent(label || '')}/damage">${f}</a>`)).replace(/\n/g, '<br>') + '</p>').join('')
+  // sorts et talents : le texte est affiché tel quel (retours à la ligne conservés) ; seuls les liens de jet [texte](/roll/…) et les formules de dés (3d6, 1d6+1) deviennent des boutons
+  const rollText = (txt, label) => esc(txt).replace(/\[([^\]]+)\]\((?:&lt;)?(\/roll\/[^)\s]*?)(?:&gt;)?\)/g, (_, t1, u) => `<a href="${u}">${t1}</a>`)
+    .replace(/(<a [^>]*>.*?<\/a>)|([^<]+)/g, (m, link, plain) => link || plain.replace(DICE, (_, pre, f) => `${pre}<a href="/roll/${encodeURIComponent(f)}/${encodeURIComponent(label || '')}/damage">${f}</a>`))
+  const actHtml = new Map()
+  async function ruleDescrHtml(a) {
+    if (actHtml.has(a.reference)) return actHtml.get(a.reference)
+    let html = ''
+    // 1) texte rendu par l'app, fourni par la transformation des règles (views/transforms/rule.json : data.text = descr|md), lu par EP.query
+    try {
+      const r = await EP.query({ entity: 'Rule', search: a.name, limit: 30, keys: ['view.data.text', 'view.data.raw'] })
+      const e = (r.entries || []).find((x) => slugOf(x.reference) === slugOf(a.reference)) || (r.entries || []).find((x) => x.name === a.name)
+      const vd = (e && e.view && e.view.data) || {}
+      html = String(vd.text || '') || (vd.raw ? mdFull(String(vd.raw)) : '')
+    } catch (e) { /* repli ci-dessous */ }
+    // 2) repli : la page rendue de la règle
+    if (!html) { try { const r = await fetch(a.reference); if (r.ok) { const el = new DOMParser().parseFromString(await r.text(), 'text/html').querySelector('.description'); if (el) html = el.innerHTML } } catch (e) { /* aucun texte */ } }
+    if (html) actHtml.set(a.reference, html)
+    return html
+  }
+  function wireRolls(el) {
+    el.querySelectorAll('a[href]').forEach((a) => {
+      const h = a.getAttribute('href') || ''
+      if (/^\/roll\//i.test(h)) {
+        const [f, label, type] = h.slice(6).split('/').map((x) => { try { return decodeURIComponent(x) } catch (e) { return x } })
+        const sp = rollSpec(f, label || a.textContent, type); const b = document.createElement('button'); b.type = 'button'; b.className = 'roll sm inl' + (sp.raw ? ' dmg' : '') + (a.textContent.trim().length > 9 ? ' txt' : ''); b.dataset.rs = 'l:' + (linkSpecs.push(sp) - 1); b.textContent = a.textContent; a.replaceWith(b)
+      } else { a.dataset.go = h; a.removeAttribute('href'); a.classList.add('lk') }
+    })
+  }
+  async function fillAct(box) {
+    const a = (hero.get('data.actions') || [])[Number(box.dataset.act)]
+    if (!a || box.dataset.ok) return
+    const html = await ruleDescrHtml(a)
+    box.innerHTML = html || `<span class="empty">${esc(t('Sheet.NoDescr'))}</span>`
+    wireRolls(box); box.dataset.ok = '1'
+  }
+  // accordéon (style « pastille » : rond + / − comme les rangs de sorts) : replié par défaut ; le texte de l'action et ses boutons de jet apparaissent à l'ouverture
+  function renderActions() {
+    const list = hero.get('data.actions') || []
+    if (!diff('actions', [last.status, ui.edit, list.map((a) => a.reference + a.name)])) return
+    $('actions').innerHTML = list.length ? list.map((a, i) => bandRow({ k: 'act:' + a.reference, name: a.name,
+      body: `<div class="tx adesc" data-act="${i}"></div><div class="acl"><span class="lk" data-go="${esc(a.reference || '')}">${esc(t('Sheet.SeeRule'))}</span></div>`,
+      del: ui.edit ? `<button type="button" class="del" data-delact="${i}" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : '' })).join('')
+      : `<p class="empty">${esc(t('Sheet.NoActions'))}</p>`
+    $('actions').querySelectorAll('details[open] .adesc').forEach(fillAct)
+    $('add-action').hidden = false
+    $('add-action').disabled = !online()
+  }
+  document.addEventListener('toggle', (ev) => { const d = ev.target; if (d.matches && d.matches('details.bd') && d.open) { const b = d.querySelector('.adesc'); if (b) fillAct(b) } }, true)
+  document.addEventListener('click', (ev) => { const g = ev.target.closest('#spells [data-go], #talents [data-go]'); if (g && g.dataset.go) { ev.preventDefault(); EP.open(g.dataset.go) } })
+  $('actions').addEventListener('click', async (ev) => {
+    const g = ev.target.closest('[data-go]'); if (g && g.dataset.go) { ev.preventDefault(); EP.open(g.dataset.go); return }
+    const del = ev.target.closest('[data-delact]')
+    if (del) {
+      const a = (hero.get('data.actions') || [])[Number(del.dataset.delact)]
+      if (a && await ask(tf('Sheet.RemoveNamed', { name: a.name }), { action: t('Sheet.Remove'), title: t('Sheet.Remove') })) hero.remove(`data.actions[${del.dataset.delact}]`).catch(fail)
+    }
+  })
+  $('add-action').addEventListener('click', async () => {
+    try {
+      const have = new Set((hero.get('data.actions') || []).map((a) => a.reference))
+      const picked = await pickEntries('Rule', t('Sheet.AddAction'), { where: { type: 'Action' }, filter: (e) => !have.has(e.reference) })
+      for (const e of picked) await hero.insert('data.actions', { name: e.name, reference: e.reference })
+    } catch (e) { fail(e) }
+  })
+  // lien « Repos » : la règle est cherchée par son slug (identique dans toutes les langues), pas par son nom
+  async function openRuleSlug(slug) {
+    try {
+      const r = await EP.query({ entity: 'Rule', search: slug, limit: 20 })
+      const e = (r.entries || []).find((x) => slugOf(x.reference) === slug)
+      if (e) EP.open(e.reference)
+    } catch (err) { fail(err) }
+  }
+  $('rest-link').addEventListener('click', () => openRuleSlug('repos'))
+
+  // repos (livre de base) : ~8 h, une fois par 24 h, soigne la vitesse de guérison ; 24 h : le double.
+  // Les utilisations des talents se récupèrent après un repos ; celles des sorts après repos + au moins 1 min de méditation.
+  async function rest(mult) {
+    const heal = Number(hero.get('view.data.healingValue') ?? 0) * mult
+    const withSpells = $('rest-spells').classList.contains('on')
+    const cur = Number(hero.get('data.hp.current') ?? 0)
+    const msg = tf('Sheet.RestAsk', { r: mult === 1 ? t('Sheet.Rest8') : t('Sheet.Rest24'), n: Math.min(heal, cur), s: withSpells ? t('Sheet.RestSpells') : '' })
+    if (!(await ask(msg, { title: mult === 1 ? t('Sheet.Rest8') : t('Sheet.Rest24'), action: t('Sheet.DoRest') }))) return
+    try {
+      await hero.update((data) => {
+        data.hp = data.hp || {}
+        data.hp.current = Math.max(0, Number(data.hp.current ?? 0) - heal)
+        const clear = (x) => { if (x && x.usesSpent) x.usesSpent = 0 }
+        for (const o of ORIGINS) {
+          const root = data[o.root]; if (!root) continue
+          for (const e of o.entries) for (const k of [e.t, e.c]) if (k) (at(root, k) || []).forEach(clear)
+        }
+        if (withSpells) (data.spells || []).forEach(clear)
+      })
+    } catch (e) { fail(e) }
+  }
+  $('rest-8').addEventListener('click', () => rest(1))
+  $('rest-24').addEventListener('click', () => rest(2))
+  $('rest-spells').addEventListener('click', () => {
+    const on = !$('rest-spells').classList.contains('on')
+    $('rest-spells').classList.toggle('on', on); $('rest-spells').setAttribute('aria-checked', String(on))
+  })
+
+  // ===== MAGIE =====
+  const TRADITIONS = ["Air", "Alchemy", "Alteration", "Arcana", "Battle", "Blighter", "Blood", "Celestial", "Chaos", "Conjuration", "Curse", "Death", "Demonology", "Destruction", "Diabolist", "Divination", "Earth", "Enchantment", "Exorcist", "Fey", "Fire", "Forbidden", "Illusion", "Invocation", "Life", "Madness", "Magician", "Metal", "Nature", "Necromancer", "Necromancy", "Order", "Priest", "Primal", "Protection", "Rune", "Shadow", "Shaman", "Song", "Soul", "Spellbinder", "Spiritualism", "Storm", "Technomancer", "Technomancy", "Telekinesis", "Telepathy", "Teleportation", "Templar", "Tenebrist", "Theurgy", "Time", "Transformation", "Warden", "Water", "Witch"]
+  const spellKeys = ['descr', 'spellType', 'spellRank', 'spellRequirement', 'spellTarget', 'spellArea', 'spellDuration', 'spellTradition', 'spellEffects']
+  const openSet = new Set()
+  document.addEventListener('toggle', (ev) => { const k = ev.target.dataset && ev.target.dataset.k; if (k) ev.target.open ? openSet.add(k) : openSet.delete(k) }, true)
+  // lancers par jour : rang et Puissance (livre de base) ; même table que views/transforms/character.json
+  const SPELL_TABLE = { 1: [[5, 3], [2, 2], [1, 1]], 2: [[8, 3], [4, 2], [2, 1]], 3: [[9, 3], [5, 2], [3, 1]], 4: [[10, 3], [6, 2], [4, 1]], 5: [[8, 2], [5, 1]] }
+  function spellMax(x, power) {
+    if (x.usesMaximumOverride != null && x.usesMaximumOverride !== '') return Number(x.usesMaximumOverride)
+    const rk = Number(x.spellRank ?? 0), p = Number(power ?? 0)
+    if (rk === 0) return p + 1
+    if (SPELL_TABLE[rk]) { const row = SPELL_TABLE[rk].find(([min]) => p >= min); return row ? row[1] : 0 }
+    return rk >= 6 && rk <= 10 && p >= (rk === 6 ? 6 : rk) ? 1 : 0
+  }
+  const tradOf = (x) => x.spellTradition && x.spellTradition.tradition
+  function renderMagic(d) {
+    const trads = hero.get('data.traditions') || []
+    const spells = d.spells || []
+    if (!diff('magic', [ui.edit, ui.trad, last.status, trads, spells.map((x) => [x.name, x.spellRank, x.usesSpent, x.usesMaximum, x.usesMaximumOverride, tradOf(x)]), d.powerValue])) return
+    if (ui.trad !== 'all' && !trads.includes(ui.trad)) ui.trad = 'all'
+    $('traditions').innerHTML = `<button type="button" class="chip${ui.trad === 'all' ? ' on' : ''}" data-trad="all">${esc(t('Sheet.AllTrad'))}</button>` +
+      trads.map((k, i) => `<button type="button" class="chip${ui.trad === k ? ' on' : ''}" data-trad="${k}">${esc(EP.label('SpellTradition', k))}${ui.edit ? `<span class="x" data-deltrad="${i}">✕</span>` : ''}</button>`).join('') +
+      `<button type="button" class="add" id="add-trad"${off()}>+ Tradition</button>`
+    const rows = spells.map((x, i) => ({ x, i })).filter(({ x }) => ui.trad === 'all' || tradOf(x) === ui.trad)
+      .sort((a, b) => Number(a.x.spellRank ?? 0) - Number(b.x.spellRank ?? 0) || String(a.x.name).localeCompare(String(b.x.name), 'fr'))
+    const byRank = new Map()
+    rows.forEach((r) => { const rk = Number(r.x.spellRank ?? 0); if (!byRank.has(rk)) byRank.set(rk, []); byRank.get(rk).push(r) })
+    const spellUses = (x, i) => {
+      const mx = spellMax(x, d.powerValue)
+      return mx > 0 ? usesHTML(mx, x.usesSpent, `data.spells[${i}].usesSpent`, x.name) : ''
+    }
+    const row = ({ x, i }) => {
+      const rk = Number(x.spellRank ?? 0)
+      const meta = [tradOf(x) && EP.label('SpellTradition', tradOf(x)), x.spellType && EP.label('SpellType', x.spellType),
+        x.spellTradition && x.spellTradition.darkMagic ? t('Spell.DarkMagic') : '', x.spellTradition && x.spellTradition.psychicTradition ? t('Spell.PsychicTradition') : '',
+        x.spellTradition && x.spellTradition.onlyIncantation ? t('Spell.OnlyIncantation') : ''].filter(Boolean).join(' · ')
+      const line = (lk, v) => v ? `<p class="ttext"><b>${esc(t(lk))}.</b> ${esc(v)}</p>` : ''
+      const k = 'sp/' + x.name + '/' + i
+      return bandRow({ k, name: x.name, meta, uses: spellUses(x, i),
+        body: `${line('Spell.Requirement', x.spellRequirement)}${line('Spell.Target', x.spellTarget)}${line('Spell.Area', x.spellArea)}${line('Spell.Duration', x.spellDuration)}<div class="ttext">${rollText(x.descr || '', x.name)}</div>${(x.spellEffects || []).map((e) => `<div class="ttext">${e.name ? '<b>' + esc(e.name) + '.</b> ' : ''}${rollText(e.text || '', x.name)}</div>`).join('')}`,
+        del: ui.edit ? `<button type="button" class="del" data-delspell="${i}" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : '' })
+    }
+    $('spells').innerHTML = byRank.size ? [...byRank].sort((a, b) => a[0] - b[0]).map(([rk, list]) => `<div>${box(t('Spell.Rank') + ' ' + rk, list.map(row).join(''))}</div>`).join('') : `<p class="empty">${esc(t('Sheet.NoSpells'))}</p>`
+    wireRolls($('spells'))
+    $('add-spell').disabled = !online()
+    document.querySelector('[data-panel=magic] [data-edit]').textContent = editLabel()
+  }
+  $('traditions').addEventListener('click', async (ev) => {
+    const del = ev.target.closest('[data-deltrad]')
+    if (del) { ev.stopPropagation(); hero.set('data.traditions', (hero.get('data.traditions') || []).filter((_, j) => j !== Number(del.dataset.deltrad))).catch(fail); return }
+    const b = ev.target.closest('button[data-trad]')
+    if (b) { ui.trad = b.dataset.trad; rerender(); return }
+    if (ev.target.closest('#add-trad')) {
+      const k = await pickTradition(t('Sheet.Trad.Add'))
+      if (k) hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)).catch(fail)
+    }
+  })
+  // choix d'une tradition parmi celles que le personnage ne connaît pas encore ; rend la clé ou null
+  async function pickTradition(title) {
+    const cur = hero.get('data.traditions') || []
+    const opts = TRADITIONS.filter((k) => !cur.includes(k)).map((k) => ({ k, l: EP.label('SpellTradition', k) })).sort((a, b) => a.l.localeCompare(b.l, 'fr'))
+    const r = await dialog(title, `<input type="text" id="tsearch" placeholder="${esc(t('Sheet.Search'))}" autocomplete="off"><div class="picklist" id="tlist">${opts.map((o) => `<label class="opt" data-l="${esc(o.l.toLowerCase())}"><input type="radio" name="trad" id="trad" value="${o.k}"> ${esc(o.l)}</label>`).join('')}</div>`,
+      [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Add'), value: 'ok', primary: true }],
+      (ov) => ov.querySelector('#tsearch').addEventListener('input', (e) => { const q = e.target.value.trim().toLowerCase(); ov.querySelectorAll('#tlist label').forEach((l) => { l.hidden = q && !l.dataset.l.includes(q) }) }))
+    return r.value === 'ok' && r.data.trad ? r.data.trad : null
+  }
+  $('add-spell').addEventListener('click', async () => {
+    try { const picked = await pickEntries('Spell', t('Sheet.AddSpell'), { knownTraditions: true }); for (const e of picked) await hero.embed('data.spells', e, spellKeys) } catch (e) { fail(e) }
+  })
+  $('spells').addEventListener('click', async (ev) => {
+    const b = ev.target.closest('[data-delspell]'); if (!b) return
+    const i = Number(b.dataset.delspell), x = (hero.get('data.spells') || [])[i]
+    if (!(await ask(tf('Sheet.RemoveNamed', { name: (x && x.name) || '' }), { action: t('Sheet.Remove'), title: t('Sheet.Remove') }))) return
+    hero.remove(`data.spells[${i}]`).catch(fail)
+  })
+
+  // ===== TALENTS : un encadré par origine (nom de la voie dans le bandeau), talents triés par niveau =====
+  // entrées par origine : (racine, niveau, clé des talents, clé des choix) ; lecture dans `view.data`, écriture dans le modèle
+  const lvlSources = (root, tpl, levels) => levels.map((n) => ({ root, level: n, t: tpl.t(n), c: tpl.c(n) }))
+  const pathTpl = { t: (n) => `level${n}Talent`, c: (n) => `level${n}Choice` }
+  const ORIGINS = [
+    { root: 'ancestry', label: t('Character.Ancestry'), entries: [{ root: 'ancestry', level: 0, t: 'talent' }].concat(lvlSources('ancestry', { t: (n) => `ancestryLevel${n}.talent`, c: (n) => `ancestryLevel${n}.choice` }, [1, 2, 4, 5, 8])) },
+    { root: 'transformation', label: t('Character.Transformation'), entries: [{ root: 'transformation', level: 0, t: 'talent' }].concat(lvlSources('transformation', { t: (n) => `transfLevel${n}.talent`, c: (n) => `transfLevel${n}.choice` }, [1, 2, 4, 5, 8])) },
+    { root: 'novicePath', label: t('Path.Novice'), entries: lvlSources('novicePath', pathTpl, [1, 2, 5, 8]) },
+    { root: 'expertPath', label: t('Path.Expert'), entries: lvlSources('expertPath', pathTpl, [3, 6, 9]) },
+    { root: 'masterPath', label: t('Path.Master'), entries: lvlSources('masterPath', pathTpl, [7, 10]) },
+    { root: 'secondPath', label: t('Character.SecondPath'), entries: lvlSources('secondPath', pathTpl, [7, 10]) },
+  ]
+  let talentRows = []
+  // pour chaque origine existante : { o, root, levels: Map(niveau → { talents, choices }) }
+  function collect(d) {
+    const lvl = Number(d.level ?? 0)
+    talentRows = []
+    const groups = []
+    for (const o of ORIGINS) {
+      const root = d[o.root]
+      if (!root || !root.name) continue
+      const g = { o, root, levels: new Map() }
+      const slot = (n) => { if (!g.levels.has(n)) g.levels.set(n, { talents: [], choices: [] }); return g.levels.get(n) }
+      for (const e of o.entries) {
+        if (e.level > lvl) continue
+        slot(e.level)
+        ;(at(root, e.t) || []).forEach((x, i) => { talentRows.push({ path: `data.${e.root}.${e.t}[${i}]` }); slot(e.level).talents.push({ x, row: talentRows.length - 1 }) })
+        if (e.c) (at(root, e.c) || []).forEach((x, i) => {
+          talentRows.push({ path: `data.${e.root}.${e.c}[${i}]` })
+          const row = talentRows.length - 1
+          if (x.chosen) slot(e.level).talents.push({ x, row, chosen: true })
+          slot(e.level).choices.push({ x, row })
+        })
+      }
+      groups.push(g)
+    }
+    return groups
+  }
+  const talentRow = (n, a) => {
+    const x = a.x
+    const max = x.usesBase != null ? Number(x.usesMaximum ?? x.usesBase) : 0
+    const uses = max > 0 && a.row >= 0 ? usesHTML(max, x.usesSpent, talentRows[a.row].path + '.usesSpent', x.name) : ''
+    return bandRow({ k: 'tl/' + (a.row >= 0 ? talentRows[a.row].path : n + x.name), name: x.name, level: n, uses, body: `<div class="tx">${rollText(x.text || '', x.name)}</div>` })
+  }
+  function renderTalents(d) {
+    const groups = collect(d)
+    const other = hero.get('data.otherTalents') || []
+    if (!diff('talents', [ui.edit, last.status, d.level, groups.map((g) => [g.root.name, [...g.levels].map(([n, v]) => [n, v.talents.map((a) => [a.x.name, a.x.usesSpent, a.x.usesMaximum]), v.choices.map((a) => !!a.x.chosen)])]), other.map((a) => [a.name, a.text])])) return
+    const blocks = []
+    for (const g of groups) {
+      const rows = []
+      for (const [n, v] of g.levels) for (const a of v.talents) rows.push({ n, a })
+      rows.sort((p, q) => q.n - p.n)
+      const w = rows.reduce((acc, { a }) => acc + 70 + String(a.x.text || '').length / 2, 90)
+      blocks.push({ w, html: box(g.o.label, `<div class="sb">${esc(g.root.name)}</div>` + (rows.length ? rows.map(({ n, a }) => talentRow(n, a)).join('') : `<p class="empty">${esc(t('Sheet.NoTalentsLevel'))}</p>`), 'tl') })
+    }
+    blocks.push({ w: 90 + other.reduce((acc, x) => acc + 70 + String(x.text || '').length / 2, 0), html: box(t('Character.OtherTalents'), other.length ? other.map((x, i) => bandRow({ k: 'ot/' + i + x.name, name: x.name, body: `<div class="tx">${rollText(x.text || '', x.name)}</div>`, del: ui.edit ? `<button type="button" class="del" data-deltalent="${i}" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : '' })).join('') : `<p class="empty">${esc(t('Sheet.NoOtherTalents'))}</p>`, 'tl') })
+    // répartition en deux colonnes : chaque encadré va dans la colonne la moins haute
+    const colA = [], colB = []; let hA = 0, hB = 0
+    for (const bl of blocks) { if (hA <= hB) { colA.push(bl.html); hA += bl.w } else { colB.push(bl.html); hB += bl.w } }
+    const html = `<div class="cols2"><div>${colA.join('')}</div><div>${colB.join('')}</div></div>`
+    $('talents').innerHTML = html
+    wireRolls($('talents'))
+    $('add-talent').disabled = !online()
+    document.querySelector('[data-panel=talents] [data-edit]').textContent = editLabel()
+  }
+  $('talents').addEventListener('click', async (ev) => {
+    const b = ev.target.closest('[data-deltalent]'); if (!b) return
+    const i = Number(b.dataset.deltalent), x = (hero.get('data.otherTalents') || [])[i]
+    if (!(await ask(tf('Sheet.RemoveNamed', { name: (x && x.name) || '' }), { action: t('Sheet.Remove'), title: t('Sheet.Remove') }))) return
+    hero.remove(`data.otherTalents[${i}]`).catch(fail)
+  })
+  $('add-talent').addEventListener('click', async () => {
+    const r = await dialog(t('Sheet.NewTalent'), '<input type="text" id="n" placeholder="' + esc(t('Common.Name')) + '"><textarea id="x" rows="4" placeholder="' + esc(t('Common.Description')) + '"></textarea>', [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Add'), value: 'ok', primary: true }])
+    if (r.value === 'ok' && String(r.data.n).trim()) hero.insert('data.otherTalents', { name: String(r.data.n).trim(), text: String(r.data.x || '') }).catch(fail)
+  })
+
+  // ===== SAC =====
+  const coins = [['shards', 'Character.Shards', 'c1'], ['sc', 'Character.CoinSC', 'c2'], ['ca', 'Character.CoinCA', 'c3'], ['co', 'Character.CoinCO', 'c4']]
+  $('coins').innerHTML = coins.map(([k, , c]) => `<div class="coin ${c}"><span class="disc"><input id="coin-${k}" type="number" min="0" aria-labelledby="lbl-${k}"></span><span class="cn" id="lbl-${k}"></span></div>`).join('')
+  coins.forEach(([k, lk]) => { $('lbl-' + k).textContent = t(lk); EP.field($('coin-' + k), { store: hero, path: 'data.currency.' + k }) })
+  const itemKeys = ['descr', 'quantity', 'itemType', 'gearType', 'marvelType', 'price', 'availability', 'armorType', 'armorRequirement', 'armorDefenseFixed', 'weaponType', 'weaponRequirement', 'weaponDamage', 'weaponHands', 'weaponDefensive', 'defensiveValue', 'weaponReach', 'reachValue', 'weaponProperty', 'ammunitionRequirement', 'ammunitionType', 'uses', 'armorDefenseAgility', 'relic']
+  // seuls les armes, armures et boucliers s'équipent ; les munitions non
+  const equippable = (it) => it.itemType === 'Armor' || (it.itemType === 'Weapon' && it.weaponType !== 'Ammunition')
+  const subText = (it) => [it.itemType && EP.label('ItemType', it.itemType), it.weaponDamage, it.armorDefenseFixed != null ? t('Sheet.DefShort') + ' ' + it.armorDefenseFixed : '', it.defensiveValue ? t('Sheet.DefShort') + ' +' + it.defensiveValue : ''].filter(Boolean).join(' · ')
+  function renderItems(d) {
+    const items = hero.get('data.items') || []
+    const enc = d.encumbrance || {}, str = Number(d.strength ?? 0)
+    const rec = (d.recap && d.recap.defense) || {}
+    if (!diff('items', [ui.edit, last.status, items.map((it) => [it.name, it.quantity, it.equipped, it.itemType, it.weaponType, it.weaponDamage, it.armorDefenseFixed, it.uses, it.usesSpent]), enc.total, str, d.defenseValue, rec.armorName, rec.shieldName])) return
+    const total = Number(enc.total ?? 0), dbl = Number(enc.double ?? 2 * str), over = str > 0 && total > str, heavy = str > 0 && total > dbl
+    $('enc').className = 'enc' + (over ? ' over' : '')
+    $('enc').innerHTML = `<span class="el">${esc(t('Character.Encumbrance'))}</span><span class="gauge wide"><i style="width:${str > 0 ? Math.min(100, Math.round(100 * total / str)) : 0}%"></i></span><b>${total} / ${str || '—'}${over ? ' · ' + esc(heavy ? t('Character.EncOverloaded') : t('Character.EncEncumbered')) : ''}</b>${over ? `<div class="encx sub">${esc(heavy ? t('Character.TooHeavy') : t('Character.Encumbered'))}</div>` : ''}`
+    const row = (it, i) => {
+      const can = equippable(it), eq = can && !!it.equipped, q = it.quantity ?? 1
+      const qty = `<input type="number" class="qin" min="0" value="${q}" data-qi="${i}" aria-label="${esc(t('Character.Quantity'))}" title="${esc(t('Character.Quantity'))}"${off()}>`
+      const ctl = can ? (eq ? `<button type="button" class="seal2" data-act="equip" data-i="${i}"${off()}>${esc(t('Sheet.Equipped'))}</button>` : `<button type="button" class="btn" data-act="equip" data-i="${i}"${off()}>${esc(t('Sheet.Equip'))}</button>`) : ''
+      const uses = Number(it.uses) > 0 ? usesHTML(it.uses, it.usesSpent, `data.items[${i}].usesSpent`, it.name) : ''
+      return `<div class="wp${eq ? ' eq' : ''}"><div class="wl">${ui.edit ? `<button type="button" class="del" data-act="remove" data-i="${i}" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : ''}
+        ${ctl}${can ? ic(iconOf(it), 26) : ''}<span class="nm"><span class="lk" data-open="${i}">${esc(it.name || t('Entity.Item'))}</span><small>${esc(subText(it))}</small></span><span class="rg">${uses}${qty}</span></div></div>`
+    }
+    const eqIdx = [], bagIdx = []
+    items.forEach((it, i) => (equippable(it) && it.equipped ? eqIdx : bagIdx).push(i))
+    const byName = (a, b) => String(items[a].name || '').localeCompare(String(items[b].name || ''), 'fr', { sensitivity: 'base' })
+    eqIdx.sort(byName); bagIdx.sort(byName)
+    const defLine = d.defenseValue != null ? `<div class="defl">${esc(t('Characteristics.Defense'))} ${d.defenseValue}${rec.armorName || rec.shieldName ? '<em>' + [rec.armorName, rec.shieldName].filter(Boolean).map(esc).join(' + ') + '</em>' : ''}</div>` : ''
+    $('items-eq').innerHTML = box(t('Sheet.Equipped'), defLine + (eqIdx.map((i) => row(items[i], i)).join('') || `<p class="empty">${esc(t('Sheet.NothingEquipped'))}</p>`))
+    $('items-bag').innerHTML = box(t('Sheet.Tab.Bag'), bagIdx.map((i) => row(items[i], i)).join('') || `<p class="empty">${esc(t('Sheet.BagEmpty'))}</p>`)
+    $('add-item').disabled = !online()
+    document.querySelector('[data-panel=bag] [data-edit]').textContent = editLabel()
+  }
+  $('add-item').addEventListener('click', async () => {
+    try { const picked = await pickEntries('Item', t('Sheet.AddItem')); for (const e of picked) await hero.embed('data.items', e, itemKeys) } catch (e) { fail(e) }
+  })
+  // fenêtre de la COPIE de l'objet (dans le personnage) : ce qu'on y change ne touche pas l'original de la bibliothèque
+  async function editItem(i) {
+    const it = (hero.get('data.items') || [])[i]; if (!it) return
+    const F = [['name', 'Common.Name', 'text'], ['quantity', 'Character.Quantity', 'int']]
+    if (it.itemType === 'Weapon') F.push(['weaponDamage', 'Weapon.Damage', 'text'])
+    if (it.itemType === 'Armor') F.push(['armorDefenseFixed', 'Item.ArmorDefenseFixed', 'int'])
+    if (it.itemType === 'Armor' && it.armorDefenseAgility != null) F.push(['armorDefenseAgility', 'Item.ArmorDefenseAgility', 'int'])
+    F.push(['price', 'Item.Price', 'text'], ['uses', 'Item.Uses', 'int'], ['descr', 'Common.Description', 'area'])
+    const body = F.map(([k, lk, kind]) => {
+      const v = it[k] == null ? '' : it[k]
+      const lab = `<label class="lbl" for="f-${k}">${esc(t(lk))}</label>`
+      return lab + (kind === 'area' ? `<textarea id="f-${k}" name="${k}" rows="5">${esc(v)}</textarea>` : `<input id="f-${k}" name="${k}" type="${kind === 'int' ? 'number' : 'text'}"${kind === 'int' ? ' min="0"' : ''} value="${esc(v)}">`)
+    }).join('')
+    const relic = Array.isArray(it.relic) ? it.relic.filter((e) => e && (e.name || e.text)) : []
+    const relicHTML = relic.length ? `<label class="lbl">${esc(t('Item.RelicEffects'))}</label>` + relic.map((e) => `<p class="ttext">${e.name ? `<b>${esc(e.name)}.</b> ` : ''}${esc(e.text || '')}</p>`).join('') : ''
+    const btns = [{ label: t('Sheet.Cancel'), value: null }]
+    if (it.reference) btns.push({ label: t('Sheet.Item.SeeOriginal'), value: 'orig' })
+    btns.push({ label: t('Sheet.Save'), value: 'ok', primary: true })
+    const r = await dialog(it.name || t('Entity.Item'), body + relicHTML, btns)
+    if (r.value === 'orig') { openRef(it.reference, it.name); return }
+    if (r.value !== 'ok') return
+    try {
+      for (const [k, , , kind] of F) {
+        const raw = String(r.data[k] ?? '').trim(), old = it[k] == null ? '' : String(it[k])
+        if (raw === old) continue
+        if (kind === 'int') { if (raw === '' ) { if (old !== '') await hero.set(`data.items[${i}].${k}`, 0) } else await hero.set(`data.items[${i}].${k}`, Math.max(0, parseInt(raw, 10) || 0)) }
+        else if (k === 'name' && raw === '') continue
+        else await hero.set(`data.items[${i}].${k}`, kind === 'area' ? String(r.data[k]) : raw)
+      }
+    } catch (e) { fail(e) }
+  }
+  const itemsClick = async (ev) => {
+    const o = ev.target.closest('[data-open]')
+    if (o) { editItem(Number(o.dataset.open)); return }
+    const b = ev.target.closest('button[data-act]'); if (!b) return
+    const i = Number(b.dataset.i), it = (hero.get('data.items') || [])[i]
+    if (!it) return
+    try {
+      if (b.dataset.act === 'equip') await hero.set(`data.items[${i}].equipped`, !it.equipped)
+      else if (b.dataset.act === 'qplus') await hero.set(`data.items[${i}].quantity`, (it.quantity ?? 1) + 1)
+      else if (b.dataset.act === 'qminus') {
+        const q = Number(it.quantity ?? 1)
+        if (q <= 1) { if (await ask(t('Sheet.Item.RemoveAsk').replace('{name}', it.name), { action: t('Sheet.Remove'), title: t('Sheet.Remove') })) await hero.remove(`data.items[${i}]`) }
+        else await hero.set(`data.items[${i}].quantity`, q - 1)
+      }
+      else if (b.dataset.act === 'remove') {
+        if (!(await ask(tf('Sheet.RemoveNamed', { name: it.name || '' }), { action: t('Sheet.Remove'), title: t('Sheet.Remove') }))) return
+        await hero.remove(`data.items[${i}]`)
+      }
+    } catch (e) { fail(e) }
+  }
+  $('items-eq').addEventListener('click', itemsClick); $('items-bag').addEventListener('click', itemsClick)
+  const qtyChange = async (ev) => {
+    const inp = ev.target.closest('input[data-qi]'); if (!inp) return
+    const i = Number(inp.dataset.qi), it = (hero.get('data.items') || [])[i]; if (!it) return
+    const q = Math.max(0, parseInt(inp.value, 10) || 0)
+    try {
+      if (q === 0) {
+        if (await ask(t('Sheet.Item.RemoveAsk').replace('{name}', it.name), { action: t('Sheet.Remove'), title: t('Sheet.Remove') })) await hero.remove(`data.items[${i}]`)
+        else inp.value = it.quantity ?? 1
+      } else await hero.set(`data.items[${i}].quantity`, q)
+    } catch (e) { fail(e) }
+  }
+  $('items-eq').addEventListener('change', qtyChange); $('items-bag').addEventListener('change', qtyChange)
+
+  // ===== PERSO =====
+  const calcRows = [[t('Characteristics.Health'), 'healthAdjust', 'healthValue', 'health'], [t('Characteristics.Defense'), 'defenseAdjust', 'defenseValue', 'defense'], [t('Characteristics.Perception'), 'perceptionAdjust', 'perceptionValue', 'perception'], [t('Characteristics.Speed'), 'speedAdjust', 'speedValue', 'speed'], [t('Characteristics.HealingRateShort'), 'healingAdjust', 'healingValue', 'healing'], [t('Characteristics.Power'), 'powerAdjust', 'powerValue', 'power']]
+  const attrRows = [[t('Attributes.STR'), 'STR', 'strength', 'str'], [t('Attributes.AGI'), 'AGI', 'agility', 'agi'], [t('Attributes.INT'), 'INT', 'intellect', 'int'], [t('Attributes.WIL'), 'WIL', 'will', 'wil']]
+  const BODY = ['g1_12', 'g1_8', 'g1_4', 'g1_2', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g8', 'g10', 'g12', 'g15', 'g20']
+  const num = (path) => `<input type="number" data-p="${path}" aria-label="${path}">`
+  const sel = (path) => `<select data-sp="${path}" aria-label="${path}"><option value="">—</option>${BODY.map((k) => `<option value="${k}">${esc(EP.label('BodySize', k))}</option>`).join('')}</select>`
+  $('calc').innerHTML = '<div class="cr hh"><span></span><span></span><span>' + esc(t('Sheet.ColCalc')) + '</span><span>' + esc(t('Sheet.ColBase')) + '</span><span>' + esc(t('Sheet.ColBonus')) + '</span><span>' + esc(t('Sheet.ColForced')) + '</span></div>' +
+    calcRows.map(([n, k, v, rk]) => `<div class="cr"><span>${n}</span><span class="fm" data-fm="${rk || ''}"></span><span class="cc" data-cc="${v}">—</span>${num(`data.${k}.base`)}${num(`data.${k}.bonus`)}${num(`data.${k}.override`)}</div>`).join('') +
+    `<div class="cr"><span>${esc(t('Characteristics.Size'))}</span><span class="fm"></span><span class="cc" id="size-cc">—</span>${sel('data.sizeAdjust.base')}${num('data.sizeAdjust.bonus')}${sel('data.sizeAdjust.override')}</div>` +
+    '<div class="cr hh"><span>' + esc(t('Sheet.Attrs')) + '</span><span></span><span>' + esc(t('Sheet.ColCalc')) + '</span><span>' + esc(t('Sheet.ColBase')) + '</span><span>' + esc(t('Sheet.ColAsc')) + '</span><span>' + esc(t('Sheet.ColForced')) + '</span></div>' +
+    attrRows.map(([n, k, v, rk]) => `<div class="cr"><span>${n}</span><span class="fm" data-fm="${rk}"></span><span class="cc" data-cc="${v}">—</span>${num(`data.attrAdjust.${k}.base`)}${num(`data.attrAdjust.${k}.ancestryBonus`)}${num(`data.attrAdjust.${k}.override`)}</div>`).join('')
+  $('calc').querySelectorAll('input[data-p]').forEach((el) => EP.field(el, { store: hero, path: el.dataset.p }))
+  $('calc').querySelectorAll('select[data-sp]').forEach((el) => el.addEventListener('change', async () => { try { if (el.value) await hero.set(el.dataset.sp, el.value); else await hero.remove(el.dataset.sp) } catch (e) { fail(e) } }))
+  let kvInputs = []
+  // fenêtre « langue » : liste des règles de type Langue de la bibliothèque + cases Parlé / Lu / Écrit ; rend { name, reference, spoken, read, written } ou null
+  async function languageDialog() {
+    let rules = []
+    try { const r = await EP.query({ entity: 'Rule', where: { type: 'Language' }, sort: 'name', limit: 200 }); rules = (r.entries || []).filter((x) => !x.type || x.type === 'Language') } catch (e) { /* repli ci-dessous */ }
+    if (!rules.length) { try { const r = await EP.query({ entity: 'Rule', sort: 'name', limit: 200 }); rules = (r.entries || []).filter((x) => x.type === 'Language') } catch (e) { /* bibliothèque indisponible */ } }
+    const known = new Set((((last.view.data || {}).ancestry || {}).startLanguages || []).concat(hero.get('data.languages') || []).map((x) => x.name))
+    rules = rules.filter((x) => !known.has(x.name))
+    if (!rules.length) { await dialog(t('Sheet.Lang.New'), `<p>${esc(t('Sheet.Lang.NoRules'))}</p>`, [{ label: t('Sheet.Ok'), value: null, primary: true }]); return null }
+    const chk = (id, lk, on) => `<label class="opt"><input type="checkbox" id="${id}"${on ? ' checked' : ''}><span><b>${esc(t(lk))}</b></span></label>`
+    const r = await dialog(t('Sheet.Lang.New'), `<input type="text" id="lsearch" placeholder="${esc(t('Sheet.Search'))}" autocomplete="off"><div class="picklist" id="llist">${rules.map((o, i) => `<label class="opt" data-l="${esc(o.name.toLowerCase())}"><input type="radio" name="rule" value="${i}"> ${esc(o.name)}</label>`).join('')}</div>` +
+      chk('sp', 'Sheet.Lang.Spoken', true) + chk('rd', 'Sheet.Lang.Read', false) + chk('wr', 'Sheet.Lang.Written', false),
+      [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Add'), value: 'ok', primary: true }],
+      (ov) => ov.querySelector('#lsearch').addEventListener('input', (e) => { const q = e.target.value.trim().toLowerCase(); ov.querySelectorAll('#llist label').forEach((l) => { l.hidden = q && !l.dataset.l.includes(q) }) }))
+    if (r.value !== 'ok' || r.data.rule === undefined) return null
+    const o = rules[Number(r.data.rule)]
+    return { name: o.name, reference: o.reference, spoken: !!r.data.sp, read: !!r.data.rd, written: !!r.data.wr }
+  }
+  // langues (parlée, lue, écrite) et professions
+  function renderLangProf() {
+    const langs = hero.get('data.languages') || [], profs = hero.get('data.professionList') || []
+    const anc = (last.view.data || {}).ancestry || {}, fl = anc.startLanguages || [], fp = anc.startProfessions || []
+    if (!diff('lp', [ui.edit, last.status, langs, profs, fl, fp])) return
+    const fixTg = (lk, on) => `<span class="tgl${on ? ' on' : ''}">${esc(t(lk))}</span>`
+    const fixLang = fl.map((l) => `<div class="lgr fx"><span class="nm">${esc(l.name || '—')}<small>${esc(t('Sheet.Lang.FromAncestry'))}</small></span><span class="lgs">${fixTg('Sheet.Lang.Spoken', l.spoken)}${fixTg('Sheet.Lang.Read', l.read)}${fixTg('Sheet.Lang.Written', l.written)}</span></div>`).join('')
+    const fixProf = fp.map((pr) => `<div class="lgr fx"><span class="nm">${esc(pr.name || '—')}<small>${esc([t('Sheet.Lang.FromAncestry'), pr.detail].filter(Boolean).join(' · '))}</small></span></div>`).join('')
+    const del = (act, i) => (ui.edit ? `<button type="button" class="del" data-lp="${act}" data-i="${i}" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : '')
+    const tg = (i, k, lk, on) => `<button type="button" class="tgl${on ? ' on' : ''}" data-lp="tog" data-i="${i}" data-k="${k}" aria-pressed="${!!on}"${off()}>${esc(t(lk))}</button>`
+    $('lp').innerHTML = `<div class="lbl">${esc(t('Character.Languages'))}</div>` +
+      fixLang + (langs.map((l, i) => `<div class="lgr">${del('dellang', i)}<span class="nm">${l.reference ? `<span class="lk" data-lopen="${i}">${esc(l.name || '—')}</span>` : esc(l.name || '—')}</span><span class="lgs">${tg(i, 'spoken', 'Sheet.Lang.Spoken', l.spoken)}${tg(i, 'read', 'Sheet.Lang.Read', l.read)}${tg(i, 'written', 'Sheet.Lang.Written', l.written)}</span></div>`).join('') || (fixLang ? '' : `<p class="empty">${esc(t('Sheet.Lang.None'))}</p>`)) +
+      `<div class="lbl sub2">${esc(t('Character.Professions'))}</div>` +
+      fixProf + (profs.map((pr, i) => `<div class="lgr">${del('delprof', i)}<span class="nm">${esc(pr.name || '—')}${pr.detail ? `<small>${esc(pr.detail)}</small>` : ''}</span></div>`).join('') || (fixProf ? '' : `<p class="empty">${esc(t('Sheet.Prof.None'))}</p>`)) +
+      `<div class="addrow"><button type="button" class="add" data-lp="addlang"${off()}>+ ${esc(t('Sheet.Lang.Add'))}</button><button type="button" class="add" data-lp="addprof"${off()}>+ ${esc(t('Sheet.Prof.Add'))}</button></div>`
+  }
+  $('lp').addEventListener('click', async (ev) => {
+    const lo = ev.target.closest('[data-lopen]')
+    if (lo) { const l = (hero.get('data.languages') || [])[Number(lo.dataset.lopen)]; if (l && l.reference) EP.open(l.reference); return }
+    const b = ev.target.closest('[data-lp]'); if (!b) return
+    const a = b.dataset.lp, i = Number(b.dataset.i)
+    try {
+      if (a === 'tog') { const l = (hero.get('data.languages') || [])[i]; if (l) await hero.set(`data.languages[${i}].${b.dataset.k}`, !l[b.dataset.k]) }
+      else if (a === 'dellang' || a === 'delprof') {
+        const list = hero.get(a === 'dellang' ? 'data.languages' : 'data.professionList') || [], x = list[i]; if (!x) return
+        if (await ask(t('Sheet.RemoveNamed').replace('{name}', x.name || ''), { action: t('Sheet.Remove'), title: t('Sheet.Remove') })) await hero.remove(`${a === 'dellang' ? 'data.languages' : 'data.professionList'}[${i}]`)
+      } else if (a === 'addlang') {
+        const l = await languageDialog()
+        if (l) await hero.insert('data.languages', l)
+      } else if (a === 'addprof') {
+        const r = await dialog(t('Sheet.Prof.New'), `<input type="text" id="pn" placeholder="${esc(t('Character.Profession'))}"><input type="text" id="pd" placeholder="${esc(t('Character.ProfessionDetail'))}">`,
+          [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Add'), value: 'ok', primary: true }])
+        if (r.value === 'ok' && String(r.data.pn).trim()) await hero.insert('data.professionList', { name: String(r.data.pn).trim(), detail: String(r.data.pd || '').trim() })
+      }
+    } catch (e) { fail(e) }
+  })
+  // complication : nom, description, traits ; supprimable en mode Modifier
+  function renderComplication(d) {
+    const c = d.complication, traits = (c && c.trait) || []
+    if (!diff('compl', [ui.edit, last.status, c && c.name, c && c.descr, traits.map((x) => [x.name, x.text])])) return
+    $('complication').innerHTML = c && c.name
+      ? `<div class="wl">${ui.edit ? `<button type="button" class="del" data-compl="del" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : ''}<div class="tn">${esc(c.name)}</div></div>${c.descr ? `<div class="tx">${esc(c.descr)}</div>` : ''}` +
+        traits.map((x, i) => bandRow({ k: 'cp/' + i + (x.name || ''), name: x.name || '', body: `<div class="tx">${rollText(x.text || '', x.name)}</div>` })).join('')
+      : `<div class="addrow"><button type="button" class="add" data-compl="add"${off()}>+ ${esc(t('Sheet.Compl.Add'))}</button></div>`
+  }
+  $('complication').addEventListener('click', async (ev) => {
+    if (ev.target.closest('[data-compl=add]')) {
+      try { const picked = await pickEntries('Complication', t('Sheet.Compl.Add')); if (picked[0]) await hero.embed('data.complication', picked[0], ['descr', 'trait', 'tables']) } catch (e) { fail(e) }
+      return
+    }
+    if (!ev.target.closest('[data-compl=del]')) return
+    const c = hero.get('data.complication'); if (!c) return
+    if (!(await ask(t('Sheet.RemoveNamed').replace('{name}', c.name || ''), { action: t('Sheet.Remove'), title: t('Sheet.Remove') }))) return
+    try { await hero.remove('data.complication') } catch (e) { fail(e) }
+  })
+  // détail des calculs : ce que le système a additionné pour chaque valeur (view.data.recap)
+  function renderRecap(d) {
+    const r = d.recap || {}
+    const adj = (p) => hero.get('data.' + p)
+    const rows = [
+      ['str', 'Attributes.STR', 'strength', 'attrAdjust.STR', 'attr'], ['agi', 'Attributes.AGI', 'agility', 'attrAdjust.AGI', 'attr'],
+      ['int', 'Attributes.INT', 'intellect', 'attrAdjust.INT', 'attr'], ['wil', 'Attributes.WIL', 'will', 'attrAdjust.WIL', 'attr'],
+      ['perception', 'Characteristics.Perception', 'perceptionValue', 'perceptionAdjust', 'perception'], ['defense', 'Characteristics.Defense', 'defenseValue', 'defenseAdjust', 'defense'],
+      ['health', 'Characteristics.Health', 'healthValue', 'healthAdjust', 'health'], ['speed', 'Characteristics.Speed', 'speedValue', 'speedAdjust', 'speed'],
+      ['power', 'Characteristics.Power', 'powerValue', 'powerAdjust', 'power']]
+    const rows2 = rows.map(([k, lk, vk, ap, kind]) => {
+      const x = r[k] || {}, ov = adj(ap + '.override'), total = d[vk]
+      const terms = [] // [valeur, origine]
+      if (ov != null) terms.push([ov, t('Recap.Override')])
+      else {
+        if (x.base != null) {
+          let lb
+          if (adj(ap + '.base') != null) lb = t('Recap.Base')
+          else if (kind === 'attr' || kind === 'speed') lb = t('Recap.Ancestry')
+          else if (kind === 'perception') lb = t('Attributes.INT')
+          else if (kind === 'defense') lb = r.defense && r.defense.armorName ? t('Characteristics.Armor') + ' : ' + r.defense.armorName : Number(d.pathGain && d.pathGain.defenseFixed) ? t('Recap.PathFixed') : d.ancestry && d.ancestry.defense != null ? t('Recap.Fixed') : t('Attributes.AGI')
+          else if (kind === 'health') lb = d.healthAttribute ? EP.label('HealthAttribute', d.healthAttribute) : t('Recap.Base')
+          else lb = t('Recap.Base')
+          terms.push([x.base, lb])
+        }
+        const add = (v, lk) => { if (v != null && Number(v) !== 0) terms.push([Number(v), t(lk)]) }
+        add(x.asc, kind === 'attr' ? 'Recap.AncestryBonus' : 'Recap.Ancestry')
+        add(x.transf, 'Recap.Transformation'); add(x.levels, 'Recap.Levels'); add(x.paths, 'Recap.Paths')
+        add(x.mods, 'Recap.Modifiers'); add(x.bonus, 'Recap.Bonus'); add(x.corr, 'Recap.CorruptionPenalty')
+        if (kind === 'defense' && r.defense && Number(r.defense.shield)) terms.push([Number(r.defense.shield), r.defense.shieldName || t('Characteristics.Shield')])
+      }
+      const formula = terms.map(([v, o], i) => (i === 0 ? '' : Number(v) < 0 ? ' − ' : ' + ') + (i === 0 ? v : Math.abs(Number(v))) + ' (' + o + ')').join('')
+      return [k, kind === 'x' ? '' : '= ' + (formula || '—')]
+    })
+    rows2.push(['healing', adj('healingAdjust.override') != null ? '= ' + adj('healingAdjust.override') + ' (' + t('Recap.Override') + ')' : '= ' + t('Sheet.Calc.Healing')])
+    const html = JSON.stringify(rows2)
+    if (diff('recap', [html])) rows2.forEach(([k, f]) => { const el = document.querySelector(`[data-fm="${k}"]`); if (el) el.textContent = f })
+  }
+  function renderPerso(d) {
+    document.querySelector('[data-panel=perso] [data-edit]').textContent = editLabel()
+    const lines = [[t('Character.Ancestry'), [d.ancestry && d.ancestry.name, d.transformation && d.transformation.name].filter(Boolean).join(' · ')],
+      [t('Character.NovicePath'), d.novicePath && d.novicePath.name], [t('Sheet.Path.Expert'), d.expertPath && d.expertPath.name], [t('Sheet.Path.Master'), d.masterPath && d.masterPath.name], [t('Sheet.Path.Second'), d.secondPath && d.secondPath.name]].filter(([, v]) => v)
+    if (diff('identity', [lines])) {
+      const kvIn = (k, lk) => `<div class="kv"><span>${esc(t(lk))}</span><input type="text" data-kv="${k}" aria-label="${esc(t(lk))}"></div>`
+      $('identity').innerHTML = lines.map(([k, v]) => `<div class="kv"><span>${esc(k)}</span><i></i><b>${esc(v)}</b></div>`).join('') + kvIn('age', 'Character.Age') + kvIn('religion', 'Character.Religion')
+      for (const i of kvInputs) i.destroy && i.destroy()
+      kvInputs = [...$('identity').querySelectorAll('input[data-kv]')].map((el) => EP.field(el, { store: hero, path: 'data.' + el.dataset.kv }))
+    }
+    renderLangProf(); renderComplication(d); renderRecap(d)
+    document.querySelectorAll('[data-cc]').forEach((el) => text(el, d[el.dataset.cc] ?? '—'))
+    text($('size-cc'), d.gabaritChoice ? EP.label('BodySize', d.gabaritChoice) : '—')
+    document.querySelectorAll('select[data-sp]').forEach((el) => { const v = hero.get(el.dataset.sp); if (document.activeElement !== el) el.value = v == null ? '' : String(v) })
+  }
+
+  // ===== TIROIR : MONTÉE DE NIVEAU =====
+  // ===== ÉTAPES : création du personnage (niveau 0) et montée de niveau =====
+  // Chaque étape (attributs, langue, profession, tradition, sort…) vient des interrupteurs du niveau dans l'entité (ascendance, transformation, voie).
+  // Une étape faite est notée dans data.levelSteps (une entrée { key }) ; « Passer » la note sans rien ajouter.
+  const ATTR4 = ATTR.slice(0, 4)
+  const tf = (k, v = {}) => Object.entries(v).reduce((a, [x, y]) => a.replace('{' + x + '}', y), t(k))
+  const stepDone = (key) => (hero.get('data.levelSteps') || []).some((x) => x.key === key)
+  const mark = async (key, info = '', undo = null) => { if (!stepDone(key)) await hero.insert('data.levelSteps', { key, info, undo: undo ? JSON.stringify(undo) : '' }) }
+  const stepEntry = (key) => (hero.get('data.levelSteps') || []).findIndex((x) => x.key === key)
+  const resultInfo = (st) => st.info || ((hero.get('data.levelSteps') || [])[stepEntry(st.key)] || {}).info || st.label
+  // annule une étape faite : défait ce qu'elle a ajouté, puis la réactive dans la liste « à faire »
+  async function undoStep(st) {
+    if (st.undoFn) { await st.undoFn(); return }
+    const i = stepEntry(st.key), ent = (hero.get('data.levelSteps') || [])[i]; if (!ent) return
+    let u = {}; try { u = JSON.parse(ent.undo || '{}') } catch (e) { u = {} }
+    const adj = (k, f) => Number((((hero.get('data.attrAdjust') || {})[k]) || {})[f] || 0)
+    const idx = (list, name) => (hero.get(list) || []).findIndex((x) => x.name === name)
+    if (u.t === 'attrs') for (const k of u.k) await hero.set(`data.attrAdjust.${k}.${u.f}`, adj(k, u.f) - 1)
+    else if (u.t === 'adjust') { await hero.set(`data.attrAdjust.${u.up}.ancestryBonus`, adj(u.up, 'ancestryBonus') - 1); await hero.set(`data.attrAdjust.${u.down}.ancestryBonus`, adj(u.down, 'ancestryBonus') + 1) }
+    else if (u.t === 'lang') { const j = idx('data.languages', u.name); if (j >= 0) await hero.remove(`data.languages[${j}]`) }
+    else if (u.t === 'prof') { const j = idx('data.professionList', u.name); if (j >= 0) await hero.remove(`data.professionList[${j}]`) }
+    else if (u.t === 'spell') { const j = idx('data.spells', u.name); if (j >= 0) await hero.remove(`data.spells[${j}]`) }
+    else if (u.t === 'trad') await hero.set('data.traditions', (hero.get('data.traditions') || []).filter((x) => x !== u.k))
+    else if (u.t === 'baseAttrs') for (const k of u.k) await hero.remove(`data.attrAdjust.${k}.base`)
+    else if (u.t === 'start') await hero.remove(`data.${u.stat}.start`)
+    else if (u.t === 'size') await hero.remove('data.sizeAdjust.base')
+    if (u.t === 'trad' && stepEntry(st.key + '-cantrip') >= 0) await undoStep({ key: st.key + '-cantrip' })
+    await hero.remove(`data.levelSteps[${stepEntry(st.key)}]`)
+  }
+  const flagsOf = (d, root, n) => {
+    const r = d[root]; if (!r) return {}
+    if (root === 'ancestry') return r['ancestryLevel' + n] || {}
+    if (root === 'transformation') return r['transfLevel' + n] || {}
+    return (r['level' + n] && r['level' + n].data) || {}
+  }
+  const ANC_KEYS = ['STR', 'AGI', 'INT', 'WIL', 'attributeChoice', 'startMode', 'STRRoll', 'AGIRoll', 'INTRoll', 'WILRoll', 'perception', 'defense', 'health', 'size', 'speed', 'insanity', 'corruption', 'languagesProfessions', 'startLanguages', 'startProfessions', 'talent', 'powerfulAncestry', 'ancestryLevel1', 'ancestryLevel2', 'ancestryLevel4', 'ancestryLevel5', 'ancestryLevel8', 'creationAttrChoice', 'creationLang', 'creationProf', 'creationLangProfOne']
+  const TRANSF_KEYS = ['attrs', 'perception', 'defense', 'health', 'corruptionFactor', 'speed', 'healingZero', 'insanity', 'corruption', 'insanityRemoved', 'talent', 'powerfulAncestry', 'replaceLevel4', 'transfLevel1', 'transfLevel2', 'transfLevel4', 'transfLevel5', 'transfLevel8']
+  const PATH_LEVELS = { novicePath: [1, 2, 5, 8], expertPath: [3, 6, 9], masterPath: [7, 10], secondPath: [7, 10] }
+  const pathKeys = (root) => ['pathType'].concat(PATH_LEVELS[root].flatMap((n) => ['level' + n, 'level' + n + 'Talent', 'level' + n + 'Choice']))
+  // sorts appris d'office (liste « levelSpellsAuto » du niveau) : ajoutés une seule fois à l'ouverture de la fenêtre, étape notée
+  // « Tour de magie » : chaque tradition découverte offre un sort de rang 0 de cette tradition (interrupteur `levelCantrip` d'un niveau atteint)
+  const hasCantrip = (d) => { const lvl = Number(d.level ?? 0); return ORIGINS.some((o) => o.entries.some((e) => e.level > 0 && e.level <= lvl && flagsOf(d, o.root, e.level).levelCantrip)) }
+  const cantripOk = (trad) => (e) => { const rk = (e.data && e.data.spellRank) ?? e['data.spellRank']; const x = (e.data && e.data.spellTradition) || e['data.spellTradition']; const tr = x && x.tradition; return (rk == null || Number(rk) === 0) && (!tr || tr === trad) }
+  let autoBusy = false
+  async function applyAutoSpells(d) {
+    if (autoBusy || !online()) return
+    const lvl = Number(d.level ?? 0), todo = []
+    for (const g of collect(d)) for (const [n] of g.levels) {
+      const list = flagsOf(d, g.o.root, n).levelSpellsAuto, key = `${g.o.root}/${n}/autospells`
+      if (n > 0 && n <= lvl && list && list.length && !stepDone(key)) todo.push({ key, list })
+    }
+    if (!todo.length) return
+    autoBusy = true
+    try {
+      for (const { key, list } of todo) {
+        for (const sp of list) {
+          if ((hero.get('data.spells') || []).some((x) => x.name === sp.name)) continue
+          let entry = sp.reference || null
+          if (!entry) { const r = await EP.query({ entity: 'Spell', search: sp.name, limit: 20 }); entry = ((r.entries || []).find((e) => e.name === sp.name) || {}).reference || null }
+          if (entry) await hero.embed('data.spells', entry, spellKeys)
+          else toast(tf('Sheet.Step.SpellMissing', { s: sp.name }))
+        }
+        await hero.insert('data.levelSteps', { key })
+      }
+    } catch (e) { fail(e) } finally { autoBusy = false }
+  }
+  let drawerSteps = new Map()
+  // étapes d'un niveau (f = interrupteurs du niveau) ; field = champ de la fiche qui reçoit les +1 d'attributs
+  function makeSteps(f, base, field) {
+    const S = [], add = (id, type, label, extra = {}) => { const key = base + '/' + id; const st = Object.assign({ key, type, label, field, done: stepDone(key) }, extra); S.push(st); drawerSteps.set(key, st) }
+    const na = Number(f.levelAttrChoice || 0)
+    if (na > 0) add('attrs', 'attrs', tf('Sheet.Step.Attrs', { n: na }), { n: na })
+    const L = !!f.levelLang, P = !!f.levelProf
+    if (L && P && f.levelLangProfOne) add('langprof', 'langprof', t('Sheet.Step.LangProf'))
+    else { if (L) add('lang', 'lang', t('Sheet.Step.Lang')); if (P) add('prof', 'prof', t('Sheet.Step.Prof')) }
+    if (f.levelTradition && f.levelSpell && f.levelMagicOne) add('tradspell', 'tradspell', t('Sheet.Step.TradSpell'))
+    else {
+      if (f.levelTradition) add('tradition', 'tradition', t('Sheet.Step.Tradition'))
+      if (f.levelSpell) add('spell', 'spell', t('Sheet.Step.Spell'))
+    }
+    const nm = Number(f.levelMagicChoices || 0)
+    for (let i = 1; i <= nm; i++) add('mchoice' + i, 'mchoice', tf('Sheet.Step.MChoice', { i, n: nm }))
+    if (hasCantrip(last.view.data || {})) for (const e of (hero.get('data.levelSteps') || [])) {
+      if (!e.key.startsWith(base + '/') || e.key.endsWith('-cantrip')) continue
+      let u = {}; try { u = JSON.parse(e.undo || '{}') } catch (x) { u = {} }
+      if (u.t === 'trad') add(e.key.slice(base.length + 1) + '-cantrip', 'cantrip', tf('Sheet.Step.Cantrip', { n: EP.label('SpellTradition', u.k) }), { trad: u.k })
+    }
+    return S
+  }
+  const choiceInfo = (f, v, base) => {
+    const pick = Math.max(1, Number(f.levelChoicePick || 1)), chosen = v.choices.filter((a) => a.x.chosen).length
+    const instead = !!f.levelSpellInstead && v.choices.length > 0, insteadDone = instead && stepDone(base + '/spellInstead')
+    return { pick, chosen, instead, insteadDone, pending: v.choices.length > 0 && chosen < pick && !insteadDone }
+  }
+  // gabarit « libre » d'une ascendance (texte du livre, ex. « 1/2 ou 1 ») : le joueur choisit parmi les valeurs lues dans ce texte (clés BodySize)
+  const bodySizeOptions = (v) => {
+    const sv = String(v ?? '').trim(); if (!sv || BODY.includes(sv)) return []
+    const out = []
+    for (const p of sv.split(/\s+(?:ou|or)\s+|[;,]/)) { const q = p.trim(), m = q.match(/^(\d+)\s*\/\s*(\d+)$/), k = m ? 'g' + m[1] + '_' + m[2] : /^\d+$/.test(q) ? 'g' + q : null; if (k && BODY.includes(k) && !out.includes(k)) out.push(k) }
+    return out
+  }
+  function creationSteps(d) {
+    const S = [], anc = d.ancestry || {}
+    const add = (key, type, label, done, required, extra = {}) => { const st = Object.assign({ key, type, label, done, required }, extra); S.push(st); drawerSteps.set(key, st) }
+    add('creation/ancestry', 'pickAncestry', t('Sheet.Create.Ancestry'), !!anc.name, true, anc.name ? { info: tf('Sheet.Create.AncestryDone', { n: anc.name }), undoFn: async () => { if (await ask(tf('Sheet.Create.UndoAncestry', { n: anc.name }), { action: t('Sheet.Remove'), title: t('Sheet.Remove') })) await hero.remove('data.ancestry') } } : {})
+    add('creation/transformation', 'pickTransf', t('Sheet.Create.Transf'), !!(d.transformation && d.transformation.name) || stepDone('creation/transformation'), false, d.transformation && d.transformation.name ? { info: tf('Sheet.Create.TransfDone', { n: d.transformation.name }), undoFn: async () => { await hero.remove('data.transformation') } } : {})
+    if (anc.name) {
+      if (anc.startMode === 'variant' || anc.startMode === 'random' || anc.startMode === 'variable')
+        add('creation/attrroll', 'attrRoll', anc.startMode === 'variant' ? t('Sheet.Create.AttrVariant') : t('Sheet.Create.AttrRoll'), stepDone('creation/attrroll'), true)
+      const f = { levelAttrChoice: anc.creationAttrChoice, levelLang: anc.creationLang, levelProf: anc.creationProf, levelLangProfOne: anc.creationLangProfOne }
+      makeSteps(f, 'creation/ancestry', 'ancestryBonus').forEach((st) => { st.required = true; S.push(st) })
+      const sizeOpts = bodySizeOptions(anc.size)
+      if (sizeOpts.length > 1) add('creation/size', 'pickSize', t('Sheet.Create.Size'), stepDone('creation/size') || !!hero.get('data.sizeAdjust.base'), true, { opts: sizeOpts })
+      add('creation/adjust', 'adjust', t('Sheet.Create.Adjust'), stepDone('creation/adjust'), false)
+      for (const [k, lk] of [['insanity', 'Characteristics.Insanity'], ['corruption', 'Characteristics.Corruption']]) {
+        const o = anc[k]; if (o && o.mode === 'variable' && o.dice) add('creation/' + k, 'startRoll', tf('Sheet.Create.StartRoll', { s: t(lk), dice: o.dice }), stepDone('creation/' + k), true, { stat: k, dice: o.dice })
+      }
+    }
+    return S
+  }
+  const PATH_DONE = { novicePath: 'Character.NovicePath', expertPath: 'Sheet.Path.Expert', masterPath: 'Sheet.Path.Master', secondPath: 'Sheet.Path.Second' }
+  const PATH_REQ = [{ root: 'novicePath', min: 1, lk: 'Sheet.Step.PathNovice', types: ['Novice'] },
+    { root: 'expertPath', min: 3, lk: 'Sheet.Step.PathExpert', types: ['Expert'] },
+    { root: 'masterPath', alt: 'secondPath', min: 7, lk: 'Sheet.Step.PathMaster', types: ['Master', 'Expert'] }]
+  function pathSteps(d, lvl) {
+    const S = []
+    for (const r of PATH_REQ) {
+      if (lvl < r.min) continue
+      const have = (d[r.root] && d[r.root].name) ? r.root : (r.alt && d[r.alt] && d[r.alt].name ? r.alt : null)
+      const st = { key: 'path/' + r.root, type: 'pickPathLevel', label: t(r.lk), done: !!have, req: r, noSkip: true }
+      if (have) { st.info = `${t(PATH_DONE[have])} : ${d[have].name}`; st.undoFn = async () => { if (await ask(tf('Sheet.Step.UndoPath', { n: d[have].name }), { action: t('Sheet.Remove'), title: t('Sheet.Remove') })) await hero.remove('data.' + have) } }
+      drawerSteps.set(st.key, st); S.push(st)
+    }
+    return S
+  }
+  const creating = (d) => Number(d.level ?? 0) === 0 && !hero.get('data.created')
+  function pendingChoices(d) { drawerSteps = new Map(); return countPending(d) }
+  function countPending(d) {
+    if (creating(d)) return creationSteps(d).filter((s) => s.required && !s.done).length
+    let n = pathSteps(d, Number(d.level ?? 0)).filter((x) => !x.done).length
+    for (const g of collect(d)) for (const [lv, v] of g.levels) {
+      if (lv <= 0) continue
+      const f = flagsOf(d, g.o.root, lv), base = g.o.root + '/' + lv
+      n += makeSteps(f, base, 'levelBonus').filter((s) => !s.done).length + (choiceInfo(f, v, base).pending ? 1 : 0)
+    }
+    return n
+  }
+  const GAIN_LABELS = { health: ['Characteristics.Health'], perception: ['Characteristics.Perception'], defense: ['Characteristics.Defense'], speed: ['Characteristics.Speed'], power: ['Characteristics.Power'], insanity: ['Characteristics.Insanity'], corruption: ['Characteristics.Corruption'], size: ['Characteristics.SizeShort'] }
+  const sgn = (n) => (Number(n) > 0 ? '+' : '') + n
+  function gainsHTML(f) {
+    const out = []
+    const a = f.attrs || {}
+    for (const [k, , , name] of ATTR4) if (a[k]) out.push(`${t('Attributes.' + k)} ${sgn(a[k])}`)
+    if (a.custom) out.push(a.custom)
+    const g = f.gains || {}
+    for (const [k, [lk]] of Object.entries(GAIN_LABELS)) if (g[k]) out.push(`${t(lk)} ${sgn(g[k])}`)
+    if (g.defenseFixed) out.push(`${t('Characteristics.Defense')} ${g.defenseFixed}`)
+    if (g.custom) out.push(g.custom)
+    if ((f.levelSpellsAuto || []).length) out.push(tf('Sheet.Step.AutoSpell', { s: f.levelSpellsAuto.map((x) => x.name).join(', ') }))
+    return out.map((x) => `<div class="got">${esc(x)}</div>`).join('')
+  }
+  const stepRow = (st) => `<div class="stp"><span class="sl">${esc(st.label)}</span>${st.noSkip || st.required ? '' : `<button type="button" class="skip" data-skip="${esc(st.key)}"${off()}>${esc(t('Sheet.Step.Skip'))}</button>`}<button type="button" class="btn" data-step="${esc(st.key)}"${off()}>${esc(t('Sheet.Step.Do'))}</button></div>`
+  const resultRow = (st) => `<div class="res"><span>${esc(resultInfo(st))}</span><button type="button" class="undo" data-undo="${esc(st.key)}" title="${esc(t('Sheet.Step.Undo'))}" aria-label="${esc(t('Sheet.Step.Undo'))}"${off()}>✕</button></div>`
+  const stepList = (S) => S.filter((x) => !x.done).map(stepRow).join('')
+  const stepResults = (S) => S.filter((x) => x.done).map(resultRow).join('')
+  function levelUpHTML(d, lvl) {
+    const sections = collect(d).map((g) => [...g.levels].filter(([n]) => n > 0).sort((a, b) => a[0] - b[0]).map(([n, v]) => {
+      const f = flagsOf(d, g.o.root, n), base = g.o.root + '/' + n
+      const steps = makeSteps(f, base, 'levelBonus'), ci = choiceInfo(f, v, base)
+      if (!(n === lvl || steps.some((x) => !x.done) || ci.pending)) return ''
+      const got = gainsHTML(f) + v.talents.filter((a) => !a.chosen).map((a) => `<div class="got">${esc(a.x.name)} <small>(${esc(t('Sheet.Step.Received'))})</small></div>`).join('')
+      let todo = stepList(steps)
+      if (v.choices.length) {
+        todo += `<div class="lbl" style="margin:6px 0 2px">${esc(tf('Sheet.Step.Pick', { n: ci.pick }))}</div>` +
+          v.choices.map((a) => `<label class="chc"><input type="checkbox" data-r="${a.row}"${a.x.chosen ? ' checked' : ''}${off() || (!a.x.chosen && ci.chosen >= ci.pick ? ' disabled' : '')}><span class="ctext"><b>${esc(a.x.name)}</b><small>${esc(a.x.text)}</small></span></label>`).join('')
+        if (ci.instead) { const st = { key: base + '/spellInstead', type: 'spell', label: t('Sheet.Step.SpellInstead'), field: '', done: ci.insteadDone }; drawerSteps.set(st.key, st); if (st.done) steps.push(st); else todo += stepRow(st) }
+      }
+      const book = [f.levelLangProf, f.levelOptions, f.options].filter(Boolean).map((x) => `<p class="sub book">${esc(x)}</p>`).join('')
+      const results2 = stepResults(steps)
+      if (!got && !todo && !book && !results2) return ''
+      return box(`${g.root.name} · ${t('Character.Level')} ${n}`, `${todo ? `<div class="lbl">${esc(t('Sheet.Step.ToChoose'))}</div>${todo}` : ''}${results2 ? `<div class="resbox">${results2}</div>` : ''}${got ? `<div class="lbl" style="margin-top:8px">${esc(t('Sheet.Step.AutoSummary'))}</div>${got}` : ''}${book}`, 'tight')
+    }).join('')).join('')
+    const paths = pathSteps(d, lvl)
+    return `<h3 class="dtitle">${esc(t('Character.Level'))} ${lvl}${lvl < 10 ? `<small>→ ${lvl + 1}</small>` : ''}</h3>
+      <p class="dsub">${esc(t('Sheet.Step.Intro'))}</p>
+      <div style="margin:8px 0 4px"><button type="button" class="btn on" id="dr-up"${lvl >= 10 ? ' disabled' : off()}>${esc(tf('Sheet.Step.Up', { n: lvl + 1 }))}</button></div>
+      ${paths.length ? box(t('Sheet.Step.Paths'), stepList(paths) + (paths.some((x) => x.done) ? `<div class="resbox">${stepResults(paths)}</div>` : ''), 'tight') : ''}
+      ${sections || (paths.length ? '' : `<p class="empty">${esc(t('Sheet.Step.None'))}</p>`)}
+      <div style="margin:10px 0 4px"><button type="button" class="btn on" id="dr-end"${countPending(d) ? ' disabled' : off()}>${esc(t('Sheet.Step.Finish'))}</button></div>`
+  }
+  function creationAuto(d) {
+    const a = d.ancestry || {}, out = []
+    if (!a.name) return ''
+    if (a.startMode === 'fixed') out.push(tf('Sheet.Create.AutoFixedAttrs', { a: ATTR4.map(([k, , , nm]) => `${t('Attributes.' + k)} ${a[k] ?? '—'}`).join(' · ') }))
+    for (const [k, lk] of [['insanity', 'Characteristics.Insanity'], ['corruption', 'Characteristics.Corruption']]) { const o = a[k]; if (o && o.mode === 'fixed') out.push(tf('Sheet.Create.AutoStart', { s: t(lk), v: o.value ?? 0 })) }
+    if ((a.startLanguages || []).length) out.push(tf('Sheet.Create.AutoLangs', { l: a.startLanguages.map((x) => x.name).join(', ') }))
+    if ((a.startProfessions || []).length) out.push(tf('Sheet.Create.AutoProfs', { p: a.startProfessions.map((x) => x.name).join(', ') }))
+    if ((a.talent || []).length) out.push(tf('Sheet.Create.AutoTraits', { t: a.talent.map((x) => x.name).join(', ') }))
+    return out.length ? `<div class="dsub auto"><b>${esc(t('Sheet.Create.AutoLabel'))}</b>${out.map((x) => `<div>${esc(x)}</div>`).join('')}</div>` : ''
+  }
+  function creationHTML(d) {
+    const S = creationSteps(d), anc = d.ancestry || {}
+    const ok = S.every((x) => !x.required || x.done)
+    const info = ''
+    return `<h3 class="dtitle">${esc(t('Sheet.Create.Title'))}</h3>
+      <p class="dsub">${esc(t('Sheet.Create.IntroShort'))}</p>
+      ${creationAuto(d)}
+      ${box(t('Sheet.Create.Steps'), stepList(S) + (S.some((x) => x.done) ? `<div class="resbox">${stepResults(S)}</div>` : '') + info + (anc.languagesProfessions ? `<p class="sub book">${esc(anc.languagesProfessions)}</p>` : ''), 'tight')}
+
+      <div style="margin:8px 0 4px"><button type="button" class="btn on" id="cr-done"${ok ? off() : ' disabled'}>${esc(t('Sheet.Create.Done'))}</button></div>`
+  }
+  function renderDrawer() {
+    const ov = $('overlay')
+    if (!ui.drawer || !last) { if (!ov.querySelector('.dlg')) { ov.hidden = true; ov.innerHTML = '' } return }
+    if (ov.querySelector('.dlg')) return
+    const d = last.view.data || {}, lvl = Number(d.level ?? 0)
+    drawerSteps = new Map()
+    if (!creating(d)) applyAutoSpells(d)
+    const sc = ov.querySelector('.drawer'), top = sc ? sc.scrollTop : 0
+    ov.innerHTML = `<div class="veil" id="dr-veil"></div><aside class="drawer" role="dialog" aria-label="${esc(creating(d) ? t('Sheet.Create.Title') : t('Sheet.Step.Title'))}"><button type="button" class="ribbon" id="dr-close" aria-label="${esc(t('Sheet.Close'))}">✕</button>${creating(d) ? creationHTML(d) : levelUpHTML(d, lvl)}</aside>`
+    ov.hidden = false
+    const nd = ov.querySelector('.drawer'); if (nd) nd.scrollTop = top
+    const close = () => { ui.drawer = false; ov.hidden = true; ov.innerHTML = '' }
+    $('dr-veil').addEventListener('click', close); $('dr-close').addEventListener('click', close)
+    const up = $('dr-up')
+    if (up) up.addEventListener('click', async () => {
+      const pend = pendingChoices(d)
+      if (!(await ask(tf('Sheet.Step.UpAsk', { n: lvl + 1 }) + (pend ? ' ' + tf('Sheet.Step.UpPending', { p: pend }) : ''), { title: t('Sheet.Step.Title'), action: tf('Sheet.Step.Up', { n: lvl + 1 }) }))) { reopenDrawer(); return }
+      hero.set('data.level', lvl + 1).catch(fail)
+    })
+    const end = $('dr-end'); if (end) end.addEventListener('click', close)
+    const done = $('cr-done')
+    if (done) done.addEventListener('click', () => hero.set('data.created', true).then(close, fail))
+    ov.querySelectorAll('input[data-r]').forEach((cb) => cb.addEventListener('change', () => { const row = talentRows[Number(cb.dataset.r)]; if (row) hero.set(row.path + '.chosen', cb.checked).catch(fail) }))
+  }
+  const reopenDrawer = () => { if (ui.drawer && last) { const ov = $('overlay'); ov.innerHTML = ''; renderDrawer() } }
+  $('overlay').addEventListener('click', async (ev) => {
+    const b = ev.target.closest('[data-step],[data-skip],[data-undo]'); if (!b || !$('overlay').querySelector('.drawer')) return
+    const key = b.dataset.step || b.dataset.skip || b.dataset.undo, st = drawerSteps.get(key); if (!st) return
+    try {
+      if (b.dataset.undo) await undoStep(st)
+      else if (b.dataset.skip) await mark(key, tf('Sheet.Step.Skipped', { s: st.label }), { t: 'none' })
+      else await runStep(st)
+    } catch (e) { fail(e) }
+    reopenDrawer()
+  })
+  const rollTotal = async (formula, label) => {
+    let r = null
+    try { r = await EP.roll(formula, { label, type: 'check' }) } catch (e) { fail(e) }
+    if (r && r.result != null && !Number.isNaN(Number(r.result))) return Number(r.result)
+    const a = await dialog(label, `<p class="sub">${esc(tf('Sheet.Step.RollAsk', { l: label, f: formula }))}</p><input type="number" id="rv" name="rv" inputmode="numeric">`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
+    if (a.value !== 'ok' || a.data.rv === '' || Number.isNaN(Number(a.data.rv))) { toast(t('Sheet.Step.RollCancelled')); return null }
+    return Number(a.data.rv)
+  }
+  async function runStep(st) {
+    const d = last.view.data || {}
+    if (st.type === 'attrs') {
+      const adj = hero.get('data.attrAdjust') || {}
+      const body = `<p class="sub">${esc(tf('Sheet.Step.AttrsAsk', { n: st.n }))}</p>` + ATTR4.map(([k, , vk, name]) => `<label class="opt"><input type="checkbox" name="${k}" id="at-${k}"><span><b>${esc(t('Attributes.' + k))}</b> <small>${esc(d[ATTR.find((x) => x[0] === k)[1]] ?? '')}</small></span></label>`).join('')
+      const r = await dialog(st.label, body, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }], (ov) => {
+        const ok = ov.querySelector('button[data-b="1"]'), boxes = [...ov.querySelectorAll('input[type=checkbox]')]
+        const upd = () => { const c = boxes.filter((x) => x.checked).length; boxes.forEach((x) => { x.disabled = !x.checked && c >= st.n }); ok.disabled = c !== st.n }
+        boxes.forEach((x) => x.addEventListener('change', upd)); upd()
+      })
+      if (r.value !== 'ok') return
+      const chosen = ATTR4.filter(([k]) => r.data[k])
+      for (const [k] of chosen) await hero.set(`data.attrAdjust.${k}.${st.field}`, Number(((adj[k] || {})[st.field]) || 0) + 1)
+      await mark(st.key, tf('Sheet.Step.AttrsDone', { a: chosen.map(([k, , , nm]) => t('Attributes.' + k)).join(', ') }), { t: 'attrs', f: st.field, k: chosen.map((x) => x[0]) })
+    } else if (st.type === 'lang' || st.type === 'prof' || st.type === 'langprof') {
+      let kind = st.type
+      if (kind === 'langprof') {
+        const r = await dialog(st.label, `<label class="opt"><input type="radio" name="k" value="lang" checked><span><b>${esc(t('Sheet.Step.Lang'))}</b></span></label><label class="opt"><input type="radio" name="k" value="prof"><span><b>${esc(t('Sheet.Step.Prof'))}</b></span></label>`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Next'), value: 'ok', primary: true }])
+        if (r.value !== 'ok') return
+        kind = r.data.k
+      }
+      if (kind === 'lang') {
+        const l = await languageDialog(); if (!l) return
+        await hero.insert('data.languages', l); await mark(st.key, tf('Sheet.Step.LangDone', { n: l.name }), { t: 'lang', name: l.name })
+      } else {
+        const r = await dialog(t('Sheet.Prof.New'), `<input type="text" id="pn" placeholder="${esc(t('Character.Profession'))}"><input type="text" id="pd" placeholder="${esc(t('Character.ProfessionDetail'))}">`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Add'), value: 'ok', primary: true }])
+        if (r.value !== 'ok' || !String(r.data.pn).trim()) return
+        await hero.insert('data.professionList', { name: String(r.data.pn).trim(), detail: String(r.data.pd || '').trim() }); await mark(st.key, tf('Sheet.Step.ProfDone', { n: String(r.data.pn).trim() }), { t: 'prof', name: String(r.data.pn).trim() })
+      }
+    } else if (st.type === 'tradition') {
+      const k = await pickTradition(st.label); if (!k) return
+      await hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)); await mark(st.key, tf('Sheet.Step.TradDone', { n: EP.label('SpellTradition', k) }), { t: 'trad', k })
+    } else if (st.type === 'spell') {
+      const picked = await pickEntries('Spell', st.label, { single: true, knownTraditions: true }); if (!picked[0]) return
+      await hero.embed('data.spells', picked[0], spellKeys)
+      await mark(st.key, tf('Sheet.Step.SpellDone', { n: picked[0].name }), { t: 'spell', name: picked[0].name })
+    } else if (st.type === 'cantrip') {
+      const picked = await pickEntries('Spell', st.label, { single: true, filter: cantripOk(st.trad), keys: ['data.spellTradition', 'data.spellRank'] }); if (!picked[0]) return
+      await hero.embed('data.spells', picked[0], spellKeys)
+      await mark(st.key, tf('Sheet.Step.SpellDone', { n: picked[0].name }), { t: 'spell', name: picked[0].name })
+    } else if (st.type === 'mchoice' || st.type === 'tradspell') {
+      const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Step.MChoiceAsk'))}</p>`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.NewTrad'), value: 'trad' }, { label: t('Sheet.Step.ASpell'), value: 'spell', primary: true }])
+      if (!r.value) return
+      if (r.value === 'trad') { const k = await pickTradition(t('Sheet.Step.Tradition')); if (!k) return; await hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)); await mark(st.key, tf('Sheet.Step.TradDone', { n: EP.label('SpellTradition', k) }), { t: 'trad', k }) }
+      else { const picked = await pickEntries('Spell', t('Sheet.Step.Spell'), { single: true, knownTraditions: true }); if (!picked[0]) return; await hero.embed('data.spells', picked[0], spellKeys); await mark(st.key, tf('Sheet.Step.SpellDone', { n: picked[0].name }), { t: 'spell', name: picked[0].name }) }
+    } else if (st.type === 'pickAncestry') {
+      const picked = await pickEntries('Ancestry', st.label, { single: true }); if (!picked[0]) return
+      await hero.embed('data.ancestry', picked[0], ANC_KEYS)
+    } else if (st.type === 'pickSize') {
+      const body = st.opts.map((k, i) => `<label class="opt"><input type="radio" name="sz" value="${k}"${i === 0 ? ' checked' : ''}><span><b>${esc(EP.label('BodySize', k))}</b></span></label>`).join('')
+      const r = await dialog(st.label, body, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
+      if (r.value !== 'ok' || !r.data.sz) return
+      await hero.set('data.sizeAdjust.base', r.data.sz)
+      await mark(st.key, tf('Sheet.Create.SizeDone', { n: EP.label('BodySize', r.data.sz) }), { t: 'size' })
+    } else if (st.type === 'adjust') {
+      const adj = hero.get('data.attrAdjust') || {}
+      const col = (nm) => ATTR4.map(([k, , , name]) => `<label class="opt"><input type="radio" name="${nm}" value="${k}"><span><b>${esc(t('Attributes.' + k))}</b></span></label>`).join('')
+      const r = await dialog(st.label, `<div class="lbl">${esc(t('Sheet.Create.AdjustUp'))}</div>${col('up')}<div class="lbl">${esc(t('Sheet.Create.AdjustDown'))}</div>${col('down')}`,
+        [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }], (ov) => {
+          const ok = ov.querySelector('button[data-b="1"]'), upd = () => { const u = ov.querySelector('input[name=up]:checked'), d2 = ov.querySelector('input[name=down]:checked'); ok.disabled = !u || !d2 || u.value === d2.value }
+          ov.querySelectorAll('input[type=radio]').forEach((x) => x.addEventListener('change', upd)); upd()
+        })
+      if (r.value !== 'ok') return
+      await hero.set(`data.attrAdjust.${r.data.up}.ancestryBonus`, Number((adj[r.data.up] || {}).ancestryBonus || 0) + 1)
+      await hero.set(`data.attrAdjust.${r.data.down}.ancestryBonus`, Number((adj[r.data.down] || {}).ancestryBonus || 0) - 1)
+      const nm = (k) => { const x = ATTR4.find((y) => y[0] === k); return t('Attributes.' + k) }
+      await mark(st.key, tf('Sheet.Step.AdjustDone', { u: nm(r.data.up), d: nm(r.data.down) }), { t: 'adjust', up: r.data.up, down: r.data.down })
+    } else if (st.type === 'pickTransf') {
+      const picked = await pickEntries('Transformation', st.label, { single: true }); if (!picked[0]) return
+      await hero.embed('data.transformation', picked[0], TRANSF_KEYS)
+    } else if (st.type === 'pickPathLevel') {
+      let root = st.req.root, type = st.req.types[0]
+      if (st.req.alt) {
+        const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Step.PathMasterOrSecond'))}</p>`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.PathMasterBtn'), value: 'master' }, { label: t('Sheet.Step.PathSecondBtn'), value: 'second', primary: true }])
+        if (!r.value) return
+        if (r.value === 'second') { root = st.req.alt; type = 'Expert' } else type = 'Master'
+      }
+      const picked = await pickEntries('Path', st.label, { single: true, where: { 'data.pathType': type } }); if (!picked[0]) return
+      await hero.embed('data.' + root, picked[0], pathKeys(root))
+    } else if (st.type === 'attrRoll') {
+      const anc = d.ancestry || {}, variant = anc.startMode === 'variant'
+      const keys = ATTR4.filter(([k]) => anc[k + 'Roll']).map((x) => x[0]), vals = {}
+      const rows = ATTR4.filter(([k]) => anc[k + 'Roll']).map(([k, , , name]) => `<div class="rrow"><span class="rn">${esc(t('Attributes.' + k))}</span><button type="button" class="btn" data-rl="${k}"${off()}>${esc(tf('Sheet.Create.Roll', { f: anc[k + 'Roll'] }))}</button><span class="rv" id="rv-${k}"></span></div>`).join('')
+      const fx = ATTR4.map(([k, , , name]) => `${t('Attributes.' + k)} ${anc[k] ?? '—'}`).join(' · ')
+      const buttons = [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }]
+      const fixedBtn = variant ? `<div class="or">${esc(t('Sheet.Step.Or'))}</div><button type="button" class="btn wide" data-close="fixed"${off()}>${esc(t('Sheet.Create.UseFixed'))}<small class="bsub">${esc(fx)}</small></button>` : ''
+      const r = await dialog(t('Sheet.Attrs'), `<p class="sub">${esc(t('Sheet.Create.AttrRollHint'))}</p>${rows}${fixedBtn}`, buttons, (ov) => {
+        const ok = ov.querySelector('button[data-b="1"]')
+        const upd = () => { ok.hidden = !keys.every((k) => vals[k] != null && !Number.isNaN(vals[k])) }
+        upd()
+        ov.querySelectorAll('[data-rl]').forEach((b) => b.addEventListener('click', async () => {
+          const k = b.dataset.rl, cell = ov.querySelector('#rv-' + k); b.disabled = true
+          let res = null
+          try { const rr = await EP.roll(anc[k + 'Roll'], { label: t('Attributes.' + k), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) res = Number(rr.result) } catch (e) { fail(e) }
+          if (res != null) { vals[k] = res; cell.textContent = res; cell.classList.add('on') }
+          else { cell.innerHTML = '<input type="number" class="rin" inputmode="numeric" placeholder="?">'; const inp = cell.querySelector('input'); inp.addEventListener('input', () => { vals[k] = inp.value === '' ? null : Number(inp.value); upd() }); inp.focus() }
+          upd()
+        }))
+      })
+      if (!r.value) return
+      if (r.value === 'ok') { for (const k of keys) await hero.set(`data.attrAdjust.${k}.base`, vals[k]); await mark(st.key, tf('Sheet.Step.RollsDone', { a: keys.map((k) => `${t('Attributes.' + k)} ${vals[k]}`).join(' · ') }), { t: 'baseAttrs', k: keys }) }
+      else await mark(st.key, t('Sheet.Step.FixedDone'), { t: 'none' })
+    } else if (st.type === 'startRoll') {
+      const v = await rollTotal(st.dice, t(st.stat === 'insanity' ? 'Characteristics.Insanity' : 'Characteristics.Corruption')); if (v == null) return
+      await hero.set(`data.${st.stat}.start`, v); await mark(st.key, `${st.label.split(' :')[0]} : ${v}`, { t: 'start', stat: st.stat })
+    }
+  }
+
+  // fenêtre « Folie et corruption » : losanges jusqu'à la Volonté, démence, corruption, marque des ténèbres
+  async function mindDialog() {
+    let ins = Number(hero.get('view.data.insanityValue') ?? 0), cor = Number(hero.get('view.data.corruptionValue') ?? 0)
+    const imax = hero.get('view.data.insanityMax') != null ? Number(hero.get('view.data.insanityMax')) : null
+    const body = `<div class="mhead"><span class="ml">${esc(t('Characteristics.Insanity'))}</span><b id="md-n"></b></div><div class="dias big" id="md-d"></div>
+      <div class="step" style="margin-top:12px"><span class="nm">${esc(t('Characteristics.Corruption'))}</span><button type="button" class="pm d" data-md="-1" aria-label="−1">−</button><b id="md-c"></b><button type="button" class="pm d" data-md="1" aria-label="+1">+</button></div>
+      <label class="lbl" for="md-dem">${esc(t('Character.Dementia'))}</label><textarea id="md-dem" name="dem" rows="3">${esc(hero.get('data.dementia') || '')}</textarea>
+      <label class="lbl" for="md-mark">${esc(t('Character.DarkMark'))}</label><textarea id="md-mark" name="mark" rows="4">${esc(hero.get('data.darkMark') || '')}</textarea>`
+    const draw = (ov) => {
+      ov.querySelector('#md-n').textContent = ins + (imax != null ? ' / ' + imax : '')
+      ov.querySelector('#md-d').innerHTML = imax != null ? diamonds(ins, imax, true) : ''
+      ov.querySelector('#md-c').textContent = cor
+    }
+    const r = await dialog(t('Sheet.Mind'), body, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Save'), value: 'ok', primary: true }], (ov) => {
+      draw(ov)
+      ov.addEventListener('click', (ev) => {
+        const d = ev.target.closest('button[data-ins]')
+        if (d) { const k = Number(d.dataset.ins); ins = k < ins ? k : k + 1; hero.set('data.insanity.current', ins).catch(fail); draw(ov); return }
+        const m = ev.target.closest('button[data-md]')
+        if (m) { cor = Math.max(0, cor + Number(m.dataset.md)); hero.set('data.corruption.current', cor).catch(fail); draw(ov) }
+      })
+    })
+    if (r.value !== 'ok') return
+    try {
+      if (String(r.data.dem || '') !== String(hero.get('data.dementia') || '')) await hero.set('data.dementia', String(r.data.dem || ''))
+      if (String(r.data.mark || '') !== String(hero.get('data.darkMark') || '')) await hero.set('data.darkMark', String(r.data.mark || ''))
+    } catch (e) { fail(e) }
+  }
+  // pastilles : on retire des pastilles jusqu'à ce que tout (dont « +N » et « + Affliction ») tienne sur une seule ligne
+  let badgeState = null
+  const diamonds = (ins, imax, on) => Array.from({ length: imax }, (_, k) => `<button type="button" class="dia${k < ins ? ' on' : ''}" data-ins="${k}" aria-label="${esc(t('Characteristics.Insanity'))} ${k + 1}"${on ? '' : ' disabled'}></button>`).join('')
+  const stepper = (k, lk, val, on, lab) => `<span class="meter">${lab(lk)}<button type="button" class="pm d sm" data-c="${k}" data-d="-1" aria-label="−1"${on ? '' : ' disabled'}>−</button><b class="big">${val}</b><button type="button" class="pm d sm" data-c="${k}" data-d="1" aria-label="+1"${on ? '' : ' disabled'}>+</button></span>`
+  const badgesHTML = (st, shown, two, tight) => {
+    const { ins, imax, cor, aff, connected, dem, mark } = st
+    const dis = connected ? '' : ' disabled'
+    const lab = (k) => `<button type="button" class="ml lk0" data-b="mind" title="${esc(t('Sheet.Mind'))}">${esc(t(k))}</button>`
+    const gauge = (v, mx) => `<span class="gj" aria-hidden="true"><i style="width:${mx ? Math.min(100, Math.round(100 * v / mx)) : 0}%"></i></span>`
+    const folie = imax != null && imax <= 10
+      ? `<span class="meter">${lab('Characteristics.Insanity')}<span class="dias">${diamonds(ins, imax, connected)}</span><b>${ins}/${imax}</b></span>`
+      : `<span class="meter">${lab('Characteristics.Insanity')}<button type="button" class="pm d sm" data-c="insanity" data-d="-1" aria-label="−1"${dis}>−</button>${gauge(ins, imax)}<b class="big">${ins}${imax != null ? '/' + imax : ''}</b><button type="button" class="pm d sm" data-c="insanity" data-d="1" aria-label="+1"${dis}>+</button></span>`
+    const tag = (cls, on, lk, act, short) => `<button type="button" class="luck ${cls}${on ? ' on' : ''}" data-b="${act}"${act === 'luck' ? ` role="switch" aria-checked="${!!on}" title="${esc(t('Sheet.Luck.Tip'))}"${dis}` : ` title="${esc(t('Sheet.Mind'))}"`}><i></i>${esc(tight && short ? short : t(lk))}</button>`
+    const middle = tag('', st.luck, 'Character.Luck', 'luck') + tag('dem', !!dem, 'Character.Dementia', 'mind') + tag('mark', !!mark, 'Character.DarkMark', 'mind', t('Sheet.MarksShort'))
+    const pills = aff.map((a, i) => `<button type="button" class="aff" data-b="aff" data-i="${i}">${esc(a.name)}</button>`)
+    return folie + '<span class="vr"></span>' + stepper('corruption', 'Characteristics.Corruption', cor, connected, lab) + '<span class="vr"></span>' + middle +
+      (two ? '<span class="brk"></span>' : '<span class="vr"></span>') +
+      pills.slice(0, shown).join('') +
+      (pills.length > shown ? `<button type="button" class="aff more" data-b="aff-more" title="${esc(t('Sheet.AllPills'))}">+${pills.length - shown}</button>` : '') +
+      `<button type="button" class="add" data-b="aff-add"${dis}>${esc(t('Sheet.AddAffliction'))}</button>`
+  }
+  // une seule ligne si tout tient ; sinon les afflictions passent sur une deuxième ligne (et sont réduites à « +N » si besoin)
+  function fitBadges() {
+    if (!badgeState) return
+    const el = $('badges'), n = badgeState.aff.length
+    const fits = (from, to) => { const kids = [...el.children].slice(from, to), top0 = kids[0].offsetTop; return !kids.some((k) => Math.abs(k.offsetTop - top0) > 6) }
+    const set = (shown, two, tight) => { el.classList.toggle('tight', !!tight); el.innerHTML = badgesHTML(badgeState, shown, two, tight) }
+    set(n, false, false)
+    if (fits(0)) return
+    for (const tight of [false, true]) {          // la ligne Folie / Corruption / pastilles doit tenir seule sur une ligne
+      set(n, true, tight)
+      const brk = [...el.children].findIndex((k) => k.classList.contains('brk'))
+      if (fits(0, brk)) break
+    }
+    let shown = n
+    for (;;) {
+      set(shown, true, el.classList.contains('tight'))
+      const brk = [...el.children].findIndex((k) => k.classList.contains('brk'))
+      if (shown === 0 || fits(brk + 1)) break
+      shown--
+    }
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(fitBadges, 50))
+  let rzTimer = null
+  window.addEventListener('resize', () => { clearTimeout(rzTimer); rzTimer = setTimeout(fitBadges, 150) })
+
+  // ===== RENDU =====
+  let keys = {}
+  const diff = (name, value) => { const k = JSON.stringify(value); if (keys[name] === k) return false; keys[name] = k; return true }
+
+  function render(snap) {
+    last = snap
+    const v = snap.view, d = v.data || {}
+    const connected = snap.status === 'connected'
+    // portrait : image du personnage, sinon initiale
+    const img = $('portrait')
+    if (v.image) { const src = hero.resolvePath(v.image); if (img.getAttribute('src') !== src) img.src = src; img.hidden = false; img.classList.add('zoom'); $('portrait-i').hidden = true }
+    else { img.hidden = true; $('portrait-i').hidden = false; text($('portrait-i'), (String(v.name || '?').trim()[0] || '?').toUpperCase()) }
+    const origins = [d.ancestry && d.ancestry.name, d.transformation && d.transformation.name, d.novicePath && d.novicePath.name, d.expertPath && d.expertPath.name, d.masterPath && d.masterPath.name, d.secondPath && d.secondPath.name && `${d.secondPath.name} (${t('Sheet.SecondPathNote')})`].filter(Boolean)
+    text($('origins'), origins.join(' · '))
+    // niveau et bouton de montée de niveau
+    text($('level-n'), d.level ?? 0)
+    text($('lbl-level'), t('Character.Level'))
+    const pend = pendingChoices(d)
+    const lvHtml = (creating(d) ? '✎ ' + t('Sheet.Create.Button') : '▲ ' + t('Sheet.Step.Button')) + (pend ? `<em>${tf('Sheet.Step.Count', { n: pend })}</em>` : '')
+    if ($('level-btn').dataset.k !== lvHtml) { $('level-btn').dataset.k = lvHtml; $('level-btn').innerHTML = lvHtml }
+    $('level-btn').classList.toggle('hot', pend > 0)
+    // jets
+    ATTR.forEach(([k, valKey, modKey]) => {
+      text(document.querySelector(`[data-v="${k}"]`), d[valKey] ?? '—')
+      const b = document.querySelector(`[data-roll="${k}"]`)
+      text(b, d[modKey] != null ? signed(d[modKey]) : '—'); b.disabled = d[valKey] == null || !connected
+    })
+    // caractéristiques
+    const cell = (lk, val) => `<span class="ch"><span class="cl">${esc(t(lk))}</span><b>${esc(val ?? '—')}</b></span>`
+    const sizeV = d.gabaritChoice ? EP.label('BodySize', d.gabaritChoice) : d.size
+    const defCell = `<span class="ch def"><span class="cl">${esc(t('Characteristics.Defense'))}</span><span class="shield"><b>${esc(d.defenseValue ?? '—')}</b></span></span>`
+    const sl = [cell('Characteristics.Size', sizeV), cell('Characteristics.Speed', d.speedValue), defCell, cell('Characteristics.Power', d.powerValue), cell('Characteristics.HealingRateShort', d.healingValue)].join('<span class="sep">◆</span>')
+    if ($('stats').dataset.k !== sl) { $('stats').dataset.k = sl; $('stats').innerHTML = sl }
+    // dégâts
+    const cur = d.hp && d.hp.current, max = d.hp && d.hp.maximum
+    const pct = max > 0 && cur != null ? Math.max(0, Math.min(100, (cur / max) * 100)) : 0
+    $('hp-open').firstElementChild.style.width = pct + '%'
+    $('hp-open').classList.toggle('down', d.healthState === 'down')
+    text($('hp-text'), `${t('Characteristics.Damage')} ${cur ?? 0} / ${max ?? '—'}`)
+    $('hp-down').hidden = d.healthState !== 'down'
+    $('hp-minus').disabled = $('hp-plus').disabled = $('hp-open').disabled = !connected
+    // folie (losanges : toucher en coche ou décoche), corruption, afflictions
+    const aff = affList()
+    const ins = Number(d.insanityValue ?? 0), cor = Number(d.corruptionValue ?? 0), imax = d.insanityMax != null ? Number(d.insanityMax) : null
+    const luck = !!hero.get('data.luck'), dem = String(hero.get('data.dementia') || '').trim(), mark = String(hero.get('data.darkMark') || '').trim()
+    if (diff('badges', [ins, imax, cor, luck, dem, mark, aff.map((a) => a.name), connected])) { badgeState = { ins, imax, cor, luck, dem, mark, aff, connected }; fitBadges() }
+    renderWeapons(d); renderActions(d)
+    const heal = d.healingValue
+    text($('rest-8-sub'), heal != null ? `soigne ${heal}` : '')
+    text($('rest-24-sub'), heal != null ? `soigne ${heal * 2}` : '')
+    $('rest-8').disabled = $('rest-24').disabled = !connected || heal == null
+    renderMagic(d); renderTalents(d); renderItems(d); renderPerso(d)
+    if (!connected) status.textContent = t('Sheet.Offline')
+    else if (snap.pending) status.textContent = t('Sheet.Saving')
+    else if (/^(Hors connexion|Enregistrement)/.test(status.textContent)) status.textContent = ''
+    if (!ui.autoCreate && connected && creating(d) && !(d.ancestry && d.ancestry.name)) { ui.autoCreate = true; ui.drawer = true }
+    if (ui.drawer) {
+      const ov = $('overlay')
+      if (!ov.querySelector('.dlg')) { const sc = ov.querySelector('.drawer'); const top = sc ? sc.scrollTop : 0; ov.innerHTML = ''; renderDrawer(); const nd = ov.querySelector('.drawer'); if (nd) nd.scrollTop = top }
+    }
+  }
+
+  hero.subscribe(render)
+  loadAfflictions().then(() => rerender())
+  { const op = new URLSearchParams(location.search).get('open'); if (op === 'mind') setTimeout(() => mindDialog(), 300); else if (op === 'aff') setTimeout(() => afflictionDialog(), 300) }
+  $('loading').hidden = true
+  $('sheet').hidden = false
+})()
+</script>
+</body>
+</html>

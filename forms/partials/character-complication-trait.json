@@ -1,0 +1,40 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "placeholder": "Common.Name",
+          "attribute": "name"
+        }
+      ]
+    },
+    {
+      "title": "Common.Description",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Common.Description",
+          "type": "textArea",
+          "attribute": "text"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Complication.ChoiceToggle",
+          "type": "toggle",
+          "attribute": "choiceOn"
+        },
+        {
+          "title": "Complication.Choice",
+          "type": "textArea",
+          "attribute": "choice",
+          "visibleIf": "{% if choiceOn %}true{% endif %}"
+        }
+      ]
+    }
+  ]
+}

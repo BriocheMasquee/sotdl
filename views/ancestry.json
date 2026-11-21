@@ -1,207 +1,613 @@
 {
-    "debug": false,
-    "spacing": 0,
-    "padding": [15],
-    "views": [
+  "debug": false,
+  "spacing": 0,
+  "padding": [
+    15
+  ],
+  "views": [
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
         {
-            "type": "hStack",
-            "alignment": "bottom",
-            "padding": [0,5],
-            "views": [
-                {
-                    "style": "entityTitle",
-                    "value": "**{{name}}**",
-                    "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
-                }
-            ]
-        },
+          "style": "entityTitle",
+          "value": "**{{name}}**",
+          "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 2.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "text",
+      "value": "{{descr}}",
+      "style": "description"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        10,
+        0,
+        0,
+        0
+      ],
+      "views": [
         {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 2.5,
-            "padding": [0]
-        },
+          "style": "entitySubtitle",
+          "value": "{% if name %}**{{'Ancestry.Creating'|l}} {{name}}**{% endif %}"
+        }
+      ],
+      "visibleIf": "{% if data.STR != nil or data.AGI != nil or data.INT != nil or data.WIL != nil or data.perception != nil or data.defense != nil or data.size != nil or data.speed != nil or data.STRRoll or data.AGIRoll or data.INTRoll or data.WILRoll or data.health.attribute or data.health.bonus != nil or data.insanity.dice or data.insanity.value != nil or data.corruption.dice or data.corruption.value != nil or data.languagesProfessions or data.talent %}true{% endif %}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ],
+      "visibleIf": "{% if data.STR != nil or data.AGI != nil or data.INT != nil or data.WIL != nil or data.perception != nil or data.defense != nil or data.size != nil or data.speed != nil or data.STRRoll or data.AGIRoll or data.INTRoll or data.WILRoll or data.health.attribute or data.health.bonus != nil or data.insanity.dice or data.insanity.value != nil or data.corruption.dice or data.corruption.value != nil or data.languagesProfessions or data.talent %}true{% endif %}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.STR != nil or data.AGI != nil or data.INT != nil or data.WIL != nil or data.perception != nil or data.defense != nil or data.size != nil or data.speed != nil or data.STRRoll or data.AGIRoll or data.INTRoll or data.WILRoll or data.health.attribute or data.health.bonus != nil or data.insanity.dice or data.insanity.value != nil or data.corruption.dice or data.corruption.value != nil or data.languagesProfessions or data.talent %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
         {
-            "type": "spacer"
-        },
-        {
-            "type": "text",
-            "value": "{{descr}}"
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "hStack",
-            "alignment": "bottom",
-            "padding": [10,0,0,0],
-            "views": [
-                {
-                    "style": "entitySubtitle",
-                    "value": "{% if name %}**{{'Ancestry.Creating'|l}} {{name}}*{% endif %}*"
-                }
-            ]
-        },
-        {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 1.5,
-            "padding": [0]
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "vStack",
-            "padding": [0,5],
-            "views": [
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Ancestry.StartingAttributes'|l}} :** {{'Attributes.STR'|l}} {{data.STR|default: 10}},  {{'Attributes.AGI'|l}} {{data.AGI|default: 10}}, {{'Attributes.INT'|l}} {{data.INT|default: 10}},  {{'Attributes.WIL'|l}} {{data.WIL|default: 10}}\n{{data.attributeMod}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Perception'|l}}** {{data.perception}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Defense'|l}}** {{data.ac}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Health'|l}}** {{data.hp}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.HealingRate'|l}}** {{data.healingRate}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Size'|l}}** {{data.size|map: 'Size'}},  **{{'Characteristics.Speed'|l}}** {{data.speed}},  **{{'Characteristics.Power'|l}}** {{data.power|default: 0}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Damage'|l}}** {{data.damage|default: 0}},  **{{'Characteristics.Insanity'|l}}** {{data.insanity|default: 0}},  **{{'Characteristics.Corruption'|l}}** {{data.corruption|default: 0}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Common.Language&Profession'|l}}.** {{data.LangProf}}",
-                    "visibleIf": "{% if data.LangProf %}true{% endif %}"
-                }
-            ]
-        },
-        {
-            "type": "vStack",
-            "padding": [5,5,0,5],
-            "views": [
-                {
-                    "type": "list",
-                    "attribute": "data.talent",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "hStack",
-            "alignment": "bottom",
-            "padding": [10,0,0,0],
-            "views": [
-                {
-                    "style": "entitySubtitle",
-                    "value": "{{'Level4.Expert'|l}}"
-                }
-            ]
-        },
-        {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 1.5,
-            "padding": [0]
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "vStack",
-            "padding": [0,5],
-            "views": [
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Common.Characteristics'|l}} :** {{data.ancestryLevel4.level4Increase}}",
-                    "visibleIf": "{{data.ancestryLevel4.level4Increase}}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "{{data.ancestryLevel4.level4Options}}",
-                    "visibleIf": "{{data.ancestryLevel4.level4Options}}"
-                },
-                {
-                    "type": "list",
-                    "attribute": "data.ancestryLevel4.level4Talent",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
-                        }
-                    ]
-                },
-                {
-                    "type": "list",
-                    "attribute": "data.level4Talent",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{image}}"
-        },
-        {
-            "type": "image",
-            "value": "{{image}}",
-            "link": "{{image}}"
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 1.5,
-            "padding": [0]
+          "type": "vStack",
+          "spacing": 0,
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "visibleIf": "{% if data.startMode == 'variant' %}true{% endif %}",
+              "value": "{{'Ancestry.ChooseOption'|l}}"
+            },
+            {
+              "type": "text",
+              "style": "body-info",
+              "visibleIf": "{% if data.startMode == 'variant' or data.startMode == 'random' %}true{% endif %}",
+              "value": "**{% if data.startMode == 'variant' %}{{'Ancestry.RandomValues'|l}}{% else %}{{'Ancestry.StartingAttributes'|l}}{% endif %} :** {{'Attributes.STR'|l}} {% if data.STRRoll %}{{data.STRRoll}}{% else %}—{% endif %}, {{'Attributes.AGI'|l}} {% if data.AGIRoll %}{{data.AGIRoll}}{% else %}—{% endif %}, {{'Attributes.INT'|l}} {% if data.INTRoll %}{{data.INTRoll}}{% else %}—{% endif %}, {{'Attributes.WIL'|l}} {% if data.WILRoll %}{{data.WILRoll}}{% else %}—{% endif %}{% if data.startMode == 'random' %}{% if data.attributeChoice or data.noAdjustment %}.{% endif %}{% if data.attributeChoice or data.noAdjustment %}.{% endif %}{% if data.attributeChoice %} {{data.attributeChoice}}{% endif %}{% if data.noAdjustment %} {{'Ancestry.NoAdjustmentText'|l}}{% endif %}{% endif %}"
+            },
+            {
+              "type": "text",
+              "style": "body-info",
+              "visibleIf": "{% if data.startMode != 'random' %}true{% endif %}",
+              "value": "**{% if data.startMode == 'variant' %}{{'Ancestry.FixedValues'|l}}{% else %}{{'Ancestry.StartingAttributes'|l}}{% endif %} :** {{'Attributes.STR'|l}} {% if data.STR != nil %}{{data.STR}}{% else %}—{% endif %}, {{'Attributes.AGI'|l}} {% if data.AGI != nil %}{{data.AGI}}{% else %}—{% endif %}, {{'Attributes.INT'|l}} {% if data.INT != nil %}{{data.INT}}{% else %}—{% endif %}, {{'Attributes.WIL'|l}} {% if data.WIL != nil %}{{data.WIL}}{% else %}—{% endif %}{% if data.attributeChoice or data.noAdjustment %}.{% endif %}{% if data.attributeChoice %} {{data.attributeChoice}}{% endif %}{% if data.noAdjustment %} {{'Ancestry.NoAdjustmentText'|l}}{% endif %}"
+            }
+          ]
         },
         {
           "type": "text",
-          "style": "source",
-          "padding": [5,0,0,0],
-          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
-          "visibleIf": "{{sourceFormatted}}"
+          "style": "body-info",
+          "value": "**{{'Characteristics.Perception'|l}}** {{'Ancestry.PerceptionRule'|l}}{% if data.perception %} {{data.perception|signed}}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.Defense'|l}}** {% if data.defense != nil %}{{data.defense}}{% else %}{{'Ancestry.DefenseRule'|l}}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.Health'|l}}** {{data.health.attribute|default: 'STR'|map: 'HealthPhrase'|l}}{% if data.health.bonus %} {{data.health.bonus|signed}}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.HealingRate'|l}}** {{'Ancestry.HealingRule'|l}}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.Size'|l}}** {% if data.size != nil %}{{data.size|map: 'BodySize'}}{% else %}—{% endif %},  **{{'Characteristics.Speed'|l}}** {% if data.speed != nil %}{{data.speed}}{% else %}—{% endif %},  **{{'Characteristics.Power'|l}}** 0"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.Damage'|l}}** 0,  **{{'Characteristics.Insanity'|l}}** {% if data.insanity.mode == 'variable' %}{% if data.insanity.dice != nil %}{{data.insanity.dice}}{% else %}—{% endif %}{% elif data.insanity.value != nil %}{{data.insanity.value}}{% else %}—{% endif %},  **{{'Characteristics.Corruption'|l}}** {% if data.corruption.mode == 'variable' %}{% if data.corruption.dice != nil %}{{data.corruption.dice}}{% else %}—{% endif %}{% elif data.corruption.value != nil %}{{data.corruption.value}}{% else %}—{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Common.Language&Profession'|l}}.** {{data.languagesProfessions}}",
+          "visibleIf": "{% if data.languagesProfessions %}true{% endif %}"
         }
-    ]
+      ],
+      "visibleIf": "{% if data.STR != nil or data.AGI != nil or data.INT != nil or data.WIL != nil or data.perception != nil or data.defense != nil or data.size != nil or data.speed != nil or data.STRRoll or data.AGIRoll or data.INTRoll or data.WILRoll or data.health.attribute or data.health.bonus != nil or data.insanity.dice or data.insanity.value != nil or data.corruption.dice or data.corruption.value != nil or data.languagesProfessions or data.talent %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        5,
+        5,
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "list",
+          "attribute": "data.talent",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "{% if data.STR != nil or data.AGI != nil or data.INT != nil or data.WIL != nil or data.perception != nil or data.defense != nil or data.size != nil or data.speed != nil or data.STRRoll or data.AGIRoll or data.INTRoll or data.WILRoll or data.health.attribute or data.health.bonus != nil or data.insanity.dice or data.insanity.value != nil or data.corruption.dice or data.corruption.value != nil or data.languagesProfessions or data.talent %}true{% endif %}"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        10,
+        0,
+        0,
+        0
+      ],
+      "views": [
+        {
+          "style": "entitySubtitle",
+          "value": "{{'Tier.Novice'|l}} {{name|lowercase}} · {{'Level.Word'|l}} 1"
+        }
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel1.attrs.STR != nil or data.ancestryLevel1.attrs.AGI != nil or data.ancestryLevel1.attrs.INT != nil or data.ancestryLevel1.attrs.WIL != nil or data.ancestryLevel1.attrs.custom or data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil or data.ancestryLevel1.gains.health != nil or data.ancestryLevel1.gains.speed != nil or data.ancestryLevel1.gains.power != nil or data.ancestryLevel1.gains.custom or data.ancestryLevel1.talent or data.ancestryLevel1.options or data.ancestryLevel1.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel1.attrs.STR != nil or data.ancestryLevel1.attrs.AGI != nil or data.ancestryLevel1.attrs.INT != nil or data.ancestryLevel1.attrs.WIL != nil or data.ancestryLevel1.attrs.custom or data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil or data.ancestryLevel1.gains.health != nil or data.ancestryLevel1.gains.speed != nil or data.ancestryLevel1.gains.power != nil or data.ancestryLevel1.gains.custom or data.ancestryLevel1.talent or data.ancestryLevel1.options or data.ancestryLevel1.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel1.attrs.STR != nil or data.ancestryLevel1.attrs.AGI != nil or data.ancestryLevel1.attrs.INT != nil or data.ancestryLevel1.attrs.WIL != nil or data.ancestryLevel1.attrs.custom or data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil or data.ancestryLevel1.gains.health != nil or data.ancestryLevel1.gains.speed != nil or data.ancestryLevel1.gains.power != nil or data.ancestryLevel1.gains.custom or data.ancestryLevel1.talent or data.ancestryLevel1.options or data.ancestryLevel1.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "body-info",
+          "visibleIf": "{% if data.ancestryLevel1.attrs.STR != nil or data.ancestryLevel1.attrs.AGI != nil or data.ancestryLevel1.attrs.INT != nil or data.ancestryLevel1.attrs.WIL != nil or data.ancestryLevel1.attrs.custom %}true{% endif %}",
+          "value": "**{{'Common.Attributes'|l}} :** {% if data.ancestryLevel1.attrs.STR != nil %}{{'Attributes.STR'|l}} {{data.ancestryLevel1.attrs.STR|signed}}{% endif %}{% if data.ancestryLevel1.attrs.AGI != nil %}{% if data.ancestryLevel1.attrs.STR != nil %}, {% endif %}{{'Attributes.AGI'|l}} {{data.ancestryLevel1.attrs.AGI|signed}}{% endif %}{% if data.ancestryLevel1.attrs.INT != nil %}{% if data.ancestryLevel1.attrs.STR != nil or data.ancestryLevel1.attrs.AGI != nil %}, {% endif %}{{'Attributes.INT'|l}} {{data.ancestryLevel1.attrs.INT|signed}}{% endif %}{% if data.ancestryLevel1.attrs.WIL != nil %}{% if data.ancestryLevel1.attrs.STR != nil or data.ancestryLevel1.attrs.AGI != nil or data.ancestryLevel1.attrs.INT != nil %}, {% endif %}{{'Attributes.WIL'|l}} {{data.ancestryLevel1.attrs.WIL|signed}}{% endif %}{% if data.ancestryLevel1.attrs.custom %}{% if data.ancestryLevel1.attrs.STR != nil or data.ancestryLevel1.attrs.AGI != nil or data.ancestryLevel1.attrs.INT != nil or data.ancestryLevel1.attrs.WIL != nil %}, {% endif %}{{data.ancestryLevel1.attrs.custom}}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Common.Characteristics'|l}} :** {% if data.ancestryLevel1.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.ancestryLevel1.gains.perception|signed}}{% endif %}{% if data.ancestryLevel1.gains.defense != nil %}{% if data.ancestryLevel1.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.ancestryLevel1.gains.defense|signed}}{% endif %}{% if data.ancestryLevel1.gains.health != nil %}{% if data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.ancestryLevel1.gains.health|signed}}{% endif %}{% if data.ancestryLevel1.gains.speed != nil %}{% if data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil or data.ancestryLevel1.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.ancestryLevel1.gains.speed|signed}}{% endif %}{% if data.ancestryLevel1.gains.power != nil %}{% if data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil or data.ancestryLevel1.gains.health != nil or data.ancestryLevel1.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.ancestryLevel1.gains.power|signed}}{% endif %}{% if data.ancestryLevel1.gains.custom %}{% if data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil or data.ancestryLevel1.gains.health != nil or data.ancestryLevel1.gains.speed != nil or data.ancestryLevel1.gains.power != nil %}, {% endif %}{{data.ancestryLevel1.gains.custom}}{% endif %}",
+          "visibleIf": "{% if data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil or data.ancestryLevel1.gains.health != nil or data.ancestryLevel1.gains.speed != nil or data.ancestryLevel1.gains.power != nil or data.ancestryLevel1.gains.custom %}true{% endif %}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel1.talent",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "{{data.ancestryLevel1.options}}",
+          "visibleIf": "{{data.ancestryLevel1.options}}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel1.choice",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel1.attrs.STR != nil or data.ancestryLevel1.attrs.AGI != nil or data.ancestryLevel1.attrs.INT != nil or data.ancestryLevel1.attrs.WIL != nil or data.ancestryLevel1.attrs.custom or data.ancestryLevel1.gains.perception != nil or data.ancestryLevel1.gains.defense != nil or data.ancestryLevel1.gains.health != nil or data.ancestryLevel1.gains.speed != nil or data.ancestryLevel1.gains.power != nil or data.ancestryLevel1.gains.custom or data.ancestryLevel1.talent or data.ancestryLevel1.options or data.ancestryLevel1.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        10,
+        0,
+        0,
+        0
+      ],
+      "views": [
+        {
+          "style": "entitySubtitle",
+          "value": "{{'Tier.Novice'|l}} {{name|lowercase}} · {{'Level.Word'|l}} 2"
+        }
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel2.attrs.STR != nil or data.ancestryLevel2.attrs.AGI != nil or data.ancestryLevel2.attrs.INT != nil or data.ancestryLevel2.attrs.WIL != nil or data.ancestryLevel2.attrs.custom or data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil or data.ancestryLevel2.gains.health != nil or data.ancestryLevel2.gains.speed != nil or data.ancestryLevel2.gains.power != nil or data.ancestryLevel2.gains.custom or data.ancestryLevel2.talent or data.ancestryLevel2.options or data.ancestryLevel2.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel2.attrs.STR != nil or data.ancestryLevel2.attrs.AGI != nil or data.ancestryLevel2.attrs.INT != nil or data.ancestryLevel2.attrs.WIL != nil or data.ancestryLevel2.attrs.custom or data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil or data.ancestryLevel2.gains.health != nil or data.ancestryLevel2.gains.speed != nil or data.ancestryLevel2.gains.power != nil or data.ancestryLevel2.gains.custom or data.ancestryLevel2.talent or data.ancestryLevel2.options or data.ancestryLevel2.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel2.attrs.STR != nil or data.ancestryLevel2.attrs.AGI != nil or data.ancestryLevel2.attrs.INT != nil or data.ancestryLevel2.attrs.WIL != nil or data.ancestryLevel2.attrs.custom or data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil or data.ancestryLevel2.gains.health != nil or data.ancestryLevel2.gains.speed != nil or data.ancestryLevel2.gains.power != nil or data.ancestryLevel2.gains.custom or data.ancestryLevel2.talent or data.ancestryLevel2.options or data.ancestryLevel2.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "body-info",
+          "visibleIf": "{% if data.ancestryLevel2.attrs.STR != nil or data.ancestryLevel2.attrs.AGI != nil or data.ancestryLevel2.attrs.INT != nil or data.ancestryLevel2.attrs.WIL != nil or data.ancestryLevel2.attrs.custom %}true{% endif %}",
+          "value": "**{{'Common.Attributes'|l}} :** {% if data.ancestryLevel2.attrs.STR != nil %}{{'Attributes.STR'|l}} {{data.ancestryLevel2.attrs.STR|signed}}{% endif %}{% if data.ancestryLevel2.attrs.AGI != nil %}{% if data.ancestryLevel2.attrs.STR != nil %}, {% endif %}{{'Attributes.AGI'|l}} {{data.ancestryLevel2.attrs.AGI|signed}}{% endif %}{% if data.ancestryLevel2.attrs.INT != nil %}{% if data.ancestryLevel2.attrs.STR != nil or data.ancestryLevel2.attrs.AGI != nil %}, {% endif %}{{'Attributes.INT'|l}} {{data.ancestryLevel2.attrs.INT|signed}}{% endif %}{% if data.ancestryLevel2.attrs.WIL != nil %}{% if data.ancestryLevel2.attrs.STR != nil or data.ancestryLevel2.attrs.AGI != nil or data.ancestryLevel2.attrs.INT != nil %}, {% endif %}{{'Attributes.WIL'|l}} {{data.ancestryLevel2.attrs.WIL|signed}}{% endif %}{% if data.ancestryLevel2.attrs.custom %}{% if data.ancestryLevel2.attrs.STR != nil or data.ancestryLevel2.attrs.AGI != nil or data.ancestryLevel2.attrs.INT != nil or data.ancestryLevel2.attrs.WIL != nil %}, {% endif %}{{data.ancestryLevel2.attrs.custom}}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Common.Characteristics'|l}} :** {% if data.ancestryLevel2.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.ancestryLevel2.gains.perception|signed}}{% endif %}{% if data.ancestryLevel2.gains.defense != nil %}{% if data.ancestryLevel2.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.ancestryLevel2.gains.defense|signed}}{% endif %}{% if data.ancestryLevel2.gains.health != nil %}{% if data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.ancestryLevel2.gains.health|signed}}{% endif %}{% if data.ancestryLevel2.gains.speed != nil %}{% if data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil or data.ancestryLevel2.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.ancestryLevel2.gains.speed|signed}}{% endif %}{% if data.ancestryLevel2.gains.power != nil %}{% if data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil or data.ancestryLevel2.gains.health != nil or data.ancestryLevel2.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.ancestryLevel2.gains.power|signed}}{% endif %}{% if data.ancestryLevel2.gains.custom %}{% if data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil or data.ancestryLevel2.gains.health != nil or data.ancestryLevel2.gains.speed != nil or data.ancestryLevel2.gains.power != nil %}, {% endif %}{{data.ancestryLevel2.gains.custom}}{% endif %}",
+          "visibleIf": "{% if data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil or data.ancestryLevel2.gains.health != nil or data.ancestryLevel2.gains.speed != nil or data.ancestryLevel2.gains.power != nil or data.ancestryLevel2.gains.custom %}true{% endif %}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel2.talent",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "{{data.ancestryLevel2.options}}",
+          "visibleIf": "{{data.ancestryLevel2.options}}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel2.choice",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel2.attrs.STR != nil or data.ancestryLevel2.attrs.AGI != nil or data.ancestryLevel2.attrs.INT != nil or data.ancestryLevel2.attrs.WIL != nil or data.ancestryLevel2.attrs.custom or data.ancestryLevel2.gains.perception != nil or data.ancestryLevel2.gains.defense != nil or data.ancestryLevel2.gains.health != nil or data.ancestryLevel2.gains.speed != nil or data.ancestryLevel2.gains.power != nil or data.ancestryLevel2.gains.custom or data.ancestryLevel2.talent or data.ancestryLevel2.options or data.ancestryLevel2.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        10,
+        0,
+        0,
+        0
+      ],
+      "views": [
+        {
+          "style": "entitySubtitle",
+          "value": "{{'Tier.Expert'|l}} {{name|lowercase}} · {{'Level.Word'|l}} 4"
+        }
+      ],
+      "visibleIf": "{% if data.ancestryLevel4.attrs.STR != nil or data.ancestryLevel4.attrs.AGI != nil or data.ancestryLevel4.attrs.INT != nil or data.ancestryLevel4.attrs.WIL != nil or data.ancestryLevel4.attrs.custom or data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil or data.ancestryLevel4.gains.health != nil or data.ancestryLevel4.gains.speed != nil or data.ancestryLevel4.gains.power != nil or data.ancestryLevel4.gains.custom or data.ancestryLevel4.talent or data.ancestryLevel4.options or data.ancestryLevel4.choice %}true{% endif %}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ],
+      "visibleIf": "{% if data.ancestryLevel4.attrs.STR != nil or data.ancestryLevel4.attrs.AGI != nil or data.ancestryLevel4.attrs.INT != nil or data.ancestryLevel4.attrs.WIL != nil or data.ancestryLevel4.attrs.custom or data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil or data.ancestryLevel4.gains.health != nil or data.ancestryLevel4.gains.speed != nil or data.ancestryLevel4.gains.power != nil or data.ancestryLevel4.gains.custom or data.ancestryLevel4.talent or data.ancestryLevel4.options or data.ancestryLevel4.choice %}true{% endif %}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.ancestryLevel4.attrs.STR != nil or data.ancestryLevel4.attrs.AGI != nil or data.ancestryLevel4.attrs.INT != nil or data.ancestryLevel4.attrs.WIL != nil or data.ancestryLevel4.attrs.custom or data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil or data.ancestryLevel4.gains.health != nil or data.ancestryLevel4.gains.speed != nil or data.ancestryLevel4.gains.power != nil or data.ancestryLevel4.gains.custom or data.ancestryLevel4.talent or data.ancestryLevel4.options or data.ancestryLevel4.choice %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "body-info",
+          "visibleIf": "{% if data.ancestryLevel4.attrs.STR != nil or data.ancestryLevel4.attrs.AGI != nil or data.ancestryLevel4.attrs.INT != nil or data.ancestryLevel4.attrs.WIL != nil or data.ancestryLevel4.attrs.custom %}true{% endif %}",
+          "value": "**{{'Common.Attributes'|l}} :** {% if data.ancestryLevel4.attrs.STR != nil %}{{'Attributes.STR'|l}} {{data.ancestryLevel4.attrs.STR|signed}}{% endif %}{% if data.ancestryLevel4.attrs.AGI != nil %}{% if data.ancestryLevel4.attrs.STR != nil %}, {% endif %}{{'Attributes.AGI'|l}} {{data.ancestryLevel4.attrs.AGI|signed}}{% endif %}{% if data.ancestryLevel4.attrs.INT != nil %}{% if data.ancestryLevel4.attrs.STR != nil or data.ancestryLevel4.attrs.AGI != nil %}, {% endif %}{{'Attributes.INT'|l}} {{data.ancestryLevel4.attrs.INT|signed}}{% endif %}{% if data.ancestryLevel4.attrs.WIL != nil %}{% if data.ancestryLevel4.attrs.STR != nil or data.ancestryLevel4.attrs.AGI != nil or data.ancestryLevel4.attrs.INT != nil %}, {% endif %}{{'Attributes.WIL'|l}} {{data.ancestryLevel4.attrs.WIL|signed}}{% endif %}{% if data.ancestryLevel4.attrs.custom %}{% if data.ancestryLevel4.attrs.STR != nil or data.ancestryLevel4.attrs.AGI != nil or data.ancestryLevel4.attrs.INT != nil or data.ancestryLevel4.attrs.WIL != nil %}, {% endif %}{{data.ancestryLevel4.attrs.custom}}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Common.Characteristics'|l}} :** {% if data.ancestryLevel4.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.ancestryLevel4.gains.perception|signed}}{% endif %}{% if data.ancestryLevel4.gains.defense != nil %}{% if data.ancestryLevel4.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.ancestryLevel4.gains.defense|signed}}{% endif %}{% if data.ancestryLevel4.gains.health != nil %}{% if data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.ancestryLevel4.gains.health|signed}}{% endif %}{% if data.ancestryLevel4.gains.speed != nil %}{% if data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil or data.ancestryLevel4.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.ancestryLevel4.gains.speed|signed}}{% endif %}{% if data.ancestryLevel4.gains.power != nil %}{% if data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil or data.ancestryLevel4.gains.health != nil or data.ancestryLevel4.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.ancestryLevel4.gains.power|signed}}{% endif %}{% if data.ancestryLevel4.gains.custom %}{% if data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil or data.ancestryLevel4.gains.health != nil or data.ancestryLevel4.gains.speed != nil or data.ancestryLevel4.gains.power != nil %}, {% endif %}{{data.ancestryLevel4.gains.custom}}{% endif %}",
+          "visibleIf": "{% if data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil or data.ancestryLevel4.gains.health != nil or data.ancestryLevel4.gains.speed != nil or data.ancestryLevel4.gains.power != nil or data.ancestryLevel4.gains.custom %}true{% endif %}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel4.talent",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "{{data.ancestryLevel4.options}}",
+          "visibleIf": "{{data.ancestryLevel4.options}}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel4.choice",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "{% if data.ancestryLevel4.attrs.STR != nil or data.ancestryLevel4.attrs.AGI != nil or data.ancestryLevel4.attrs.INT != nil or data.ancestryLevel4.attrs.WIL != nil or data.ancestryLevel4.attrs.custom or data.ancestryLevel4.gains.perception != nil or data.ancestryLevel4.gains.defense != nil or data.ancestryLevel4.gains.health != nil or data.ancestryLevel4.gains.speed != nil or data.ancestryLevel4.gains.power != nil or data.ancestryLevel4.gains.custom or data.ancestryLevel4.talent or data.ancestryLevel4.options or data.ancestryLevel4.choice %}true{% endif %}"
+    },
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        10,
+        0,
+        0,
+        0
+      ],
+      "views": [
+        {
+          "style": "entitySubtitle",
+          "value": "{{'Tier.Expert'|l}} {{name|lowercase}} · {{'Level.Word'|l}} 5"
+        }
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel5.attrs.STR != nil or data.ancestryLevel5.attrs.AGI != nil or data.ancestryLevel5.attrs.INT != nil or data.ancestryLevel5.attrs.WIL != nil or data.ancestryLevel5.attrs.custom or data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil or data.ancestryLevel5.gains.health != nil or data.ancestryLevel5.gains.speed != nil or data.ancestryLevel5.gains.power != nil or data.ancestryLevel5.gains.custom or data.ancestryLevel5.talent or data.ancestryLevel5.options or data.ancestryLevel5.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel5.attrs.STR != nil or data.ancestryLevel5.attrs.AGI != nil or data.ancestryLevel5.attrs.INT != nil or data.ancestryLevel5.attrs.WIL != nil or data.ancestryLevel5.attrs.custom or data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil or data.ancestryLevel5.gains.health != nil or data.ancestryLevel5.gains.speed != nil or data.ancestryLevel5.gains.power != nil or data.ancestryLevel5.gains.custom or data.ancestryLevel5.talent or data.ancestryLevel5.options or data.ancestryLevel5.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel5.attrs.STR != nil or data.ancestryLevel5.attrs.AGI != nil or data.ancestryLevel5.attrs.INT != nil or data.ancestryLevel5.attrs.WIL != nil or data.ancestryLevel5.attrs.custom or data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil or data.ancestryLevel5.gains.health != nil or data.ancestryLevel5.gains.speed != nil or data.ancestryLevel5.gains.power != nil or data.ancestryLevel5.gains.custom or data.ancestryLevel5.talent or data.ancestryLevel5.options or data.ancestryLevel5.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "body-info",
+          "visibleIf": "{% if data.ancestryLevel5.attrs.STR != nil or data.ancestryLevel5.attrs.AGI != nil or data.ancestryLevel5.attrs.INT != nil or data.ancestryLevel5.attrs.WIL != nil or data.ancestryLevel5.attrs.custom %}true{% endif %}",
+          "value": "**{{'Common.Attributes'|l}} :** {% if data.ancestryLevel5.attrs.STR != nil %}{{'Attributes.STR'|l}} {{data.ancestryLevel5.attrs.STR|signed}}{% endif %}{% if data.ancestryLevel5.attrs.AGI != nil %}{% if data.ancestryLevel5.attrs.STR != nil %}, {% endif %}{{'Attributes.AGI'|l}} {{data.ancestryLevel5.attrs.AGI|signed}}{% endif %}{% if data.ancestryLevel5.attrs.INT != nil %}{% if data.ancestryLevel5.attrs.STR != nil or data.ancestryLevel5.attrs.AGI != nil %}, {% endif %}{{'Attributes.INT'|l}} {{data.ancestryLevel5.attrs.INT|signed}}{% endif %}{% if data.ancestryLevel5.attrs.WIL != nil %}{% if data.ancestryLevel5.attrs.STR != nil or data.ancestryLevel5.attrs.AGI != nil or data.ancestryLevel5.attrs.INT != nil %}, {% endif %}{{'Attributes.WIL'|l}} {{data.ancestryLevel5.attrs.WIL|signed}}{% endif %}{% if data.ancestryLevel5.attrs.custom %}{% if data.ancestryLevel5.attrs.STR != nil or data.ancestryLevel5.attrs.AGI != nil or data.ancestryLevel5.attrs.INT != nil or data.ancestryLevel5.attrs.WIL != nil %}, {% endif %}{{data.ancestryLevel5.attrs.custom}}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Common.Characteristics'|l}} :** {% if data.ancestryLevel5.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.ancestryLevel5.gains.perception|signed}}{% endif %}{% if data.ancestryLevel5.gains.defense != nil %}{% if data.ancestryLevel5.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.ancestryLevel5.gains.defense|signed}}{% endif %}{% if data.ancestryLevel5.gains.health != nil %}{% if data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.ancestryLevel5.gains.health|signed}}{% endif %}{% if data.ancestryLevel5.gains.speed != nil %}{% if data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil or data.ancestryLevel5.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.ancestryLevel5.gains.speed|signed}}{% endif %}{% if data.ancestryLevel5.gains.power != nil %}{% if data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil or data.ancestryLevel5.gains.health != nil or data.ancestryLevel5.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.ancestryLevel5.gains.power|signed}}{% endif %}{% if data.ancestryLevel5.gains.custom %}{% if data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil or data.ancestryLevel5.gains.health != nil or data.ancestryLevel5.gains.speed != nil or data.ancestryLevel5.gains.power != nil %}, {% endif %}{{data.ancestryLevel5.gains.custom}}{% endif %}",
+          "visibleIf": "{% if data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil or data.ancestryLevel5.gains.health != nil or data.ancestryLevel5.gains.speed != nil or data.ancestryLevel5.gains.power != nil or data.ancestryLevel5.gains.custom %}true{% endif %}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel5.talent",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "{{data.ancestryLevel5.options}}",
+          "visibleIf": "{{data.ancestryLevel5.options}}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel5.choice",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel5.attrs.STR != nil or data.ancestryLevel5.attrs.AGI != nil or data.ancestryLevel5.attrs.INT != nil or data.ancestryLevel5.attrs.WIL != nil or data.ancestryLevel5.attrs.custom or data.ancestryLevel5.gains.perception != nil or data.ancestryLevel5.gains.defense != nil or data.ancestryLevel5.gains.health != nil or data.ancestryLevel5.gains.speed != nil or data.ancestryLevel5.gains.power != nil or data.ancestryLevel5.gains.custom or data.ancestryLevel5.talent or data.ancestryLevel5.options or data.ancestryLevel5.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "hStack",
+      "alignment": "bottom",
+      "padding": [
+        10,
+        0,
+        0,
+        0
+      ],
+      "views": [
+        {
+          "style": "entitySubtitle",
+          "value": "{{'Tier.Master'|l}} {{name|lowercase}} · {{'Level.Word'|l}} 8"
+        }
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel8.attrs.STR != nil or data.ancestryLevel8.attrs.AGI != nil or data.ancestryLevel8.attrs.INT != nil or data.ancestryLevel8.attrs.WIL != nil or data.ancestryLevel8.attrs.custom or data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil or data.ancestryLevel8.gains.health != nil or data.ancestryLevel8.gains.speed != nil or data.ancestryLevel8.gains.power != nil or data.ancestryLevel8.gains.custom or data.ancestryLevel8.talent or data.ancestryLevel8.options or data.ancestryLevel8.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel8.attrs.STR != nil or data.ancestryLevel8.attrs.AGI != nil or data.ancestryLevel8.attrs.INT != nil or data.ancestryLevel8.attrs.WIL != nil or data.ancestryLevel8.attrs.custom or data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil or data.ancestryLevel8.gains.health != nil or data.ancestryLevel8.gains.speed != nil or data.ancestryLevel8.gains.power != nil or data.ancestryLevel8.gains.custom or data.ancestryLevel8.talent or data.ancestryLevel8.options or data.ancestryLevel8.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel8.attrs.STR != nil or data.ancestryLevel8.attrs.AGI != nil or data.ancestryLevel8.attrs.INT != nil or data.ancestryLevel8.attrs.WIL != nil or data.ancestryLevel8.attrs.custom or data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil or data.ancestryLevel8.gains.health != nil or data.ancestryLevel8.gains.speed != nil or data.ancestryLevel8.gains.power != nil or data.ancestryLevel8.gains.custom or data.ancestryLevel8.talent or data.ancestryLevel8.options or data.ancestryLevel8.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "body-info",
+          "visibleIf": "{% if data.ancestryLevel8.attrs.STR != nil or data.ancestryLevel8.attrs.AGI != nil or data.ancestryLevel8.attrs.INT != nil or data.ancestryLevel8.attrs.WIL != nil or data.ancestryLevel8.attrs.custom %}true{% endif %}",
+          "value": "**{{'Common.Attributes'|l}} :** {% if data.ancestryLevel8.attrs.STR != nil %}{{'Attributes.STR'|l}} {{data.ancestryLevel8.attrs.STR|signed}}{% endif %}{% if data.ancestryLevel8.attrs.AGI != nil %}{% if data.ancestryLevel8.attrs.STR != nil %}, {% endif %}{{'Attributes.AGI'|l}} {{data.ancestryLevel8.attrs.AGI|signed}}{% endif %}{% if data.ancestryLevel8.attrs.INT != nil %}{% if data.ancestryLevel8.attrs.STR != nil or data.ancestryLevel8.attrs.AGI != nil %}, {% endif %}{{'Attributes.INT'|l}} {{data.ancestryLevel8.attrs.INT|signed}}{% endif %}{% if data.ancestryLevel8.attrs.WIL != nil %}{% if data.ancestryLevel8.attrs.STR != nil or data.ancestryLevel8.attrs.AGI != nil or data.ancestryLevel8.attrs.INT != nil %}, {% endif %}{{'Attributes.WIL'|l}} {{data.ancestryLevel8.attrs.WIL|signed}}{% endif %}{% if data.ancestryLevel8.attrs.custom %}{% if data.ancestryLevel8.attrs.STR != nil or data.ancestryLevel8.attrs.AGI != nil or data.ancestryLevel8.attrs.INT != nil or data.ancestryLevel8.attrs.WIL != nil %}, {% endif %}{{data.ancestryLevel8.attrs.custom}}{% endif %}"
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Common.Characteristics'|l}} :** {% if data.ancestryLevel8.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.ancestryLevel8.gains.perception|signed}}{% endif %}{% if data.ancestryLevel8.gains.defense != nil %}{% if data.ancestryLevel8.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.ancestryLevel8.gains.defense|signed}}{% endif %}{% if data.ancestryLevel8.gains.health != nil %}{% if data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.ancestryLevel8.gains.health|signed}}{% endif %}{% if data.ancestryLevel8.gains.speed != nil %}{% if data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil or data.ancestryLevel8.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.ancestryLevel8.gains.speed|signed}}{% endif %}{% if data.ancestryLevel8.gains.power != nil %}{% if data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil or data.ancestryLevel8.gains.health != nil or data.ancestryLevel8.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.ancestryLevel8.gains.power|signed}}{% endif %}{% if data.ancestryLevel8.gains.custom %}{% if data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil or data.ancestryLevel8.gains.health != nil or data.ancestryLevel8.gains.speed != nil or data.ancestryLevel8.gains.power != nil %}, {% endif %}{{data.ancestryLevel8.gains.custom}}{% endif %}",
+          "visibleIf": "{% if data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil or data.ancestryLevel8.gains.health != nil or data.ancestryLevel8.gains.speed != nil or data.ancestryLevel8.gains.power != nil or data.ancestryLevel8.gains.custom %}true{% endif %}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel8.talent",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "{{data.ancestryLevel8.options}}",
+          "visibleIf": "{{data.ancestryLevel8.options}}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.ancestryLevel8.choice",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ],
+      "visibleIf": "{% if data.powerfulAncestry %}{% if data.ancestryLevel8.attrs.STR != nil or data.ancestryLevel8.attrs.AGI != nil or data.ancestryLevel8.attrs.INT != nil or data.ancestryLevel8.attrs.WIL != nil or data.ancestryLevel8.attrs.custom or data.ancestryLevel8.gains.perception != nil or data.ancestryLevel8.gains.defense != nil or data.ancestryLevel8.gains.health != nil or data.ancestryLevel8.gains.speed != nil or data.ancestryLevel8.gains.power != nil or data.ancestryLevel8.gains.custom or data.ancestryLevel8.talent or data.ancestryLevel8.options or data.ancestryLevel8.choice %}true{% endif %}{% endif %}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{{image}}"
+    },
+    {
+      "type": "text",
+      "style": "entitySubtitle",
+      "visibleIf": "{% if data.tables %}true{% endif %}",
+      "value": "**{{'Ancestry.Tables'|l}}**"
+    },
+    {
+      "type": "text",
+      "style": "body-info",
+      "visibleIf": "{% if data.tables %}true{% endif %}",
+      "value": "{{data.tables}}"
+    },
+    {
+      "type": "image",
+      "value": "{{image}}",
+      "link": "{{image}}"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "text",
+      "style": "source",
+      "padding": [
+        5,
+        0,
+        0,
+        0
+      ],
+      "value": "*{{'Common.Source'|l}} : {{ sourceFormatted }}*",
+      "visibleIf": "{{sourceFormatted}}"
+    }
+  ]
 }

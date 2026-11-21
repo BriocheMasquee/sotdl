@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+{% block content %}
+{# FICHIER GÉNÉRÉ par sotdl-system/outils/construire-fiche-grimoire.py (modèle : outils/carte-mj-grimoire.modele.html).
+   Carte MJ du personnage (2026-11-21) : mix « Combat » + « Dossier », habillage de la maquette B (carte sombre). Lecture seule, sauf les jets (liens /roll/).
+   Le bouton « Ouvrir la fiche » est sous le sceau du niveau.
+   Les pastilles d'afflictions (liste AFF générée) = drapeaux data.conditions.* + liste libre data.afflictions.
+   Retour à la vue native : supprimer le bloc `view` de config.json. Aucun filtre CSS (WebKit). #}
+<style>
+  html, body { background: #101010; }
+  body { padding: 8px 0 0; }
+  .gm { position: relative; margin: 0; overflow: hidden; color: #efe8d8; border-top: 5px solid #8e0e14; background: linear-gradient(180deg, #1f1813, #110c0a); font-family: var(--font-ui, 'Montserrat', sans-serif); }
+  .gm::before { content: ''; position: absolute; inset: 0; background-image: url('{{env.systemURL}}images/sotdl_paper.png'); background-size: 256px; opacity: .09; mix-blend-mode: screen; pointer-events: none; }
+  .gm::after { content: ''; position: absolute; left: -80px; bottom: -120px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, #8e0e1477, transparent 65%); pointer-events: none; }
+  .gm > * { position: relative; z-index: 1; }
+  .gm .pent { position: absolute; right: -130px; top: -215px; width: 470px; height: 470px; background: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27400%27%20height%3D%27400%27%20viewBox%3D%270%200%20400%20400%27%3E%3Cg%20fill%3D%27%23efe8d8%27%3E%3Cpath%20d%3D%27M200.0%20328.0Q167.3%20210.6%20124.8%2096.4Q157.4%20213.8%20200.0%20328.0ZM124.8%2096.4Q220.2%20172.2%20321.7%20239.6Q226.3%20163.8%20124.8%2096.4ZM321.7%20239.6Q200.0%20234.4%2078.3%20239.6Q200.0%20244.8%20321.7%20239.6ZM78.3%20239.6Q179.8%20172.2%20275.2%2096.4Q173.7%20163.8%2078.3%20239.6ZM275.2%2096.4Q232.7%20210.6%20200.0%20328.0Q242.6%20213.8%20275.2%2096.4Z%27/%3E%3C/g%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23efe8d8%27%20stroke-width%3D%271.3%27%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27142%27/%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27150%27%20stroke-dasharray%3D%271%203%27/%3E%3Cline%20x1%3D%22350.0%22%20y1%3D%22200.0%22%20x2%3D%22360.0%22%20y2%3D%22200.0%22/%3E%3Cline%20x1%3D%22349.2%22%20y1%3D%22215.7%22%20x2%3D%22354.2%22%20y2%3D%22216.2%22/%3E%3Cline%20x1%3D%22346.7%22%20y1%3D%22231.2%22%20x2%3D%22351.6%22%20y2%3D%22232.2%22/%3E%3Cline%20x1%3D%22342.7%22%20y1%3D%22246.4%22%20x2%3D%22352.2%22%20y2%3D%22249.4%22/%3E%3Cline%20x1%3D%22337.0%22%20y1%3D%22261.0%22%20x2%3D%22341.6%22%20y2%3D%22263.0%22/%3E%3Cline%20x1%3D%22329.9%22%20y1%3D%22275.0%22%20x2%3D%22338.6%22%20y2%3D%22280.0%22/%3E%3Cline%20x1%3D%22321.4%22%20y1%3D%22288.2%22%20x2%3D%22325.4%22%20y2%3D%22291.1%22/%3E%3Cline%20x1%3D%22311.5%22%20y1%3D%22300.4%22%20x2%3D%22315.2%22%20y2%3D%22303.7%22/%3E%3Cline%20x1%3D%22300.4%22%20y1%3D%22311.5%22%20x2%3D%22303.7%22%20y2%3D%22315.2%22/%3E%3Cline%20x1%3D%22288.2%22%20y1%3D%22321.4%22%20x2%3D%22291.1%22%20y2%3D%22325.4%22/%3E%3Cline%20x1%3D%22275.0%22%20y1%3D%22329.9%22%20x2%3D%22280.0%22%20y2%3D%22338.6%22/%3E%3Cline%20x1%3D%22261.0%22%20y1%3D%22337.0%22%20x2%3D%22263.0%22%20y2%3D%22341.6%22/%3E%3Cline%20x1%3D%22246.4%22%20y1%3D%22342.7%22%20x2%3D%22247.9%22%20y2%3D%22347.4%22/%3E%3Cline%20x1%3D%22231.2%22%20y1%3D%22346.7%22%20x2%3D%22232.2%22%20y2%3D%22351.6%22/%3E%3Cline%20x1%3D%22215.7%22%20y1%3D%22349.2%22%20x2%3D%22216.2%22%20y2%3D%22354.2%22/%3E%3Cline%20x1%3D%22200.0%22%20y1%3D%22350.0%22%20x2%3D%22200.0%22%20y2%3D%22360.0%22/%3E%3Cline%20x1%3D%22184.3%22%20y1%3D%22349.2%22%20x2%3D%22183.8%22%20y2%3D%22354.2%22/%3E%3Cline%20x1%3D%22168.8%22%20y1%3D%22346.7%22%20x2%3D%22167.8%22%20y2%3D%22351.6%22/%3E%3Cline%20x1%3D%22153.6%22%20y1%3D%22342.7%22%20x2%3D%22152.1%22%20y2%3D%22347.4%22/%3E%3Cline%20x1%3D%22139.0%22%20y1%3D%22337.0%22%20x2%3D%22137.0%22%20y2%3D%22341.6%22/%3E%3Cline%20x1%3D%22125.0%22%20y1%3D%22329.9%22%20x2%3D%22120.0%22%20y2%3D%22338.6%22/%3E%3Cline%20x1%3D%22111.8%22%20y1%3D%22321.4%22%20x2%3D%22108.9%22%20y2%3D%22325.4%22/%3E%3Cline%20x1%3D%2299.6%22%20y1%3D%22311.5%22%20x2%3D%2296.3%22%20y2%3D%22315.2%22/%3E%3Cline%20x1%3D%2288.5%22%20y1%3D%22300.4%22%20x2%3D%2284.8%22%20y2%3D%22303.7%22/%3E%3Cline%20x1%3D%2278.6%22%20y1%3D%22288.2%22%20x2%3D%2274.6%22%20y2%3D%22291.1%22/%3E%3Cline%20x1%3D%2270.1%22%20y1%3D%22275.0%22%20x2%3D%2261.4%22%20y2%3D%22280.0%22/%3E%3Cline%20x1%3D%2263.0%22%20y1%3D%22261.0%22%20x2%3D%2258.4%22%20y2%3D%22263.0%22/%3E%3Cline%20x1%3D%2257.3%22%20y1%3D%22246.4%22%20x2%3D%2247.8%22%20y2%3D%22249.4%22/%3E%3Cline%20x1%3D%2253.3%22%20y1%3D%22231.2%22%20x2%3D%2248.4%22%20y2%3D%22232.2%22/%3E%3Cline%20x1%3D%2250.8%22%20y1%3D%22215.7%22%20x2%3D%2245.8%22%20y2%3D%22216.2%22/%3E%3Cline%20x1%3D%2250.0%22%20y1%3D%22200.0%22%20x2%3D%2240.0%22%20y2%3D%22200.0%22/%3E%3Cline%20x1%3D%2250.8%22%20y1%3D%22184.3%22%20x2%3D%2245.8%22%20y2%3D%22183.8%22/%3E%3Cline%20x1%3D%2253.3%22%20y1%3D%22168.8%22%20x2%3D%2248.4%22%20y2%3D%22167.8%22/%3E%3Cline%20x1%3D%2257.3%22%20y1%3D%22153.6%22%20x2%3D%2252.6%22%20y2%3D%22152.1%22/%3E%3Cline%20x1%3D%2263.0%22%20y1%3D%22139.0%22%20x2%3D%2258.4%22%20y2%3D%22137.0%22/%3E%3Cline%20x1%3D%2270.1%22%20y1%3D%22125.0%22%20x2%3D%2261.4%22%20y2%3D%22120.0%22/%3E%3Cline%20x1%3D%2278.6%22%20y1%3D%22111.8%22%20x2%3D%2274.6%22%20y2%3D%22108.9%22/%3E%3Cline%20x1%3D%2288.5%22%20y1%3D%2299.6%22%20x2%3D%2284.8%22%20y2%3D%2296.3%22/%3E%3Cline%20x1%3D%2299.6%22%20y1%3D%2288.5%22%20x2%3D%2296.3%22%20y2%3D%2284.8%22/%3E%3Cline%20x1%3D%22111.8%22%20y1%3D%2278.6%22%20x2%3D%22106.0%22%20y2%3D%2270.6%22/%3E%3Cline%20x1%3D%22125.0%22%20y1%3D%2270.1%22%20x2%3D%22120.0%22%20y2%3D%2261.4%22/%3E%3Cline%20x1%3D%22139.0%22%20y1%3D%2263.0%22%20x2%3D%22137.0%22%20y2%3D%2258.4%22/%3E%3Cline%20x1%3D%22153.6%22%20y1%3D%2257.3%22%20x2%3D%22152.1%22%20y2%3D%2252.6%22/%3E%3Cline%20x1%3D%22168.8%22%20y1%3D%2253.3%22%20x2%3D%22167.8%22%20y2%3D%2248.4%22/%3E%3Cline%20x1%3D%22184.3%22%20y1%3D%2250.8%22%20x2%3D%22183.8%22%20y2%3D%2245.8%22/%3E%3Cline%20x1%3D%22200.0%22%20y1%3D%2250.0%22%20x2%3D%22200.0%22%20y2%3D%2240.0%22/%3E%3Cline%20x1%3D%22215.7%22%20y1%3D%2250.8%22%20x2%3D%22216.2%22%20y2%3D%2245.8%22/%3E%3Cline%20x1%3D%22231.2%22%20y1%3D%2253.3%22%20x2%3D%22232.2%22%20y2%3D%2248.4%22/%3E%3Cline%20x1%3D%22246.4%22%20y1%3D%2257.3%22%20x2%3D%22247.9%22%20y2%3D%2252.6%22/%3E%3Cline%20x1%3D%22261.0%22%20y1%3D%2263.0%22%20x2%3D%22263.0%22%20y2%3D%2258.4%22/%3E%3Cline%20x1%3D%22275.0%22%20y1%3D%2270.1%22%20x2%3D%22280.0%22%20y2%3D%2261.4%22/%3E%3Cline%20x1%3D%22288.2%22%20y1%3D%2278.6%22%20x2%3D%22294.0%22%20y2%3D%2270.6%22/%3E%3Cline%20x1%3D%22300.4%22%20y1%3D%2288.5%22%20x2%3D%22303.7%22%20y2%3D%2284.8%22/%3E%3Cline%20x1%3D%22311.5%22%20y1%3D%2299.6%22%20x2%3D%22315.2%22%20y2%3D%2296.3%22/%3E%3Cline%20x1%3D%22321.4%22%20y1%3D%22111.8%22%20x2%3D%22325.4%22%20y2%3D%22108.9%22/%3E%3Cline%20x1%3D%22329.9%22%20y1%3D%22125.0%22%20x2%3D%22338.6%22%20y2%3D%22120.0%22/%3E%3Cline%20x1%3D%22337.0%22%20y1%3D%22139.0%22%20x2%3D%22341.6%22%20y2%3D%22137.0%22/%3E%3Cline%20x1%3D%22342.7%22%20y1%3D%22153.6%22%20x2%3D%22347.4%22%20y2%3D%22152.1%22/%3E%3Cline%20x1%3D%22346.7%22%20y1%3D%22168.8%22%20x2%3D%22351.6%22%20y2%3D%22167.8%22/%3E%3Cline%20x1%3D%22349.2%22%20y1%3D%22184.3%22%20x2%3D%22354.2%22%20y2%3D%22183.8%22/%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27170%27%20stroke-width%3D%27.8%27/%3E%3C/g%3E%3C/svg%3E") center / 100% 100% no-repeat; opacity: .11; z-index: 0; }
+  main.gm-main { padding: 0; max-width: none; margin: 0; }
+  .gm p, .gm h1 { margin: 0; }
+  .gm .top { display: flex; align-items: center; gap: 14px; padding: 16px 20px 4px; }
+  .gm .portrait { position: relative; width: 58px; height: 58px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #3a2d25, #120d0b); display: flex; align-items: center; justify-content: center; flex: none; }
+  .gm .portrait::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 3px solid #b3151e; pointer-events: none; }
+  .gm .portrait img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+  .gm .who { flex: 1; min-width: 0; }
+  .gm h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font: 28px/1.1 var(--font-title, 'Aquifer', serif); color: #efe8d8; text-transform: uppercase; letter-spacing: .03em; text-shadow: 0 2px 0 #000, 0 0 22px #b3151e99; }
+  .gm .orig + .orig { margin-top: 2px; }
+  .gm .orig.paths-line { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.35; }
+  .gm .orig { margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: #d49a8a; }
+  .gm .lv { display: flex; flex-direction: column; align-items: center; gap: 7px; flex: none; }
+  .gm .seal { width: 66px; height: 66px; border-radius: 50%; background: radial-gradient(circle at 35% 28%, #32261f, #0a0706); border: 3px solid #efe8d8; box-shadow: 0 0 0 2px #8e0e14, 0 0 0 4px #000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .gm .seal b { font: 30px/1 var(--font-title, 'Aquifer', serif); position: relative; top: -4px; }
+  .gm .seal span { font-weight: 700; font-size: 6.5px; letter-spacing: .2em; text-transform: uppercase; color: #d49a8a; margin-top: -3px; }
+  .gm .go { display: block; text-decoration: none; background: linear-gradient(180deg, #b3151e, #8e0e14); color: #efe8d8; font-weight: 700; font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 11px; border-radius: 3px 10px 3px 10px; box-shadow: 0 1px 0 #000a; white-space: nowrap; }
+  .gm .go:hover { filter: brightness(1.15); }
+  .gm .body { padding: 4px 20px 14px; }
+  .gm .sec { margin: 12px 0 4px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: #d49a8a; }
+  .gm .sec::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, #8e0e1499, transparent); }
+  .gm .bar { position: relative; height: 24px; border-radius: 14px; background: #0a0706; border: 2px solid #efe8d855; overflow: hidden; margin-top: 12px; }
+  .gm .bar i { position: absolute; inset: 0 auto 0 0; background: linear-gradient(180deg, #d02a33, #8e0e14); }
+  .gm .bar b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .gm .bar.down i { background: linear-gradient(180deg, #6a6a6a, #2a2a2a); }
+  .gm .strip { display: flex; gap: 5px; flex-wrap: nowrap; margin: 6px 0; }
+  .gm .strip > * { min-width: 0; }
+  .gm .pill { display: inline-flex; align-items: baseline; gap: 5px; padding: 2px 9px; border-radius: 3px 10px 3px 10px; background: #efe8d814; border: 1px solid #efe8d833; font-size: 9px; letter-spacing: .06em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; color: #d49a8a; }
+  .gm .pill b { font: 700 14px/1 var(--font-title, 'Aquifer', serif); color: #efe8d8; letter-spacing: .02em; }
+  .gm .pill.off { opacity: .45; }
+  .gm .pill.dem.on { border-color: #2a1445; color: #efe3ff; background: linear-gradient(180deg, #5b3a8c, #2e1a52); }
+  .gm .pill.mark.on { border-color: #0d2f26; color: #dcf5ea; background: linear-gradient(180deg, #2c7a62, #124236); }
+  .gm .lk-in { position: absolute; opacity: 0; pointer-events: none; }
+  .gm .pill.luck { cursor: pointer; }
+  .gm .pill.luck:has(.lk-in:checked) { opacity: 1; border-color: #8a6a10; color: #4a3604; background: linear-gradient(180deg, #e9cd6a, #c39a2e); }
+  .gm .pill.luck:not(:has(.lk-in:checked)) { opacity: .45; border-color: #efe8d833; color: #d49a8a; background: #efe8d814; }
+  .gm .pill.luck.on { border-color: #8a6a10; color: #4a3604; background: linear-gradient(180deg, #e9cd6a, #c39a2e); }
+  .gm .chars { display: grid; grid-template-columns: repeat(5, 1fr); align-items: start; margin: 8px 0 2px; padding-top: 2px; position: relative; }
+  .gm .ch { text-align: center; min-width: 0; padding-top: 3px; } .gm .ch .cl { display: block; font-weight: 700; font-size: 8px; letter-spacing: .12em; text-transform: uppercase; color: #d49a8a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gm .ch b { display: block; font: 18px/1.2 var(--font-title, 'Aquifer', serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gm .shield { display: block; position: relative; width: 36px; height: 41px; margin: 2px auto 0; background: #b3151e; clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%); }
+  .gm .shield::before { content: ''; position: absolute; inset: 2px; background: linear-gradient(180deg, #f6f0e0, #e2d9c3); clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%); }
+  .gm .shield b { position: absolute; left: 0; right: 0; top: 6px; z-index: 1; font: 19px/1 var(--font-title, 'Aquifer', serif); color: #17120f; text-align: center; padding: 0; }
+  .gm .attrs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin: 6px 0; }
+  .gm .at { text-align: center; padding: 4px 2px 5px; min-width: 0; border: 1px solid #efe8d833; border-radius: 4px 12px 4px 12px; background: #efe8d80d; }
+  .gm .at small { display: block; font-size: 8px; letter-spacing: .1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-transform: uppercase; color: #d49a8a; }
+  .gm .at b { font: 21px/1.1 var(--font-title, 'Aquifer', serif); display: block; }
+  .gm .at p { margin-top: 2px; }
+  .gm .at a { padding: 0 8px; font-size: 11px; }
+  .gm a.lnk { color: inherit; text-decoration: none; border-bottom: 1.5px dotted #7a6f60; }
+  .gm .rl { display: inline-block; padding: 1px 10px; border-radius: 5px 5px 11px 11px; background: linear-gradient(180deg, #2c231d, #0f0a08); border: 1px solid #efe8d833; color: #efe8d8; font-weight: 700; font-size: 12px; text-decoration: none; box-shadow: 0 1px 0 #000a; white-space: nowrap; cursor: pointer; }
+  .gm .rl[data-kind="check"], .gm .rl[data-kind="attack"] { background: linear-gradient(180deg, #b3151e, #8e0e14); border-color: #ff9a9a55; }
+  .gm .rl:hover { filter: brightness(1.2); }
+  .gm .row .rl + .rl { margin-left: 6px; }
+  .gm .row { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 13px; }
+  .gm .row .n { flex: 1; min-width: 0; } .gm .row small { display: block; color: #d49a8a; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+  .gm .row .u { font: 700 12px var(--font-ui, 'Montserrat', sans-serif); color: #efe8d8cc; white-space: nowrap; }
+  .gm .aff { display: inline-block; padding: 2px 12px; border-radius: 999px; background: #8e0e14; color: #efe8d8; font-size: 11px; font-weight: 700; letter-spacing: .04em; margin: 2px 4px 2px 0; }
+  .gm .mental { display: flex; gap: 8px; } .gm .mental .strip { display: contents; }
+  .gm .at small .sh { display: none; }
+  .gov { position: fixed; inset: 0; z-index: 50; background: #000a; display: flex; align-items: center; justify-content: center; padding: 14px; font-family: var(--font-ui, 'Montserrat', sans-serif); }
+  .gdlg { width: min(420px, 100%); max-height: 90vh; overflow: auto; background: linear-gradient(180deg, #2a201a, #17110e); color: #efe8d8; border: 1px solid #efe8d833; border-top: 4px solid #8e0e14; border-radius: 6px; box-shadow: 0 10px 40px #000c; }
+  .gdlg h3 { margin: 0; padding: 12px 18px 6px; font: 22px/1.1 var(--font-title, 'Aquifer', serif); text-transform: uppercase; letter-spacing: .03em; }
+  .gdb { padding: 4px 18px 8px; font-size: 13px; } .gdb label.gl { display: block; margin: 10px 0 3px; font-weight: 700; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: #d49a8a; }
+  .gdb input[type=number], .gdb input[type=text], .gdb textarea, .gdb select { width: 100%; padding: 6px 8px; background: #0a0706; color: #efe8d8; border: 1px solid #efe8d844; border-radius: 4px; font: inherit; }
+  .gdb .opt { display: flex; align-items: center; gap: 8px; padding: 4px 0; } .gdb .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+  .gdb .step { display: flex; align-items: center; gap: 12px; margin: 6px 0 10px; } .gdb .step .nm { flex: 1; font-weight: 700; } .gdb .step b { font: 22px var(--font-title, 'Aquifer', serif); min-width: 28px; text-align: center; }
+  .gdb .pm { position: relative; width: 30px; height: 30px; border-radius: 50%; background: #0b0807; border: 1.5px solid #8b7b6b; color: #efe8d8; font: 700 18px/1 var(--font-ui, 'Montserrat', sans-serif); cursor: pointer; padding: 0; }
+  .gdbt { display: flex; justify-content: flex-end; gap: 8px; padding: 8px 18px 16px; }
+  .gdbt button { border: 1.5px solid #b3151e; color: #efe8d8; background: transparent; padding: 6px 18px; border-radius: 14px; font: 700 12px var(--font-ui, 'Montserrat', sans-serif); cursor: pointer; } .gdbt button.on { background: linear-gradient(180deg, #b3151e, #8e0e14); }
+  .gtoast { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; padding: 8px 14px; background: #8e0e14; color: #efe8d8; border-radius: 6px; font: 700 12px var(--font-ui, 'Montserrat', sans-serif); }
+  .gm .purse { display: grid; grid-template-columns: repeat(4, 1fr); } .gm .purse .pill { justify-content: space-between; }
+  .gm .aff { text-decoration: none; } .gm a.aff:hover { filter: brightness(1.25); } .gm .addline { margin: 4px 0 0; } .gm .aff.add { background: transparent; border: 1px dashed #b3151e; color: #d49a8a; }
+  .gm a.pill { text-decoration: none; cursor: pointer; } .gm a.pill:hover { filter: brightness(1.2); }
+  .gm .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 26px; }
+  .gm .kv { display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; font-size: 12.5px; }
+  .gm .kv span { color: #d49a8a; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; flex: none; padding-top: 1px; }
+  .gm .kv b { font-weight: 700; text-align: right; min-width: 0; }
+  .gm .paths { display: flex; flex-direction: column; align-items: flex-end; }
+  .gm .paths span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; font-weight: 700; } .gm .paths small { display: inline; color: #d49a8a; font-size: 10px; font-weight: 400; }
+  .gm .kv.lp b { text-align: left; font-size: 13px; color: #efe8d8; } .gm .kv.lp span { text-align: right; }
+  .gm .kv.lp i { font-style: normal; } .gm .kv.lp i + i::before { content: ' · '; }
+  .gm .kv.idk { justify-content: flex-start; gap: 12px; } .gm .kv.idk > span { width: 96px; flex: none; } .gm .kv.idk b { flex: 1; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gm .kv.idk .paths { align-items: flex-start; }
+  .gm .kv.paths-row { align-items: flex-start; }
+  .gm .row .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gm .kv b i { font-style: normal; } .gm .kv b i + i::before { content: ' · '; }
+  @media (max-width: 620px) { .gm .two { grid-template-columns: 1fr; } .gm .at small .lg { display: none; } .gm .at small .sh { display: inline; } .gm .mental { flex-direction: column; gap: 4px; } .gm .mental .strip { display: flex; } }
+</style>
+<main class="gm-main">
+<div class="gm">
+  <i class="pent"></i>
+  <div class="top">
+    {% if image %}<div class="portrait"><img src="{{image|resolvePath}}" alt=""></div>{% endif %}
+    <div class="who">
+      <h1>{{name}}</h1>
+      <div class="orig">{% if data.ancestry.name %}{{data.ancestry.name}}{% endif %}{% if data.transformation.name %} · {{data.transformation.name}}{% endif %}</div>
+      <div class="orig paths-line">{% if data.novicePath.name %}{{data.novicePath.name}}{% endif %}{% if data.expertPath.name %} · {{data.expertPath.name}}{% endif %}{% if data.masterPath.name %} · {{data.masterPath.name}}{% endif %}{% if data.secondPath.name %} · {{data.secondPath.name}} ({{'Sheet.SecondPathNote'|l}}){% endif %}</div>
+    </div>
+    <div class="lv"><div class="seal"><b>{{data.level|default: 0}}</b><span>{{'Character.Level'|l}}</span></div>{% if env.sheetURL %}<a id="go-sheet" class="go" href="{{env.sheetURL}}">{{'Character.OpenSheet'|l}}</a>{% endif %}</div>
+  </div>
+  <div class="body">
+    <div class="bar{% if data.healthState == 'down' %} down{% endif %}"><i style="width: {{data.hpPercent|default: 0}}%"></i><b>{{'Characteristics.Damage'|l}} {{data.hp.current|default: 0}} / {{data.hp.maximum|default: 0}}{% if data.healthState == 'wounded' %} · {{'Card.Wounded'|l}}{% elif data.healthState == 'down' %} · {{'Sheet.Down'|l}}{% endif %}</b></div>
+    <div class="chars">
+      <span class="ch"><span class="cl">{{'Characteristics.Size'|l}}</span><b>{% if data.gabaritChoice %}{{data.gabaritChoice|map: 'BodySize'}}{% else %}{{data.size|default: '—'}}{% endif %}</b></span>
+      <span class="ch"><span class="cl">{{'Characteristics.Speed'|l}}</span><b>{{data.speedValue|default: '—'}}</b></span>
+      <span class="ch def"><span class="cl">{{'Characteristics.Defense'|l}}</span><span class="shield"><b>{{data.defenseValue|default: '—'}}</b></span></span>
+      <span class="ch"><span class="cl">{{'Characteristics.Power'|l}}</span><b>{{data.powerValue|default: '—'}}</b></span>
+      <span class="ch"><span class="cl">{{'Characteristics.HealingRateShort'|l}}</span><b>{{data.healingValue|default: '—'}}</b></span>
+    </div>
+    <div class="attrs">
+      <div class="at"><small><span class="lg">{{'Attributes.STR'|l}}</span><span class="sh">{{'Card.Abbr.STR'|l}}</span></small><b>{{data.strength|default: '—'}}</b><a class="rl" href="#" data-kind="check" data-attr="STR" data-die="{{'Attributes.STR'|l}}" data-mod="{{ data.strengthModifier|default: 0 }}" data-label="{{'Attributes.STR'|l}}">{{ data.strengthModifier|default: 0|signed }}</a></div>
+      <div class="at"><small><span class="lg">{{'Attributes.AGI'|l}}</span><span class="sh">{{'Card.Abbr.AGI'|l}}</span></small><b>{{data.agility|default: '—'}}</b><a class="rl" href="#" data-kind="check" data-attr="AGI" data-die="{{'Attributes.AGI'|l}}" data-mod="{{ data.agilityModifier|default: 0 }}" data-label="{{'Attributes.AGI'|l}}">{{ data.agilityModifier|default: 0|signed }}</a></div>
+      <div class="at"><small><span class="lg">{{'Attributes.INT'|l}}</span><span class="sh">{{'Card.Abbr.INT'|l}}</span></small><b>{{data.intellect|default: '—'}}</b><a class="rl" href="#" data-kind="check" data-attr="INT" data-die="{{'Attributes.INT'|l}}" data-mod="{{ data.intellectModifier|default: 0 }}" data-label="{{'Attributes.INT'|l}}">{{ data.intellectModifier|default: 0|signed }}</a></div>
+      <div class="at"><small><span class="lg">{{'Attributes.WIL'|l}}</span><span class="sh">{{'Card.Abbr.WIL'|l}}</span></small><b>{{data.will|default: '—'}}</b><a class="rl" href="#" data-kind="check" data-attr="WIL" data-die="{{'Attributes.WIL'|l}}" data-mod="{{ data.willModifier|default: 0 }}" data-label="{{'Attributes.WIL'|l}}">{{ data.willModifier|default: 0|signed }}</a></div>
+      <div class="at"><small><span class="lg">{{'Characteristics.Perception'|l}}</span><span class="sh">{{'Card.Abbr.PER'|l}}</span></small><b>{{data.perceptionFinal|default: '—'}}</b><a class="rl" href="#" data-kind="check" data-attr="PER" data-die="{{'Characteristics.Perception'|l}}" data-mod="{{ data.perceptionModifier|default: 0 }}" data-label="{{'Characteristics.Perception'|l}}">{{ data.perceptionModifier|default: 0|signed }}</a></div>
+    </div>
+
+    <div class="sec">{{'Sheet.Mental'|l}}</div>
+    <div class="mental"><div class="strip">
+      <span class="pill">{{'Characteristics.Insanity'|l}} <b>{{data.insanityValue|default: 0}}{% if data.insanityMax != nil %} / {{data.insanityMax}}{% endif %}</b></span>
+      <span class="pill">{{'Characteristics.Corruption'|l}} <b>{{data.corruptionValue|default: 0}}</b></span>
+    </div><div class="strip">
+      <label class="pill luck{% if data.luck == true %} on{% else %} off{% endif %}" title="{{'Sheet.Luck.Tip'|l}}"><input type="checkbox" data-bind="data.luck" class="lk-in">{{'Character.Luck'|l}}</label>
+      <a class="pill dem{% if data.dementia %} on{% else %} off{% endif %}" href="#" data-open="mind">{{'Character.Dementia'|l}}</a>
+      <a class="pill mark{% if data.darkMark %} on{% else %} off{% endif %}" href="#" data-open="mind">{{'Sheet.MarksShort'|l}}</a>
+    </div></div>
+    {% if data.dementia %}<div class="kv"><span>{{'Character.Dementia'|l}}</span><b>{{data.dementia}}</b></div>{% endif %}
+    {% if data.darkMark %}<div class="kv"><span>{{'Character.DarkMark'|l}}</span><b>{{data.darkMark}}</b></div>{% endif %}
+
+    <div class="sec">{{'Card.Afflictions'|l}}</div>
+    <div class="affs" id="affs"><span id="aff-flags"></span><a class="aff add" href="#" data-open="aff">{{'Sheet.AddAffliction'|l}}</a></div>
+
+    <div class="sec">{{'Character.Attacks'|l}}</div>
+    {% for w in data.weapons %}{% if w.weaponType != 'Shield' and w.weaponType != 'Ammunition' %}<div class="row"><span class="n">{{w.name}}{% if w.ammoName %}<small>{{w.ammoName}} · {{w.ammoSpent|default: 0}} / {{w.ammoUses|default: 0}} {{'Card.Used'|l}}</small>{% endif %}</span><a class="rl" href="#" data-kind="attack" data-ammo="{{ w.ammoPath }}" data-ammo-uses="{{ w.ammoUses|default: 0 }}" data-ammo-spent="{{ w.ammoSpent|default: 0 }}" data-attr="{% if w.weaponType == 'Ranged' %}AGI{% else %}STR{% endif %}" data-mod="{{ w.attackBonus|default: 0 }}" data-label="{{ w.name }}">{{ w.attackBonus|default: 0|signed }}</a>{% if w.weaponDamage %}<a class="rl" href="#" data-kind="damage" data-f="{{ w.weaponDamage }}" data-label="{{ w.name }}">{{ w.weaponDamage }}</a>{% endif %}</div>{% endif %}{% endfor %}
+
+    {% if data.spells %}<div class="sec">{{'Card.Magic'|l}}</div>
+    {% for s in data.spells %}<div class="row"><span class="n">{{s.name}}<small>{{'Card.Rank'|l}} {{s.spellRank|default: 0}}{% if s.spellTradition.tradition %} · {{s.spellTradition.tradition|map: 'SpellTradition'|l}}{% endif %}</small></span><span class="u">{{s.usesSpent|default: 0}} / {{s.usesMaximum|default: 0}} {{'Card.Used'|l}}</span></div>{% endfor %}{% endif %}
+
+    <div class="two">
+      <div>
+        <div class="sec">{{'Card.Identity'|l}}</div>
+        <div class="kv idk"><span>{{'Entity.Ancestry'|l}}</span><b>{{data.ancestry.name|default: '—'}}{% if data.transformation.name %} · {{data.transformation.name}}{% endif %}</b></div>
+        <div class="kv idk paths-row"><span>{{'Card.Paths'|l}}</span><b class="paths">{% if data.novicePath.name %}<span>{{data.novicePath.name}} <small>({{'Tier.Novice'|l}})</small></span>{% endif %}{% if data.expertPath.name %}<span>{{data.expertPath.name}} <small>({{'Tier.Expert'|l}})</small></span>{% endif %}{% if data.masterPath.name %}<span>{{data.masterPath.name}} <small>({{'Tier.Master'|l}})</small></span>{% endif %}{% if data.secondPath.name %}<span>{{data.secondPath.name}} <small>({{'Sheet.Path.Second'|l}})</small></span>{% endif %}{% if data.novicePath.name == nil and data.expertPath.name == nil and data.masterPath.name == nil and data.secondPath.name == nil %}<span>—</span>{% endif %}</b></div>
+        <div class="kv idk"><span>{{'Entity.Complication'|l}}</span><b>{{data.complication.name|default: '—'}}</b></div>
+        <div class="kv idk"><span>{{'Character.Religion'|l}}</span><b>{{data.religion|default: '—'}}</b></div>
+      </div>
+      <div>
+        <div class="sec">{{'Common.Language&Profession'|l}}</div>
+        {% for l in data.languages %}<div class="kv lp"><b>{{l.name}}</b><span>{% if l.spoken %}<i>{{'Sheet.Lang.Spoken'|l|lowercase}}</i>{% endif %}{% if l.read %}<i>{{'Sheet.Lang.Read'|l|lowercase}}</i>{% endif %}{% if l.written %}<i>{{'Sheet.Lang.Written'|l|lowercase}}</i>{% endif %}</span></div>{% endfor %}
+        {% for p in data.professionList %}<div class="kv lp"><b>{{p.name}}</b><span>{{p.detail}}</span></div>{% endfor %}
+      </div>
+    </div>
+
+    <div class="sec">{{'Card.Purse'|l}}</div>
+    <div class="strip purse">
+      <span class="pill">{{'Character.Shards'|l}} <b>{{data.currency.shards|default: 0}}</b></span>
+      <span class="pill">{{'Character.CoinSC'|l}} <b>{{data.currency.sc|default: 0}}</b></span>
+      <span class="pill">{{'Character.CoinCA'|l}} <b>{{data.currency.ca|default: 0}}</b></span>
+      <span class="pill">{{'Character.CoinCO'|l}} <b>{{data.currency.co|default: 0}}</b></span>
+    </div>
+  </div>
+</div>
+</main>
+  {# Dans un navigateur (pas dans l'app), la page du personnage s'ouvre directement sur la fiche ; « #carte » dans l'adresse garde la carte.
+     Détection : l'app est un WKWebView (pas de jeton « Safari/ » dans l'agent utilisateur, ou window.webkit.messageHandlers présent). #}
+  {% if env.sheetURL %}<script>
+    (function () {
+      var a = document.getElementById('go-sheet'); if (!a || location.hash === '#carte') return;
+      var wk = !!(window.webkit && window.webkit.messageHandlers), nav = /(Safari|Chrome|Firefox|Edg)\//.test(navigator.userAgent);
+      if (!wk && nav) location.replace(a.href);
+    })();
+  </script>{% endif %}
+{{ runtime }}
+<script>
+(() => {
+  // la carte est vivante (SDK de l'app, comme la carte de Daggerheart) : Chance liée (data-bind), jets en dés colorés (clic ; clic droit ou appui long = avantage / désavantage),
+  // fenêtres Santé mentale et Afflictions sans quitter la carte ; la carte se redessine quand le personnage change
+  EP.configure({ labels: false })
+  const c = EP.entity
+  try { const p = c.connect && c.connect(); if (p && p.catch) p.catch(() => {}) } catch (e) { /* déjà connecté */ }
+  const esc = (v) => String(v ?? '').replace(/[&<>"]/g, (x) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[x]))
+  let tt = null
+  const toast = (m) => { let el = document.querySelector('.gtoast'); if (!el) { el = document.createElement('div'); el.className = 'gtoast'; document.body.append(el) } el.textContent = m; clearTimeout(tt); tt = setTimeout(() => el.remove(), 5000) }
+  const fail = (e) => { console.warn(e); toast("{{'Sheet.Refused'|l}} " + ((e && e.message) || e)) }
+  c.addEventListener('error', (e) => { const m = ((e.detail && e.detail.errors) || []).map((x) => x.message).join('; '); console.warn('modification refusée :', m); toast("{{'Sheet.Refused'|l}} " + m) })
+  EP.bind(document, c, { refresh: 'main' })
+  const L = { attack: "{{'Sheet.Die.Attack'|l}}", damage: "{{'Sheet.Die.Damage'|l}}", adv: "{{'Sheet.Edge.Adv'|l}}", dis: "{{'Sheet.Edge.Dis'|l}}", none: "{{'Sheet.Edge.None'|l}}", priv: "{{'Sheet.Roll.Private'|l}}", go: "{{'Sheet.Roll.Go'|l}}", cancel: "{{'Sheet.Cancel'|l}}", save: "{{'Sheet.Save'|l}}",
+    mind: "{{'Sheet.Mind'|l}}", ins: "{{'Characteristics.Insanity'|l}}", cor: "{{'Characteristics.Corruption'|l}}", dem: "{{'Character.Dementia'|l}}", mark: "{{'Character.DarkMark'|l}}", aff: "{{'Card.Afflictions'|l}}", noRules: "{{'Sheet.NoAfflictionRules'|l}}", notLinked: "{{'Sheet.AfflictionNotLinked'|l}}", STR: "{{'Attributes.STR'|l}}", AGI: "{{'Attributes.AGI'|l}}", INT: "{{'Attributes.INT'|l}}", WIL: "{{'Attributes.WIL'|l}}", PER: "{{'Characteristics.Perception'|l}}", inc: "{{'Common.Increase'|l}}", dec: "{{'Common.Decrease'|l}}", enc: "{{'Sheet.EncBane'|l}}" }
+  // afflictions = règles de type Affliction de la bibliothèque (aucune n'est écrite dans le système) ; état = drapeau data.conditions.<slug de la règle>
+  // adresse d'une règle : /<type>/<slug>[/<source>] (ex. /Affliction/effraye/osd) : le slug est le 2ᵉ segment, pas le dernier
+  const slugOf = (ref) => { const p = String(ref || '').split('/').filter(Boolean); return p.length > 1 ? p[1] : (p[0] || '') }
+  const humanize = (k) => String(k).replace(/-/g, ' ').replace(/^./, (ch) => ch.toUpperCase())
+  let lib = [], libOk = false
+  const loadLib = async () => { try { lib = ((await EP.query({ entity: 'Rule', where: { type: 'Affliction' }, sort: 'name', limit: 300 })).entries || []).map((e) => ({ name: e.name, reference: e.reference, slug: slugOf(e.reference) })) } catch (e) { lib = [] } libOk = true }
+  const condKeys = () => { const k = c.get('data.conditions') || {}; return Object.keys(k).filter((x) => k[x] === true) }
+  const paintAll = () => { paintAff() }
+  const paintAff = () => {
+    const host = document.getElementById('aff-flags'); if (!host) return
+    const html = condKeys().map((k) => { const e = lib.find((x) => x.slug === k); return { n: e ? e.name : humanize(k), r: e ? e.reference : '' } }).sort((x, y) => x.n.localeCompare(y.n))
+      .map((o) => (o.r ? '<a class="aff" href="' + esc(o.r) + '">' + esc(o.n) + '</a>' : '<span class="aff">' + esc(o.n) + '</span>')).join('')
+    if (host.innerHTML !== html) host.innerHTML = html
+  }
+  // charge excessive : au-delà de la Force, tout jet de Force ou d'Agilité a 1 désavantage de plus (livre de règles, p. 99)
+  const encumbered = () => { const str = Number(c.get('view.data.strength') ?? 0), tot = Number(c.get('view.data.encumbrance.total') ?? 0); return str > 0 && tot > str }
+  const dlg = (title, body, buttons, onOpen) => new Promise((resolve) => {
+    const ov = document.createElement('div'); ov.className = 'gov'
+    ov.innerHTML = '<div class="gdlg" role="dialog"><h3>' + esc(title) + '</h3><div class="gdb">' + body + '</div><div class="gdbt">' + buttons.map((b, i) => '<button type="button" data-i="' + i + '" class="' + (b.primary ? 'on' : '') + '">' + esc(b.label) + '</button>').join('') + '</div></div>'
+    document.body.append(ov)
+    const close = (v) => { const data = {}; ov.querySelectorAll('input,textarea,select').forEach((el) => { data[el.name || el.id] = el.type === 'checkbox' ? el.checked : el.value }); ov.remove(); resolve({ value: v, data }) }
+    ov.addEventListener('click', (e) => { if (e.target === ov) return close(null); const b = e.target.closest('button[data-i]'); if (b) close(buttons[Number(b.dataset.i)].value) })
+    if (onOpen) onOpen(ov)
+  })
+  const roll = (r, edge, priv) => {
+    const k = r.dataset.kind, mod = Number(r.dataset.mod || 0)
+    let f
+    if (k === 'damage') f = String(r.dataset.f).replace(/(\d*d\d+)/gi, '$1[' + L.damage + ']')
+    else {
+      if ((r.dataset.attr === 'STR' || r.dataset.attr === 'AGI') && encumbered()) { edge -= 1; toast(L.enc) }
+      f = 'd20[' + (k === 'attack' ? L.attack : r.dataset.die) + ']' + (mod ? (mod > 0 ? '+' : '') + mod : '') + (edge ? (edge > 0 ? '+' : '-') + Math.abs(edge) + 'd6kh1[' + (edge > 0 ? L.adv : L.dis) + ']' : '')
+    }
+    const o = { label: r.dataset.label, type: k }; if (priv) o.mode = 'private'
+    // munition : chaque jet d'attaque en retire une (case cochée) s'il en reste, comme dans la fiche
+    if (k === 'attack' && r.dataset.ammo) {
+      const m = String(r.dataset.ammo).match(/data\.items\.(\d+)/), left = Number(r.dataset.ammoUses || 0) - Number(r.dataset.ammoSpent || 0)
+      if (m && left > 0) {
+        const path = 'data.items[' + m[1] + '].usesSpent'
+        const p = c.increment ? c.increment(path, 1) : c.set(path, Number(c.get(path) || 0) + 1)
+        Promise.resolve(p).then(redraw).catch(fail)
+      }
+    }
+    EP.roll(f, o).catch(fail)
+  }
+  async function rollMenu(r) {
+    const body = '<div class="step"><span class="nm" id="ed-l"></span><button type="button" class="pm" data-e="-1" aria-label="' + esc(L.dec) + '">−</button><b id="ed-n">0</b><button type="button" class="pm" data-e="1" aria-label="' + esc(L.inc) + '">+</button></div>' +
+      '<input type="hidden" id="edge" name="edge" value="0"><label class="opt"><input type="checkbox" name="priv"><span><b>' + esc(L.priv) + '</b></span></label>'
+    const show = (ov) => { const n = Number(ov.querySelector('#edge').value); ov.querySelector('#ed-n').textContent = n > 0 ? '+' + n : String(n); ov.querySelector('#ed-l').textContent = n === 0 ? L.none : n > 0 ? L.adv + ' (d6)' : L.dis + ' (d6)' }
+    const res = await dlg((r.dataset.label || '') + ' ' + (Number(r.dataset.mod) >= 0 ? '+' : '') + (r.dataset.mod || 0), body, [{ label: L.cancel, value: null }, { label: L.go, value: 'ok', primary: true }], (ov) => {
+      show(ov)
+      ov.querySelectorAll('button[data-e]').forEach((b) => b.addEventListener('click', () => { const e = ov.querySelector('#edge'); e.value = Math.max(-9, Math.min(9, Number(e.value) + Number(b.dataset.e))); show(ov) }))
+    })
+    if (res.value === 'ok') roll(r, Number(res.data.edge) || 0, res.data.priv)
+  }
+  // les écritures locales ne redessinent pas la carte : on recharge le contenu de <main> après chaque enregistrement
+  const redraw = async () => {
+    try { const r = await fetch(location.href, { cache: 'no-store' }), m = new DOMParser().parseFromString(await r.text(), 'text/html').querySelector('main'), cur = document.querySelector('main'); if (m && cur) cur.innerHTML = m.innerHTML; else await EP.refresh('main') } catch (e) { try { await EP.refresh('main') } catch (e2) { /* sans effet */ } }
+    paintAll()
+  }
+  async function mindDialog() {
+    const num = (k) => Number(c.get('view.data.' + k) ?? 0)
+    const body = '<div class="grid2"><div><label class="gl" for="gi">' + esc(L.ins) + '</label><input type="number" min="0" id="gi" name="ins" value="' + num('insanityValue') + '"></div><div><label class="gl" for="gc">' + esc(L.cor) + '</label><input type="number" min="0" id="gc" name="cor" value="' + num('corruptionValue') + '"></div></div>' +
+      '<label class="gl" for="gd">' + esc(L.dem) + '</label><textarea id="gd" name="dem" rows="3">' + esc(c.get('data.dementia') || '') + '</textarea><label class="gl" for="gm">' + esc(L.mark) + '</label><textarea id="gm" name="mark" rows="4">' + esc(c.get('data.darkMark') || '') + '</textarea>'
+    const r = await dlg(L.mind, body, [{ label: L.cancel, value: null }, { label: L.save, value: 'ok', primary: true }])
+    if (r.value !== 'ok') return
+    try {
+      const d = r.data
+      if (Number(d.ins) !== num('insanityValue')) await c.set('data.insanity.current', Math.max(0, Number(d.ins) || 0))
+      if (Number(d.cor) !== num('corruptionValue')) await c.set('data.corruption.current', Math.max(0, Number(d.cor) || 0))
+      if (String(d.dem || '') !== String(c.get('data.dementia') || '')) await c.set('data.dementia', String(d.dem || ''))
+      if (String(d.mark || '') !== String(c.get('data.darkMark') || '')) await c.set('data.darkMark', String(d.mark || ''))
+    } catch (e) { fail(e) }
+    redraw()
+  }
+  async function affDialog() {
+    if (!libOk) await loadLib()
+    const opts = lib.map((e) => ({ key: e.slug, name: e.name }))
+      .concat(condKeys().filter((k) => !lib.some((e) => e.slug === k)).map((k) => ({ key: k, name: humanize(k) })))
+    const body = opts.length ? opts.map((o, i) => '<label class="opt"><input type="checkbox" name="f' + i + '"' + (c.get('data.conditions.' + o.key) === true ? ' checked' : '') + '><span>' + esc(o.name) + '</span></label>').join('') : '<p>' + esc(L.noRules) + '</p>'
+    const r = await dlg(L.aff, body, [{ label: L.cancel, value: null }, { label: L.save, value: 'ok', primary: true }])
+    if (r.value !== 'ok') return
+    for (const [i, o] of opts.entries()) {
+      const want = !!r.data['f' + i]; if (want === (c.get('data.conditions.' + o.key) === true)) continue
+      try { await c.set('data.conditions.' + o.key, want) } catch (e) { toast(L.notLinked) }
+    }
+    redraw()
+  }
+  loadLib().then(paintAll)
+  { const m = document.querySelector('main'); if (m) new MutationObserver(paintAll).observe(m, { childList: true, subtree: true }); c.subscribe && c.subscribe(paintAll) }
+  // clic = jet ; clic droit ou appui long = menu d'avantage / désavantage
+  let lp = null, longDone = false
+  const stopLP = () => { clearTimeout(lp); lp = null }
+  document.addEventListener('pointerdown', (ev) => { const r = ev.target.closest('.rl[data-kind]'); if (!r || r.dataset.kind === 'damage') return; longDone = false; lp = setTimeout(() => { longDone = true; rollMenu(r) }, 600) }, true)
+  ;['pointerup', 'pointermove', 'pointercancel', 'pointerleave'].forEach((n) => document.addEventListener(n, stopLP, true))
+  document.addEventListener('contextmenu', (ev) => { const r = ev.target.closest('.rl[data-kind]'); if (!r || r.dataset.kind === 'damage') return; ev.preventDefault(); ev.stopPropagation(); stopLP(); longDone = true; rollMenu(r) }, true)
+  document.addEventListener('click', (ev) => {
+    const r = ev.target.closest('.rl[data-kind]')
+    if (r) { ev.preventDefault(); ev.stopPropagation(); if (longDone) { longDone = false; return } roll(r, 0, false); return }
+    const o = ev.target.closest('[data-open]')
+    if (o) { ev.preventDefault(); ev.stopPropagation(); if (o.dataset.open === 'mind') mindDialog(); else affDialog() }
+  }, true)
+})()
+</script>
+{% endblock %}

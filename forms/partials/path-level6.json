@@ -1,23 +1,128 @@
 {
-    "sections": [
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
         {
-            "type": "group",
-            "fields": [
-                {
-                    "title": "Common.Characteristics",
-                    "type": "text",
-                    "attribute": "data.levelCharacteristics"
-                }
-            ]
+          "title": "Common.Characteristics",
+          "type": "form",
+          "attribute": "data.gains",
+          "text": "{% if data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{data.gains.perception|signed}}{% endif %}{% if data.gains.defense != nil %}{% if data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.gains.defense|signed}}{% endif %}{% if data.gains.defenseFixed != nil %}{% if data.gains.perception != nil or data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{data.gains.defenseFixed}}{% endif %}{% if data.gains.health != nil %}{% if data.gains.perception != nil or data.gains.defense != nil or data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{data.gains.health|signed}}{% endif %}{% if data.gains.speed != nil %}{% if data.gains.perception != nil or data.gains.defense != nil or data.gains.defenseFixed != nil or data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{data.gains.speed|signed}}{% endif %}{% if data.gains.power != nil %}{% if data.gains.perception != nil or data.gains.defense != nil or data.gains.defenseFixed != nil or data.gains.health != nil or data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{data.gains.power|signed}}{% endif %}{% if data.gains.insanity != nil %}{% if data.gains.perception != nil or data.gains.defense != nil or data.gains.defenseFixed != nil or data.gains.health != nil or data.gains.speed != nil or data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{data.gains.insanity|signed}}{% endif %}{% if data.gains.corruption != nil %}{% if data.gains.perception != nil or data.gains.defense != nil or data.gains.defenseFixed != nil or data.gains.health != nil or data.gains.speed != nil or data.gains.power != nil or data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{data.gains.corruption|signed}}{% endif %}{% if data.gains.size != nil %}{% if data.gains.perception != nil or data.gains.defense != nil or data.gains.defenseFixed != nil or data.gains.health != nil or data.gains.speed != nil or data.gains.power != nil or data.gains.insanity != nil or data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{data.gains.size|signed}}{% endif %}{% if data.gains.custom %}{% if data.gains.perception != nil or data.gains.defense != nil or data.gains.defenseFixed != nil or data.gains.health != nil or data.gains.speed != nil or data.gains.power != nil or data.gains.insanity != nil or data.gains.corruption != nil or data.gains.size != nil %}, {% endif %}{{data.gains.custom}}{% endif %}",
+          "form": {
+            "title": "Common.Characteristics",
+            "partial": "path-gains"
+          }
         },
         {
-            "title": "Common.Talent",
-            "type": "list",
-            "attribute": "data.level6Talent",
-            "form": {
-                "title": "Common.Talent",
-                "partial": "generic-feature"
-            }
+          "title": "Level.Options",
+          "type": "textArea",
+          "attribute": "data.levelOptions"
         }
-    ]
+      ]
+    },
+    {
+      "title": "Level.Automation",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Level.AttrChoice",
+          "type": "number",
+          "attribute": "data.levelAttrChoice"
+        },
+        {
+          "title": "Level.Lang",
+          "type": "toggle",
+          "attribute": "data.levelLang"
+        },
+        {
+          "title": "Level.Prof",
+          "type": "toggle",
+          "attribute": "data.levelProf"
+        },
+        {
+          "title": "Level.LangProfOne",
+          "type": "toggle",
+          "attribute": "data.levelLangProfOne",
+          "visibleIf": "{% if data.levelLang and data.levelProf %}true{% endif %}"
+        },
+        {
+          "title": "Level.Tradition",
+          "type": "toggle",
+          "attribute": "data.levelTradition"
+        },
+        {
+          "title": "Level.Spell",
+          "type": "toggle",
+          "attribute": "data.levelSpell"
+        },
+        {
+          "title": "Level.MagicOne",
+          "type": "toggle",
+          "attribute": "data.levelMagicOne",
+          "visibleIf": "{% if data.levelTradition and data.levelSpell %}true{% endif %}"
+        },
+        {
+          "title": "Level.MagicChoices",
+          "type": "number",
+          "attribute": "data.levelMagicChoices"
+        },
+        {
+          "title": "Level.Cantrip",
+          "type": "toggle",
+          "attribute": "data.levelCantrip"
+        },
+        {
+          "title": "Level.ChoicePick",
+          "type": "number",
+          "attribute": "data.levelChoicePick"
+        }
+      ]
+    },
+    {
+      "title": "Level.SpellsAuto",
+      "type": "list",
+      "attribute": "data.levelSpellsAuto",
+      "custom": {
+        "itemTitle": "{{name}}"
+      },
+      "form": {
+        "title": "Entity.Spell",
+        "sections": [
+          {
+            "type": "group",
+            "fields": [
+              {
+                "placeholder": "Common.Name",
+                "attribute": "name"
+              },
+              {
+                "title": "Entity.Spell",
+                "type": "reference",
+                "attribute": "reference",
+                "attributeType": "Spell"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Level.Talents",
+      "type": "list",
+      "attribute": "data.level6Talent",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    },
+    {
+      "title": "Level.Choices",
+      "type": "list",
+      "attribute": "data.level6Choice",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    }
+  ]
 }

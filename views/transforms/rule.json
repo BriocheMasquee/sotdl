@@ -1,0 +1,8 @@
+{
+  "attributes": [
+    {
+      "data.text": "{{ descr|md }}",
+      "data.raw": "{{ descr }}"
+    }
+  ]
+}

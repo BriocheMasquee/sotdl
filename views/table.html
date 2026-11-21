@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block kind %}table{% endblock %}
+{% block content %}
+<main class="entity table">
+  <header class="entity-header">
+    <div class="title-row">
+      <h1 class="entity-title">{{ name }}</h1>
+      {% if rollURL %}<a class="entity-kind" href="{{ rollURL }}">{{ 'Table.Roll'|l }}{% if formula %} {{ formula }}{% endif %}</a>{% endif %}
+    </div>
+    {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>
+    {% elif footer %}<div class="entity-source table-footer">{{ footer|md }}</div>{% endif %}
+  </header>
+  {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
+  <section class="entity-tables">{{ content }}</section>
+  {% if notes %}<div class="description">{{ notes|md }}</div>{% endif %}
+</main>
+<script>
+  /* Repli de la source : une table ne fournit parfois que le pied de page (« Source : … Emplacement : … »).
+     Le premier libellé disparaît, le second (Emplacement) et ce qui le suit aussi */
+  (function () {
+    var box = document.querySelector('.table-footer');
+    if (!box) { return; }
+    var labels = box.querySelectorAll('strong');
+    if (labels.length > 1) {
+      var node = labels[1];
+      var block = node.parentNode;
+      var cut = block !== box && block.firstElementChild === node ? block : node;
+      while (cut.nextSibling) { cut.parentNode.removeChild(cut.nextSibling); }
+      if (cut.previousSibling && cut.previousSibling.nodeName === 'BR') { cut.parentNode.removeChild(cut.previousSibling); }
+      cut.parentNode.removeChild(cut);
+    }
+    if (labels.length) {
+      var first = labels[0];
+      var next = first.nextSibling;
+      if (next && next.nodeType === 3) { next.nodeValue = next.nodeValue.replace(/^[\s:]+/, ''); }
+      first.parentNode.removeChild(first);
+    }
+    /* « pg. » est codé en dur par l'application : on le remplace par l'abréviation de la langue */
+    var walker = document.createTreeWalker(box, NodeFilter.SHOW_TEXT, null);
+    while (walker.nextNode()) {
+      walker.currentNode.nodeValue = walker.currentNode.nodeValue.replace(/\s+pg\.(?=\s*\d)/g, ', {{ 'Common.PageAbbr'|l }}');
+    }
+  })();
+</script>
+{% endblock %}

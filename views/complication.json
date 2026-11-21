@@ -23,7 +23,8 @@
     },
     {
       "type": "text",
-      "value": "{{descr}}"
+      "value": "{{descr}}",
+      "visibleIf": "{% if descr %}true{% endif %}"
     },
     {
       "type": "vStack",
@@ -37,10 +38,25 @@
           "views": [
             {
               "type": "text",
-              "style": "sotdlbody",
+              "style": "body",
               "value": "{% if name %}**{{name}}.**{% endif %} {{text}}"
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "{{data.tables}}",
+          "visibleIf": "{% if data.tables %}true{% endif %}"
         }
       ]
     },
@@ -53,18 +69,16 @@
       ]
     },
     {
-      "type": "vStack",
+      "type": "text",
+      "style": "source",
       "padding": [
-        8,
+        5,
+        0,
+        0,
         0
       ],
-      "views": [
-        {
-          "type": "text",
-          "style": "sourceText",
-          "value": "{{footer}}"
-        }
-      ]
+      "value": "*{{'Common.Source'|l}} : {{ sourceFormatted }}*",
+      "visibleIf": "{{sourceFormatted}}"
     }
   ]
 }

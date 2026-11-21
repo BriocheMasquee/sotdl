@@ -1,198 +1,273 @@
 {
-    "Ammunition": {
-        "Arrow": "Ammunition.Arrow",
-        "Bolt": "Ammunition.Bolt",
-        "Black Powder": "Ammunition.Powder",
-        "Bullet": "Ammunition.Bullet",
-        "Dart": "Ammunition.Dart",
-        "Stone": "Ammunition.Stone"
-    },
-
-    "ArmorType": {
-        "Clothing": "Armor.Clothing",
-        "LightArmor": "Armor.Light",
-        "MediumArmor": "Armor.Medium",
-        "HeavyArmor": "Armor.Heavy"
-    },
-
-    "Availability": {
-        "Common": "Availability.Common",
-        "Uncommon": "Availability.Uncommon",
-        "Rare": "Availability.Rare",
-        "Exotic": "Availability.Exotic"
-    },
-
-    "GearType": {
-        "Accessory": "Gear.Accessory",
-        "AnimalGear": "Gear.Animal",
-        "Food": "Gear.Food",
-        "PersonalGear": "Gear.Personal",
-        "Tool": "Gear.Tool"
-    },
-
-    "ItemType": {
-        "Special": "Item.Special",
-        "AdventuringGear": "Item.AdventuringGear",
-        "Armor": "Item.Armor",
-        "Potion": "Item.Potion",
-        "Relic": "Item.Relic",
-        "Weapon": "Item.Weapon"
-    },
-
-    "MarvelType": {
-        "Alchemy": "MarvelType.Alchemy",
-        "Forbidden": "MarvelType.Forbidden",
-        "Marvel": "MarvelType.Marvel"
-    },
-
-    "PathECategory": {
-        "Faith": "Path.Category.Faith",
-        "Power": "Path.Category.Power",
-        "Trickery": "Path.Category.Trickery",
-        "War": "Path.Category.War"
-    },
-
-    "PathMCategory": {
-        "Magic": "Path.Category.Magic",
-        "Skill": "Path.Category.Skill"
-        },
-
-    "PathType": {
-        "Novice": "Path.Novice",
-        "Expert": "Path.Expert",
-        "Master": "Path.Master"
-    },
-
-    "CharacterLevel": {
-        "0": "SpellRank.0",
-        "1": "SpellRank.1",
-        "2": "SpellRank.2",
-        "3": "SpellRank.3",
-        "4": "SpellRank.4",
-        "5": "SpellRank.5",
-        "6": "SpellRank.6",
-        "7": "SpellRank.7",
-        "8": "SpellRank.8",
-        "9": "SpellRank.9",
-        "10": "SpellRank.10"
-    },
-
-    "SpellRank": {
-        "0": "SpellRank.0",
-        "1": "SpellRank.1",
-        "2": "SpellRank.2",
-        "3": "SpellRank.3",
-        "4": "SpellRank.4",
-        "5": "SpellRank.5",
-        "6": "SpellRank.6",
-        "7": "SpellRank.7",
-        "8": "SpellRank.8",
-        "9": "SpellRank.9",
-        "10": "SpellRank.10"
-    },
-
-    "RuleType": {
-        "Affliction": "RuleType.Affliction",
-        "Language": "RuleType.Language",
-        "Source": "Common.Source"
-    },
-
-    "SpecialMovementTraits": {
-        "Climber": "SpecialMovementTraits.Climber",
-        "Flier": "SpecialMovementTraits.Flier",
-        "Swoop": "SpecialMovementTraits.Swoop",
-        "Swimmer": "SpecialMovementTraits.Swimmer",
-        "Liquid": "SpecialMovementTraits.Liquid",
-        "Rail": "SpecialMovementTraits.Rail"
-    },
-
-    "SpecialSenses": {
-        "Darksight": "SpecialSenses.Darksight",
-        "Shadowsight": "SpecialSenses.Shadowsight",
-        "Sightless": "SpecialSenses.Sightless",
-        "Truesight": "SpecialSenses.Truesight"
-    },
-
-    "SpellTradition": {
-        "Air": "SpellTradition.Air",
-        "Alchemy": "SpellTradition.Alchemy",
-        "Alteration": "SpellTradition.Alteration",
-        "Arcana": "SpellTradition.Arcana",
-        "Battle": "SpellTradition.Battle",
-        "Blood": "SpellTradition.Blood",
-        "Celestial": "SpellTradition.Celestial",
-        "Chaos": "SpellTradition.Chaos",
-        "Conjuration": "SpellTradition.Conjuration",
-        "Curse": "SpellTradition.Curse",
-        "Death": "SpellTradition.Death",
-        "Demonology": "SpellTradition.Demonology",
-        "Destruction": "SpellTradition.Destruction",
-        "Divination": "SpellTradition.Divination",
-        "Earth": "SpellTradition.Earth",
-        "Enchantment": "SpellTradition.Enchantment",
-        "Fey": "SpellTradition.Fey",
-        "Fire": "SpellTradition.Fire",
-        "Forbidden": "SpellTradition.Forbidden",
-        "Illusion": "SpellTradition.Illusion",
-        "Invocation": "SpellTradition.Invocation",
-        "Life": "SpellTradition.Life",
-        "Madness": "SpellTradition.Madness",
-        "Metal": "SpellTradition.Metal",
-        "Nature": "SpellTradition.Nature",
-        "Necromancy": "SpellTradition.Necromancy",
-        "Order": "SpellTradition.Order",
-        "Primal": "SpellTradition.Primal",
-        "Protection": "SpellTradition.Protection",
-        "Rune": "SpellTradition.Rune",
-        "Shadow": "SpellTradition.Shadow",
-        "Shaman": "SpellTradition.Shaman",
-        "Song": "SpellTradition.Song",
-        "Soul": "SpellTradition.Soul",
-        "Spiritualism": "SpellTradition.Spiritualism",
-        "Storm": "SpellTradition.Storm",
-        "Technomancy": "SpellTradition.Technomancy",
-        "Telekinesis": "SpellTradition.Telekinesis",
-        "Telepathy": "SpellTradition.Telepathy",
-        "Teleportation": "SpellTradition.Teleportation",
-        "Theurgy": "SpellTradition.Theurgy",
-        "Time": "SpellTradition.Time",
-        "Transformation": "SpellTradition.Transformation",
-        "Warden": "SpellTradition.Warden",
-        "Water": "SpellTradition.Water"
-    },
-    
-    "SpellType": {
-        "Attack": "SpellType.Attack",
-        "Utility": "SpellType.Utility"
-    },
-
-
-    "WeaponHands": {
-        "One": "Hand.One",
-        "Two": "Hand.Two",
-        "Off": "Hand.Off"
-    },
-
-    "WeaponProperty": {
-        "Cumbersome": "Property.Cumbersome",
-        "Finesse": "Property.Finesse",
-        "Misfire": "Property.Misfire",
-        "Short range": "Property.Short",
-        "Medium range": "Property.Medium",
-        "Long range": "Property.Long",
-        "Reload": "Property.Reload",
-        "Size 1": "Property.Size1",
-        "Thrown": "Property.Thrown"
-    },
-
-    "WeaponType": {
-        "BasicMelee": "Weapon.Basic",
-        "MilitaryMelee": "Weapon.Military",
-        "SwiftMelee": "Weapon.Swift",
-        "HeavyMelee": "Weapon.Heavy",
-        "Ranged": "Weapon.Ranged",
-        "Shield": "Weapon.Shield",
-        "Ammunition": "Weapon.Ammunition"
-    }
-
+  "Ammunition": {
+    "Arrow": "Ammunition.Arrow",
+    "Bolt": "Ammunition.Bolt",
+    "Black Powder": "Ammunition.Powder",
+    "Bullet": "Ammunition.Bullet",
+    "Dart": "Ammunition.Dart",
+    "Grenade": "Ammunition.Grenade",
+    "Needle": "Ammunition.Needle",
+    "Stone": "Ammunition.Stone"
+  },
+  "ArmorType": {
+    "Clothing": "Armor.Clothing",
+    "LightArmor": "Armor.Light",
+    "MediumArmor": "Armor.Medium",
+    "HeavyArmor": "Armor.Heavy"
+  },
+  "Availability": {
+    "Common": "Availability.Common",
+    "Uncommon": "Availability.Uncommon",
+    "Rare": "Availability.Rare",
+    "Exotic": "Availability.Exotic"
+  },
+  "GearType": {
+    "Accessory": "Gear.Accessory",
+    "AnimalGear": "Gear.Animal",
+    "Food": "Gear.Food",
+    "PersonalGear": "Gear.Personal",
+    "Tool": "Gear.Tool",
+    "WeaponUpgrade": "Gear.WeaponUpgrade"
+  },
+  "ItemType": {
+    "Special": "Item.Special",
+    "AdventuringGear": "Item.AdventuringGear",
+    "Armor": "Item.Armor",
+    "Potion": "Item.Potion",
+    "Relic": "Item.Relic",
+    "Weapon": "Item.Weapon"
+  },
+  "MarvelType": {
+    "Alchemy": "MarvelType.Alchemy",
+    "Automaton": "MarvelType.Automaton",
+    "Forbidden": "MarvelType.Forbidden",
+    "Marvel": "MarvelType.Marvel",
+    "Substance": "MarvelType.Substance"
+  },
+  "PathECategory": {
+    "Faith": "Path.Category.Faith",
+    "Power": "Path.Category.Power",
+    "Trickery": "Path.Category.Trickery",
+    "War": "Path.Category.War"
+  },
+  "PathMCategory": {
+    "Magic": "Path.Category.Magic",
+    "Skill": "Path.Category.Skill"
+  },
+  "PathType": {
+    "Novice": "Path.Novice",
+    "Expert": "Path.Expert",
+    "Master": "Path.Master"
+  },
+  "ValueMode": {
+    "fixed": "ValueMode.Fixed",
+    "variable": "ValueMode.Variable"
+  },
+  "BodySize": {
+    "g1_12": "BodySize.Twelfth",
+    "g1_8": "BodySize.Eighth",
+    "g1_4": "BodySize.Quarter",
+    "g1_2": "BodySize.Half",
+    "g1": "BodySize.One",
+    "g2": "BodySize.Two",
+    "g3": "BodySize.Three",
+    "g4": "BodySize.Four",
+    "g5": "BodySize.Five",
+    "g6": "BodySize.Six",
+    "g8": "BodySize.Eight",
+    "g10": "BodySize.Ten",
+    "g12": "BodySize.Twelve",
+    "g15": "BodySize.Fifteen",
+    "g20": "BodySize.Twenty"
+  },
+  "Size": {
+    "T": "Size.Tiny",
+    "S": "Size.Small",
+    "M": "Size.Medium",
+    "L": "Size.Large",
+    "H": "Size.Huge",
+    "G": "Size.Gargantuan",
+    "C": "Size.Colossal"
+  },
+  "StartingValues": {
+    "fixed": "StartingValues.Fixed",
+    "variant": "StartingValues.Variant",
+    "random": "StartingValues.Random"
+  },
+  "CharacterLevel": {
+    "0": "SpellRank.0",
+    "1": "SpellRank.1",
+    "2": "SpellRank.2",
+    "3": "SpellRank.3",
+    "4": "SpellRank.4",
+    "5": "SpellRank.5",
+    "6": "SpellRank.6",
+    "7": "SpellRank.7",
+    "8": "SpellRank.8",
+    "9": "SpellRank.9",
+    "10": "SpellRank.10"
+  },
+  "SpellRank": {
+    "0": "SpellRank.0",
+    "1": "SpellRank.1",
+    "2": "SpellRank.2",
+    "3": "SpellRank.3",
+    "4": "SpellRank.4",
+    "5": "SpellRank.5",
+    "6": "SpellRank.6",
+    "7": "SpellRank.7",
+    "8": "SpellRank.8",
+    "9": "SpellRank.9",
+    "10": "SpellRank.10"
+  },
+  "ListImageDisplayType": {
+    "icon": "ImageType.Icon",
+    "image": "ImageType.Image",
+    "token": "ImageType.Token"
+  },
+  "CombatImageDisplayType": {
+    "image": "ImageType.Image",
+    "token": "ImageType.Token"
+  },
+  "RuleType": {
+    "Action": "RuleType.Action",
+    "Affliction": "RuleType.Affliction",
+    "Combat": "RuleType.Combat",
+    "Danger": "RuleType.Danger",
+    "Movement": "RuleType.Movement",
+    "Morality": "RuleType.Morality",
+    "Magic": "RuleType.Magic",
+    "Language": "RuleType.Language",
+    "Other": "RuleType.Other",
+    "Source": "Common.Source"
+  },
+  "SpecialMovementTraits": {
+    "Climber": "SpecialMovementTraits.Climber",
+    "Flier": "SpecialMovementTraits.Flier",
+    "Swoop": "SpecialMovementTraits.Swoop",
+    "Swimmer": "SpecialMovementTraits.Swimmer",
+    "Liquid": "SpecialMovementTraits.Liquid",
+    "Rail": "SpecialMovementTraits.Rail"
+  },
+  "SpecialSenses": {
+    "Darksight": "SpecialSenses.Darksight",
+    "Shadowsight": "SpecialSenses.Shadowsight",
+    "Sightless": "SpecialSenses.Sightless",
+    "Truesight": "SpecialSenses.Truesight"
+  },
+  "SpellTradition": {
+    "Air": "SpellTradition.Air",
+    "Alchemy": "SpellTradition.Alchemy",
+    "Alteration": "SpellTradition.Alteration",
+    "Arcana": "SpellTradition.Arcana",
+    "Battle": "SpellTradition.Battle",
+    "Blighter": "SpellTradition.Blighter",
+    "Blood": "SpellTradition.Blood",
+    "Celestial": "SpellTradition.Celestial",
+    "Chaos": "SpellTradition.Chaos",
+    "Conjuration": "SpellTradition.Conjuration",
+    "Curse": "SpellTradition.Curse",
+    "Death": "SpellTradition.Death",
+    "Demonology": "SpellTradition.Demonology",
+    "Destruction": "SpellTradition.Destruction",
+    "Diabolist": "SpellTradition.Diabolist",
+    "Divination": "SpellTradition.Divination",
+    "Earth": "SpellTradition.Earth",
+    "Enchantment": "SpellTradition.Enchantment",
+    "Exorcist": "SpellTradition.Exorcist",
+    "Fey": "SpellTradition.Fey",
+    "Fire": "SpellTradition.Fire",
+    "Forbidden": "SpellTradition.Forbidden",
+    "Illusion": "SpellTradition.Illusion",
+    "Invocation": "SpellTradition.Invocation",
+    "Life": "SpellTradition.Life",
+    "Madness": "SpellTradition.Madness",
+    "Magician": "SpellTradition.Magician",
+    "Metal": "SpellTradition.Metal",
+    "Nature": "SpellTradition.Nature",
+    "Necromancer": "SpellTradition.Necromancer",
+    "Necromancy": "SpellTradition.Necromancy",
+    "Order": "SpellTradition.Order",
+    "Priest": "SpellTradition.Priest",
+    "Primal": "SpellTradition.Primal",
+    "Protection": "SpellTradition.Protection",
+    "Rune": "SpellTradition.Rune",
+    "Shadow": "SpellTradition.Shadow",
+    "Shaman": "SpellTradition.Shaman",
+    "Song": "SpellTradition.Song",
+    "Soul": "SpellTradition.Soul",
+    "Spellbinder": "SpellTradition.Spellbinder",
+    "Spiritualism": "SpellTradition.Spiritualism",
+    "Storm": "SpellTradition.Storm",
+    "Technomancer": "SpellTradition.Technomancer",
+    "Technomancy": "SpellTradition.Technomancy",
+    "Telekinesis": "SpellTradition.Telekinesis",
+    "Telepathy": "SpellTradition.Telepathy",
+    "Teleportation": "SpellTradition.Teleportation",
+    "Templar": "SpellTradition.Templar",
+    "Tenebrist": "SpellTradition.Tenebrist",
+    "Theurgy": "SpellTradition.Theurgy",
+    "Time": "SpellTradition.Time",
+    "Transformation": "SpellTradition.Transformation",
+    "Warden": "SpellTradition.Warden",
+    "Water": "SpellTradition.Water",
+    "Witch": "SpellTradition.Witch"
+  },
+  "SpellType": {
+    "Attack": "SpellType.Attack",
+    "Utility": "SpellType.Utility"
+  },
+  "WeaponHands": {
+    "One": "Hand.One",
+    "Two": "Hand.Two",
+    "Off": "Hand.Off"
+  },
+  "WeaponProperty": {
+    "Cumbersome": "Property.Cumbersome",
+    "Finesse": "Property.Finesse",
+    "Misfire": "Property.Misfire",
+    "Short range": "Property.Short",
+    "Medium range": "Property.Medium",
+    "Long range": "Property.Long",
+    "Reload": "Property.Reload",
+    "Size 1": "Property.Size1",
+    "Thrown": "Property.Thrown"
+  },
+  "WeaponType": {
+    "BasicMelee": "Weapon.Basic",
+    "MilitaryMelee": "Weapon.Military",
+    "SwiftMelee": "Weapon.Swift",
+    "HeavyMelee": "Weapon.Heavy",
+    "Ranged": "Weapon.Ranged",
+    "Shield": "Weapon.Shield",
+    "Ammunition": "Weapon.Ammunition"
+  },
+  "HealthAttribute": {
+    "STR": "Attributes.STR",
+    "AGI": "Attributes.AGI",
+    "INT": "Attributes.INT",
+    "WIL": "Attributes.WIL"
+  },
+  "HealthPhrase": {
+    "STR": "Ancestry.HealthSTR",
+    "AGI": "Ancestry.HealthAGI",
+    "INT": "Ancestry.HealthINT",
+    "WIL": "Ancestry.HealthWIL"
+  },
+  "VehicleKind": {
+    "Vehicle": "Vehicle.Kind.Vehicle",
+    "Ship": "Vehicle.Kind.Ship",
+    "WarMachine": "Vehicle.Kind.WarMachine"
+  },
+  "RollEdge": {
+    "none": "RollEdge.None",
+    "boon1": "RollEdge.Boon1",
+    "boon2": "RollEdge.Boon2",
+    "boon3": "RollEdge.Boon3",
+    "bane1": "RollEdge.Bane1",
+    "bane2": "RollEdge.Bane2",
+    "bane3": "RollEdge.Bane3",
+    "boon4": "RollEdge.Boon4",
+    "bane4": "RollEdge.Bane4"
+  }
 }

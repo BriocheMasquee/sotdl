@@ -1,21 +1,146 @@
 {
+  "modifiers": [
+    "data.ancestry",
+    "data.transformation"
+  ],
   "references": [
     "data.spells",
     "data.items"
   ],
   "attributes": [
     {
-      "data.strengthModifier": "#{% eval %}{{data.STR|default: 10}}-10{% endeval %}",
-      "data.agilityModifier": "#{% eval %}{{data.AGI|default: 10}}-10{% endeval %}",
-      "data.intellectModifier": "#{% eval %}{{data.INT|default: 10}}-10{% endeval %}",
-      "data.willModifier": "#{% eval %}{{data.WIL|default: 10}}-10{% endeval %}"
+      "data.edgeFormula": "{% if data.rollEdge == 'boon1' %}+1d6kh1{% elif data.rollEdge == 'boon2' %}+2d6kh1{% elif data.rollEdge == 'boon3' %}+3d6kh1{% elif data.rollEdge == 'bane1' %}-1d6kh1{% elif data.rollEdge == 'bane2' %}-2d6kh1{% elif data.rollEdge == 'bane3' %}-3d6kh1{% elif data.rollEdge == 'boon4' %}+4d6kh1{% elif data.rollEdge == 'bane4' %}-4d6kh1{% endif %}"
+    },
+    {
+      "data.weaponCount": "#0{% for it in data.items %}{% if it.equipped == true and it.itemType == 'Weapon' and it.weaponType != 'Shield' and it.weaponType != 'Ammunition' %} + 1{% endif %}{% endfor %}"
+    },
+    {
+      "data.pathGain.perception": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.perception|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.defense": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.defense|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.defenseFixed": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.defenseFixed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.health": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.health|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.speed": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.speed|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.power": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.power|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.insanity": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.insanity|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.corruption": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.corruption|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.size": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 2 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level2.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level5.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 8 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level8.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 6 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level6.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 9 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level9.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level10.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 10 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level10.data.gains.size|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.STR": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.attrs.STR|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.attrs.STR|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.attrs.STR|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.attrs.STR|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.AGI": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.attrs.AGI|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.attrs.AGI|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.attrs.AGI|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.attrs.AGI|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.INT": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.attrs.INT|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.attrs.INT|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.attrs.INT|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.attrs.INT|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}",
+      "data.pathGain.WIL": "#{% if data.level >= 1 %}{% if data.novicePath.pathType == 'Novice' %}{{data.novicePath.level1.data.attrs.WIL|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 3 %}{% if data.expertPath.pathType == 'Expert' %}{{data.expertPath.level3.data.attrs.WIL|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.masterPath.pathType == 'Master' %}{{data.masterPath.level7.data.attrs.WIL|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %} + {% if data.level >= 7 %}{% if data.secondPath.pathType == 'Expert' %}{{data.secondPath.level7.data.attrs.WIL|default: 0}}{% else %}0{% endif %}{% else %}0{% endif %}"
+    },
+    {
+      "data.transf.perception": "#{{data.transformation.perception|default: 0}} + {% if data.level >= 1 %}{{data.transformation.transfLevel1.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.transformation.transfLevel2.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{{data.transformation.transfLevel4.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.transformation.transfLevel5.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.transformation.transfLevel8.gains.perception|default: 0}}{% else %}0{% endif %}",
+      "data.transf.defense": "#{{data.transformation.defense|default: 0}} + {% if data.level >= 1 %}{{data.transformation.transfLevel1.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.transformation.transfLevel2.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{{data.transformation.transfLevel4.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.transformation.transfLevel5.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.transformation.transfLevel8.gains.defense|default: 0}}{% else %}0{% endif %}",
+      "data.transf.health": "#{{data.transformation.health|default: 0}} + {% if data.level >= 1 %}{{data.transformation.transfLevel1.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.transformation.transfLevel2.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{{data.transformation.transfLevel4.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.transformation.transfLevel5.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.transformation.transfLevel8.gains.health|default: 0}}{% else %}0{% endif %}",
+      "data.transf.speed": "#{{data.transformation.speed|default: 0}} + {% if data.level >= 1 %}{{data.transformation.transfLevel1.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.transformation.transfLevel2.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{{data.transformation.transfLevel4.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.transformation.transfLevel5.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.transformation.transfLevel8.gains.speed|default: 0}}{% else %}0{% endif %}"
+    },
+    {
+      "data.strength": "#{% if not data.transformation.attrs.STR.removed %}{% if data.attrAdjust.STR.base != nil %}{{data.attrAdjust.STR.base}} + {{data.attrAdjust.STR.ancestryBonus|default: 0}} + {{data.attrAdjust.STR.levelBonus|default: 0}} + {{data.transformation.attrs.STR.value|default: 0}} + {{data.pathGain.STR|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.STR|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.STR|default: 0}}{% else %}0{% endif %}{% elif data.ancestry.STR != nil %}{{data.ancestry.STR}} + {{data.attrAdjust.STR.ancestryBonus|default: 0}} + {{data.attrAdjust.STR.levelBonus|default: 0}} + {{data.transformation.attrs.STR.value|default: 0}} + {{data.pathGain.STR|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.STR|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.STR|default: 0}}{% else %}0{% endif %}{% endif %}{% endif %}",
+      "data.agility": "#{% if not data.transformation.attrs.AGI.removed %}{% if data.attrAdjust.AGI.base != nil %}{{data.attrAdjust.AGI.base}} + {{data.attrAdjust.AGI.ancestryBonus|default: 0}} + {{data.attrAdjust.AGI.levelBonus|default: 0}} + {{data.transformation.attrs.AGI.value|default: 0}} + {{data.pathGain.AGI|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.AGI|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.AGI|default: 0}}{% else %}0{% endif %}{% elif data.ancestry.AGI != nil %}{{data.ancestry.AGI}} + {{data.attrAdjust.AGI.ancestryBonus|default: 0}} + {{data.attrAdjust.AGI.levelBonus|default: 0}} + {{data.transformation.attrs.AGI.value|default: 0}} + {{data.pathGain.AGI|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.AGI|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.AGI|default: 0}}{% else %}0{% endif %}{% endif %}{% endif %}",
+      "data.intellect": "#{% if not data.transformation.attrs.INT.removed %}{% if data.attrAdjust.INT.base != nil %}{{data.attrAdjust.INT.base}} + {{data.attrAdjust.INT.ancestryBonus|default: 0}} + {{data.attrAdjust.INT.levelBonus|default: 0}} + {{data.transformation.attrs.INT.value|default: 0}} + {{data.pathGain.INT|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.INT|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.INT|default: 0}}{% else %}0{% endif %}{% elif data.ancestry.INT != nil %}{{data.ancestry.INT}} + {{data.attrAdjust.INT.ancestryBonus|default: 0}} + {{data.attrAdjust.INT.levelBonus|default: 0}} + {{data.transformation.attrs.INT.value|default: 0}} + {{data.pathGain.INT|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.INT|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.INT|default: 0}}{% else %}0{% endif %}{% endif %}{% endif %}",
+      "data.will": "#{% if not data.transformation.attrs.WIL.removed %}{% if data.attrAdjust.WIL.base != nil %}{{data.attrAdjust.WIL.base}} + {{data.attrAdjust.WIL.ancestryBonus|default: 0}} + {{data.attrAdjust.WIL.levelBonus|default: 0}} + {{data.transformation.attrs.WIL.value|default: 0}} + {{data.pathGain.WIL|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.WIL|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.WIL|default: 0}}{% else %}0{% endif %}{% elif data.ancestry.WIL != nil %}{{data.ancestry.WIL}} + {{data.attrAdjust.WIL.ancestryBonus|default: 0}} + {{data.attrAdjust.WIL.levelBonus|default: 0}} + {{data.transformation.attrs.WIL.value|default: 0}} + {{data.pathGain.WIL|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.WIL|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.WIL|default: 0}}{% else %}0{% endif %}{% endif %}{% endif %}"
+    },
+    {
+      "modifiers": [
+        "data.strength",
+        "data.agility",
+        "data.intellect",
+        "data.will"
+      ]
+    },
+    {
+      "data.strength": "#{% if data.attrAdjust.STR.override != nil %}{{data.attrAdjust.STR.override}}{% elif data.strength != nil %}{{data.strength}}{% endif %}",
+      "data.agility": "#{% if data.attrAdjust.AGI.override != nil %}{{data.attrAdjust.AGI.override}}{% elif data.agility != nil %}{{data.agility}}{% endif %}",
+      "data.intellect": "#{% if data.attrAdjust.INT.override != nil %}{{data.attrAdjust.INT.override}}{% elif data.intellect != nil %}{{data.intellect}}{% endif %}",
+      "data.will": "#{% if data.attrAdjust.WIL.override != nil %}{{data.attrAdjust.WIL.override}}{% elif data.will != nil %}{{data.will}}{% endif %}"
+    },
+    {
+      "data.strength": "#{% if data.strength != nil %}{% if data.strength > 20 %}20{% else %}{{data.strength}}{% endif %}{% endif %}",
+      "data.agility": "#{% if data.agility != nil %}{% if data.agility > 20 %}20{% else %}{{data.agility}}{% endif %}{% endif %}",
+      "data.intellect": "#{% if data.intellect != nil %}{% if data.intellect > 20 %}20{% else %}{{data.intellect}}{% endif %}{% endif %}",
+      "data.will": "#{% if data.will != nil %}{% if data.will > 20 %}20{% else %}{{data.will}}{% endif %}{% endif %}"
+    },
+    {
+      "data.strengthModifier": "#{% if data.strength != nil %}{{data.strength}} - 10{% endif %}",
+      "data.agilityModifier": "#{% if data.agility != nil %}{{data.agility}} - 10{% endif %}",
+      "data.intellectModifier": "#{% if data.intellect != nil %}{{data.intellect}} - 10{% endif %}",
+      "data.willModifier": "#{% if data.will != nil %}{{data.will}} - 10{% endif %}"
+    },
+    {
+      "data.perceptionValue": "#{% if data.perceptionAdjust.base != nil %}{{data.perceptionAdjust.base}} + {{data.transf.perception|default: 0}} + {{data.pathGain.perception|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.perception|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.perception|default: 0}}{% else %}0{% endif %} + {{data.perceptionAdjust.bonus|default: 0}}{% elif data.intellect != nil %}{% if data.ancestry.name %}{{data.intellect}} + {{data.ancestry.perception|default: 0}} + {{data.transf.perception|default: 0}} + {{data.pathGain.perception|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.perception|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.perception|default: 0}}{% else %}0{% endif %} + {{data.perceptionAdjust.bonus|default: 0}}{% elif data.attrAdjust.INT.base != nil %}{{data.intellect}} + {{data.ancestry.perception|default: 0}} + {{data.transf.perception|default: 0}} + {{data.pathGain.perception|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.perception|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.perception|default: 0}}{% else %}0{% endif %} + {{data.perceptionAdjust.bonus|default: 0}}{% endif %}{% endif %}"
+    },
+    {
+      "modifiers": [
+        "data.perceptionValue"
+      ]
+    },
+    {
+      "data.perceptionValue": "#{% if data.perceptionAdjust.override != nil %}{{data.perceptionAdjust.override}}{% elif data.perceptionValue != nil %}{{data.perceptionValue}}{% endif %}"
+    },
+    {
+      "data.perceptionFinal": "#{% if data.perceptionValue != nil %}{% if data.perceptionValue > 25 %}25{% else %}{{data.perceptionValue}}{% endif %}{% endif %}"
+    },
+    {
+      "data.perceptionModifier": "#{% if data.perceptionFinal != nil %}{{data.perceptionFinal}} - 10{% endif %}"
+    },
+    {
+      "data.gabaritChoice": "{% if data.sizeAdjust.override != nil %}{{data.sizeAdjust.override}}{% elif data.sizeAdjust.base != nil %}{{data.sizeAdjust.base}}{% elif data.ancestry.size != nil %}{{data.ancestry.size}}{% endif %}"
+    },
+    {
+      "data.sizeShift": "#{{data.pathGain.size|default: 0}} + {{data.sizeAdjust.bonus|default: 0}}"
+    },
+    {
+      "data.gabaritChoice": "{% if data.gabaritChoice != nil and data.sizeAdjust.override == nil and data.sizeShift != 0 %}{% if data.sizeShift == 1 %}{% if data.gabaritChoice == 'g1_12' %}g1{% elif data.gabaritChoice == 'g1_8' %}g1{% elif data.gabaritChoice == 'g1_4' %}g1{% elif data.gabaritChoice == 'g1_2' %}g1{% elif data.gabaritChoice == 'g1' %}g2{% elif data.gabaritChoice == 'g2' %}g3{% elif data.gabaritChoice == 'g3' %}g4{% elif data.gabaritChoice == 'g4' %}g5{% elif data.gabaritChoice == 'g5' %}g6{% elif data.gabaritChoice == 'g6' %}g6{% else %}{{data.gabaritChoice}}{% endif %}{% elif data.sizeShift == 2 %}{% if data.gabaritChoice == 'g1_12' %}g2{% elif data.gabaritChoice == 'g1_8' %}g2{% elif data.gabaritChoice == 'g1_4' %}g2{% elif data.gabaritChoice == 'g1_2' %}g2{% elif data.gabaritChoice == 'g1' %}g3{% elif data.gabaritChoice == 'g2' %}g4{% elif data.gabaritChoice == 'g3' %}g5{% elif data.gabaritChoice == 'g4' %}g6{% elif data.gabaritChoice == 'g5' %}g6{% elif data.gabaritChoice == 'g6' %}g6{% else %}{{data.gabaritChoice}}{% endif %}{% elif data.sizeShift == 3 %}{% if data.gabaritChoice == 'g1_12' %}g3{% elif data.gabaritChoice == 'g1_8' %}g3{% elif data.gabaritChoice == 'g1_4' %}g3{% elif data.gabaritChoice == 'g1_2' %}g3{% elif data.gabaritChoice == 'g1' %}g4{% elif data.gabaritChoice == 'g2' %}g5{% elif data.gabaritChoice == 'g3' %}g6{% elif data.gabaritChoice == 'g4' %}g6{% elif data.gabaritChoice == 'g5' %}g6{% elif data.gabaritChoice == 'g6' %}g6{% else %}{{data.gabaritChoice}}{% endif %}{% elif data.sizeShift == -1 %}{% if data.gabaritChoice == 'g1_12' %}g1_12{% elif data.gabaritChoice == 'g1_8' %}g1_12{% elif data.gabaritChoice == 'g1_4' %}g1_8{% elif data.gabaritChoice == 'g1_2' %}g1_4{% elif data.gabaritChoice == 'g1' %}g1_2{% elif data.gabaritChoice == 'g2' %}g1{% elif data.gabaritChoice == 'g3' %}g2{% elif data.gabaritChoice == 'g4' %}g3{% elif data.gabaritChoice == 'g5' %}g4{% elif data.gabaritChoice == 'g6' %}g5{% else %}{{data.gabaritChoice}}{% endif %}{% elif data.sizeShift == -2 %}{% if data.gabaritChoice == 'g1_12' %}g1_12{% elif data.gabaritChoice == 'g1_8' %}g1_12{% elif data.gabaritChoice == 'g1_4' %}g1_12{% elif data.gabaritChoice == 'g1_2' %}g1_8{% elif data.gabaritChoice == 'g1' %}g1_4{% elif data.gabaritChoice == 'g2' %}g1_2{% elif data.gabaritChoice == 'g3' %}g1{% elif data.gabaritChoice == 'g4' %}g2{% elif data.gabaritChoice == 'g5' %}g3{% elif data.gabaritChoice == 'g6' %}g4{% else %}{{data.gabaritChoice}}{% endif %}{% elif data.sizeShift == -3 %}{% if data.gabaritChoice == 'g1_12' %}g1_12{% elif data.gabaritChoice == 'g1_8' %}g1_12{% elif data.gabaritChoice == 'g1_4' %}g1_12{% elif data.gabaritChoice == 'g1_2' %}g1_12{% elif data.gabaritChoice == 'g1' %}g1_8{% elif data.gabaritChoice == 'g2' %}g1_4{% elif data.gabaritChoice == 'g3' %}g1_2{% elif data.gabaritChoice == 'g4' %}g1{% elif data.gabaritChoice == 'g5' %}g2{% elif data.gabaritChoice == 'g6' %}g3{% else %}{{data.gabaritChoice}}{% endif %}{% else %}{{data.gabaritChoice}}{% endif %}{% else %}{% if data.gabaritChoice != nil %}{{data.gabaritChoice}}{% endif %}{% endif %}"
+    },
+    {
+      "data.size": "{% if data.gabaritChoice == 'g1_8' or data.gabaritChoice == 'g1_4' %}T{% elif data.gabaritChoice == 'g1_2' %}S{% elif data.gabaritChoice == 'g1' %}M{% elif data.gabaritChoice == 'g2' or data.gabaritChoice == 'g3' %}L{% elif data.gabaritChoice == 'g4' or data.gabaritChoice == 'g5' %}H{% elif data.gabaritChoice == 'g6' %}G{% endif %}"
+    },
+    {
+      "activeArmor": {
+        "attribute": "data.items",
+        "filter": "equipped == true and itemType == 'Armor'",
+        "transform": "first"
+      },
+      "activeShield": {
+        "attribute": "data.items",
+        "filter": "equipped == true and weaponDefensive == true",
+        "transform": "first"
+      }
+    },
+    {
+      "data.defenseValue": "#{% if data.defenseAdjust.base != nil %}{{data.defenseAdjust.base}} + {{data.transf.defense|default: 0}} + {{data.pathGain.defense|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.defense|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.defense|default: 0}}{% else %}0{% endif %} + {{data.defenseAdjust.bonus|default: 0}}{% elif data.ancestry.defense != nil %}{{data.ancestry.defense}} + {{data.transf.defense|default: 0}} + {{data.pathGain.defense|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.defense|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.defense|default: 0}}{% else %}0{% endif %} + {{data.defenseAdjust.bonus|default: 0}}{% elif data.agility != nil and data.ancestry.name %}{{data.agility}} + {{data.transf.defense|default: 0}} + {{data.pathGain.defense|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.defense|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.defense|default: 0}}{% else %}0{% endif %} + {{data.defenseAdjust.bonus|default: 0}}{% elif data.agility != nil and data.attrAdjust.AGI.base != nil %}{{data.agility}} + {{data.transf.defense|default: 0}} + {{data.pathGain.defense|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.defense|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.defense|default: 0}}{% else %}0{% endif %} + {{data.defenseAdjust.bonus|default: 0}}{% endif %}"
+    },
+    {
+      "modifiers": [
+        "data.defenseValue"
+      ]
+    },
+    {
+      "data.defenseValue": "#{% if data.defenseValue != nil %}{{data.defenseValue}}{% if data.pathGain.defenseFixed != 0 %} - ({% if data.defenseAdjust.base != nil %}{{data.defenseAdjust.base}}{% elif data.ancestry.defense != nil %}{{data.ancestry.defense}}{% elif data.agility != nil %}{{data.agility}}{% else %}0{% endif %}) + {{data.pathGain.defenseFixed}}{% elif activeArmor %} - ({% if data.defenseAdjust.base != nil %}{{data.defenseAdjust.base}}{% elif data.ancestry.defense != nil %}{{data.ancestry.defense}}{% elif data.agility != nil %}{{data.agility}}{% else %}0{% endif %}) + ({% if activeArmor.armorDefenseFixed != nil %}{{activeArmor.armorDefenseFixed}}{% else %}{{data.agility|default: 0}} + {{activeArmor.armorDefenseAgility|default: 0}}{% endif %}){% endif %}{% if activeShield %} + {{activeShield.defensiveValue|default: 0}}{% endif %}{% endif %}"
+    },
+    {
+      "data.defenseValue": "#{% if data.defenseAdjust.override != nil %}{{data.defenseAdjust.override}}{% elif data.defenseValue != nil %}{{data.defenseValue}}{% endif %}"
+    },
+    {
+      "data.speedValue": "#{% if data.speedAdjust.base != nil %}{{data.speedAdjust.base}} + {{data.transf.speed|default: 0}} + {{data.pathGain.speed|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.speed|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.speed|default: 0}}{% else %}0{% endif %} + {{data.speedAdjust.bonus|default: 0}}{% elif data.ancestry.speed != nil %}{{data.ancestry.speed}} + {{data.transf.speed|default: 0}} + {{data.pathGain.speed|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.speed|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.speed|default: 0}}{% else %}0{% endif %} + {{data.speedAdjust.bonus|default: 0}}{% endif %}",
+      "data.powerValue": "#{% if data.powerAdjust.base != nil %}{{data.powerAdjust.base}}{% else %}0{% endif %} + {{data.pathGain.power|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.power|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.power|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.power|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.power|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.power|default: 0}}{% else %}0{% endif %} + {{data.powerAdjust.bonus|default: 0}}"
+    },
+    {
+      "modifiers": [
+        "data.speedValue"
+      ]
+    },
+    {
+      "data.speedValue": "#{% if data.speedAdjust.override != nil %}{{data.speedAdjust.override}}{% elif data.speedValue != nil %}{{data.speedValue}}{% endif %}",
+      "data.powerValue": "#{% if data.powerAdjust.override != nil %}{{data.powerAdjust.override}}{% elif data.powerValue != nil %}{{data.powerValue}}{% endif %}"
     },
     {
       "data.spells": {
         "attribute": "data.spells",
         "map": {
           "level": "#{{self.spellRank|default: 0}}",
-          "usesMaximum": "#{% if self.usesMaximumOverride %}{{self.usesMaximumOverride}}{% elif self.spellRank == 0 or self.spellRank == '0' %}{{data.power|default: 0}} + 1{% elif self.spellRank == 1 or self.spellRank == '1' %}{% if data.power >= 5 %}3{% elif data.power >= 2 %}2{% elif data.power >= 1 %}1{% else %}0{% endif %}{% elif self.spellRank == 2 or self.spellRank == '2' %}{% if data.power >= 8 %}3{% elif data.power >= 4 %}2{% elif data.power >= 2 %}1{% else %}0{% endif %}{% elif self.spellRank == 3 or self.spellRank == '3' %}{% if data.power >= 9 %}3{% elif data.power >= 5 %}2{% elif data.power >= 3 %}1{% else %}0{% endif %}{% elif self.spellRank == 4 or self.spellRank == '4' %}{% if data.power >= 10 %}3{% elif data.power >= 6 %}2{% elif data.power >= 4 %}1{% else %}0{% endif %}{% elif self.spellRank == 5 or self.spellRank == '5' %}{% if data.power >= 8 %}2{% elif data.power >= 5 %}1{% else %}0{% endif %}{% elif self.spellRank == 6 or self.spellRank == '6' %}{% if data.power >= 6 %}1{% else %}0{% endif %}{% elif self.spellRank == 7 or self.spellRank == '7' %}{% if data.power >= 7 %}1{% else %}0{% endif %}{% elif self.spellRank == 8 or self.spellRank == '8' %}{% if data.power >= 8 %}1{% else %}0{% endif %}{% elif self.spellRank == 9 or self.spellRank == '9' %}{% if data.power >= 9 %}1{% else %}0{% endif %}{% elif self.spellRank == 10 or self.spellRank == '10' %}{% if data.power >= 10 %}1{% else %}0{% endif %}{% else %}0{% endif %}"
+          "usesMaximum": "#{% if self.usesMaximumOverride %}{{self.usesMaximumOverride}}{% elif self.spellRank == 0 or self.spellRank == '0' %}{{data.powerValue|default: 0}} + 1{% elif self.spellRank == 1 or self.spellRank == '1' %}{% if data.powerValue >= 5 %}3{% elif data.powerValue >= 2 %}2{% elif data.powerValue >= 1 %}1{% else %}0{% endif %}{% elif self.spellRank == 2 or self.spellRank == '2' %}{% if data.powerValue >= 8 %}3{% elif data.powerValue >= 4 %}2{% elif data.powerValue >= 2 %}1{% else %}0{% endif %}{% elif self.spellRank == 3 or self.spellRank == '3' %}{% if data.powerValue >= 9 %}3{% elif data.powerValue >= 5 %}2{% elif data.powerValue >= 3 %}1{% else %}0{% endif %}{% elif self.spellRank == 4 or self.spellRank == '4' %}{% if data.powerValue >= 10 %}3{% elif data.powerValue >= 6 %}2{% elif data.powerValue >= 4 %}1{% else %}0{% endif %}{% elif self.spellRank == 5 or self.spellRank == '5' %}{% if data.powerValue >= 8 %}2{% elif data.powerValue >= 5 %}1{% else %}0{% endif %}{% elif self.spellRank == 6 or self.spellRank == '6' %}{% if data.powerValue >= 6 %}1{% else %}0{% endif %}{% elif self.spellRank == 7 or self.spellRank == '7' %}{% if data.powerValue >= 7 %}1{% else %}0{% endif %}{% elif self.spellRank == 8 or self.spellRank == '8' %}{% if data.powerValue >= 8 %}1{% else %}0{% endif %}{% elif self.spellRank == 9 or self.spellRank == '9' %}{% if data.powerValue >= 9 %}1{% else %}0{% endif %}{% elif self.spellRank == 10 or self.spellRank == '10' %}{% if data.powerValue >= 10 %}1{% else %}0{% endif %}{% else %}0{% endif %}"
         }
       }
     },
@@ -24,6 +149,532 @@
         "attribute": "data.spells",
         "transform": "spellbook"
       }
+    },
+    {
+      "data.ancestry.talent": {
+        "attribute": "data.ancestry.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel4.talent": {
+        "attribute": "data.ancestry.ancestryLevel4.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "4"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel4.choice": {
+        "attribute": "data.ancestry.ancestryLevel4.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "4"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel1.talent": {
+        "attribute": "data.ancestry.ancestryLevel1.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "1"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel1.choice": {
+        "attribute": "data.ancestry.ancestryLevel1.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "1"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel2.talent": {
+        "attribute": "data.ancestry.ancestryLevel2.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "2"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel2.choice": {
+        "attribute": "data.ancestry.ancestryLevel2.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "2"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel5.talent": {
+        "attribute": "data.ancestry.ancestryLevel5.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "5"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel5.choice": {
+        "attribute": "data.ancestry.ancestryLevel5.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "5"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel8.talent": {
+        "attribute": "data.ancestry.ancestryLevel8.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "8"
+        }
+      }
+    },
+    {
+      "data.ancestry.ancestryLevel8.choice": {
+        "attribute": "data.ancestry.ancestryLevel8.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "8"
+        }
+      }
+    },
+    {
+      "data.transformation.talent": {
+        "attribute": "data.transformation.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}"
+        }
+      },
+      "data.transformation.transfLevel1.talent": {
+        "attribute": "data.transformation.transfLevel1.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "1"
+        }
+      },
+      "data.transformation.transfLevel1.choice": {
+        "attribute": "data.transformation.transfLevel1.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "1"
+        }
+      },
+      "data.transformation.transfLevel2.talent": {
+        "attribute": "data.transformation.transfLevel2.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "2"
+        }
+      },
+      "data.transformation.transfLevel2.choice": {
+        "attribute": "data.transformation.transfLevel2.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "2"
+        }
+      },
+      "data.transformation.transfLevel4.talent": {
+        "attribute": "data.transformation.transfLevel4.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "4"
+        }
+      },
+      "data.transformation.transfLevel4.choice": {
+        "attribute": "data.transformation.transfLevel4.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "4"
+        }
+      },
+      "data.transformation.transfLevel5.talent": {
+        "attribute": "data.transformation.transfLevel5.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "5"
+        }
+      },
+      "data.transformation.transfLevel5.choice": {
+        "attribute": "data.transformation.transfLevel5.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "5"
+        }
+      },
+      "data.transformation.transfLevel8.talent": {
+        "attribute": "data.transformation.transfLevel8.talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "8"
+        }
+      },
+      "data.transformation.transfLevel8.choice": {
+        "attribute": "data.transformation.transfLevel8.choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "8"
+        }
+      }
+    },
+    {
+      "data.novicePath.level1Talent": {
+        "attribute": "data.novicePath.level1Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "1"
+        }
+      },
+      "data.novicePath.level1Choice": {
+        "attribute": "data.novicePath.level1Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "1"
+        }
+      },
+      "data.novicePath.level2Talent": {
+        "attribute": "data.novicePath.level2Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "2"
+        }
+      },
+      "data.novicePath.level2Choice": {
+        "attribute": "data.novicePath.level2Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "2"
+        }
+      },
+      "data.novicePath.level5Talent": {
+        "attribute": "data.novicePath.level5Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "5"
+        }
+      },
+      "data.novicePath.level5Choice": {
+        "attribute": "data.novicePath.level5Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "5"
+        }
+      },
+      "data.novicePath.level8Talent": {
+        "attribute": "data.novicePath.level8Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "8"
+        }
+      },
+      "data.novicePath.level8Choice": {
+        "attribute": "data.novicePath.level8Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "8"
+        }
+      },
+      "data.expertPath.level3Talent": {
+        "attribute": "data.expertPath.level3Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "3"
+        }
+      },
+      "data.expertPath.level3Choice": {
+        "attribute": "data.expertPath.level3Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "3"
+        }
+      },
+      "data.expertPath.level6Talent": {
+        "attribute": "data.expertPath.level6Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "6"
+        }
+      },
+      "data.expertPath.level6Choice": {
+        "attribute": "data.expertPath.level6Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "6"
+        }
+      },
+      "data.expertPath.level9Talent": {
+        "attribute": "data.expertPath.level9Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "9"
+        }
+      },
+      "data.expertPath.level9Choice": {
+        "attribute": "data.expertPath.level9Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "9"
+        }
+      },
+      "data.masterPath.level7Talent": {
+        "attribute": "data.masterPath.level7Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "7"
+        }
+      },
+      "data.masterPath.level7Choice": {
+        "attribute": "data.masterPath.level7Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "7"
+        }
+      },
+      "data.masterPath.level10Talent": {
+        "attribute": "data.masterPath.level10Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "10"
+        }
+      },
+      "data.masterPath.level10Choice": {
+        "attribute": "data.masterPath.level10Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "10"
+        }
+      },
+      "data.secondPath.level7Talent": {
+        "attribute": "data.secondPath.level7Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "7"
+        }
+      },
+      "data.secondPath.level7Choice": {
+        "attribute": "data.secondPath.level7Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "7"
+        }
+      },
+      "data.secondPath.level10Talent": {
+        "attribute": "data.secondPath.level10Talent",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "10"
+        }
+      },
+      "data.secondPath.level10Choice": {
+        "attribute": "data.secondPath.level10Choice",
+        "map": {
+          "usesMaximum": "#{% if self.usesBase != nil %}{{self.usesBase}} + {% if self.usesPower %}{{data.powerValue|default: 0}}{% else %}0{% endif %} + {% if self.usesLevel %}{{data.level|default: 0}}{% else %}0{% endif %}{% endif %}",
+          "talentLevel": "10"
+        }
+      }
+    },
+    {
+      "data.insanityStart": "#{% if data.insanity.start != nil %}{{data.insanity.start}}{% elif data.ancestry.insanity.mode != 'variable' and data.ancestry.insanity.value != nil %}{{data.ancestry.insanity.value}} + {% if data.transformation.insanity.mode != 'variable' %}{{data.transformation.insanity.value|default: 0}}{% else %}0{% endif %}{% elif data.transformation.insanity.mode != 'variable' and data.transformation.insanity.value != nil %}{{data.transformation.insanity.value}}{% elif data.ancestry.insanity.mode != 'variable' and data.transformation.insanity.mode != 'variable' %}0{% endif %}",
+      "data.corruptionStart": "#{% if data.corruption.start != nil %}{{data.corruption.start}}{% elif data.ancestry.corruption.mode != 'variable' and data.ancestry.corruption.value != nil %}{{data.ancestry.corruption.value}} + {% if data.transformation.corruption.mode != 'variable' %}{{data.transformation.corruption.value|default: 0}}{% else %}0{% endif %}{% elif data.transformation.corruption.mode != 'variable' and data.transformation.corruption.value != nil %}{{data.transformation.corruption.value}}{% elif data.ancestry.corruption.mode != 'variable' and data.transformation.corruption.mode != 'variable' %}0{% endif %}"
+    },
+    {
+      "data.insanityValue": "#{% if data.insanity.current != nil %}{{data.insanity.current}}{% elif data.insanityStart != nil %}{{data.insanityStart}}{% endif %}",
+      "data.corruptionValue": "#{% if data.corruption.current != nil %}{{data.corruption.current}}{% elif data.corruptionStart != nil %}{{data.corruptionStart}}{% endif %}",
+      "data.insanityMax": "#{% if data.will != nil %}{{data.will}}{% endif %}",
+      "data.insanity.maximum": "#{% if data.will != nil %}{{data.will}}{% endif %}"
+    },
+    {
+      "data.insanityValue": "#{% if data.insanityValue != nil and data.insanityMax != nil and data.insanityValue > data.insanityMax %}{{data.insanityMax}}{% else %}{{data.insanityValue}}{% endif %}"
+    },
+    {
+      "data.healthAttribute": "{% if data.ancestry.health.attribute %}{{data.ancestry.health.attribute}}{% else %}STR{% endif %}"
+    },
+    {
+      "data.healthBaseValue": "#{% if data.healthAttribute == 'AGI' %}{% if data.agility != nil %}{% if data.ancestry.name or data.attrAdjust.AGI.base != nil %}{{data.agility}}{% endif %}{% elif data.transformation.attrs.AGI.removed %}0{% endif %}{% elif data.healthAttribute == 'INT' %}{% if data.intellect != nil %}{% if data.ancestry.name or data.attrAdjust.INT.base != nil %}{{data.intellect}}{% endif %}{% elif data.transformation.attrs.INT.removed %}0{% endif %}{% elif data.healthAttribute == 'WIL' %}{% if data.will != nil %}{% if data.ancestry.name or data.attrAdjust.WIL.base != nil %}{{data.will}}{% endif %}{% elif data.transformation.attrs.WIL.removed %}0{% endif %}{% else %}{% if data.strength != nil %}{% if data.ancestry.name or data.attrAdjust.STR.base != nil %}{{data.strength}}{% endif %}{% elif data.transformation.attrs.STR.removed %}0{% endif %}{% endif %}"
+    },
+    {
+      "data.healthValue": "#{% if data.healthAdjust.base != nil %}{{data.healthAdjust.base}} + {{data.transf.health|default: 0}} + {{data.pathGain.health|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.health|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.health|default: 0}}{% else %}0{% endif %} + {{data.healthAdjust.bonus|default: 0}}{% elif data.healthBaseValue != nil %}{{data.healthBaseValue}} + {{data.ancestry.health.bonus|default: 0}} + {{data.transf.health|default: 0}} + {{data.pathGain.health|default: 0}} + {% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.health|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.health|default: 0}}{% else %}0{% endif %} + {{data.healthAdjust.bonus|default: 0}}{% endif %}"
+    },
+    {
+      "data.healthValue": "#{% if data.healthAdjust.override != nil %}{{data.healthAdjust.override}}{% elif data.healthValue != nil %}{{data.healthValue}}{% endif %}"
+    },
+    {
+      "data.strength": "#{% if data.attrAdjust.STR.override != nil %}{% if data.strength != nil %}{{data.strength}}{% endif %}{% elif data.transformation.attrs.STR.replace != nil %}{% if data.transformation.attrs.STR.replace > 20 %}20{% else %}{{data.transformation.attrs.STR.replace}}{% endif %}{% elif data.strength != nil %}{{data.strength}}{% endif %}",
+      "data.agility": "#{% if data.attrAdjust.AGI.override != nil %}{% if data.agility != nil %}{{data.agility}}{% endif %}{% elif data.transformation.attrs.AGI.replace != nil %}{% if data.transformation.attrs.AGI.replace > 20 %}20{% else %}{{data.transformation.attrs.AGI.replace}}{% endif %}{% elif data.agility != nil %}{{data.agility}}{% endif %}",
+      "data.intellect": "#{% if data.attrAdjust.INT.override != nil %}{% if data.intellect != nil %}{{data.intellect}}{% endif %}{% elif data.transformation.attrs.INT.replace != nil %}{% if data.transformation.attrs.INT.replace > 20 %}20{% else %}{{data.transformation.attrs.INT.replace}}{% endif %}{% elif data.intellect != nil %}{{data.intellect}}{% endif %}",
+      "data.will": "#{% if data.attrAdjust.WIL.override != nil %}{% if data.will != nil %}{{data.will}}{% endif %}{% elif data.transformation.attrs.WIL.replace != nil %}{% if data.transformation.attrs.WIL.replace > 20 %}20{% else %}{{data.transformation.attrs.WIL.replace}}{% endif %}{% elif data.will != nil %}{{data.will}}{% endif %}"
+    },
+    {
+      "data.strengthModifier": "#{% if data.strength != nil %}{{data.strength}} - 10{% endif %}",
+      "data.agilityModifier": "#{% if data.agility != nil %}{{data.agility}} - 10{% endif %}",
+      "data.intellectModifier": "#{% if data.intellect != nil %}{{data.intellect}} - 10{% endif %}",
+      "data.willModifier": "#{% if data.will != nil %}{{data.will}} - 10{% endif %}"
+    },
+    {
+      "data.insanityValue": "#{% if data.insanity.current != nil %}{{data.insanity.current}}{% elif data.insanityStart != nil %}{{data.insanityStart}}{% endif %}",
+      "data.corruptionValue": "#{% if data.corruption.current != nil %}{{data.corruption.current}}{% elif data.corruptionStart != nil %}{{data.corruptionStart}}{% endif %}",
+      "data.insanityMax": "#{% if data.will != nil %}{{data.will}}{% endif %}",
+      "data.insanity.maximum": "#{% if data.will != nil %}{{data.will}}{% endif %}"
+    },
+    {
+      "data.insanityValue": "#{% if data.insanityValue != nil and data.insanityMax != nil and data.insanityValue > data.insanityMax %}{{data.insanityMax}}{% else %}{{data.insanityValue}}{% endif %}"
+    },
+    {
+      "data.insanityValue": "#{% if data.transformation.insanityRemoved %}0{% else %}{{data.insanityValue}}{% endif %}"
+    },
+    {
+      "data.corruptionValue": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} + {{data.pathGain.corruption|default: 0}}{% elif data.pathGain.corruption != 0 %}{{data.pathGain.corruption}}{% endif %}"
+    },
+    {
+      "data.healthValue": "#{% if data.healthValue != nil %}{{data.healthValue}}{% if data.healthAdjust.override != nil %}{% else %} - ({{data.ancestry.health.corruptionFactor|default: 0}} + {{data.transformation.corruptionFactor|default: 0}}) * {{data.corruptionValue|default: 0}}{% endif %}{% endif %}"
+    },
+    {
+      "data.hp.maximum": "#{% if data.healthValue != nil %}{{data.healthValue}}{% endif %}",
+      "data.healingValue": "#{% if data.healingAdjust.base != nil %}{{data.healingAdjust.base}} + {{data.healingAdjust.bonus|default: 0}}{% elif data.healthValue != nil %}{% if data.healthValue >= 100 %}25{% else %}{% if data.healthValue >= 100 %}25{% elif data.healthValue >= 96 %}24{% elif data.healthValue >= 92 %}23{% elif data.healthValue >= 88 %}22{% elif data.healthValue >= 84 %}21{% elif data.healthValue >= 80 %}20{% elif data.healthValue >= 76 %}19{% elif data.healthValue >= 72 %}18{% elif data.healthValue >= 68 %}17{% elif data.healthValue >= 64 %}16{% elif data.healthValue >= 60 %}15{% elif data.healthValue >= 56 %}14{% elif data.healthValue >= 52 %}13{% elif data.healthValue >= 48 %}12{% elif data.healthValue >= 44 %}11{% elif data.healthValue >= 40 %}10{% elif data.healthValue >= 36 %}9{% elif data.healthValue >= 32 %}8{% elif data.healthValue >= 28 %}7{% elif data.healthValue >= 24 %}6{% elif data.healthValue >= 20 %}5{% elif data.healthValue >= 16 %}4{% elif data.healthValue >= 12 %}3{% elif data.healthValue >= 8 %}2{% else %}1{% endif %}{% endif %} + {{data.healingAdjust.bonus|default: 0}}{% endif %}"
+    },
+    {
+      "data.healingValue": "#{% if data.transformation.healingZero %}0{% elif data.healingAdjust.override != nil %}{{data.healingAdjust.override}}{% elif data.healingValue != nil %}{{data.healingValue}}{% endif %}"
+    },
+    {
+      "data.hp.current": "#{% if data.hp.current != nil %}{% if data.hp.current < 0 %}0{% elif data.hp.maximum != nil and data.hp.current > data.hp.maximum %}{{data.hp.maximum}}{% else %}{{data.hp.current}}{% endif %}{% else %}0{% endif %}"
+    },
+    {
+      "data.damageValue": "#{% if data.hp.maximum != nil and data.hp.current != nil %}{{data.hp.current}}{% endif %}",
+      "data.hpCurrentTimes2": "#{% if data.hp.current != nil %}{{data.hp.current}} * 2{% endif %}"
+    },
+    {
+      "data.hpPercent": "#{% if data.hp.maximum != nil and data.hp.current != nil and data.hp.maximum > 0 %}{{data.hp.current}} * 100 / {{data.hp.maximum}}{% endif %}"
+    },
+    {
+      "data.healthState": "{% if data.hp.maximum != nil and data.hp.current != nil %}{% if data.hp.maximum > 0 %}{% if data.hp.current >= data.hp.maximum %}down{% elif data.hpCurrentTimes2 >= data.hp.maximum %}wounded{% endif %}{% endif %}{% endif %}"
+    },
+    {
+      "data.recap.str.base": "#{% if data.attrAdjust.STR.base != nil %}{{data.attrAdjust.STR.base}}{% elif data.ancestry.STR != nil %}{{data.ancestry.STR}}{% endif %}",
+      "data.recap.str.asc": "#{{data.attrAdjust.STR.ancestryBonus|default: 0}}",
+      "data.recap.str.transf": "#{{data.transformation.attrs.STR.value|default: 0}}",
+      "data.recap.str.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.STR|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.STR|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.STR|default: 0}}{% else %}0{% endif %} + {{data.attrAdjust.STR.levelBonus|default: 0}}",
+      "data.recap.agi.base": "#{% if data.attrAdjust.AGI.base != nil %}{{data.attrAdjust.AGI.base}}{% elif data.ancestry.AGI != nil %}{{data.ancestry.AGI}}{% endif %}",
+      "data.recap.agi.asc": "#{{data.attrAdjust.AGI.ancestryBonus|default: 0}}",
+      "data.recap.agi.transf": "#{{data.transformation.attrs.AGI.value|default: 0}}",
+      "data.recap.agi.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.AGI|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.AGI|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.AGI|default: 0}}{% else %}0{% endif %} + {{data.attrAdjust.AGI.levelBonus|default: 0}}",
+      "data.recap.int.base": "#{% if data.attrAdjust.INT.base != nil %}{{data.attrAdjust.INT.base}}{% elif data.ancestry.INT != nil %}{{data.ancestry.INT}}{% endif %}",
+      "data.recap.int.asc": "#{{data.attrAdjust.INT.ancestryBonus|default: 0}}",
+      "data.recap.int.transf": "#{{data.transformation.attrs.INT.value|default: 0}}",
+      "data.recap.int.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.INT|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.INT|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.INT|default: 0}}{% else %}0{% endif %} + {{data.attrAdjust.INT.levelBonus|default: 0}}",
+      "data.recap.wil.base": "#{% if data.attrAdjust.WIL.base != nil %}{{data.attrAdjust.WIL.base}}{% elif data.ancestry.WIL != nil %}{{data.ancestry.WIL}}{% endif %}",
+      "data.recap.wil.asc": "#{{data.attrAdjust.WIL.ancestryBonus|default: 0}}",
+      "data.recap.wil.transf": "#{{data.transformation.attrs.WIL.value|default: 0}}",
+      "data.recap.wil.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.attrs.WIL|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.attrs.WIL|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.attrs.WIL|default: 0}}{% else %}0{% endif %} + {{data.attrAdjust.WIL.levelBonus|default: 0}}",
+      "data.recap.perception.base": "#{% if data.perceptionAdjust.base != nil %}{{data.perceptionAdjust.base}}{% elif data.intellect != nil %}{{data.intellect}}{% endif %}",
+      "data.recap.perception.asc": "#{% if data.perceptionAdjust.base != nil %}0{% else %}{{data.ancestry.perception|default: 0}}{% endif %}",
+      "data.recap.perception.transf": "#{{data.transf.perception|default: 0}}",
+      "data.recap.perception.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.perception|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.perception|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.perception|default: 0}}{% else %}0{% endif %}",
+      "data.recap.perception.bonus": "#{{data.perceptionAdjust.bonus|default: 0}}",
+      "data.recap.defense.base": "#{% if data.pathGain.defenseFixed != 0 %}{{data.pathGain.defenseFixed}}{% elif activeArmor %}{% if activeArmor.armorDefenseFixed != nil %}{{activeArmor.armorDefenseFixed}}{% else %}{{data.agility|default: 0}} + {{activeArmor.armorDefenseAgility|default: 0}}{% endif %}{% elif data.defenseAdjust.base != nil %}{{data.defenseAdjust.base}}{% elif data.ancestry.defense != nil %}{{data.ancestry.defense}}{% elif data.agility != nil %}{{data.agility}}{% endif %}",
+      "data.recap.defense.transf": "#{{data.transf.defense|default: 0}}",
+      "data.recap.defense.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.defense|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.defense|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.defense|default: 0}}{% else %}0{% endif %}",
+      "data.recap.defense.bonus": "#{{data.defenseAdjust.bonus|default: 0}}",
+      "data.recap.health.base": "#{% if data.healthAdjust.base != nil %}{{data.healthAdjust.base}}{% elif data.healthBaseValue != nil %}{{data.healthBaseValue}}{% endif %}",
+      "data.recap.health.asc": "#{% if data.healthAdjust.base != nil %}0{% else %}{{data.ancestry.health.bonus|default: 0}}{% endif %}",
+      "data.recap.health.transf": "#{{data.transf.health|default: 0}}",
+      "data.recap.health.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.health|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.health|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.health|default: 0}}{% else %}0{% endif %}",
+      "data.recap.health.bonus": "#{{data.healthAdjust.bonus|default: 0}}",
+      "data.recap.speed.base": "#{% if data.speedAdjust.base != nil %}{{data.speedAdjust.base}}{% elif data.ancestry.speed != nil %}{{data.ancestry.speed}}{% endif %}",
+      "data.recap.speed.transf": "#{{data.transf.speed|default: 0}}",
+      "data.recap.speed.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.speed|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.speed|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.speed|default: 0}}{% else %}0{% endif %}",
+      "data.recap.speed.bonus": "#{{data.speedAdjust.bonus|default: 0}}",
+      "data.recap.power.base": "#{% if data.powerAdjust.base != nil %}{{data.powerAdjust.base}}{% else %}0{% endif %}",
+      "data.recap.power.levels": "#{% if data.level >= 1 %}{{data.ancestry.ancestryLevel1.gains.power|default: 0}}{% else %}0{% endif %} + {% if data.level >= 2 %}{{data.ancestry.ancestryLevel2.gains.power|default: 0}}{% else %}0{% endif %} + {% if data.level >= 4 %}{% if data.transformation.replaceLevel4 %}0{% else %}{{data.ancestry.ancestryLevel4.gains.power|default: 0}}{% endif %}{% else %}0{% endif %} + {% if data.level >= 5 %}{{data.ancestry.ancestryLevel5.gains.power|default: 0}}{% else %}0{% endif %} + {% if data.level >= 8 %}{{data.ancestry.ancestryLevel8.gains.power|default: 0}}{% else %}0{% endif %}",
+      "data.recap.power.bonus": "#{{data.powerAdjust.bonus|default: 0}}",
+      "data.recap.health.corr": "#{% if data.healthAdjust.override != nil %}0{% else %}0 - ({{data.ancestry.health.corruptionFactor|default: 0}} + {{data.transformation.corruptionFactor|default: 0}}) * {{data.corruptionValue|default: 0}}{% endif %}",
+      "data.recap.perception.paths": "#{{data.pathGain.perception|default: 0}}",
+      "data.recap.defense.paths": "#{{data.pathGain.defense|default: 0}}",
+      "data.recap.health.paths": "#{{data.pathGain.health|default: 0}}",
+      "data.recap.speed.paths": "#{{data.pathGain.speed|default: 0}}",
+      "data.recap.power.paths": "#{{data.pathGain.power|default: 0}}",
+      "data.recap.str.paths": "#{{data.pathGain.STR|default: 0}}",
+      "data.recap.agi.paths": "#{{data.pathGain.AGI|default: 0}}",
+      "data.recap.int.paths": "#{{data.pathGain.INT|default: 0}}",
+      "data.recap.wil.paths": "#{{data.pathGain.WIL|default: 0}}",
+      "data.recap.defense.armorName": "{% if activeArmor and data.pathGain.defenseFixed == 0 %}{{activeArmor.name}}{% endif %}",
+      "data.recap.defense.shield": "#{% if activeShield %}{{activeShield.defensiveValue|default: 0}}{% else %}0{% endif %}",
+      "data.recap.defense.shieldName": "{% if activeShield %}{{activeShield.name}}{% endif %}"
+    },
+    {
+      "data.recap.str.mods": "#{% if data.strength != nil %}{{data.strength}} - ({{data.recap.str.base|default: 0}} + {{data.recap.str.asc|default: 0}} + {{data.recap.str.transf|default: 0}} + {{data.recap.str.levels|default: 0}} + {{data.recap.str.paths|default: 0}}){% endif %}",
+      "data.recap.agi.mods": "#{% if data.agility != nil %}{{data.agility}} - ({{data.recap.agi.base|default: 0}} + {{data.recap.agi.asc|default: 0}} + {{data.recap.agi.transf|default: 0}} + {{data.recap.agi.levels|default: 0}} + {{data.recap.agi.paths|default: 0}}){% endif %}",
+      "data.recap.int.mods": "#{% if data.intellect != nil %}{{data.intellect}} - ({{data.recap.int.base|default: 0}} + {{data.recap.int.asc|default: 0}} + {{data.recap.int.transf|default: 0}} + {{data.recap.int.levels|default: 0}} + {{data.recap.int.paths|default: 0}}){% endif %}",
+      "data.recap.wil.mods": "#{% if data.will != nil %}{{data.will}} - ({{data.recap.wil.base|default: 0}} + {{data.recap.wil.asc|default: 0}} + {{data.recap.wil.transf|default: 0}} + {{data.recap.wil.levels|default: 0}} + {{data.recap.wil.paths|default: 0}}){% endif %}",
+      "data.recap.perception.mods": "#{% if data.perceptionValue != nil %}{{data.perceptionValue}} - ({{data.recap.perception.base|default: 0}} + {{data.recap.perception.asc|default: 0}} + {{data.recap.perception.transf|default: 0}} + {{data.recap.perception.levels|default: 0}} + {{data.recap.perception.bonus|default: 0}} + {{data.recap.perception.paths|default: 0}}){% endif %}",
+      "data.recap.defense.mods": "#{% if data.defenseValue != nil %}{{data.defenseValue}} - ({{data.recap.defense.base|default: 0}} + {{data.recap.defense.transf|default: 0}} + {{data.recap.defense.levels|default: 0}} + {{data.recap.defense.bonus|default: 0}} + {{data.recap.defense.shield|default: 0}} + {{data.recap.defense.paths|default: 0}}){% endif %}",
+      "data.recap.health.mods": "#{% if data.healthValue != nil %}{{data.healthValue}} - ({{data.recap.health.base|default: 0}} + {{data.recap.health.asc|default: 0}} + {{data.recap.health.transf|default: 0}} + {{data.recap.health.levels|default: 0}} + {{data.recap.health.bonus|default: 0}} + {{data.recap.health.paths|default: 0}} + {{data.recap.health.corr|default: 0}}){% endif %}",
+      "data.recap.speed.mods": "#{% if data.speedValue != nil %}{{data.speedValue}} - ({{data.recap.speed.base|default: 0}} + {{data.recap.speed.transf|default: 0}} + {{data.recap.speed.levels|default: 0}} + {{data.recap.speed.bonus|default: 0}} + {{data.recap.speed.paths|default: 0}}){% endif %}",
+      "data.recap.power.mods": "#{% if data.powerValue != nil %}{{data.powerValue}} - ({{data.recap.power.base|default: 0}} + {{data.recap.power.levels|default: 0}} + {{data.recap.power.bonus|default: 0}} + {{data.recap.power.paths|default: 0}}){% endif %}"
+    },
+    {
+      "data.encumbrance.total": "#0{% for it in data.items %} + {% if it.quantity != nil %}{{it.quantity}}{% else %}1{% endif %}{% endfor %}"
+    },
+    {
+      "data.encumbrance.double": "#{% if data.strength != nil %}{{data.strength}} * 2{% endif %}"
+    },
+    {
+      "data.weapons": {
+        "attribute": "data.items",
+        "filter": "equipped == true and itemType == 'Weapon'",
+        "map": {
+          "attackFormula": "d20{% if self.weaponType == 'Ranged' %}{{data.agilityModifier|default: 0|signed}}{% else %}{{data.strengthModifier|default: 0|signed}}{% endif %}{{data.edgeFormula}}",
+          "attackBonus": "#{% if self.weaponType == 'Ranged' %}{{data.agilityModifier|default: 0}}{% else %}{{data.strengthModifier|default: 0}}{% endif %}",
+          "ammoPath": "{% if self.ammunitionRequirement == true %}{% for it in data.items %}{% if it.weaponType == 'Ammunition' %}{% if it.ammunitionType == self.ammunitionType %}data.items.{{forloop.counter0}}{% endif %}{% endif %}{% endfor %}{% endif %}",
+          "ammoName": "{% if self.ammunitionRequirement == true %}{% for it in data.items %}{% if it.weaponType == 'Ammunition' %}{% if it.ammunitionType == self.ammunitionType %}{{it.name}}{% endif %}{% endif %}{% endfor %}{% endif %}",
+          "ammoUses": "#0{% for it in data.items %}{% if it.weaponType == 'Ammunition' %}{% if it.ammunitionType == self.ammunitionType %} + {{it.uses|default: 0}}{% endif %}{% endif %}{% endfor %}",
+          "ammoSpent": "#0{% for it in data.items %}{% if it.weaponType == 'Ammunition' %}{% if it.ammunitionType == self.ammunitionType %} + {{it.usesSpent|default: 0}}{% endif %}{% endif %}{% endfor %}"
+        }
+      }
+    },
+    {
+      "data.speedHalf": "#{% if data.speedValue != nil %}{{data.speedValue}} / 2{% endif %}",
+      "data.speedDouble": "#{% if data.speedValue != nil %}{{data.speedValue}} * 2{% endif %}"
+    },
+    {
+      "data.gauge.hp1": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 0{% endif %}",
+      "data.gauge.ins1": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 0{% endif %}",
+      "data.gauge.cor1": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 0{% endif %}",
+      "data.gauge.hp2": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 1{% endif %}",
+      "data.gauge.ins2": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 1{% endif %}",
+      "data.gauge.cor2": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 1{% endif %}",
+      "data.gauge.hp3": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 2{% endif %}",
+      "data.gauge.ins3": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 2{% endif %}",
+      "data.gauge.cor3": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 2{% endif %}",
+      "data.gauge.hp4": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 3{% endif %}",
+      "data.gauge.ins4": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 3{% endif %}",
+      "data.gauge.cor4": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 3{% endif %}",
+      "data.gauge.hp5": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 4{% endif %}",
+      "data.gauge.ins5": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 4{% endif %}",
+      "data.gauge.cor5": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 4{% endif %}",
+      "data.gauge.hp6": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 5{% endif %}",
+      "data.gauge.ins6": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 5{% endif %}",
+      "data.gauge.cor6": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 5{% endif %}",
+      "data.gauge.hp7": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 6{% endif %}",
+      "data.gauge.ins7": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 6{% endif %}",
+      "data.gauge.cor7": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 6{% endif %}",
+      "data.gauge.hp8": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 7{% endif %}",
+      "data.gauge.ins8": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 7{% endif %}",
+      "data.gauge.cor8": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 7{% endif %}",
+      "data.gauge.hp9": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 8{% endif %}",
+      "data.gauge.ins9": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 8{% endif %}",
+      "data.gauge.cor9": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 8{% endif %}",
+      "data.gauge.hp10": "#{% if data.hp.maximum != nil and data.hp.current != nil %}({{data.hp.maximum}} - {{data.hp.current}}) * 10 - {{data.hp.maximum}} * 9{% endif %}",
+      "data.gauge.ins10": "#{% if data.insanityValue != nil and data.insanityMax != nil %}{{data.insanityValue}} * 10 - {{data.insanityMax}} * 9{% endif %}",
+      "data.gauge.cor10": "#{% if data.corruptionValue != nil %}{{data.corruptionValue}} - 9{% endif %}"
     }
   ]
 }

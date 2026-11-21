@@ -1,0 +1,165 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "placeholder": "Common.Name",
+          "attribute": "name"
+        },
+        {
+          "title": "Common.Description",
+          "type": "textArea",
+          "attribute": "descr"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "title": "Path.Level1",
+      "fields": [
+        {
+          "title": "Common.Attributes",
+          "type": "form",
+          "attribute": "level1.data.attrs",
+          "text": "{% if level1.data.attrs.STR != nil %}{{'Attributes.STR'|l}} {{level1.data.attrs.STR|signed}}{% endif %}{% if level1.data.attrs.AGI != nil %}{% if level1.data.attrs.STR != nil %}, {% endif %}{{'Attributes.AGI'|l}} {{level1.data.attrs.AGI|signed}}{% endif %}{% if level1.data.attrs.INT != nil %}{% if level1.data.attrs.STR != nil or level1.data.attrs.AGI != nil %}, {% endif %}{{'Attributes.INT'|l}} {{level1.data.attrs.INT|signed}}{% endif %}{% if level1.data.attrs.WIL != nil %}{% if level1.data.attrs.STR != nil or level1.data.attrs.AGI != nil or level1.data.attrs.INT != nil %}, {% endif %}{{'Attributes.WIL'|l}} {{level1.data.attrs.WIL|signed}}{% endif %}{% if level1.data.attrs.custom %}{% if level1.data.attrs.STR != nil or level1.data.attrs.AGI != nil or level1.data.attrs.INT != nil or level1.data.attrs.WIL != nil %}, {% endif %}{{level1.data.attrs.custom}}{% endif %}",
+          "form": {
+            "title": "Common.Attributes",
+            "partial": "level-attrs"
+          }
+        },
+        {
+          "title": "Common.Characteristics",
+          "type": "form",
+          "attribute": "level1.data.gains",
+          "text": "{% if level1.data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{level1.data.gains.perception|signed}}{% endif %}{% if level1.data.gains.defense != nil %}{% if level1.data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{level1.data.gains.defense|signed}}{% endif %}{% if level1.data.gains.defenseFixed != nil %}{% if level1.data.gains.perception != nil or level1.data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{level1.data.gains.defenseFixed}}{% endif %}{% if level1.data.gains.health != nil %}{% if level1.data.gains.perception != nil or level1.data.gains.defense != nil or level1.data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{level1.data.gains.health|signed}}{% endif %}{% if level1.data.gains.speed != nil %}{% if level1.data.gains.perception != nil or level1.data.gains.defense != nil or level1.data.gains.defenseFixed != nil or level1.data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{level1.data.gains.speed|signed}}{% endif %}{% if level1.data.gains.power != nil %}{% if level1.data.gains.perception != nil or level1.data.gains.defense != nil or level1.data.gains.defenseFixed != nil or level1.data.gains.health != nil or level1.data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{level1.data.gains.power|signed}}{% endif %}{% if level1.data.gains.insanity != nil %}{% if level1.data.gains.perception != nil or level1.data.gains.defense != nil or level1.data.gains.defenseFixed != nil or level1.data.gains.health != nil or level1.data.gains.speed != nil or level1.data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{level1.data.gains.insanity|signed}}{% endif %}{% if level1.data.gains.corruption != nil %}{% if level1.data.gains.perception != nil or level1.data.gains.defense != nil or level1.data.gains.defenseFixed != nil or level1.data.gains.health != nil or level1.data.gains.speed != nil or level1.data.gains.power != nil or level1.data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{level1.data.gains.corruption|signed}}{% endif %}{% if level1.data.gains.size != nil %}{% if level1.data.gains.perception != nil or level1.data.gains.defense != nil or level1.data.gains.defenseFixed != nil or level1.data.gains.health != nil or level1.data.gains.speed != nil or level1.data.gains.power != nil or level1.data.gains.insanity != nil or level1.data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{level1.data.gains.size|signed}}{% endif %}{% if level1.data.gains.custom %}{% if level1.data.gains.perception != nil or level1.data.gains.defense != nil or level1.data.gains.defenseFixed != nil or level1.data.gains.health != nil or level1.data.gains.speed != nil or level1.data.gains.power != nil or level1.data.gains.insanity != nil or level1.data.gains.corruption != nil or level1.data.gains.size != nil %}, {% endif %}{{level1.data.gains.custom}}{% endif %}",
+          "form": {
+            "title": "Common.Characteristics",
+            "partial": "path-gains"
+          }
+        },
+        {
+          "title": "Common.Language&Profession",
+          "type": "textArea",
+          "attribute": "level1.data.levelLangProf"
+        },
+        {
+          "title": "Level.Options",
+          "type": "textArea",
+          "attribute": "level1.data.levelOptions"
+        }
+      ]
+    },
+    {
+      "title": "Level.Talents",
+      "type": "list",
+      "attribute": "level1Talent",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    },
+    {
+      "type": "group",
+      "title": "Path.Level2",
+      "fields": [
+        {
+          "title": "Common.Characteristics",
+          "type": "form",
+          "attribute": "level2.data.gains",
+          "text": "{% if level2.data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{level2.data.gains.perception|signed}}{% endif %}{% if level2.data.gains.defense != nil %}{% if level2.data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{level2.data.gains.defense|signed}}{% endif %}{% if level2.data.gains.defenseFixed != nil %}{% if level2.data.gains.perception != nil or level2.data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{level2.data.gains.defenseFixed}}{% endif %}{% if level2.data.gains.health != nil %}{% if level2.data.gains.perception != nil or level2.data.gains.defense != nil or level2.data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{level2.data.gains.health|signed}}{% endif %}{% if level2.data.gains.speed != nil %}{% if level2.data.gains.perception != nil or level2.data.gains.defense != nil or level2.data.gains.defenseFixed != nil or level2.data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{level2.data.gains.speed|signed}}{% endif %}{% if level2.data.gains.power != nil %}{% if level2.data.gains.perception != nil or level2.data.gains.defense != nil or level2.data.gains.defenseFixed != nil or level2.data.gains.health != nil or level2.data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{level2.data.gains.power|signed}}{% endif %}{% if level2.data.gains.insanity != nil %}{% if level2.data.gains.perception != nil or level2.data.gains.defense != nil or level2.data.gains.defenseFixed != nil or level2.data.gains.health != nil or level2.data.gains.speed != nil or level2.data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{level2.data.gains.insanity|signed}}{% endif %}{% if level2.data.gains.corruption != nil %}{% if level2.data.gains.perception != nil or level2.data.gains.defense != nil or level2.data.gains.defenseFixed != nil or level2.data.gains.health != nil or level2.data.gains.speed != nil or level2.data.gains.power != nil or level2.data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{level2.data.gains.corruption|signed}}{% endif %}{% if level2.data.gains.size != nil %}{% if level2.data.gains.perception != nil or level2.data.gains.defense != nil or level2.data.gains.defenseFixed != nil or level2.data.gains.health != nil or level2.data.gains.speed != nil or level2.data.gains.power != nil or level2.data.gains.insanity != nil or level2.data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{level2.data.gains.size|signed}}{% endif %}{% if level2.data.gains.custom %}{% if level2.data.gains.perception != nil or level2.data.gains.defense != nil or level2.data.gains.defenseFixed != nil or level2.data.gains.health != nil or level2.data.gains.speed != nil or level2.data.gains.power != nil or level2.data.gains.insanity != nil or level2.data.gains.corruption != nil or level2.data.gains.size != nil %}, {% endif %}{{level2.data.gains.custom}}{% endif %}",
+          "form": {
+            "title": "Common.Characteristics",
+            "partial": "path-gains"
+          }
+        },
+        {
+          "title": "Level.Options",
+          "type": "textArea",
+          "attribute": "level2.data.levelOptions"
+        }
+      ]
+    },
+    {
+      "title": "Level.Talents",
+      "type": "list",
+      "attribute": "level2Talent",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    },
+    {
+      "type": "group",
+      "title": "Path.Level5",
+      "fields": [
+        {
+          "title": "Common.Characteristics",
+          "type": "form",
+          "attribute": "level5.data.gains",
+          "text": "{% if level5.data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{level5.data.gains.perception|signed}}{% endif %}{% if level5.data.gains.defense != nil %}{% if level5.data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{level5.data.gains.defense|signed}}{% endif %}{% if level5.data.gains.defenseFixed != nil %}{% if level5.data.gains.perception != nil or level5.data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{level5.data.gains.defenseFixed}}{% endif %}{% if level5.data.gains.health != nil %}{% if level5.data.gains.perception != nil or level5.data.gains.defense != nil or level5.data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{level5.data.gains.health|signed}}{% endif %}{% if level5.data.gains.speed != nil %}{% if level5.data.gains.perception != nil or level5.data.gains.defense != nil or level5.data.gains.defenseFixed != nil or level5.data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{level5.data.gains.speed|signed}}{% endif %}{% if level5.data.gains.power != nil %}{% if level5.data.gains.perception != nil or level5.data.gains.defense != nil or level5.data.gains.defenseFixed != nil or level5.data.gains.health != nil or level5.data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{level5.data.gains.power|signed}}{% endif %}{% if level5.data.gains.insanity != nil %}{% if level5.data.gains.perception != nil or level5.data.gains.defense != nil or level5.data.gains.defenseFixed != nil or level5.data.gains.health != nil or level5.data.gains.speed != nil or level5.data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{level5.data.gains.insanity|signed}}{% endif %}{% if level5.data.gains.corruption != nil %}{% if level5.data.gains.perception != nil or level5.data.gains.defense != nil or level5.data.gains.defenseFixed != nil or level5.data.gains.health != nil or level5.data.gains.speed != nil or level5.data.gains.power != nil or level5.data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{level5.data.gains.corruption|signed}}{% endif %}{% if level5.data.gains.size != nil %}{% if level5.data.gains.perception != nil or level5.data.gains.defense != nil or level5.data.gains.defenseFixed != nil or level5.data.gains.health != nil or level5.data.gains.speed != nil or level5.data.gains.power != nil or level5.data.gains.insanity != nil or level5.data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{level5.data.gains.size|signed}}{% endif %}{% if level5.data.gains.custom %}{% if level5.data.gains.perception != nil or level5.data.gains.defense != nil or level5.data.gains.defenseFixed != nil or level5.data.gains.health != nil or level5.data.gains.speed != nil or level5.data.gains.power != nil or level5.data.gains.insanity != nil or level5.data.gains.corruption != nil or level5.data.gains.size != nil %}, {% endif %}{{level5.data.gains.custom}}{% endif %}",
+          "form": {
+            "title": "Common.Characteristics",
+            "partial": "path-gains"
+          }
+        },
+        {
+          "title": "Level.Options",
+          "type": "textArea",
+          "attribute": "level5.data.levelOptions"
+        }
+      ]
+    },
+    {
+      "title": "Level.Talents",
+      "type": "list",
+      "attribute": "level5Talent",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    },
+    {
+      "type": "group",
+      "title": "Path.Level8",
+      "fields": [
+        {
+          "title": "Common.Characteristics",
+          "type": "form",
+          "attribute": "level8.data.gains",
+          "text": "{% if level8.data.gains.perception != nil %}{{'Characteristics.Perception'|l}} {{level8.data.gains.perception|signed}}{% endif %}{% if level8.data.gains.defense != nil %}{% if level8.data.gains.perception != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{level8.data.gains.defense|signed}}{% endif %}{% if level8.data.gains.defenseFixed != nil %}{% if level8.data.gains.perception != nil or level8.data.gains.defense != nil %}, {% endif %}{{'Characteristics.Defense'|l}} {{level8.data.gains.defenseFixed}}{% endif %}{% if level8.data.gains.health != nil %}{% if level8.data.gains.perception != nil or level8.data.gains.defense != nil or level8.data.gains.defenseFixed != nil %}, {% endif %}{{'Characteristics.Health'|l}} {{level8.data.gains.health|signed}}{% endif %}{% if level8.data.gains.speed != nil %}{% if level8.data.gains.perception != nil or level8.data.gains.defense != nil or level8.data.gains.defenseFixed != nil or level8.data.gains.health != nil %}, {% endif %}{{'Characteristics.Speed'|l}} {{level8.data.gains.speed|signed}}{% endif %}{% if level8.data.gains.power != nil %}{% if level8.data.gains.perception != nil or level8.data.gains.defense != nil or level8.data.gains.defenseFixed != nil or level8.data.gains.health != nil or level8.data.gains.speed != nil %}, {% endif %}{{'Characteristics.Power'|l}} {{level8.data.gains.power|signed}}{% endif %}{% if level8.data.gains.insanity != nil %}{% if level8.data.gains.perception != nil or level8.data.gains.defense != nil or level8.data.gains.defenseFixed != nil or level8.data.gains.health != nil or level8.data.gains.speed != nil or level8.data.gains.power != nil %}, {% endif %}{{'Characteristics.Insanity'|l}} {{level8.data.gains.insanity|signed}}{% endif %}{% if level8.data.gains.corruption != nil %}{% if level8.data.gains.perception != nil or level8.data.gains.defense != nil or level8.data.gains.defenseFixed != nil or level8.data.gains.health != nil or level8.data.gains.speed != nil or level8.data.gains.power != nil or level8.data.gains.insanity != nil %}, {% endif %}{{'Characteristics.Corruption'|l}} {{level8.data.gains.corruption|signed}}{% endif %}{% if level8.data.gains.size != nil %}{% if level8.data.gains.perception != nil or level8.data.gains.defense != nil or level8.data.gains.defenseFixed != nil or level8.data.gains.health != nil or level8.data.gains.speed != nil or level8.data.gains.power != nil or level8.data.gains.insanity != nil or level8.data.gains.corruption != nil %}, {% endif %}{{'Characteristics.SizeShort'|l}} {{level8.data.gains.size|signed}}{% endif %}{% if level8.data.gains.custom %}{% if level8.data.gains.perception != nil or level8.data.gains.defense != nil or level8.data.gains.defenseFixed != nil or level8.data.gains.health != nil or level8.data.gains.speed != nil or level8.data.gains.power != nil or level8.data.gains.insanity != nil or level8.data.gains.corruption != nil or level8.data.gains.size != nil %}, {% endif %}{{level8.data.gains.custom}}{% endif %}",
+          "form": {
+            "title": "Common.Characteristics",
+            "partial": "path-gains"
+          }
+        },
+        {
+          "title": "Level.Options",
+          "type": "textArea",
+          "attribute": "level8.data.levelOptions"
+        }
+      ]
+    },
+    {
+      "title": "Level.Talents",
+      "type": "list",
+      "attribute": "level8Talent",
+      "form": {
+        "title": "Common.Talent",
+        "partial": "talent-uses"
+      }
+    },
+    {
+      "title": "Entity.Path",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Entity.Path",
+          "type": "reference",
+          "attribute": "reference",
+          "attributeType": "Path"
+        }
+      ]
+    }
+  ]
+}

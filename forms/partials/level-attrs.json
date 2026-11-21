@@ -1,0 +1,39 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Attributes.STR",
+          "type": "number",
+          "attribute": "STR"
+        },
+        {
+          "title": "Attributes.AGI",
+          "type": "number",
+          "attribute": "AGI"
+        },
+        {
+          "title": "Attributes.INT",
+          "type": "number",
+          "attribute": "INT"
+        },
+        {
+          "title": "Attributes.WIL",
+          "type": "number",
+          "attribute": "WIL"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.GainsCustom",
+          "type": "text",
+          "attribute": "custom"
+        }
+      ]
+    }
+  ]
+}

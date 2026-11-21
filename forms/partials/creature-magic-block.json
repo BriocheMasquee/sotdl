@@ -1,0 +1,27 @@
+{
+  "sections": [
+    {
+      "type": "group",
+      "fields": [
+        {
+          "title": "Characteristics.Power",
+          "type": "text",
+          "attribute": "power"
+        }
+      ]
+    },
+    {
+      "title": "Creature.Traditions",
+      "type": "list",
+      "attribute": "creatureMagic",
+      "form": {
+        "title": "Spell.Tradition",
+        "partial": "creature-magic"
+      },
+      "custom": {
+        "itemTitle": "{% if tradition %}{{tradition|map: 'SpellTradition'|l}}{% endif %}"
+      },
+      "fields": []
+    }
+  ]
+}

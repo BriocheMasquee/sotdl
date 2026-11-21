@@ -1,305 +1,387 @@
 {
-    "debug": false,
-    "spacing": 0,
-    "padding": [15],
-    "views": [
+  "debug": false,
+  "spacing": 0,
+  "padding": [
+    15
+  ],
+  "views": [
+    {
+      "type": "hStack",
+      "bgColor": "#000000",
+      "alignment": "bottom",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
         {
-            "type": "hStack",
-            "bgColor": "#000000",
-            "alignment": "bottom",
-            "padding": [0,5],
-            "views": [
-                {
-                    "style": "creatureTitle",
-                    "padding": [4, 8, 4, 0],
-                    "value": "**{{name}}**",
-                    "link": "https://www.google.com/search?tbm=isch&q=Shadow+of+the+Demon+Lord+{{name}}"
-                },
-                {
-                    "style": "creatureSubtitle",
-                    "padding": [4, 8, 4, 4],
-                    "alignment": "trailing",
-                    "width": -1,
-                    "value": "{% if data.cr %} **{{'Creature.Difficulty'|l|uppercase}} {{data.cr}}**{% endif %}"
-                }
-            ]
+          "style": "creatureTitle",
+          "padding": [
+            4,
+            8,
+            4,
+            0
+          ],
+          "value": "**{{name}}**"
         },
         {
-            "type": "vStack",
-            "width": 0,
-            "padding": [2, 0, 0, 0],
-            "views": [
-                {
-                    "style": "creatureSubtitle",
-                    "bgColor": "#9B0619",
-                    "value": "{% if data.creatureDescriptors %}***{{data.creatureDescriptors}}***{% endif %} {% if data.size %}***• {{'Characteristics.Size'|l}} {{data.size}}***{% endif %}",
-                    "padding": [4, 13, 4, 0]
-                }
-            ]
-        },
+          "style": "creatureSubtitle",
+          "padding": [
+            4,
+            8,
+            4,
+            4
+          ],
+          "alignment": "trailing",
+          "width": -1,
+          "value": "{% if data.cr != nil %}**{{'Creature.Difficulty'|l|uppercase}} {{data.cr}}**{% endif %}"
+        }
+      ]
+    },
+    {
+      "type": "vStack",
+      "width": 0,
+      "padding": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "views": [
         {
-            "type": "spacer"
-        },
+          "style": "creatureSubtitle",
+          "bgColor": "#980C14",
+          "value": "{% if data.creatureDescriptors %}***{{data.creatureDescriptors}}{% if data.fearText %} {{data.fearText}}{% endif %}{% if data.gabarit %} {{'Creature.OfSize'|l}} {{data.gabarit|map: 'BodySize'}}{% endif %}***{% elif data.gabarit %}***{{'Characteristics.Size'|l}} {{data.gabarit|map: 'BodySize'}}***{% endif %}",
+          "padding": [
+            4,
+            13,
+            4,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        0,
+        5
+      ],
+      "views": [
         {
-            "type": "vStack",
-            "padding": [0,5],
-            "views": [
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Perception'|l}}** {{data.perception}} {{data.perceptionModifier|signed|brackets}} ; {% if data.senses %}{{data.senses|map: 'SpecialSenses'|lowercase}}{% endif %}"
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Defense'|l}}** {{data.ac}} {% if data.armor %}{{data.armor|lowercase|brackets}}{% endif %} ;  **{{'Characteristics.Health'|l}}** {{data.hp}} ;  **{{'Characteristics.Insanity'|l}}** {{data.insanity|default: 0}} ;  **{{'Characteristics.Corruption'|l}}** {{data.corruption|default: 0}}"
-                },
-                {
-                    "type": "flow",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Attributes.STR'|l}}** {{data.STR}} {% if data.STR%}{{data.strengthModifier|signed|brackets}}{% endif %}"
-                        },
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Attributes.AGI'|l}}** {{data.AGI}} {% if data.AGI%}{{data.agilityModifier|signed|brackets}}{% endif %}"
-                        },
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Attributes.INT'|l}}** {{data.INT}} {% if data.INT%}{{data.intellectModifier|signed|brackets}}{% endif %}"
-                        },
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "**{{'Attributes.WIL'|l}}** {{data.WIL}} {% if data.WIL%}{{data.willModifier|signed|brackets}}{% endif %}"
-                        }
-                    ]
-                },
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "**{{'Characteristics.Speed'|l}}** {{data.speed}} ; {% if data.specialMovementTraits %}{{data.specialMovementTraits|map: 'SpecialMovementTraits'|lowercase}}{% endif %}"
-                }
-            ]
-        },
-        {
-            "type": "vStack",
-            "padding": [5,5,0,5],
-            "views": [
-                {
-                    "type": "list",
-                    "attribute": "data.creatureTraits",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "text",
-            "style": "creatureSection",
-            "bgColor": "#A7A9AC",
-            "padding": [4,13,4,5],
-            "value": "**{{'Combat.AttackOptions'|l}}**",
-            "visibleIf": "{% if data.creatureAttacks %}true{% endif %}"
-        },
-        {
-            "type": "vStack",
-            "padding": [5],
-            "visibleIf": "{% if data.creatureAttacks %}true{% endif %}",
-            "views": [
-                {
-                    "type": "list",
-                    "attribute": "data.creatureAttacks",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}**{% endif %} {{text}}"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{% if data.creatureAttacks %}true{% endif %}"
-        },
-        {
-            "type": "text",
-            "style": "creatureSection",
-            "bgColor": "#A7A9AC",
-            "padding": [4,13,4,0],
-            "value": "**{{'Combat.SpecialAttacks'|l}}**",
-            "visibleIf": "{% if data.creatureSpecialAttacks %}true{% endif %}"
-        },
-        {
-            "type": "vStack",
-            "padding": [5],
-            "visibleIf": "{% if data.creatureSpecialAttacks %}true{% endif %}",
-            "views": [
-                {
-                    "type": "list",
-                    "attribute": "data.creatureSpecialAttacks",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}**{% endif %} {{text}}"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{% if data.creatureSpecialAttacks %}true{% endif %}"
-        },
-        {
-            "type": "text",
-            "style": "creatureSection",
-            "bgColor": "#A7A9AC",
-            "padding": [4,13,4,0],
-            "value": "**{{'Combat.SpecialActions'|l}}**",
-            "visibleIf": "{% if data.creatureSpecialActions %}true{% endif %}"
-        },
-        {
-            "type": "vStack",
-            "padding": [5],
-            "visibleIf": "{% if data.creatureSpecialActions %}true{% endif %}",
-            "views": [
-                {
-                    "type": "list",
-                    "attribute": "data.creatureSpecialActions",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}**{% endif %} {{text}}"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{% if data.creatureSpecialActions %}true{% endif %}"
-        },
-        {
-            "type": "text",
-            "style": "creatureSection",
-            "bgColor": "#A7A9AC",
-            "padding": [4,13,4,0],
-            "value": "**{{'Creature.Magic'|l}}**",
-            "visibleIf": "{% if data.creatureMagic or data.power %}true{% endif %}"
-        },
-        {
-            "type": "vStack",
-            "padding": [5],
-            "visibleIf": "{% if data.creatureMagic or data.power %}true{% endif %}",
-            "views": [
-                {
-                    "type": "text",
-                    "style": "body-info",
-                    "value": "{% if data.power %}**{{'Characteristics.Power'|l}}** {{data.power}}{% endif %}"
-                },
-                {
-                    "type": "list",
-                    "attribute": "data.creatureMagic",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}** {% endif %} *{{text}}*"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{% if data.creatureMagic or data.power %}true{% endif %}"
-        },
-        {
-            "type": "text",
-            "style": "creatureSection",
-            "bgColor": "#A7A9AC",
-            "padding": [4,13,4,0],
-            "value": "**{{'Round.EndEffect'|l}}**",
-            "visibleIf": "{% if data.creatureEndOfRoundEffect %}true{% endif %}"
-        },
-        {
-            "type": "vStack",
-            "padding": [5],
-            "visibleIf": "{% if data.creatureEndOfRoundEffect %}true{% endif %}",
-            "views": [
-                {
-                    "type": "list",
-                    "attribute": "data.creatureEndOfRoundEffect",
-                    "views": [
-                        {
-                            "type": "text",
-                            "style": "body-info",
-                            "value": "{% if name %}**{{name}}**{% endif %} {{text}}"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{descr}}"
-        },
-        {
-            "type": "divider",
-            "bgColor": "#9B0619",
-            "height": 1.5,
-            "padding": [0],
-            "visibleIf": "{{descr}}"
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{descr}}"
-        },
-        {
-            "type": "text",
-            "value": "{{descr}}"
-        },
-        {
-            "type": "spacer",
-            "visibleIf": "{{image}}"
-        },
-        {
-            "type": "image",
-            "value": "{{image}}",
-            "link": "{{image}}"
-        },
-        {
-            "type": "spacer"
-        },
-        {
-            "type": "divider",
-            "bgColor": "#000000",
-            "height": 1.5,
-            "padding": [0]
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.Perception'|l}}** {% if data.perception != nil %}{{data.perception}} ([{{data.perceptionModifier|signed}}](/roll/d20{{data.perceptionModifier|signed}}/Perception/check)){% else %}—{% endif %}{% if data.senses %} ; {{data.senses|map: 'SpecialSenses'|lowercase}}{% endif %}",
+          "alignment": "leading"
         },
         {
           "type": "text",
-          "style": "source",
-          "padding": [5,0,0,0],
-          "value": "*{{'Common.Source'|l}} : {{sourceFormatted}}*",
-          "visibleIf": "{{sourceFormatted}}"
+          "style": "body-info",
+          "value": "**{{'Characteristics.Defense'|l}}** {% if data.acText %}{{data.acText}}{% elif data.ac != nil %}{{data.ac}}{% else %}—{% endif %}{% if data.armor %} {{data.armor|lowercase|brackets}}{% endif %} ; **{{'Characteristics.Health'|l}}** {% if data.hpText %}{{data.hpText}}{% elif data.hp != nil %}{{data.hp}}{% else %}—{% endif %}{% if data.insanity != nil and data.insanity != '' %} ; **{{'Characteristics.Insanity'|l}}** {{data.insanity}}{% endif %}{% if data.corruption != nil and data.corruption != '' %} ; **{{'Characteristics.Corruption'|l}}** {{data.corruption}}{% endif %}"
+        },
+        {
+          "type": "flow",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "**{{'Attributes.STR'|l}}** {% if data.STR != nil %}{{data.STR}} ([{{data.strengthModifier|signed}}](/roll/d20{{data.strengthModifier|signed}}/Force/check)){% else %}—{% endif %}",
+              "alignment": "leading"
+            },
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "**{{'Attributes.AGI'|l}}** {% if data.AGI != nil %}{{data.AGI}} ([{{data.agilityModifier|signed}}](/roll/d20{{data.agilityModifier|signed}}/Agilité/check)){% else %}—{% endif %}",
+              "alignment": "leading"
+            },
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "**{{'Attributes.INT'|l}}** {% if data.INT != nil %}{{data.INT}} ([{{data.intellectModifier|signed}}](/roll/d20{{data.intellectModifier|signed}}/Intellect/check)){% else %}—{% endif %}",
+              "alignment": "leading"
+            },
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "**{{'Attributes.WIL'|l}}** {% if data.WIL != nil %}{{data.WIL}} ([{{data.willModifier|signed}}](/roll/d20{{data.willModifier|signed}}/Volonté/check)){% else %}—{% endif %}",
+              "alignment": "leading"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "**{{'Characteristics.Speed'|l}}** {% if data.speed != nil %}{{data.speed}}{% else %}—{% endif %}{% if data.specialMovementTraits %} ; {{data.specialMovementTraits|map: 'SpecialMovementTraits'|lowercase}}{% endif %}"
         }
-    ]
+      ]
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        5,
+        5,
+        0,
+        5
+      ],
+      "views": [
+        {
+          "type": "list",
+          "attribute": "data.creatureTraits",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}.** {% endif %}{{text}}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "text",
+      "style": "creatureSection",
+      "bgColor": "#B2B2B2",
+      "padding": [
+        4,
+        13,
+        4,
+        5
+      ],
+      "value": "**{{'Combat.AttackOptions'|l}}**",
+      "visibleIf": "{% if data.creatureAttacks %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        5
+      ],
+      "visibleIf": "{% if data.creatureAttacks %}true{% endif %}",
+      "views": [
+        {
+          "type": "list",
+          "attribute": "data.creatureAttacks",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if bonus != nil %}**{{name}}**{% if range %} ({{range|lowercase}}){% endif %} [{{bonus|signed}}](/roll/{{rollFormula}}/{{name}}/attack){% if boonsText %} {{boonsText}}{% endif %}{% if text %} {{text}}{% endif %}{% else %}{% if name %}**{{name}}.** {% endif %}{{text}}{% endif %}",
+              "alignment": "leading"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.creatureAttacks %}true{% endif %}"
+    },
+    {
+      "type": "text",
+      "style": "creatureSection",
+      "bgColor": "#B2B2B2",
+      "padding": [
+        4,
+        13,
+        4,
+        0
+      ],
+      "value": "**{{'Combat.SpecialAttacks'|l}}**",
+      "visibleIf": "{% if data.creatureSpecialAttacks %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        5
+      ],
+      "visibleIf": "{% if data.creatureSpecialAttacks %}true{% endif %}",
+      "views": [
+        {
+          "type": "list",
+          "attribute": "data.creatureSpecialAttacks",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.creatureSpecialAttacks %}true{% endif %}"
+    },
+    {
+      "type": "text",
+      "style": "creatureSection",
+      "bgColor": "#B2B2B2",
+      "padding": [
+        4,
+        13,
+        4,
+        0
+      ],
+      "value": "**{{'Combat.SpecialActions'|l}}**",
+      "visibleIf": "{% if data.creatureSpecialActions %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        5
+      ],
+      "visibleIf": "{% if data.creatureSpecialActions %}true{% endif %}",
+      "views": [
+        {
+          "type": "list",
+          "attribute": "data.creatureSpecialActions",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.creatureSpecialActions %}true{% endif %}"
+    },
+    {
+      "type": "text",
+      "style": "creatureSection",
+      "bgColor": "#B2B2B2",
+      "padding": [
+        4,
+        13,
+        4,
+        0
+      ],
+      "value": "**{{'Creature.Magic'|l}}**",
+      "visibleIf": "{% if data.creatureMagic or data.power %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        5
+      ],
+      "visibleIf": "{% if data.creatureMagic or data.power %}true{% endif %}",
+      "views": [
+        {
+          "type": "text",
+          "style": "body-info",
+          "value": "{% if data.power %}**{{'Characteristics.Power'|l}}** {{data.power}}{% endif %}"
+        },
+        {
+          "type": "list",
+          "attribute": "data.creatureMagic",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if tradition %}**{{tradition|map: 'SpellTradition'|l}}** {% endif %}{{text}}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{% if data.creatureMagic or data.power %}true{% endif %}"
+    },
+    {
+      "type": "text",
+      "style": "creatureSection",
+      "bgColor": "#B2B2B2",
+      "padding": [
+        4,
+        13,
+        4,
+        0
+      ],
+      "value": "**{{'Round.EndEffect'|l}}**",
+      "visibleIf": "{% if data.creatureEndOfRoundEffect %}true{% endif %}"
+    },
+    {
+      "type": "vStack",
+      "padding": [
+        5
+      ],
+      "visibleIf": "{% if data.creatureEndOfRoundEffect %}true{% endif %}",
+      "views": [
+        {
+          "type": "list",
+          "attribute": "data.creatureEndOfRoundEffect",
+          "views": [
+            {
+              "type": "text",
+              "style": "body-info",
+              "value": "{% if name %}**{{name}}**{% endif %} {{text}}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{{descr}}"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#980C14",
+      "height": 1.5,
+      "padding": [
+        0
+      ],
+      "visibleIf": "{{descr}}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{{descr}}"
+    },
+    {
+      "type": "text",
+      "value": "{{descr}}"
+    },
+    {
+      "type": "spacer",
+      "visibleIf": "{{image}}"
+    },
+    {
+      "type": "image",
+      "value": "{{image}}",
+      "link": "{{image}}"
+    },
+    {
+      "type": "spacer"
+    },
+    {
+      "type": "divider",
+      "bgColor": "#000000",
+      "height": 1.5,
+      "padding": [
+        0
+      ]
+    },
+    {
+      "type": "text",
+      "style": "source",
+      "padding": [
+        5,
+        0,
+        0,
+        0
+      ],
+      "value": "*{{'Common.Source'|l}} : {{ sourceFormatted }}*",
+      "visibleIf": "{{sourceFormatted}}"
+    }
+  ]
 }

@@ -1,0 +1,53 @@
+{
+  "type": "vStack",
+  "spacing": 2,
+  "views": [
+    {
+      "type": "disclosureGroup",
+      "title": "{{name}}{% if talentLevel %} · {{'Character.Level'|l|lowercase}} {{talentLevel}}{% endif %}",
+      "style": "characterTraitTitle",
+      "spacing": 0,
+      "padding": [
+        0
+      ],
+      "views": [
+        {
+          "type": "text",
+          "style": "characterBody",
+          "value": "{{text}}{% if choiceOn %}{% if choice %}\n\n**{{'Complication.Choice'|l}} :** {{choice}}{% endif %}{% endif %}"
+        }
+      ]
+    },
+    {
+      "type": "hStack",
+      "alignment": "top",
+      "visibleIf": "{% if usesBase != nil %}true{% endif %}",
+      "views": [
+        {
+          "type": "checkboxGroup",
+          "attribute": "usesSpent",
+          "action": {
+            "attribute": "{{keyPath}}.usesSpent"
+          },
+          "width": 150,
+          "custom": {
+            "range": {
+              "max": "usesMaximum"
+            },
+            "checkboxStyle": {
+              "default": {
+                "tintColor": "#980C14"
+              },
+              "checked": {
+                "tintColor": "#980C14"
+              }
+            }
+          }
+        },
+        {
+          "type": "spacer"
+        }
+      ]
+    }
+  ]
+}
