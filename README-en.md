@@ -56,10 +56,15 @@ The system requires Encounter+ 5.2.0 or later (interactive sheets).
 
 **Character form**: three tabs (Identity, Magic, Bag) to choose entities and edit their copy in detail. Everything else is done from the sheet.
 
-## Credits and licenses
+## Author's permission, credits and licenses
 
-*Shadow of the Demon Lord* is a game by Schwalb Entertainment, LLC, created by Robert J. Schwalb. This system, made by Brioche Masquée, contains no game element.
+Robert J. Schwalb, the author of the game, allowed this system to be distributed free of charge to Encounter+ users (February 2024), on one condition: that it contains no game element. This repository and the system settings carry the author's credits. The content you enter or import remains your responsibility, and the Encounter+ community forbids sharing paid or copyrighted material.
+
+
+*Shadow of the Demon Lord* is a game by Schwalb Entertainment, LLC, created by Robert J. Schwalb. This system was made by Brioche Masquée.
 
 *Shadow of the Demon Lord is ©2015 Schwalb Entertainment, LLC. All rights reserved. Shadow of the Demon Lord, Schwalb Entertainment, and their associated logos are trademarks of Schwalb Entertainment, LLC.*
 
 Fonts: Athelas, Montserrat and Aquifer.
+
+The code and files of the system are published under the [MIT License](LICENSE), excluding the game itself and its trademarks, which remain the property of Schwalb Entertainment.
