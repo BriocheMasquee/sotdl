@@ -30,6 +30,11 @@
   .gm .seal span { font-weight: 700; font-size: 6.5px; letter-spacing: .2em; text-transform: uppercase; color: #d49a8a; margin-top: -3px; }
   .gm .go { display: block; text-decoration: none; background: linear-gradient(180deg, #b3151e, #8e0e14); color: #efe8d8; font-weight: 700; font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase; padding: 4px 11px; border-radius: 3px 10px 3px 10px; box-shadow: 0 1px 0 #000a; white-space: nowrap; }
   .gm .go:hover { filter: brightness(1.15); }
+  .gm-new { min-height: 280px; }
+  .gm-new .top { position: relative; z-index: 2; }
+  .gm-new .newbox { position: absolute; inset: 0; z-index: 1; padding: 0 24px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .gm-new .newhint { font: 13px/1.5 var(--font-ui, 'Montserrat', sans-serif); color: #d8cfc0; max-width: 34em; }
+  .gm .go.bigcta { width: 100%; max-width: 420px; box-sizing: border-box; text-align: center; font-size: 15px; letter-spacing: .12em; padding: 20px 24px; border-radius: 6px 20px 6px 20px; box-shadow: 0 3px 0 #000a, 0 0 28px #b3151e66; }
   .gm .body { padding: 4px 20px 14px; }
   .gm .sec { margin: 12px 0 4px; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: #d49a8a; }
   .gm .sec::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, #8e0e1499, transparent); }
@@ -102,6 +107,8 @@
   @media (max-width: 620px) { .gm .two { grid-template-columns: 1fr; } .gm .at small .lg { display: none; } .gm .at small .sh { display: inline; } .gm .mental { flex-direction: column; gap: 4px; } .gm .mental .strip { display: flex; } }
 </style>
 <main class="gm-main">
+{# personnage tout neuf (ni ascendance, ni voie, création non terminée) : carte d'accueil avec un grand bouton ; sinon carte MJ habituelle #}
+{% if data.ancestry.name or data.created or data.novicePath.name %}
 <div class="gm">
   <i class="pent"></i>
   <div class="top">
@@ -175,11 +182,24 @@
     </div>
   </div>
 </div>
+{% else %}
+<div class="gm gm-new">
+  <i class="pent"></i>
+  <div class="top">
+    {% if image %}<div class="portrait"><img src="{{image|resolvePath}}" alt=""></div>{% endif %}
+    <div class="who"><h1>{{name}}</h1></div>
+  </div>
+  <div class="newbox">
+    {% if env.sheetURL %}<a id="go-create" class="go bigcta" href="{{env.sheetURL}}">{{'Card.StartCreation'|l}}</a>{% else %}<p class="newhint">{{'Card.NoSheet'|l}}</p>{% endif %}
+  </div>
+</div>
+{% endif %}
 </main>
   {# Dans un navigateur (pas dans l'app), la page du personnage s'ouvre directement sur la fiche ; « #carte » dans l'adresse garde la carte.
      Détection : l'app est un WKWebView (pas de jeton « Safari/ » dans l'agent utilisateur, ou window.webkit.messageHandlers présent). #}
   {% if env.sheetURL %}<script>
     (function () {
+      // redirection vers la fiche en navigateur : seulement avec la carte habituelle (bouton « Ouvrir la fiche », id go-sheet) ; la carte d'accueil d'un personnage neuf (id go-create) reste affichée
       var a = document.getElementById('go-sheet'); if (!a || location.hash === '#carte') return;
       var wk = !!(window.webkit && window.webkit.messageHandlers), nav = /(Safari|Chrome|Firefox|Edg)\//.test(navigator.userAgent);
       if (!wk && nav) location.replace(a.href);

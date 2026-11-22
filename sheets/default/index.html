@@ -155,7 +155,7 @@
     details.bd > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px; padding:6px 10px 6px 14px; background:linear-gradient(180deg,#e4d9bf,#d6c9a9); color:var(--ink); border-radius:3px 12px 3px 12px; box-shadow:inset 0 -2px 0 #8e0e14aa, 0 1px 0 #0003; } details.bd > summary::-webkit-details-marker { display:none; }
     details.bd .tn { font:15px/1.15 var(--f-title); text-transform:uppercase; letter-spacing:.05em; flex:1; min-width:0; color:var(--ink); } details.bd .tn small { display:block; font:11px var(--f-ui); letter-spacing:.04em; text-transform:none; color:#5b5045; margin-top:1px; }
     details.bd > summary::after { content:'+'; width:22px; height:22px; border-radius:50%; border:1.5px solid #17120f88; color:var(--ink); text-align:center; font:700 15px/19px var(--f-ui); flex:none; } details.bd[open] > summary::after { content:'−'; background:var(--blood); border-color:var(--blood); color:var(--bone); }
-    details.bd .lvb { width:24px; height:24px; border-radius:50%; border:1.5px solid #17120f88; font:700 13px/21px var(--f-title); text-align:center; flex:none; }
+    details.bd .lvb { width:24px; height:24px; box-sizing:border-box; border-radius:50%; border:1.5px solid #17120f88; font:700 13px/1 var(--f-title); font-variant-numeric:lining-nums; display:flex; align-items:center; justify-content:center; padding-bottom:2px; flex:none; }
     details.bd .bu { flex:none; display:inline-flex; } details.bd .bu .pip { border-color:var(--ink); background:#fffc; } details.bd .bu .pip:hover:not(:disabled) { background:#f3c5c8; } details.bd .bu .cnt { color:var(--ink); }
     details.bd .bdb { padding:8px 12px 6px; border-left:3px solid var(--blood); margin:0 0 0 8px; background:#fffdf5aa; } .acl { text-align:right; margin-top:4px; font:11px var(--f-ui); color:var(--blood); }
     .ar { display:flex; align-items:center; gap:10px; padding:7px 4px; border-bottom:1px dotted #17120f44; } .nr { font:italic 11px var(--f-ui); color:#8a7f70; }
@@ -174,7 +174,8 @@
     .res { display:flex; align-items:center; gap:8px; font:12px/1.5 var(--f-ui); color:#4d443a; padding:1px 0; } .res .undo { margin-left:auto; font-size:11px; color:#8a7f70; padding:0 6px; } .res .undo:hover:not(:disabled) { color:var(--blood); } .resbox { margin:8px 0 2px; padding-top:6px; border-top:1px dotted #17120f44; }
     .or { text-align:center; font:700 11px var(--f-ui); letter-spacing:.24em; color:#8a7f70; margin:12px 0 8px; } .btn.wide { display:block; width:100%; text-align:center; }
     .rrow { display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px dotted #17120f44; } .rrow .rn { flex:1; font:17px var(--f-title); } .rv { min-width:64px; text-align:right; font:22px var(--f-title); color:#8a7f70; } .rin { width:72px !important; text-align:center; margin:0 !important; padding:3px 6px !important; }
-    .stp { display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px dotted #17120f44; } .stp .sl { flex:1; font:15px var(--f-body); } .stp.done .sl { opacity:.6; } .stp .btn { padding:2px 14px; min-width:84px; text-align:center; } .stp .skip { min-width:56px; text-align:right; } .skip { font:700 10px var(--f-ui); letter-spacing:.1em; text-transform:uppercase; color:#8a7f70; text-decoration:underline; } .sub.book { font-style:italic; margin:4px 0 0; }
+    .stp { display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px dotted #17120f44; } .stp .sl { flex:1; font:15px var(--f-body); } .stp.done .sl { opacity:.6; } .stp .btn { padding:2px 14px; min-width:84px; text-align:center; } .stp .skip { min-width:56px; text-align:right; } .skip { font:700 10px var(--f-ui); letter-spacing:.1em; text-transform:uppercase; color:#8a7f70; text-decoration:underline; } .sub.book { font-style:italic; margin:4px 0 0; } .downlist { margin:4px 0 0 18px; padding:0; font:13px var(--f-body); color:#3b322a; } .downlist li { margin:2px 0; }
+    .sub.warn { margin:6px 0 0; color:var(--blood); font-size:12px; }
     .qin { width:38px; height:24px; text-align:center; font:700 14px var(--f-ui); color:var(--ink); background:transparent; border:0; border-bottom:1.5px dotted #7a6f60; border-radius:0; padding:0; flex:none; -moz-appearance:textfield; } .qin::-webkit-inner-spin-button, .qin::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; } .qin:focus { border-bottom-color:var(--blood2); outline:0; }
     .rg { margin-left:auto; display:flex; align-items:center; gap:12px; flex:none; } .wl .btn, .wl .seal2 { min-width:80px; text-align:center; flex:none; }
     .qs { display:inline-flex; align-items:center; gap:2px; margin-left:4px; } .qs .qt { min-width:30px; text-align:center; margin:0; }
@@ -311,6 +312,7 @@
         <div>
           <section class="box"><h3 class="ban"><span id="h-ident" data-t="Sheet.Identity"></span></h3><div id="identity"></div></section>
           <section class="box"><h3 class="ban"><span id="h-lp"></span></h3><div id="lp"></div></section>
+          <section class="box"><h3 class="ban"><span id="h-transf"></span></h3><div id="transformation"></div></section>
         </div>
         <div>
           <section class="box"><h3 class="ban"><span id="h-hist"></span></h3><textarea class="lined big" id="history"></textarea></section>
@@ -471,7 +473,7 @@
   $('h-rest').textContent = t('Sheet.RestTitle')
   $('h-story').textContent = t('Character.Story'); $('story').setAttribute('aria-label', $('h-story').textContent); $('h-notes').textContent = t('Character.BagNotes'); $('bag-notes').setAttribute('aria-label', $('h-notes').textContent)
   $('h-hist').textContent = t('Character.HistoryAppearance'); $('history').setAttribute('aria-label', $('h-hist').textContent)
-  $('h-comp').textContent = t('Entity.Complication'); $('h-lp').textContent = t('Common.Language&Profession')
+  $('h-transf').textContent = t('Entity.Transformation'); $('h-comp').textContent = t('Entity.Complication'); $('h-lp').textContent = t('Common.Language&Profession')
 
   // ---- jets : d20 + modificateur ; avantage / désavantage au clic droit ou à l'appui long (menu) ----
   // dés nommés (config.json `dice.labels`) : le d20 est « Test » ou « Attaque », les d6 « Avantage » / « Désavantage » ; `kh1` : on garde le d6 le plus haut
@@ -583,7 +585,9 @@
   const ATTR = [['STR', 'strength', 'strengthModifier', t('Attributes.STR')], ['AGI', 'agility', 'agilityModifier', t('Attributes.AGI')], ['INT', 'intellect', 'intellectModifier', t('Attributes.INT')],
     ['WIL', 'will', 'willModifier', t('Attributes.WIL')], ['PER', 'perceptionFinal', 'perceptionModifier', t('Characteristics.Perception')]]
   $('attrs').innerHTML = ATTR.map(([k, , , name]) => `<div class="sig"><span class="nm">${esc(k === 'PER' ? t('Characteristics.Perception') : t('Attributes.' + k))}</span><span class="ring"><b data-v="${k}">—</b></span><button type="button" class="roll" data-rs="a:${k}" data-roll="${k}" title="${esc(t('Sheet.ToHitTip'))}">—</button></div>`).join('')
-  $('level-btn').addEventListener('click', () => { ui.drawer = true; renderDrawer() })
+  // niveaux déjà affichés dans la fenêtre ouverte : ils y restent même une fois leurs choix faits (sinon impossible de revenir sur le choix)
+  let drawerSeen = new Set()
+  $('level-btn').addEventListener('click', () => { drawerSeen.clear(); ui.drawer = true; renderDrawer() })
 
   const hpMax = () => hero.get('view.data.hp.maximum')
   const hpCur = () => Number(hero.get('view.data.hp.current') ?? 0)
@@ -1099,7 +1103,7 @@
     let rules = []
     try { const r = await EP.query({ entity: 'Rule', where: { type: 'Language' }, sort: 'name', limit: 200 }); rules = (r.entries || []).filter((x) => !x.type || x.type === 'Language') } catch (e) { /* repli ci-dessous */ }
     if (!rules.length) { try { const r = await EP.query({ entity: 'Rule', sort: 'name', limit: 200 }); rules = (r.entries || []).filter((x) => x.type === 'Language') } catch (e) { /* bibliothèque indisponible */ } }
-    const known = new Set((((last.view.data || {}).ancestry || {}).startLanguages || []).concat(hero.get('data.languages') || []).map((x) => x.name))
+    const known = new Set((((last.view.data || {}).ancestry || {}).startLanguages || []).concat(hero.get('data.languages') || []).map((x) => slName(x)))
     rules = rules.filter((x) => !known.has(x.name))
     if (!rules.length) { await dialog(t('Sheet.Lang.New'), `<p>${esc(t('Sheet.Lang.NoRules'))}</p>`, [{ label: t('Sheet.Ok'), value: null, primary: true }]); return null }
     const chk = (id, lk, on) => `<label class="opt"><input type="checkbox" id="${id}"${on ? ' checked' : ''}><span><b>${esc(t(lk))}</b></span></label>`
@@ -1112,12 +1116,22 @@
     return { name: o.name, reference: o.reference, spoken: !!r.data.sp, read: !!r.data.rd, written: !!r.data.wr }
   }
   // langues (parlée, lue, écrite) et professions
+  // langues d'office : le formulaire de l'ascendance ne garde que la RÉFÉRENCE de la règle choisie ; le nom est retrouvé dans la bibliothèque (adresse → nom),
+  // à défaut déduit de l'adresse (« /language/langue-commune » → « Langue commune »)
+  const langRef = new Map(); let langRefAsked = false
+  const prettySlug = (r) => { const s = String(r || '').split('/').filter(Boolean).pop() || ''; return s ? s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase()) : '' }
+  const slName = (x) => (x && (x.name || langRef.get(x.reference))) || prettySlug(x && x.reference)
+  async function loadLangNames() {
+    if (langRefAsked) return; langRefAsked = true
+    try { const r = await EP.query({ entity: 'Rule', where: { type: 'Language' }, sort: 'name', limit: 500 }); (r.entries || []).forEach((e) => { if (e.reference) langRef.set(e.reference, e.name) }); rerender() } catch (e) { langRefAsked = false }
+  }
   function renderLangProf() {
     const langs = hero.get('data.languages') || [], profs = hero.get('data.professionList') || []
     const anc = (last.view.data || {}).ancestry || {}, fl = anc.startLanguages || [], fp = anc.startProfessions || []
-    if (!diff('lp', [ui.edit, last.status, langs, profs, fl, fp])) return
+    if (fl.some((l) => !l.name) && !langRefAsked) loadLangNames()
+    if (!diff('lp', [ui.edit, last.status, langs, profs, fl, fp, langRef.size])) return
     const fixTg = (lk, on) => `<span class="tgl${on ? ' on' : ''}">${esc(t(lk))}</span>`
-    const fixLang = fl.map((l) => `<div class="lgr fx"><span class="nm">${esc(l.name || '—')}<small>${esc(t('Sheet.Lang.FromAncestry'))}</small></span><span class="lgs">${fixTg('Sheet.Lang.Spoken', l.spoken)}${fixTg('Sheet.Lang.Read', l.read)}${fixTg('Sheet.Lang.Written', l.written)}</span></div>`).join('')
+    const fixLang = fl.map((l) => `<div class="lgr fx"><span class="nm">${esc(slName(l) || '—')}<small>${esc(t('Sheet.Lang.FromAncestry'))}</small></span><span class="lgs">${fixTg('Sheet.Lang.Spoken', l.spoken)}${fixTg('Sheet.Lang.Read', l.read)}${fixTg('Sheet.Lang.Written', l.written)}</span></div>`).join('')
     const fixProf = fp.map((pr) => `<div class="lgr fx"><span class="nm">${esc(pr.name || '—')}<small>${esc([t('Sheet.Lang.FromAncestry'), pr.detail].filter(Boolean).join(' · '))}</small></span></div>`).join('')
     const del = (act, i) => (ui.edit ? `<button type="button" class="del" data-lp="${act}" data-i="${i}" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : '')
     const tg = (i, k, lk, on) => `<button type="button" class="tgl${on ? ' on' : ''}" data-lp="tog" data-i="${i}" data-k="${k}" aria-pressed="${!!on}"${off()}>${esc(t(lk))}</button>`
@@ -1156,6 +1170,29 @@
         traits.map((x, i) => bandRow({ k: 'cp/' + i + (x.name || ''), name: x.name || '', body: `<div class="tx">${rollText(x.text || '', x.name)}</div>` })).join('')
       : `<div class="addrow"><button type="button" class="add" data-compl="add"${off()}>+ ${esc(t('Sheet.Compl.Add'))}</button></div>`
   }
+  // transformation : possible à tout moment (entre deux aventures ou en cours de partie, avec l'accord du MJ : revenant, vampire, incarnation, esclave des charniers…).
+  // Les choix de niveau qu'elle apporte jusqu'au niveau du groupe apparaissent dans la fenêtre de montée de niveau.
+  function renderTransformation(d) {
+    const tr = d.transformation
+    if (!diff('transf', [ui.edit, last.status, tr && tr.name])) return
+    $('transformation').innerHTML = tr && tr.name
+      ? `<div class="wl">${ui.edit ? `<button type="button" class="del" data-transf="del" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : ''}<div class="tn">${esc(tr.name)}</div></div>`
+      : `<div class="addrow"><button type="button" class="add" data-transf="add"${off()}>+ ${esc(t('Sheet.Transf.Add'))}</button></div>`
+  }
+  $('transformation').addEventListener('click', async (ev) => {
+    if (ev.target.closest('[data-transf=add]')) {
+      try { const picked = await pickEntries('Transformation', t('Sheet.Transf.Add'), { single: true }); if (picked[0]) await hero.embed('data.transformation', picked[0], TRANSF_KEYS) } catch (e) { fail(e) }
+      return
+    }
+    if (!ev.target.closest('[data-transf=del]')) return
+    const tr = hero.get('data.transformation'); if (!tr) return
+    if (!(await ask(tf('Sheet.Transf.RemoveAsk', { name: tr.name || '' }), { action: t('Sheet.Remove'), title: t('Sheet.Remove') }))) return
+    try {
+      // annule d'abord les choix de niveau faits grâce à la transformation (attributs +1, langue, profession, sort…), puis la retire
+      for (const e of (hero.get('data.levelSteps') || []).map((x) => x.key).filter((k) => String(k).startsWith('transformation/'))) await undoStep({ key: e })
+      await hero.remove('data.transformation')
+    } catch (e) { fail(e) }
+  })
   $('complication').addEventListener('click', async (ev) => {
     if (ev.target.closest('[data-compl=add]')) {
       try { const picked = await pickEntries('Complication', t('Sheet.Compl.Add')); if (picked[0]) await hero.embed('data.complication', picked[0], ['descr', 'trait', 'tables']) } catch (e) { fail(e) }
@@ -1214,7 +1251,7 @@
       for (const i of kvInputs) i.destroy && i.destroy()
       kvInputs = [...$('identity').querySelectorAll('input[data-kv]')].map((el) => EP.field(el, { store: hero, path: 'data.' + el.dataset.kv }))
     }
-    renderLangProf(); renderComplication(d); renderRecap(d)
+    renderLangProf(); renderTransformation(d); renderComplication(d); renderRecap(d)
     document.querySelectorAll('[data-cc]').forEach((el) => text(el, d[el.dataset.cc] ?? '—'))
     text($('size-cc'), d.gabaritChoice ? EP.label('BodySize', d.gabaritChoice) : '—')
     document.querySelectorAll('select[data-sp]').forEach((el) => { const v = hero.get(el.dataset.sp); if (document.activeElement !== el) el.value = v == null ? '' : String(v) })
@@ -1240,13 +1277,17 @@
     if (u.t === 'attrs') for (const k of u.k) await hero.set(`data.attrAdjust.${k}.${u.f}`, adj(k, u.f) - 1)
     else if (u.t === 'adjust') { await hero.set(`data.attrAdjust.${u.up}.ancestryBonus`, adj(u.up, 'ancestryBonus') - 1); await hero.set(`data.attrAdjust.${u.down}.ancestryBonus`, adj(u.down, 'ancestryBonus') + 1) }
     else if (u.t === 'lang') { const j = idx('data.languages', u.name); if (j >= 0) await hero.remove(`data.languages[${j}]`) }
+    else if (u.t === 'autospells') { for (const a of (u.list || []).reverse()) { const sp = hero.get('data.spells') || []; const j = sp.findIndex((x) => (a.reference && x.reference === a.reference) || (a.name && x.name === a.name)); if (j >= 0) await hero.remove(`data.spells[${j}]`) } }
+    else if (u.t === 'purse') await hero.set('data.currency.ca', Math.max(0, Number(hero.get('data.currency.ca') || 0) - Number(u.v || 0)))
+    else if (u.t === 'read') { const path = u.src === 'own' ? `data.languages[${idx('data.languages', u.name) >= 0 ? idx('data.languages', u.name) : u.i}].read` : `data.ancestry.startLanguages[${u.i}].read`; await hero.set(path, false) }
     else if (u.t === 'prof') { const j = idx('data.professionList', u.name); if (j >= 0) await hero.remove(`data.professionList[${j}]`) }
     else if (u.t === 'spell') { const j = idx('data.spells', u.name); if (j >= 0) await hero.remove(`data.spells[${j}]`) }
     else if (u.t === 'trad') await hero.set('data.traditions', (hero.get('data.traditions') || []).filter((x) => x !== u.k))
     else if (u.t === 'baseAttrs') for (const k of u.k) await hero.remove(`data.attrAdjust.${k}.base`)
     else if (u.t === 'start') await hero.remove(`data.${u.stat}.start`)
     else if (u.t === 'size') await hero.remove('data.sizeAdjust.base')
-    if (u.t === 'trad' && stepEntry(st.key + '-cantrip') >= 0) await undoStep({ key: st.key + '-cantrip' })
+    if (u.t === 'trad') for (const suf of ['-cantrip2', '-cantrip']) if (stepEntry(st.key + suf) >= 0) await undoStep({ key: st.key + suf })
+    if (st.key === 'creation/attrroll' && stepEntry('creation/ancestry/attrs') >= 0) await undoStep({ key: 'creation/ancestry/attrs' })
     await hero.remove(`data.levelSteps[${stepEntry(st.key)}]`)
   }
   const flagsOf = (d, root, n) => {
@@ -1275,14 +1316,15 @@
     autoBusy = true
     try {
       for (const { key, list } of todo) {
+        const added = []
         for (const sp of list) {
-          if ((hero.get('data.spells') || []).some((x) => x.name === sp.name)) continue
+          if ((hero.get('data.spells') || []).some((x) => (sp.reference && x.reference === sp.reference) || (sp.name && x.name === sp.name))) continue
           let entry = sp.reference || null
-          if (!entry) { const r = await EP.query({ entity: 'Spell', search: sp.name, limit: 20 }); entry = ((r.entries || []).find((e) => e.name === sp.name) || {}).reference || null }
-          if (entry) await hero.embed('data.spells', entry, spellKeys)
-          else toast(tf('Sheet.Step.SpellMissing', { s: sp.name }))
+          if (!entry && sp.name) { const r = await EP.query({ entity: 'Spell', search: sp.name, limit: 20 }); entry = ((r.entries || []).find((e) => e.name === sp.name) || {}).reference || null }
+          if (entry) { await hero.embed('data.spells', entry, spellKeys); added.push({ reference: entry, name: sp.name || '' }) }
+          else toast(tf('Sheet.Step.SpellMissing', { s: sp.name || prettySlug(sp.reference) }))
         }
-        await hero.insert('data.levelSteps', { key })
+        await hero.insert('data.levelSteps', { key, undo: JSON.stringify({ t: 'autospells', list: added }) })
       }
     } catch (e) { fail(e) } finally { autoBusy = false }
   }
@@ -1302,16 +1344,25 @@
     }
     const nm = Number(f.levelMagicChoices || 0)
     for (let i = 1; i <= nm; i++) add('mchoice' + i, 'mchoice', tf('Sheet.Step.MChoice', { i, n: nm }))
-    if (hasCantrip(last.view.data || {})) for (const e of (hero.get('data.levelSteps') || [])) {
-      if (!e.key.startsWith(base + '/') || e.key.endsWith('-cantrip')) continue
+    // livre de règles (p. 111) : découvrir une tradition, c'est gagner un sort de rang 0 de cette tradition → une étape « sort de rang 0 » après CHAQUE tradition découverte ;
+    // le « Tour de magie » du Magicien (interrupteur levelCantrip) en ajoute un deuxième, supplémentaire
+    const extraCantrip = hasCantrip(last.view.data || {})
+    for (const e of (hero.get('data.levelSteps') || [])) {
+      if (!e.key.startsWith(base + '/') || /-cantrip2?$/.test(e.key)) continue
       let u = {}; try { u = JSON.parse(e.undo || '{}') } catch (x) { u = {} }
-      if (u.t === 'trad') add(e.key.slice(base.length + 1) + '-cantrip', 'cantrip', tf('Sheet.Step.Cantrip', { n: EP.label('SpellTradition', u.k) }), { trad: u.k })
+      if (u.t !== 'trad') continue
+      const id = e.key.slice(base.length + 1), n = EP.label('SpellTradition', u.k)
+      add(id + '-cantrip', 'cantrip', tf('Sheet.Step.Rank0', { n }), { trad: u.k })
+      if (extraCantrip) add(id + '-cantrip2', 'cantrip', tf('Sheet.Step.Cantrip', { n }), { trad: u.k })
     }
     return S
   }
+  // magie OU talent : tradition, sort et « tradition OU sort » sont des ALTERNATIVES au talent (un seul choix pour tout le niveau)
+  const ALT_IDS = ['tradition', 'spell', 'tradspell', 'spellInstead']
+  const isAlt = (st, base) => ALT_IDS.includes(String(st.key).slice(base.length + 1))
   const choiceInfo = (f, v, base) => {
     const pick = Math.max(1, Number(f.levelChoicePick || 1)), chosen = v.choices.filter((a) => a.x.chosen).length
-    const instead = !!f.levelSpellInstead && v.choices.length > 0, insteadDone = instead && stepDone(base + '/spellInstead')
+    const instead = !!f.levelSpellInstead && v.choices.length > 0, insteadDone = instead && ALT_IDS.some((id) => stepDone(base + '/' + id))
     return { pick, chosen, instead, insteadDone, pending: v.choices.length > 0 && chosen < pick && !insteadDone }
   }
   // gabarit « libre » d'une ascendance (texte du livre, ex. « 1/2 ou 1 ») : le joueur choisit parmi les valeurs lues dans ce texte (clés BodySize)
@@ -1321,23 +1372,69 @@
     for (const p of sv.split(/\s+(?:ou|or)\s+|[;,]/)) { const q = p.trim(), m = q.match(/^(\d+)\s*\/\s*(\d+)$/), k = m ? 'g' + m[1] + '_' + m[2] : /^\d+$/.test(q) ? 'g' + q : null; if (k && BODY.includes(k) && !out.includes(k)) out.push(k) }
     return out
   }
+  // ---- baisse de niveau : le formulaire ne peut pas demander confirmation ; la fiche le fait à l'ouverture suivante (`data.levelRef` = dernier niveau confirmé).
+  // Deux issues seulement : confirmer la baisse (les choix et les imports automatiques des niveaux supérieurs sont supprimés) ou rétablir le niveau précédent.
+  const STEP_LEVEL = /^(ancestry|transformation|novicePath|expertPath|masterPath|secondPath|open)\/(\d+)\//
+  const stepsAbove = (to) => (hero.get('data.levelSteps') || []).filter((e) => { const m = STEP_LEVEL.exec(String(e.key)); return m && Number(m[2]) > to })
+  async function undoAbove(to) {
+    for (const k of stepsAbove(to).map((e) => e.key).reverse()) await undoStep({ key: k })
+    // talents choisis aux niveaux supérieurs
+    for (const o of ORIGINS) for (const e of o.entries) {
+      if (!(e.level > to) || !e.c) continue
+      const arr = hero.get(`data.${e.root}.${e.c}`) || []
+      for (let i = 0; i < arr.length; i++) if (arr[i] && arr[i].chosen) await hero.set(`data.${e.root}.${e.c}[${i}].chosen`, false)
+    }
+    // voies dont le niveau d'accès n'est plus atteint
+    for (const r of PATH_REQ) if (to < r.min) for (const root of [r.root, r.alt].filter(Boolean)) if (hero.get('data.' + root)) await hero.remove('data.' + root)
+    if (to === 0) { try { await hero.remove('data.created') } catch (e) { /* déjà absent */ } }
+  }
+  async function checkLevel(d) {
+    if (ui.downBusy || !online()) return
+    const lvl = Number(d.level ?? 0), ref = hero.get('data.levelRef')
+    if (ref != null && lvl === Number(ref)) return
+    if ($('overlay').querySelector('.dlg')) return
+    ui.downBusy = true
+    try {
+      if (ref == null || lvl > Number(ref)) { await hero.set('data.levelRef', lvl); return }   // premier passage, ou niveau relevé : on mémorise
+      const from = Number(ref), lines = stepsAbove(lvl).map((e) => e.info || e.key)
+      const body = `<p class="sub">${esc(tf('Sheet.Down.Ask', { from, to: lvl }))}</p>` + (lines.length ? `<div class="lbl">${esc(t('Sheet.Down.List'))}</div><ul class="downlist">${lines.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '')
+      let r
+      do { r = await dialog(t('Sheet.Down.Title'), body, [{ label: tf('Sheet.Down.Revert', { from }), value: 'revert' }, { label: t('Sheet.Down.Confirm'), value: 'down', primary: true }]) } while (!r.value)
+      if (r.value === 'revert') { await hero.set('data.level', from); return }
+      await undoAbove(lvl); await hero.set('data.levelRef', lvl)
+    } catch (e) { fail(e) } finally { ui.downBusy = false }
+  }
   function creationSteps(d) {
     const S = [], anc = d.ancestry || {}
     const add = (key, type, label, done, required, extra = {}) => { const st = Object.assign({ key, type, label, done, required }, extra); S.push(st); drawerSteps.set(key, st) }
     add('creation/ancestry', 'pickAncestry', t('Sheet.Create.Ancestry'), !!anc.name, true, anc.name ? { info: tf('Sheet.Create.AncestryDone', { n: anc.name }), undoFn: async () => { if (await ask(tf('Sheet.Create.UndoAncestry', { n: anc.name }), { action: t('Sheet.Remove'), title: t('Sheet.Remove') })) await hero.remove('data.ancestry') } } : {})
-    add('creation/transformation', 'pickTransf', t('Sheet.Create.Transf'), !!(d.transformation && d.transformation.name) || stepDone('creation/transformation'), false, d.transformation && d.transformation.name ? { info: tf('Sheet.Create.TransfDone', { n: d.transformation.name }), undoFn: async () => { await hero.remove('data.transformation') } } : {})
     if (anc.name) {
       if (anc.startMode === 'variant' || anc.startMode === 'random' || anc.startMode === 'variable')
         add('creation/attrroll', 'attrRoll', anc.startMode === 'variant' ? t('Sheet.Create.AttrVariant') : t('Sheet.Create.AttrRoll'), stepDone('creation/attrroll'), true)
-      const f = { levelAttrChoice: anc.creationAttrChoice, levelLang: anc.creationLang, levelProf: anc.creationProf, levelLangProfOne: anc.creationLangProfOne }
+      // ascendance « valeurs fixes OU jets » (variant) : « Attributs +1 » ne s'applique, et n'apparaît, que si le joueur a choisi les valeurs fixes (et non les jets)
+      let fixedChosen = true
+      if (anc.startMode === 'variant') { const e = (hero.get('data.levelSteps') || []).find((x) => x.key === 'creation/attrroll'); let u = {}; try { u = JSON.parse((e && e.undo) || '{}') } catch (x) { u = {} } fixedChosen = !!e && u.t === 'none' }
+      const f = { levelAttrChoice: fixedChosen ? anc.creationAttrChoice : 0, levelLang: anc.creationLang, levelProf: anc.creationProf, levelLangProfOne: anc.creationLangProfOne }
       makeSteps(f, 'creation/ancestry', 'ancestryBonus').forEach((st) => { st.required = true; S.push(st) })
       const sizeOpts = bodySizeOptions(anc.size)
       if (sizeOpts.length > 1) add('creation/size', 'pickSize', t('Sheet.Create.Size'), stepDone('creation/size') || !!hero.get('data.sizeAdjust.base'), true, { opts: sizeOpts })
-      add('creation/adjust', 'adjust', t('Sheet.Create.Adjust'), stepDone('creation/adjust'), false)
       for (const [k, lk] of [['insanity', 'Characteristics.Insanity'], ['corruption', 'Characteristics.Corruption']]) {
         const o = anc[k]; if (o && o.mode === 'variable' && o.dice) add('creation/' + k, 'startRoll', tf('Sheet.Create.StartRoll', { s: t(lk), dice: o.dice }), stepDone('creation/' + k), true, { stat: k, dice: o.dice })
       }
     }
+    // « Autres options » : ouvertes à tous, visibles dès le début (transformation, options de départ, équipement, élément intéressant, ajustement, complication)
+    add('creation/transformation', 'pickTransf', t('Sheet.Create.Transf'), !!(d.transformation && d.transformation.name) || stepDone('creation/transformation'), false, d.transformation && d.transformation.name ? { info: tf('Sheet.Create.TransfDone', { n: d.transformation.name }), undoFn: async () => { await hero.remove('data.transformation') } } : {})
+    // livre de règles : « vous commencez avec deux professions » ; une profession peut être échangée contre une autre langue ou la capacité de lire une langue connue
+    for (let i = 1; i <= 2; i++) add('creation/startprof' + i, 'startProf', tf('Sheet.Create.StartProf', { i, n: 2 }), stepDone('creation/startprof' + i), false)
+    // livre de règles : « lancez 3d6 et consultez la table des Ressources » (équipement de départ)
+    add('creation/resources', 'resources', t('Sheet.Create.Resources'), stepDone('creation/resources'), false)
+    // livre de règles : « lancez 1d6 pour savoir quelle table des Éléments intéressants utiliser, puis 1d20 et consultez la table appropriée »
+    add('creation/interesting', 'interesting', t('Sheet.Create.Interesting'), stepDone('creation/interesting'), false)
+    add('creation/adjust', 'adjust', t('Sheet.Create.Adjust'), stepDone('creation/adjust'), false)
+    add('creation/complication', 'pickCompl', t('Sheet.Create.Compl'), !!(d.complication && d.complication.name) || stepDone('creation/complication'), false, d.complication && d.complication.name ? { info: tf('Sheet.Create.ComplDone', { n: d.complication.name }), undoFn: async () => { await hero.remove('data.complication') } } : {})
+    // choix ouverts à tous (par opposition à ceux qui viennent de l'ascendance, des voies ou de la transformation)
+    const OPEN = ['creation/transformation', 'creation/startprof1', 'creation/startprof2', 'creation/resources', 'creation/interesting', 'creation/adjust', 'creation/complication']
+    for (const s of S) if (OPEN.includes(s.key)) s.scope = 'all'
     return S
   }
   const PATH_DONE = { novicePath: 'Character.NovicePath', expertPath: 'Sheet.Path.Expert', masterPath: 'Sheet.Path.Master', secondPath: 'Sheet.Path.Second' }
@@ -1363,7 +1460,8 @@
     for (const g of collect(d)) for (const [lv, v] of g.levels) {
       if (lv <= 0) continue
       const f = flagsOf(d, g.o.root, lv), base = g.o.root + '/' + lv
-      n += makeSteps(f, base, 'levelBonus').filter((s) => !s.done).length + (choiceInfo(f, v, base).pending ? 1 : 0)
+      const ci = choiceInfo(f, v, base)
+      n += makeSteps(f, base, 'levelBonus').filter((s) => !(ci.instead && isAlt(s, base)) && !s.done).length + (ci.pending ? 1 : 0)
     }
     return n
   }
@@ -1378,36 +1476,62 @@
     for (const [k, [lk]] of Object.entries(GAIN_LABELS)) if (g[k]) out.push(`${t(lk)} ${sgn(g[k])}`)
     if (g.defenseFixed) out.push(`${t('Characteristics.Defense')} ${g.defenseFixed}`)
     if (g.custom) out.push(g.custom)
-    if ((f.levelSpellsAuto || []).length) out.push(tf('Sheet.Step.AutoSpell', { s: f.levelSpellsAuto.map((x) => x.name).join(', ') }))
+    if ((f.levelSpellsAuto || []).length) out.push(tf('Sheet.Step.AutoSpell', { s: f.levelSpellsAuto.map((x) => x.name || prettySlug(x.reference)).join(', ') }))
     return out.map((x) => `<div class="got">${esc(x)}</div>`).join('')
   }
   const stepRow = (st) => `<div class="stp"><span class="sl">${esc(st.label)}</span>${st.noSkip || st.required ? '' : `<button type="button" class="skip" data-skip="${esc(st.key)}"${off()}>${esc(t('Sheet.Step.Skip'))}</button>`}<button type="button" class="btn" data-step="${esc(st.key)}"${off()}>${esc(t('Sheet.Step.Do'))}</button></div>`
   const resultRow = (st) => `<div class="res"><span>${esc(resultInfo(st))}</span><button type="button" class="undo" data-undo="${esc(st.key)}" title="${esc(t('Sheet.Step.Undo'))}" aria-label="${esc(t('Sheet.Step.Undo'))}"${off()}>✕</button></div>`
   const stepList = (S) => S.filter((x) => !x.done).map(stepRow).join('')
   const stepResults = (S) => S.filter((x) => x.done).map(resultRow).join('')
+  // choix ouverts à tous, à la montée de niveau (livre de règles, « Équipements à plus haut niveau ») : +2d6 ca à la bourse pour chaque niveau supplémentaire,
+  // et un élément intéressant de plus à chaque choix de voie (niveaux 1, 3 et 7)
+  function openSteps(d, lvl) {
+    const S = [], c = t('Character.CA')
+    const add = (key, type, label) => { const st = { key, type, label, done: stepDone(key), required: false, scope: 'all' }; S.push(st); drawerSteps.set(key, st) }
+    const tier = { 1: d.novicePath, 3: d.expertPath, 7: d.masterPath && d.masterPath.name ? d.masterPath : d.secondPath }
+    for (let n = 1; n <= lvl; n++) {
+      if (n >= 2) add(`open/${n}/purse`, 'purse', tf('Sheet.Open.Purse', { n, c }))
+      if (tier[n] && tier[n].name) add(`open/${n}/interesting`, 'interesting', tf('Sheet.Open.Interesting', { n }))
+    }
+    return S
+  }
   function levelUpHTML(d, lvl) {
     const sections = collect(d).map((g) => [...g.levels].filter(([n]) => n > 0).sort((a, b) => a[0] - b[0]).map(([n, v]) => {
       const f = flagsOf(d, g.o.root, n), base = g.o.root + '/' + n
       const steps = makeSteps(f, base, 'levelBonus'), ci = choiceInfo(f, v, base)
-      if (!(n === lvl || steps.some((x) => !x.done) || ci.pending)) return ''
+      const alt = ci.instead ? steps.filter((s) => isAlt(s, base)) : [], main = ci.instead ? steps.filter((s) => !isAlt(s, base)) : steps
+      const seenKey = g.o.root + '/' + n
+      if (!(n === lvl || main.some((x) => !x.done) || ci.pending || drawerSeen.has(seenKey))) return ''
+      drawerSeen.add(seenKey)
       const got = gainsHTML(f) + v.talents.filter((a) => !a.chosen).map((a) => `<div class="got">${esc(a.x.name)} <small>(${esc(t('Sheet.Step.Received'))})</small></div>`).join('')
-      let todo = stepList(steps)
+      let todo = stepList(main)
       if (v.choices.length) {
         todo += `<div class="lbl" style="margin:6px 0 2px">${esc(tf('Sheet.Step.Pick', { n: ci.pick }))}</div>` +
-          v.choices.map((a) => `<label class="chc"><input type="checkbox" data-r="${a.row}"${a.x.chosen ? ' checked' : ''}${off() || (!a.x.chosen && ci.chosen >= ci.pick ? ' disabled' : '')}><span class="ctext"><b>${esc(a.x.name)}</b><small>${esc(a.x.text)}</small></span></label>`).join('')
-        if (ci.instead) { const st = { key: base + '/spellInstead', type: 'spell', label: t('Sheet.Step.SpellInstead'), field: '', done: ci.insteadDone }; drawerSteps.set(st.key, st); if (st.done) steps.push(st); else todo += stepRow(st) }
+          v.choices.map((a) => `<label class="chc"><input type="checkbox" data-r="${a.row}"${a.x.chosen ? ' checked' : ''}${off() || (!a.x.chosen && (ci.chosen >= ci.pick || ci.insteadDone) ? ' disabled' : '')}><span class="ctext"><b>${esc(a.x.name)}</b><small>${esc(a.x.text)}</small></span></label>`).join('')
+        if (ci.instead && !ci.insteadDone && ci.chosen < ci.pick) {
+          // alternatives au talent : « Ou découvrir une tradition », « Ou apprendre un sort », « Ou une tradition ou un sort »
+          const LBL = { tradition: 'Sheet.Step.AltTradition', spell: 'Sheet.Step.AltSpell', tradspell: 'Sheet.Step.AltTradSpell' }
+          if (alt.length) alt.filter((s) => !s.done).forEach((s) => { todo += stepRow(Object.assign({}, s, { label: t(LBL[String(s.key).slice(base.length + 1)] || 'Sheet.Step.SpellInstead') })) })
+          else { const st = { key: base + '/spellInstead', type: 'spell', label: t('Sheet.Step.SpellInstead'), field: '', done: false }; drawerSteps.set(st.key, st); todo += stepRow(st) }  // anciennes données : seul « Sort OU talent » est réglé
+        } else if (ci.instead && !alt.length && ci.insteadDone) { const st = { key: base + '/spellInstead', type: 'spell', label: t('Sheet.Step.SpellInstead'), field: '', done: true }; drawerSteps.set(st.key, st); steps.push(st) }
       }
-      const book = [f.levelLangProf, f.levelOptions, f.options].filter(Boolean).map((x) => `<p class="sub book">${esc(x)}</p>`).join('')
+      const book = [f.levelLangProf, f.levelOptions, f.options].filter(Boolean).map((x) => `<p class="sub book">${esc(x)}</p>`).join('') +
+        (f.levelTalent && !v.choices.length ? `<p class="sub warn">${esc(t('Sheet.Step.NoTalentDefined'))}</p>` : '')   // « Donne 1 talent » coché sans talent dans « Talents au choix » : rien à choisir
       const results2 = stepResults(steps)
       if (!got && !todo && !book && !results2) return ''
       return box(`${g.root.name} · ${t('Character.Level')} ${n}`, `${todo ? `<div class="lbl">${esc(t('Sheet.Step.ToChoose'))}</div>${todo}` : ''}${results2 ? `<div class="resbox">${results2}</div>` : ''}${got ? `<div class="lbl" style="margin-top:8px">${esc(t('Sheet.Step.AutoSummary'))}</div>${got}` : ''}${book}`, 'tight')
     }).join('')).join('')
     const paths = pathSteps(d, lvl)
+    // choix ouverts à tous : à faire (tous niveaux atteints) ; faits : seulement pour le niveau actuel ou ceux déjà affichés dans cette fenêtre
+    const openAll = openSteps(d, lvl), openShown = openAll.filter((x) => !x.done || Number(x.key.split('/')[1]) === lvl || drawerSeen.has(x.key))
+    openShown.forEach((x) => drawerSeen.add(x.key))
+    const openHTML = openShown.length ? box(t('Sheet.Open.Title'), `<p class="sub book">${esc(t('Sheet.Open.Hint'))}</p>` + stepList(openShown) + (openShown.some((x) => x.done) ? `<div class="resbox">${stepResults(openShown)}</div>` : ''), 'tight') : ''
     return `<h3 class="dtitle">${esc(t('Character.Level'))} ${lvl}${lvl < 10 ? `<small>→ ${lvl + 1}</small>` : ''}</h3>
       <p class="dsub">${esc(t('Sheet.Step.Intro'))}</p>
       <div style="margin:8px 0 4px"><button type="button" class="btn on" id="dr-up"${lvl >= 10 ? ' disabled' : off()}>${esc(tf('Sheet.Step.Up', { n: lvl + 1 }))}</button></div>
       ${paths.length ? box(t('Sheet.Step.Paths'), stepList(paths) + (paths.some((x) => x.done) ? `<div class="resbox">${stepResults(paths)}</div>` : ''), 'tight') : ''}
-      ${sections || (paths.length ? '' : `<p class="empty">${esc(t('Sheet.Step.None'))}</p>`)}
+      ${sections || (paths.length || openHTML ? '' : `<p class="empty">${esc(t('Sheet.Step.None'))}</p>`)}
+      ${openHTML}
       <div style="margin:10px 0 4px"><button type="button" class="btn on" id="dr-end"${countPending(d) ? ' disabled' : off()}>${esc(t('Sheet.Step.Finish'))}</button></div>`
   }
   function creationAuto(d) {
@@ -1415,7 +1539,7 @@
     if (!a.name) return ''
     if (a.startMode === 'fixed') out.push(tf('Sheet.Create.AutoFixedAttrs', { a: ATTR4.map(([k, , , nm]) => `${t('Attributes.' + k)} ${a[k] ?? '—'}`).join(' · ') }))
     for (const [k, lk] of [['insanity', 'Characteristics.Insanity'], ['corruption', 'Characteristics.Corruption']]) { const o = a[k]; if (o && o.mode === 'fixed') out.push(tf('Sheet.Create.AutoStart', { s: t(lk), v: o.value ?? 0 })) }
-    if ((a.startLanguages || []).length) out.push(tf('Sheet.Create.AutoLangs', { l: a.startLanguages.map((x) => x.name).join(', ') }))
+    if ((a.startLanguages || []).length) out.push(tf('Sheet.Create.AutoLangs', { l: a.startLanguages.map((x) => slName(x)).join(', ') }))
     if ((a.startProfessions || []).length) out.push(tf('Sheet.Create.AutoProfs', { p: a.startProfessions.map((x) => x.name).join(', ') }))
     if ((a.talent || []).length) out.push(tf('Sheet.Create.AutoTraits', { t: a.talent.map((x) => x.name).join(', ') }))
     return out.length ? `<div class="dsub auto"><b>${esc(t('Sheet.Create.AutoLabel'))}</b>${out.map((x) => `<div>${esc(x)}</div>`).join('')}</div>` : ''
@@ -1427,7 +1551,8 @@
     return `<h3 class="dtitle">${esc(t('Sheet.Create.Title'))}</h3>
       <p class="dsub">${esc(t('Sheet.Create.IntroShort'))}</p>
       ${creationAuto(d)}
-      ${box(t('Sheet.Create.Steps'), stepList(S) + (S.some((x) => x.done) ? `<div class="resbox">${stepResults(S)}</div>` : '') + info + (anc.languagesProfessions ? `<p class="sub book">${esc(anc.languagesProfessions)}</p>` : ''), 'tight')}
+      ${box(t('Sheet.Create.Origin'), stepList(S.filter((x) => x.scope !== 'all')) + (S.some((x) => x.scope !== 'all' && x.done) ? `<div class="resbox">${stepResults(S.filter((x) => x.scope !== 'all'))}</div>` : '') + info + (anc.languagesProfessions ? `<p class="sub book">${esc(anc.languagesProfessions)}</p>` : ''), 'tight')}
+      ${S.some((x) => x.scope === 'all') ? box(t('Sheet.Open.Title'), stepList(S.filter((x) => x.scope === 'all')) + (S.some((x) => x.scope === 'all' && x.done) ? `<div class="resbox">${stepResults(S.filter((x) => x.scope === 'all'))}</div>` : ''), 'tight') : ''}
 
       <div style="margin:8px 0 4px"><button type="button" class="btn on" id="cr-done"${ok ? off() : ' disabled'}>${esc(t('Sheet.Create.Done'))}</button></div>`
   }
@@ -1442,7 +1567,7 @@
     ov.innerHTML = `<div class="veil" id="dr-veil"></div><aside class="drawer" role="dialog" aria-label="${esc(creating(d) ? t('Sheet.Create.Title') : t('Sheet.Step.Title'))}"><button type="button" class="ribbon" id="dr-close" aria-label="${esc(t('Sheet.Close'))}">✕</button>${creating(d) ? creationHTML(d) : levelUpHTML(d, lvl)}</aside>`
     ov.hidden = false
     const nd = ov.querySelector('.drawer'); if (nd) nd.scrollTop = top
-    const close = () => { ui.drawer = false; ov.hidden = true; ov.innerHTML = '' }
+    const close = () => { ui.drawer = false; drawerSeen.clear(); ov.hidden = true; ov.innerHTML = '' }
     $('dr-veil').addEventListener('click', close); $('dr-close').addEventListener('click', close)
     const up = $('dr-up')
     if (up) up.addEventListener('click', async () => {
@@ -1503,6 +1628,104 @@
         if (r.value !== 'ok' || !String(r.data.pn).trim()) return
         await hero.insert('data.professionList', { name: String(r.data.pn).trim(), detail: String(r.data.pd || '').trim() }); await mark(st.key, tf('Sheet.Step.ProfDone', { n: String(r.data.pn).trim() }), { t: 'prof', name: String(r.data.pn).trim() })
       }
+    } else if (st.type === 'resources') {
+      // la table du livre n'est pas dans le système : on propose de l'ouvrir seulement si une table nommée « Ressources » existe dans la bibliothèque
+      let tbl = null
+      try { const q = await EP.query({ entity: 'Table', search: t('Sheet.Create.ResourcesTable'), limit: 10 }); tbl = (q.entries || []).find((e) => String(e.name).trim().toLowerCase() === t('Sheet.Create.ResourcesTable').toLowerCase()) || null } catch (e) { /* bibliothèque indisponible */ }
+      let res = null
+      const row = `<div class="rrow"><span class="rn">${esc(t('Sheet.Create.ResourcesLabel'))}</span><button type="button" class="btn" data-rl="res"${off()}>${esc(tf('Sheet.Create.Roll', { f: '3d6' }))}</button><span class="rv" id="rv-res"></span></div>`
+      const open = tbl && tbl.reference ? `<div class="rrow"><button type="button" class="btn wide" data-tbl="1">${esc(t('Sheet.Create.ResourcesOpen'))}</button></div>` : ''
+      const buttons = [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }]
+      const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Create.ResourcesHint'))}</p>${row}${open}`, buttons, (ov) => {
+        const ok = ov.querySelector('button[data-b="1"]'), cell = ov.querySelector('#rv-res')
+        const upd = () => { ok.hidden = res == null || Number.isNaN(res) }
+        upd()
+        const ob = ov.querySelector('[data-tbl]'); if (ob) ob.addEventListener('click', () => EP.open(tbl.reference))
+        ov.querySelector('[data-rl="res"]').addEventListener('click', async (ev) => {
+          ev.currentTarget.disabled = true
+          let v = null
+          try { const rr = await EP.roll('3d6', { label: t('Sheet.Create.ResourcesLabel'), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
+          if (v != null) { res = v; cell.textContent = v; cell.classList.add('on') }
+          else { cell.innerHTML = '<input type="number" class="rin" inputmode="numeric" placeholder="?">'; const inp = cell.querySelector('input'); inp.addEventListener('input', () => { res = inp.value === '' ? null : Number(inp.value); upd() }); inp.focus() }
+          upd()
+        })
+      })
+      if (r.value !== 'ok' || res == null) return
+      await mark(st.key, tf('Sheet.Create.ResourcesDone', { v: res }), { t: 'none' })
+    } else if (st.type === 'purse') {
+      let res = null
+      const c = t('Character.CA')
+      const row = `<div class="rrow"><span class="rn">${esc(t('Sheet.Open.PurseRow'))}</span><button type="button" class="btn" data-rl="p"${off()}>${esc(tf('Sheet.Create.Roll', { f: '2d6' }))}</button><span class="rv" id="rv-p"></span></div>`
+      const buttons = [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }]
+      const r = await dialog(st.label, `<p class="sub">${esc(tf('Sheet.Open.PurseHint', { c }))}</p>${row}`, buttons, (ov) => {
+        const ok = ov.querySelector('button[data-b="1"]'), cell = ov.querySelector('#rv-p')
+        const upd = () => { ok.hidden = res == null || Number.isNaN(res) }
+        upd()
+        ov.querySelector('[data-rl="p"]').addEventListener('click', async (ev) => {
+          ev.currentTarget.disabled = true
+          let v = null
+          try { const rr = await EP.roll('2d6', { label: t('Sheet.Open.PurseRow'), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
+          if (v != null) { res = v; cell.textContent = v; cell.classList.add('on') }
+          else { cell.innerHTML = '<input type="number" class="rin" inputmode="numeric" placeholder="?">'; const inp = cell.querySelector('input'); inp.addEventListener('input', () => { res = inp.value === '' ? null : Number(inp.value); upd() }); inp.focus() }
+          upd()
+        })
+      })
+      if (r.value !== 'ok' || res == null) return
+      await hero.set('data.currency.ca', Number(hero.get('data.currency.ca') || 0) + res)
+      await mark(st.key, tf('Sheet.Open.PurseDone', { v: res, c }), { t: 'purse', v: res })
+    } else if (st.type === 'pickCompl') {
+      const picked = await pickEntries('Complication', t('Sheet.Compl.Add'), { single: true }); if (!picked[0]) return
+      await hero.embed('data.complication', picked[0], ['descr', 'trait', 'tables'])
+    } else if (st.type === 'interesting') {
+      const vals = { t: null, e: null }; let tbl = null
+      const row = (id, lk, f, dis) => `<div class="rrow"><span class="rn">${esc(t(lk))}</span><button type="button" class="btn" data-rl="${id}"${dis ? ' disabled' : off()}>${esc(tf('Sheet.Create.Roll', { f }))}</button><span class="rv" id="rv-${id}"></span></div>`
+      const buttons = [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }]
+      const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Create.InterestHint'))}</p>${row('t', 'Sheet.Create.InterestTableRow', '1d6', false)}${row('e', 'Sheet.Create.Interesting', '1d20', true)}<div id="int-open"></div>`, buttons, (ov) => {
+        const ok = ov.querySelector('button[data-b="1"]')
+        const upd = () => { ok.hidden = !(vals.t != null && vals.e != null && !Number.isNaN(vals.t) && !Number.isNaN(vals.e)) }
+        upd()
+        // jet dans la fenêtre ; saisie manuelle si le jet automatique n'est pas disponible
+        const roll = (id, formula, label, then) => ov.querySelector(`[data-rl="${id}"]`).addEventListener('click', async (ev) => {
+          ev.currentTarget.disabled = true
+          const cell = ov.querySelector('#rv-' + id); let v = null
+          try { const rr = await EP.roll(formula, { label, type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
+          const set = (x) => { vals[id] = x; if (then) then(x); upd() }
+          if (v != null) { cell.textContent = v; cell.classList.add('on'); set(v) }
+          else { cell.innerHTML = '<input type="number" class="rin" inputmode="numeric" placeholder="?">'; const inp = cell.querySelector('input'); inp.addEventListener('input', () => set(inp.value === '' ? null : Number(inp.value))); inp.focus() }
+        })
+        roll('t', '1d6', t('Sheet.Create.InterestTableRow'), async (n) => {
+          const e = ov.querySelector('[data-rl="e"]'); if (e) e.disabled = !!off()
+          // si la bibliothèque contient la table correspondante (« … table N »), on propose de l'ouvrir
+          try { const q = await EP.query({ entity: 'Table', search: t('Sheet.Create.InterestTable'), limit: 30 }); tbl = (q.entries || []).find((x) => new RegExp('(?:table|tableau)\\s*' + n + '\\b', 'i').test(String(x.name))) || null } catch (e2) { /* bibliothèque indisponible */ }
+          if (tbl && tbl.reference) { const box = ov.querySelector('#int-open'); box.innerHTML = `<div class="rrow"><button type="button" class="btn wide" data-tbl="1">${esc(tf('Sheet.Create.InterestOpen', { n }))}</button></div>`; box.querySelector('button').addEventListener('click', () => EP.open(tbl.reference)) }
+        })
+        roll('e', '1d20', t('Sheet.Create.Interesting'))
+      })
+      if (r.value !== 'ok' || vals.t == null || vals.e == null) return
+      await mark(st.key, tf('Sheet.Create.InterestDone', { t: vals.t, e: vals.e }), { t: 'none' })
+    } else if (st.type === 'startProf') {
+      const r0 = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Create.StartProfHint'))}</p><label class="opt"><input type="radio" name="k" value="prof" checked><span><b>${esc(t('Sheet.Step.Prof'))}</b></span></label><label class="opt"><input type="radio" name="k" value="lang"><span><b>${esc(t('Sheet.Create.OtherLang'))}</b></span></label><label class="opt"><input type="radio" name="k" value="read"><span><b>${esc(t('Sheet.Create.ReadLang'))}</b></span></label>`,
+        [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
+      if (r0.value !== 'ok') return
+      if (r0.data.k === 'lang') {
+        const l = await languageDialog(); if (!l) return
+        await hero.insert('data.languages', l); await mark(st.key, tf('Sheet.Step.LangDone', { n: l.name }), { t: 'lang', name: l.name })
+      } else if (r0.data.k === 'read') {
+        // langues connues que l'on ne sait pas encore lire : celles du personnage et celles de l'ascendance
+        const own = (hero.get('data.languages') || []).map((x, i) => ({ src: 'own', i, name: slName(x), read: x.read }))
+        const fix = (((last.view.data || {}).ancestry || {}).startLanguages || []).map((x, i) => ({ src: 'anc', i, name: slName(x), read: x.read }))
+        const list = own.concat(fix).filter((x) => !x.read)
+        if (!list.length) { await dialog(st.label, `<p>${esc(t('Sheet.Create.NoReadable'))}</p>`, [{ label: t('Sheet.Ok'), value: null, primary: true }]); return }
+        const r1 = await dialog(t('Sheet.Create.ReadLang'), list.map((x, i) => `<label class="opt"><input type="radio" name="rl" value="${i}"${i === 0 ? ' checked' : ''}><span><b>${esc(x.name)}</b></span></label>`).join(''), [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
+        if (r1.value !== 'ok') return
+        const x = list[Number(r1.data.rl)]
+        await hero.set(x.src === 'own' ? `data.languages[${x.i}].read` : `data.ancestry.startLanguages[${x.i}].read`, true)
+        await mark(st.key, tf('Sheet.Create.ReadDone', { n: x.name }), { t: 'read', src: x.src, i: x.i, name: x.name })
+      } else {
+        const r = await dialog(t('Sheet.Prof.New'), `<input type="text" id="pn" placeholder="${esc(t('Character.Profession'))}"><input type="text" id="pd" placeholder="${esc(t('Character.ProfessionDetail'))}">`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Add'), value: 'ok', primary: true }])
+        if (r.value !== 'ok' || !String(r.data.pn).trim()) return
+        await hero.insert('data.professionList', { name: String(r.data.pn).trim(), detail: String(r.data.pd || '').trim() }); await mark(st.key, tf('Sheet.Step.ProfDone', { n: String(r.data.pn).trim() }), { t: 'prof', name: String(r.data.pn).trim() })
+      }
     } else if (st.type === 'tradition') {
       const k = await pickTradition(st.label); if (!k) return
       await hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)); await mark(st.key, tf('Sheet.Step.TradDone', { n: EP.label('SpellTradition', k) }), { t: 'trad', k })
@@ -1529,6 +1752,7 @@
       await hero.set('data.sizeAdjust.base', r.data.sz)
       await mark(st.key, tf('Sheet.Create.SizeDone', { n: EP.label('BodySize', r.data.sz) }), { t: 'size' })
     } else if (st.type === 'adjust') {
+      if (!(d.ancestry && d.ancestry.name)) { toast(t('Sheet.Create.NeedAncestry')); return }
       const adj = hero.get('data.attrAdjust') || {}
       const col = (nm) => ATTR4.map(([k, , , name]) => `<label class="opt"><input type="radio" name="${nm}" value="${k}"><span><b>${esc(t('Attributes.' + k))}</b></span></label>`).join('')
       const r = await dialog(st.label, `<div class="lbl">${esc(t('Sheet.Create.AdjustUp'))}</div>${col('up')}<div class="lbl">${esc(t('Sheet.Create.AdjustDown'))}</div>${col('down')}`,
@@ -1552,7 +1776,16 @@
         if (r.value === 'second') { root = st.req.alt; type = 'Expert' } else type = 'Master'
       }
       const picked = await pickEntries('Path', st.label, { single: true, where: { 'data.pathType': type } }); if (!picked[0]) return
-      await hero.embed('data.' + root, picked[0], pathKeys(root))
+      if (st.req.alt && root === st.req.alt) {
+        // seconde voie d'expert : le niveau 3 de la voie donne le niveau 7, le niveau 6 donne le niveau 10 (règle du livre) ; la bibliothèque n'a que les niveaux 3, 6 et 9
+        const MAP = [[3, 7], [6, 10]], suf = ['', 'Talent', 'Choice']
+        await hero.embed('data.' + root, picked[0], ['pathType'].concat(MAP.flatMap(([from]) => suf.map((s) => 'level' + from + s))))
+        const sp = hero.get('data.' + root) || {}
+        for (const [from, to] of MAP) for (const s of suf) {
+          const v = sp['level' + from + s]
+          if (v !== undefined) { await hero.set(`data.${root}.level${to}${s}`, v); await hero.remove(`data.${root}.level${from}${s}`) }
+        }
+      } else await hero.embed('data.' + root, picked[0], pathKeys(root))
     } else if (st.type === 'attrRoll') {
       const anc = d.ancestry || {}, variant = anc.startMode === 'variant'
       const keys = ATTR4.filter(([k]) => anc[k + 'Roll']).map((x) => x[0]), vals = {}
@@ -1712,6 +1945,7 @@
     else if (snap.pending) status.textContent = t('Sheet.Saving')
     else if (/^(Hors connexion|Enregistrement)/.test(status.textContent)) status.textContent = ''
     if (!ui.autoCreate && connected && creating(d) && !(d.ancestry && d.ancestry.name)) { ui.autoCreate = true; ui.drawer = true }
+    if (connected) checkLevel(d)
     if (ui.drawer) {
       const ov = $('overlay')
       if (!ov.querySelector('.dlg')) { const sc = ov.querySelector('.drawer'); const top = sc ? sc.scrollTop : 0; ov.innerHTML = ''; renderDrawer(); const nd = ov.querySelector('.drawer'); if (nd) nd.scrollTop = top }

@@ -36,14 +36,20 @@
       ]
     },
     {
-      "title": "Level.Automation",
+      "title": "Level.Auto.Attr",
       "type": "group",
       "fields": [
         {
           "title": "Level.AttrChoice",
           "type": "number",
           "attribute": "data.levelAttrChoice"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Level.Auto.LangProf",
+      "type": "group",
+      "fields": [
         {
           "title": "Level.Lang",
           "type": "toggle",
@@ -59,7 +65,13 @@
           "type": "toggle",
           "attribute": "data.levelLangProfOne",
           "visibleIf": "{% if data.levelLang and data.levelProf %}true{% endif %}"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Level.Auto.Magic",
+      "type": "group",
+      "fields": [
         {
           "title": "Level.Tradition",
           "type": "toggle",
@@ -85,11 +97,29 @@
           "title": "Level.Cantrip",
           "type": "toggle",
           "attribute": "data.levelCantrip"
+        }
+      ]
+    },
+    {
+      "title": "Level.Auto.Talent",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Level.Talent",
+          "type": "toggle",
+          "attribute": "data.levelTalent"
         },
         {
           "title": "Level.ChoicePick",
           "type": "number",
-          "attribute": "data.levelChoicePick"
+          "attribute": "data.levelChoicePick",
+          "visibleIf": "{% if data.levelTalent %}true{% endif %}"
+        },
+        {
+          "title": "Level.SpellInstead",
+          "type": "toggle",
+          "attribute": "data.levelSpellInstead",
+          "visibleIf": "{% if data.levelTalent %}{% if data.levelSpell or data.levelTradition %}true{% endif %}{% endif %}"
         }
       ]
     },
@@ -98,7 +128,10 @@
       "type": "list",
       "attribute": "data.levelSpellsAuto",
       "custom": {
-        "itemTitle": "{{name}}"
+        "itemTitle": "{% if name %}{{name}}{% else %}{% set seg reference|split:'/' %}{{seg.last|split:'-'|join:' '|capitalizeFirstLetter}}{% endif %}",
+        "map": {
+          "name": "name"
+        }
       },
       "form": {
         "title": "Entity.Spell",
@@ -107,14 +140,15 @@
             "type": "group",
             "fields": [
               {
-                "placeholder": "Common.Name",
-                "attribute": "name"
-              },
-              {
                 "title": "Entity.Spell",
                 "type": "reference",
                 "attribute": "reference",
-                "attributeType": "Spell"
+                "attributeType": "Spell",
+                "custom": {
+                  "map": {
+                    "name": "name"
+                  }
+                }
               }
             ]
           }

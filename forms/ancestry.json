@@ -81,6 +81,11 @@
           "attribute": "data.attributeChoice"
         },
         {
+          "title": "Creation.AttrChoice",
+          "type": "number",
+          "attribute": "data.creationAttrChoice"
+        },
+        {
           "title": "Ancestry.NoAdjustment",
           "type": "toggle",
           "attribute": "data.noAdjustment"
@@ -157,11 +162,6 @@
           "attribute": "data.languagesProfessions"
         },
         {
-          "title": "Creation.AttrChoice",
-          "type": "number",
-          "attribute": "data.creationAttrChoice"
-        },
-        {
           "title": "Creation.Lang",
           "type": "toggle",
           "attribute": "data.creationLang"
@@ -184,7 +184,10 @@
       "type": "list",
       "attribute": "data.startLanguages",
       "custom": {
-        "itemTitle": "{{name}}{% if spoken or read or written %} ({% if spoken %}{{'Character.Spoken'|l}}{% if read or written %}, {% endif %}{% endif %}{% if read %}{{'Character.Read'|l}}{% if written %}, {% endif %}{% endif %}{% if written %}{{'Character.Written'|l}}{% endif %}){% endif %}"
+        "itemTitle": "{% if name %}{{name}}{% else %}{% set seg reference|split:'/' %}{{seg.last|split:'-'|join:' '|capitalizeFirstLetter}}{% endif %}{% if spoken or read or written %} ({% if spoken %}{{'Character.Spoken'|l}}{% if read or written %}, {% endif %}{% endif %}{% if read %}{{'Character.Read'|l}}{% if written %}, {% endif %}{% endif %}{% if written %}{{'Character.Written'|l}}{% endif %}){% endif %}",
+        "map": {
+          "name": "name"
+        }
       },
       "form": {
         "title": "Common.Language",
@@ -193,14 +196,15 @@
             "type": "group",
             "fields": [
               {
-                "placeholder": "Common.Name",
-                "attribute": "name"
-              },
-              {
                 "title": "Entity.Rule",
                 "type": "reference",
                 "attribute": "reference",
-                "attributeType": "Rule"
+                "attributeType": "Rule",
+                "custom": {
+                  "map": {
+                    "name": "name"
+                  }
+                }
               }
             ]
           },
