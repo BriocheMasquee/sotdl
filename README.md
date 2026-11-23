@@ -5,7 +5,7 @@
 
   Système de jeu pour [Encounter+](https://itunes.apple.com/us/app/encounter+/id1170693487?ls=1&mt=8)
 
-  ![Version](https://img.shields.io/badge/version-0.14.1-blue)
+  ![Version](https://img.shields.io/badge/version-0.14.0-blue)
   ![Encounter+](https://img.shields.io/badge/Encounter%2B-%E2%89%A5%205.2.0-green)
   ![Langues](https://img.shields.io/badge/langues-FR%20%7C%20EN-lightgrey)
 
@@ -52,7 +52,7 @@ Le système demande Encounter+ 5.2.0 ou plus récent (fiches interactives).
 
 **Calculs** : les valeurs sont calculées à partir de l'ascendance, des voies et de l'équipement. La section « Calculs » permet de les corriger : base, bonus ou valeur forcée pour chaque caractéristique, attribut et pour le gabarit.
 
-**Afflictions** : elles se posent sur la fiche et apparaissent dans le suivi de combat. Le système livre les afflictions et les états de dégâts comme fiches Règle **sans description** (nom, type et icône seulement) ; leur texte vient du compendium de l'utilisateur, qui complète les mêmes fiches à l'import.
+**Afflictions** : elles se posent sur la fiche et apparaissent dans le suivi de combat.
 
 **Formulaire du personnage** : trois onglets (Identité, Magie, Sac) pour choisir les entités et modifier leur copie en détail. Tout le reste se fait depuis la fiche.
 
