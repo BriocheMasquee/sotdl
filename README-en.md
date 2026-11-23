@@ -5,7 +5,7 @@
 
   Game system for [Encounter+](https://itunes.apple.com/us/app/encounter+/id1170693487?ls=1&mt=8)
 
-  ![Version](https://img.shields.io/badge/version-0.14.0-blue)
+  ![Version](https://img.shields.io/badge/version-0.14.1-blue)
   ![Encounter+](https://img.shields.io/badge/Encounter%2B-%E2%89%A5%205.2.0-green)
   ![Languages](https://img.shields.io/badge/languages-FR%20%7C%20EN-lightgrey)
 
@@ -52,7 +52,7 @@ The system requires Encounter+ 5.2.0 or later (interactive sheets).
 
 **Calculations**: values are computed from the ancestry, paths and equipment. The "Calculations" section lets you adjust them: base, bonus or forced value for each characteristic, attribute and for size.
 
-**Afflictions**: they are set on the sheet and appear in the combat tracker.
+**Afflictions**: they are set on the sheet and appear in the combat tracker. The system ships afflictions and damage states as Rule entries **without descriptions** (name, type and icon only); their text comes from the user's own compendium, which completes the same entries on import.
 
 **Character form**: three tabs (Identity, Magic, Bag) to choose entities and edit their copy in detail. Everything else is done from the sheet.
 
