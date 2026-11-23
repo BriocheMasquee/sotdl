@@ -5,7 +5,7 @@
 
   Système de jeu pour [Encounter+](https://itunes.apple.com/us/app/encounter+/id1170693487?ls=1&mt=8)
 
-  ![Version](https://img.shields.io/badge/version-0.13.0-blue)
+  ![Version](https://img.shields.io/badge/version-0.14.0-blue)
   ![Encounter+](https://img.shields.io/badge/Encounter%2B-%E2%89%A5%205.2.0-green)
   ![Langues](https://img.shields.io/badge/langues-FR%20%7C%20EN-lightgrey)
 
