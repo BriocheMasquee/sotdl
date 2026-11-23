@@ -5,7 +5,7 @@
     <h1 class="entity-title">{{ name }}</h1>
     {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>{% endif %}
   </header>
-  {% if image %}<div class="entity-image"><img src="{{ image|resolvePath }}" alt="{{ name }}"></div>{% endif %}
+  {% if image %}<div class="entity-image"><a href="{{ image|resolvePath }}" target="_blank"><img src="{{ image|resolvePath }}" alt="{{ name }}"></a></div>{% endif %}
   {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
   {% if data.eligibility %}<div class="line eligibility"><b>{{ 'Transformation.Eligibility'|l }}.</b> {{ data.eligibility }}</div>{% endif %}
   {% if data.attrs.STR.value != nil or data.attrs.STR.replace != nil or data.attrs.STR.removed or data.attrs.AGI.value != nil or data.attrs.AGI.replace != nil or data.attrs.AGI.removed or data.attrs.INT.value != nil or data.attrs.INT.replace != nil or data.attrs.INT.removed or data.attrs.WIL.value != nil or data.attrs.WIL.replace != nil or data.attrs.WIL.removed or data.perception != nil or data.defense != nil or data.health != nil or data.speed != nil or data.healingZero or data.insanityRemoved or data.insanity.dice or data.insanity.value != nil or data.corruption.dice or data.corruption.value != nil %}<section class="level">

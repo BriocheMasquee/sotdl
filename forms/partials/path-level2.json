@@ -50,6 +50,11 @@
           "type": "toggle",
           "attribute": "data.levelLangProfOne",
           "visibleIf": "{% if data.levelLang and data.levelProf %}true{% endif %}"
+        },
+        {
+          "title": "Level.LangRights",
+          "type": "toggle",
+          "attribute": "data.levelLangRights"
         }
       ]
     },
@@ -113,7 +118,7 @@
       "type": "list",
       "attribute": "data.levelSpellsAuto",
       "custom": {
-        "itemTitle": "{% if name %}{{name}}{% else %}{% set seg reference|split:'/' %}{{seg.last|split:'-'|join:' '|capitalizeFirstLetter}}{% endif %}",
+        "itemTitle": "{% if name %}{{name}}{% else %}{% set seg reference|split:'/' %}{% if seg.first == '' %}{% if seg.2 %}{{seg.2|split:'-'|join:' '|capitalizeFirstLetter}}{% else %}{{seg.last|split:'-'|join:' '|capitalizeFirstLetter}}{% endif %}{% else %}{% if seg.1 %}{{seg.1|split:'-'|join:' '|capitalizeFirstLetter}}{% else %}{{seg.last|split:'-'|join:' '|capitalizeFirstLetter}}{% endif %}{% endif %}{% endif %}",
         "map": {
           "name": "name"
         }

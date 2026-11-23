@@ -3150,18 +3150,6 @@
                       "spacing": 2,
                       "views": [
                         {
-                          "type": "text",
-                          "style": "characterAttributeLabel",
-                          "alignment": "leading",
-                          "padding": [
-                            14,
-                            0,
-                            0,
-                            0
-                          ],
-                          "value": "**{{'Recap.Manual'|l}}**"
-                        },
-                        {
                           "type": "divider",
                           "bgColor": "#B2B2B2",
                           "height": 1,
@@ -3188,11 +3176,6 @@
                               "type": "spacer"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "style": "characterNote",
-                          "value": "ⓘ  _{{'Recap.Manual1'|l}}_"
                         }
                       ]
                     },
@@ -3213,11 +3196,6 @@
                               "type": "spacer"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "style": "characterNote",
-                          "value": "ⓘ  _{{'Recap.Manual2'|l}}_"
                         }
                       ]
                     },
@@ -3238,11 +3216,6 @@
                               "type": "spacer"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "style": "characterNote",
-                          "value": "ⓘ  _{{'Recap.Manual3'|l}}_"
                         }
                       ]
                     }
@@ -5222,18 +5195,6 @@
                       "spacing": 2,
                       "views": [
                         {
-                          "type": "text",
-                          "style": "characterAttributeLabel",
-                          "alignment": "leading",
-                          "padding": [
-                            14,
-                            0,
-                            0,
-                            0
-                          ],
-                          "value": "**{{'Recap.Manual'|l}}**"
-                        },
-                        {
                           "type": "divider",
                           "bgColor": "#B2B2B2",
                           "height": 1,
@@ -5260,11 +5221,6 @@
                               "type": "spacer"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "style": "characterNote",
-                          "value": "ⓘ  _{{'Recap.Manual1'|l}}_"
                         }
                       ]
                     },
@@ -5285,11 +5241,6 @@
                               "type": "spacer"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "style": "characterNote",
-                          "value": "ⓘ  _{{'Recap.Manual2'|l}}_"
                         }
                       ]
                     },
@@ -5310,11 +5261,6 @@
                               "type": "spacer"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "style": "characterNote",
-                          "value": "ⓘ  _{{'Recap.Manual3'|l}}_"
                         }
                       ]
                     }

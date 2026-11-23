@@ -5,7 +5,7 @@
     <h1 class="entity-title">{{ name }}</h1>
     {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>{% endif %}
   </header>
-  {% if image %}<div class="entity-image"><img src="{{ image|resolvePath }}" alt="{{ name }}"></div>{% endif %}
+  {% if image %}<div class="entity-image"><a href="{{ image|resolvePath }}" target="_blank"><img src="{{ image|resolvePath }}" alt="{{ name }}"></a></div>{% endif %}
   {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
   {% for t in data.trait %}{% if forloop.first %}<section class="level">
     <h2 class="section">{{ 'Common.Trait'|l }}</h2>

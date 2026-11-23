@@ -181,7 +181,8 @@
             "attribute": "data.hp",
             "title": "Common.HitPoints",
             "label": "Common.HP",
-            "temporary": false
+            "temporary": false,
+            "type": "marked"
           }
         ],
         "detail": "{{'Characteristics.DefenseAbbr'|l}} {% if data.acText %}{{data.acText}}{% elif data.ac != nil %}{{data.ac}}{% else %}—{% endif %}"
@@ -252,8 +253,8 @@
   },
   "dice": {
     "labels": {
-      "Attaque": { "color": "#980C14", "textColor": "#FFFFFF" },
-      "Attack": { "color": "#980C14", "textColor": "#FFFFFF" },
+      "Attaque": { "color": "#5C0A10", "textColor": "#FFFFFF" },
+      "Attack": { "color": "#5C0A10", "textColor": "#FFFFFF" },
       "Dégâts": { "color": "#980C14", "textColor": "#FFFFFF" },
       "Damage": { "color": "#980C14", "textColor": "#FFFFFF" },
       "Test": { "color": "#2F5578", "textColor": "#FFFFFF" },
@@ -268,7 +269,14 @@
       "Avantage": { "color": "#F5F1E6", "textColor": "#17120F" },
       "Boon": { "color": "#F5F1E6", "textColor": "#17120F" },
       "Désavantage": { "color": "#17120F", "textColor": "#FFFFFF" },
-      "Bane": { "color": "#17120F", "textColor": "#FFFFFF" }
+      "Bane": { "color": "#17120F", "textColor": "#FFFFFF" },
+      "Destinée": { "color": "#B58A2F", "textColor": "#17120F" },
+      "Fate": { "color": "#B58A2F", "textColor": "#17120F" },
+      "Générique": { "color": "#55575F", "textColor": "#FFFFFF" },
+      "Generic": { "color": "#55575F", "textColor": "#FFFFFF" },
+      "Folie": { "color": "#5B3A8C", "textColor": "#FFFFFF" },
+      "Insanity": { "color": "#5B3A8C", "textColor": "#FFFFFF" },
+      "Corruption": { "color": "#2C7A62", "textColor": "#FFFFFF" }
     }
   }
 }

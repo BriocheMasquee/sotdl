@@ -32,13 +32,13 @@
     {% for e in data.vehicleTraits %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}
     </div>
   {% if data.vehicleAttacks %}<div class="sb-section">{{ 'Combat.AttackOptions'|l }}</div><div class="sb-body">
-  {% for e in data.vehicleAttacks %}<div class="sb-line">{% markdown -%}{% if e.bonus != nil %}**{{ e.name }}**{% if e.range %} ({{ e.range|lowercase }}){% endif %} [{{ e.bonus|signed }}](</roll/{{ e.rollFormula }}/{{ e.name }}/attack>){% if e.boonsText %} {{ e.boonsText }}{% endif %}{% if e.text %} {{ e.text }}{% endif %}{% else %}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endif %}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
+  {% for e in data.vehicleAttacks %}<div class="sb-line">{% markdown -%}{% if e.bonus != nil %}**{{ e.name }}**{% if e.range %} ({{ e.range|lowercase }}){% endif %} [{{ e.bonus|signed }}](</roll/d20[{{ 'Sheet.Die.Attack'|l }}]{{ e.bonus|signed }}{% if e.boons > 0 %}+{{ e.boons }}d6kh1[{{ 'Sheet.Edge.Adv'|l }}]{% elif e.banes > 0 %}-{{ e.banes }}d6kh1[{{ 'Sheet.Edge.Dis'|l }}]{% endif %}/{{ e.name }}/attack>){% if e.boonsText %} {{ e.boonsText }}{% endif %}{% if e.text %} {{ e.text }}{% endif %}{% else %}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endif %}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
   {% if data.vehicleSpecialAttacks %}<div class="sb-section">{{ 'Combat.SpecialAttacks'|l }}</div><div class="sb-body">
   {% for e in data.vehicleSpecialAttacks %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
   {% if data.vehicleSpecialActions %}<div class="sb-section">{{ 'Combat.SpecialActions'|l }}</div><div class="sb-body">
   {% for e in data.vehicleSpecialActions %}<div class="sb-line">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}</div>{% endif %}
   </section>
   {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
-  {% if image %}<div class="entity-image"><img src="{{ image|resolvePath }}" alt="{{ name }}"></div>{% endif %}
+  {% if image %}<div class="entity-image"><a href="{{ image|resolvePath }}" target="_blank"><img src="{{ image|resolvePath }}" alt="{{ name }}"></a></div>{% endif %}
 </main>
 {% endblock %}

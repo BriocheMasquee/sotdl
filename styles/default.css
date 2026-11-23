@@ -108,12 +108,15 @@ h2.section {
 /* ---------- Image et chapeau ---------- */
 .entity-image { margin-block: 0 1rem; text-align: center; }
 .entity-image img { margin-inline: auto; }
+.entity-image a { display: inline-block; line-height: 0; text-decoration: none; border: 0; }  /* image cliquable : ouvre la visionneuse d'E+ (partage avec les joueurs) */
 .rule .entity-image { margin-block: 0.6rem 0.5rem; }
+.rule .entity-image img { max-width: 60%; max-height: 70vh; width: auto; height: auto; object-fit: contain; }   /* couverture d'une source : plus petite (elle s'agrandit dans la visionneuse) */
 
-.description { margin-block-end: 0.5rem; text-align: justify; hyphens: auto; }
+.description { margin-block-end: 0.5rem; text-align: justify; hyphens: manual; }
 .description p { margin-block-end: 0.6rem; }
 .description strong { color: inherit; }
 .description strong.lead { color: var(--color-accent); } /* gras en tête de paragraphe ou de puce (classe posée par base.html) */
+.description .champs strong, .description .champs strong.lead { color: inherit; }  /* noms de champs en gras noir dans un bloc « ::: champs » (2026-11-22, choix de Pierre ; identique aux pages) */
 /* Paragraphes d'amorce rouge (« **Ethnies variées :** … »), comme dans les livres : retrait de première ligne
    pour tous les paragraphes après le chapeau (le sélecteur :has() n'est pas pris en charge partout) */
 .description p { text-indent: 1.2em; }
@@ -123,7 +126,7 @@ h2.section {
 /* Titres Markdown (H1 à H4) dans les descriptions : H2 = titre de fiche (rouge, majuscules, filet) ;
    H1 = H2 en plus grand, sans filet ; H3 = H2 centré, filet noir ; H4 = Montserrat gras, majuscules, noir (comme les bandes des blocs de statistiques).
    Les tailles sont des jetons : un module les ajuste avec styles/custom.css */
-.description { --h1-size: 1.95rem; --h2-size: 1.3rem; --h3-size: 1.05rem; --h4-size: 0.9rem; }
+.description { --h1-size: 1.95rem; --h2-size: 1.3rem; --h3-size: 1.05rem; --h4-size: 0.9rem; --h6-size: 0.9rem; }
 .description h1, .description h2, .description h3, .description h4, .description h5, .description h6 {
   text-align: left; text-wrap: balance; break-after: avoid;
 }
@@ -139,12 +142,14 @@ h2.section {
   margin-block: 1.75rem 0.4rem; padding-block-end: 0.08rem; font-size: var(--h3-size); text-align: center;
   color: var(--color-accent); border-block-end: 1px solid var(--color-black);
 }
-.description h4, .description h5, .description h6 {
+.description h4, .description h5 {
   margin-block: 1rem 0.3rem; font-family: var(--font-ui); font-size: var(--h4-size); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.25; color: var(--color-black);
 }
+/* H6 : même dessin que dans les pages de module (`main h6`) : Aquifer rouge en capitales, aligné à gauche (aligné le 2026-11-22) */
+.description h6 { margin-block: 1.1rem 0.35rem; font-family: var(--font-title); font-size: var(--h6-size); font-weight: 400; line-height: 1.1; letter-spacing: 0; text-align: left; text-transform: uppercase; color: var(--color-accent); }
 /* Le titre d'ouverture se détache un peu du filet du titre de fiche */
-.description > :first-child:is(h1, h2, h3, h4, h5, h6) { margin-block-start: 0.6rem; }
+.description > :first-child:is(h1, h2, h3, h4, h5, h6) { margin-block-start: 1rem; }
 
 /* Listes Markdown : serrées, puces de la couleur du texte. Une liste « aérée » (lignes vides entre les puces) enveloppe chaque puce
    dans un paragraphe : on lui retire marge et retrait */
@@ -177,7 +182,7 @@ a.entity-kind:active, .entity-tables a[href^="/table-roll/"]:active { color: var
   font-family: var(--font-ui);
   font-size: 0.86rem;
   line-height: 1.52;
-  text-align: justify; hyphens: auto;   /* tous les textes justifiés (2026-11-08) */
+  text-align: justify; hyphens: manual;   /* tous les textes justifiés (2026-11-08) */
 }
 .line > p { margin: 0; display: inline; }
 /* Un second paragraphe ou une liste dans une ligne (Markdown) : bloc à part, sans le retrait suspendu de la ligne, qui décalait les puces */
@@ -185,11 +190,11 @@ a.entity-kind:active, .entity-tables a[href^="/table-roll/"]:active { color: var
 .line > :is(ul, ol), .sb-line > :is(ul, ol) { margin-block: 0.25rem 0.1rem; padding-inline-start: 1.1em; text-indent: 0; text-align: left; hyphens: manual; }
 .line li, .sb-line li { margin-block: 0; padding-inline-start: 0.1rem; text-indent: 0; line-height: inherit; }
 .line li > p, .sb-line li > p { display: block; margin: 0; text-indent: 0; }
-.line.talent, .line.justify { text-align: justify; hyphens: auto; }
+.line.talent, .line.justify { text-align: justify; hyphens: manual; }
 .line + .line.talent:first-of-type { margin-block-start: 0.35rem; }
 .line b, .line strong { font-weight: 700; }
 /* Prérequis : retrait suspendu comme dans les livres (Arcanes p. 128) */
-.line.eligibility { text-align: justify; hyphens: auto; }
+.line.eligibility { text-align: justify; hyphens: manual; }
 .spell-icons img { display: inline; height: 0.6em; width: auto; margin-inline-start: 0.4rem; vertical-align: 0.05em; opacity: 0.8; }
 /* Sort : lignes Condition, Cible ou Zone d'effet, Durée, dans le même cadre léger que le bloc « Créer… » */
 /* Corps du sort en police des règles (sans empattement), comme dans les livres */
@@ -200,7 +205,7 @@ a.entity-kind:active, .entity-tables a[href^="/table-roll/"]:active { color: var
 .spell .app-note { margin-block: 0.35rem 0.7rem; }
 .create.spell-lines, .create.item-lines { margin-block: 0 0.9rem; padding-block-start: 0.5rem; }
 .spell-lines > .line:last-child, .item-lines > .line:last-child { margin-block-end: 0; }
-.spell-lines > .line { text-align: justify; hyphens: auto; }   /* lignes Condition / Zone d'effet / Durée justifiées comme le corps du sort (2026-11-08) */
+.spell-lines > .line { text-align: justify; hyphens: manual; }   /* lignes Condition / Zone d'effet / Durée justifiées comme le corps du sort (2026-11-08) */
 
 /* ---------- Structure des fiches (direction « livre affiné », 2026-10-30) ---------- */
 /* Bloc « Créer… » : encadré léger, comme un bloc de statistiques du livre */
@@ -276,7 +281,7 @@ a[href^="/roll/"] {
 .sb-band { margin: 0; padding: 0.14rem 0.6rem; border-inline: 1px solid var(--color-accent); background: var(--color-accent); font-family: var(--font-body); font-style: italic; font-size: 0.86rem; line-height: 1.3; color: var(--color-on-accent); }
 .sb-lines { padding: 0.45rem 0.8rem 0.35rem; border-inline: 1px solid var(--color-black); background: color-mix(in srgb, var(--color-table-veil) 55%, transparent); }
 .sb-body { padding: 0 0.8rem 0.45rem; border-inline: 1px solid var(--color-black); background: color-mix(in srgb, var(--color-table-veil) 55%, transparent); }
-.sb-line { margin: 0 0 0.12rem; padding-inline-start: 1em; text-indent: -1em; font-family: var(--font-ui); font-size: 0.8rem; line-height: 1.38; text-align: justify; hyphens: auto; }
+.sb-line { margin: 0 0 0.12rem; padding-inline-start: 1em; text-indent: -1em; font-family: var(--font-ui); font-size: 0.8rem; line-height: 1.38; text-align: justify; hyphens: manual; }
 .sb-line > p { margin: 0; display: inline; }
 .sb-line b, .sb-line strong { font-weight: 700; color: inherit; }
 .sb-section { margin: 0; padding: calc(0.2rem + 0.16rem) 0.6rem calc(0.35rem + 0.16rem); border-inline: 1px solid var(--color-black); background-color: color-mix(in srgb, var(--color-table-veil) 55%, transparent); background-image: linear-gradient(var(--color-band-grey), var(--color-band-grey)); background-repeat: no-repeat; background-position: 0 0.2rem; background-size: 100% calc(100% - 0.55rem); font-family: var(--font-ui); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; }
@@ -285,7 +290,7 @@ a[href^="/roll/"] {
 .entity-tables { margin-block-start: 0.5rem; font-family: var(--font-ui); font-size: 0.86rem; line-height: 1.4; }
 /* Titre d'un tableau : dessin du PDF (comme le H1, Aquifer rouge en capitales), petit, aligné à gauche, sans filet */
 .entity-tables h2, .entity-tables h3 { margin-block: 1.1rem 0.35rem; font-family: var(--font-title); font-size: 0.9rem; font-weight: 400; line-height: 1.1; letter-spacing: 0; text-align: left; text-transform: uppercase; color: var(--color-accent); }
-.entity-tables p { margin-block: 0 0.5rem; text-align: justify; hyphens: auto; }
+.entity-tables p { margin-block: 0 0.5rem; text-align: justify; hyphens: manual; }
 /* Bouton de lancer sous le titre d'une table (citation Markdown « > [Lancer d20](/table-roll/…) ») : centré ; le lien « /table-roll/… » prend le style du bouton */
 .entity-tables blockquote { margin: 0 0 0.6rem; padding: 0; border: 0; text-align: center; font-size: 0.8rem; color: var(--color-app-note); }
 .entity-tables blockquote p { margin: 0; }
@@ -305,7 +310,7 @@ a[href^="/roll/"] {
   font-size: 0.78rem;
   font-style: italic;
   line-height: 1.4;
-  text-align: justify; hyphens: auto;
+  text-align: justify; hyphens: manual;
   color: var(--color-app-note);
   background: color-mix(in srgb, var(--color-app-note) 9%, transparent);
   border-inline-start: 3px solid var(--color-app-note);
@@ -317,7 +322,7 @@ a[href^="/roll/"] {
    du code en ligne « `texte` » donne le même texte bleu-gris à l'intérieur d'une phrase */
 .description blockquote {
   margin: 0.35rem 0 0.7rem; padding: 0.35rem 0.6rem; font-family: var(--font-ui); font-size: 0.78rem; font-style: italic;
-  line-height: 1.4; text-align: justify; hyphens: auto; color: var(--color-app-note);
+  line-height: 1.4; text-align: justify; hyphens: manual; color: var(--color-app-note);
   background: color-mix(in srgb, var(--color-app-note) 9%, transparent); border-inline-start: 3px solid var(--color-app-note);
   border-radius: 0 4px 4px 0;
 }
@@ -325,6 +330,7 @@ a[href^="/roll/"] {
 .description blockquote p + p { margin-block-start: 0.35rem; }
 .description blockquote > p:first-child::before { content: "ⓘ"; margin-inline-end: 0.45em; font-style: normal; font-weight: 700; }
 .description blockquote strong { color: inherit; }
+.description blockquote strong.lead { color: inherit; }  /* « À noter. » en tête d'un cadre bleu : gras italique bleu, pas rouge (2026-11-22) */
 .description code {
   padding: 0 0.3em; font-family: var(--font-ui); font-size: 0.82em; font-style: italic; color: var(--color-app-note);
   background: color-mix(in srgb, var(--color-app-note) 9%, transparent); border-radius: 3px;
@@ -360,21 +366,19 @@ body {
   font-size: 0.62rem; line-height: 1.2; letter-spacing: 0.07em; box-shadow: 0 1px 0 #0008;
 }
 a.entity-kind:active, .entity-tables a[href^="/table-roll/"]:active { background: var(--hx-blood2); color: var(--hx-bone); }
-/* dés : rouge en relief pour les tests et les jets d'attaque (d20, /attack, /check), noir pour les dégâts et les autres dés (comme la fiche PJ) */
+/* dés (comme la fiche PJ) : rouge en relief pour les jets de d20 exprimés en +X (attaques et tests : lien /roll/d20… ou /attack), noir pour tous les autres dés (dégâts, durées, destinée…) ; le TYPE du lien (/check) ne décide plus (2026-11-22, choix de Pierre) */
 .description a[href^="/roll/"], .line a[href^="/roll/"], .sb-line a[href^="/roll/"], .sb-body a[href^="/roll/"], .entity-tables td a[href^="/roll/"], .entity-tables p a[href^="/roll/"] {
   border: 0; background: linear-gradient(180deg, #2c231d, #0f0a08); color: var(--hx-bone); border-radius: 5px 5px 11px 11px;
   padding: 0.08em 0.6em 0.14em; font-weight: 700; letter-spacing: 0.03em; box-shadow: 0 1px 0 #000a, inset 0 1px 0 #ffffff22;
 }
-:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a[href^="/roll/d20"], a[href^="/roll/D20"], a[href$="/attack"], a[href$="/check"]) {
+:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a[href^="/roll/d20"], a[href^="/roll/D20"], a[href$="/attack"]) {
   background: linear-gradient(180deg, var(--hx-blood2), var(--hx-blood)); box-shadow: 0 1px 0 #000a, inset 0 1px 0 #ff9a9a55;
 }
 .app-note { border-radius: 0 11px 11px 0; }
 /* ---- 3. Filets et lignes : filet double (noir + rouge fin), losange sous les titres de section, lignes pointillées ---- */
-h1.entity-title { border-block-end: 0; padding-block-end: 0.5rem; position: relative; }
-h1.entity-title::after, .title-row::after { content: ''; position: absolute; left: 0; right: 0; height: 5px; background: linear-gradient(var(--hx-ink), var(--hx-ink)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--hx-blood), var(--hx-blood)) 0 4px / 100% 1px no-repeat; }
-h1.entity-title::after { bottom: 0; }
+h1.entity-title { border-block-end: 0; padding-block-end: 0; position: relative; }   /* H1 sans filet (2026-11-22, choix de Pierre : tous les H1, système et modules) */
 .title-row > h1.entity-title { padding-block-end: 0; } .title-row > h1.entity-title::after { display: none; }
-.title-row { border-block-end: 0; padding-block-end: 0.5rem; position: relative; } .title-row::after { bottom: 0; }
+.title-row { border-block-end: 0; padding-block-end: 0; position: relative; }
 h2.section { border-block-end: 0; padding-block-end: 0.5rem; position: relative; }
 h2.section::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, var(--hx-ink) calc(50% - 14px), transparent calc(50% - 14px), transparent calc(50% + 14px), var(--hx-ink) calc(50% + 14px)); }
 h2.section::after { content: '◆'; position: absolute; left: 50%; bottom: -5px; transform: translateX(-50%); font-size: 9px; line-height: 1; letter-spacing: 0; color: var(--hx-blood); font-family: var(--font-ui); font-variant-caps: normal; }
@@ -383,6 +387,8 @@ h2.section::after { content: '◆'; position: absolute; left: 50%; bottom: -5px;
 .entity-tables th { border-bottom: 2px solid var(--hx-blood); }
 .description h3 { border-block-end: 0; position: relative; padding-block-end: 0.5rem; }
 .description h3::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(var(--hx-ink), var(--hx-ink)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--hx-blood), var(--hx-blood)) 0 4px / 100% 1px no-repeat; }
+.description h2 { border-block-end: 0; position: relative; padding-block-end: 0.5rem; }   /* H2 : même double filet que H1 / H3 (décision du 2026-11-21 pour les pages, étendue aux descriptions le 2026-11-22) */
+.description h2::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(var(--hx-ink), var(--hx-ink)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--hx-blood), var(--hx-blood)) 0 4px / 100% 1px no-repeat; }
 .description hr { border: 0; height: 14px; margin: 1.2rem 0; position: relative; background: none; }
 .description hr::before { content: '◆'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: var(--hx-blood); font-size: 11px; line-height: 1; background: none; }
 .description hr::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px dotted var(--hx-dot); -webkit-mask: linear-gradient(90deg, #000 calc(50% - 14px), transparent calc(50% - 14px), transparent calc(50% + 14px), #000 calc(50% + 14px)); mask: linear-gradient(90deg, #000 calc(50% - 14px), transparent calc(50% - 14px), transparent calc(50% + 14px), #000 calc(50% + 14px)); }
@@ -411,26 +417,35 @@ h2.section::after { content: '◆'; position: absolute; left: 50%; bottom: -5px;
 }
 .description blockquote { position: relative; } .description blockquote > p:first-child { position: static; }
 .description code { background: #e1e8ee; border: 1px dashed color-mix(in srgb, var(--hx-note) 60%, transparent); border-radius: 3px 8px 3px 8px; color: var(--hx-note-dark); padding: 0 0.4em; }
-/* ---- 7. Liens colorés (pastille pleine allégée, taille S). Détection par l'adresse : /rule/, /table/, /module/ et les liens écrits [Nom](spell) → /spell/Nom (creature, npc, vehicle, item, spell, ancestry, path, transformation, complication) ;
+/* ---- 7. Liens colorés (pastille CLAIRE, taille S, 2026-11-22 ; version sombre : sotdl-sauvegardes/2026-11-22_avant-pastilles-claires/). Détection par l'adresse : /rule/, /table/, /module/ et les liens écrits [Nom](spell) → /spell/Nom (creature, npc, vehicle, item, spell, ancestry, path, transformation, complication) ;
    les liens /entity/<id> (type absent de l'adresse) ne se colorent que par une classe lk-… (pages de module seulement : les descriptions de fiche n'acceptent pas {.classe}) ---- */
 :is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a[href^="/rule/"], a[href^="/table/"], a[href^="/module/"], a.lk-creature, a[href^="/creature/"], a[href^="/npc/"], a[href^="/vehicle/"], a.lk-item, a[href^="/item/"], a.lk-spell, a[href^="/spell/"], a.lk-entity, a[href^="/ancestry/"], a[href^="/path/"], a[href^="/transformation/"], a[href^="/complication/"]) {
-  --c1: #3f6a8f; --c2: #1f3c58; --bd: #17304a; --tx: #e3eefa;
-  text-indent: 0; display: inline-flex; align-items: center; gap: 0.26em; padding: 0 0.46em 0.03em 0.22em;
-  border: 1px solid var(--bd); border-radius: 999px; background: linear-gradient(180deg, var(--c1), var(--c2));
-  color: var(--tx) !important; font-family: var(--font-ui, inherit) !important; font-weight: 600 !important; font-size: 0.7em; line-height: 1.25; letter-spacing: 0;
-  text-decoration: none !important; white-space: nowrap; vertical-align: baseline;
+  --c1: #3f6a8f; --lt: #1f3c58;   /* c1 = teinte, lt = texte (foncé) ; fond = c1 très éclairci */
+  display: inline-block; padding: 0.04em 0.5em 0.06em 0.38em; text-indent: 0; vertical-align: 0.1em;   /* bloc en ligne (et non flex) : la ligne de base du texte de la pastille reste celle du texte voisin ; 0.1em = centrage sur la hauteur d'x */
+  border: 1px solid color-mix(in srgb, var(--c1) 60%, #fff); border-radius: 999px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c1) 8%, #fff), color-mix(in srgb, var(--c1) 20%, #fff));
+  color: var(--lt) !important; font-family: var(--font-ui, inherit) !important; font-weight: 600 !important; font-size: 0.7em; line-height: 1.2; letter-spacing: 0;
+  text-decoration: none !important; white-space: nowrap;
 }
 :is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a[href^="/rule/"], a[href^="/table/"], a[href^="/module/"], a.lk-creature, a[href^="/creature/"], a[href^="/npc/"], a[href^="/vehicle/"], a.lk-item, a[href^="/item/"], a.lk-spell, a[href^="/spell/"], a.lk-entity, a[href^="/ancestry/"], a[href^="/path/"], a[href^="/transformation/"], a[href^="/complication/"])::before {
-  content: ''; width: 0.66em; height: 0.66em; border-radius: 50%; flex: none;
-  background: radial-gradient(circle at 35% 30%, #fffc, var(--c1) 60%, var(--bd)); box-shadow: 0 0 0 1px var(--bd);
+  content: ''; display: inline-block; width: 0.5em; height: 0.5em; margin-right: 0.3em; border-radius: 50%; vertical-align: 0.04em;
+  background: radial-gradient(circle at 35% 30%, #fffc, var(--c1) 62%, var(--lt));
 }
-:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) a[href^="/module/"] { --c1: #4a4038; --c2: #17120f; --bd: #17120f; --tx: #efe8d8; }
-:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a.lk-creature, a[href^="/creature/"], a[href^="/npc/"], a[href^="/vehicle/"]) { --c1: #9c1a24; --c2: #5a0c12; --bd: #6b0f18; --tx: #efe8d8; }
-:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a.lk-item, a[href^="/item/"]) { --c1: #e9cd6a; --c2: #c39a2e; --bd: #8a6a10; --tx: #4a3604; }
-:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a.lk-spell, a[href^="/spell/"]) { --c1: #5b3a8c; --c2: #2e1a52; --bd: #2a1445; --tx: #efe3ff; }
-:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a.lk-entity, a[href^="/ancestry/"], a[href^="/path/"], a[href^="/transformation/"], a[href^="/complication/"]) { --c1: #2c7a62; --c2: #124236; --bd: #0d2f26; --tx: #dcf5ea; }
+:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) a[href^="/module/"] { --c1: #4a4038; --lt: #17120f; }
+:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a.lk-creature, a[href^="/creature/"], a[href^="/npc/"], a[href^="/vehicle/"]) { --c1: #9c1a24; --lt: #5a0c12; }
+:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a.lk-item, a[href^="/item/"]) { --c1: #c39a2e; --lt: #5a4204; }
+:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a.lk-spell, a[href^="/spell/"]) { --c1: #5b3a8c; --lt: #2e1a52; }
+:is(.description, .line, .sb-line, .sb-body, .entity-tables td, .entity-tables p) :is(a.lk-entity, a[href^="/ancestry/"], a[href^="/path/"], a[href^="/transformation/"], a[href^="/complication/"]) { --c1: #2c7a62; --lt: #124236; }
 /* ---- 8. Bouton de lancer d'une table : sur la même ligne que le titre de la table (titre à gauche, bouton à droite) ---- */
 .entity-tables :is(h2, h3):has(+ blockquote) { float: left; max-width: calc(100% - 7.5rem); }
 .entity-tables :is(h2, h3) + blockquote { float: right; margin: 1.05rem 0 0; padding: 0; background: none; border: 0; box-shadow: none; text-align: right; }
 .entity-tables :is(h2, h3) + blockquote + * { clear: both; }
 /* === HARMONISATION GRIMOIRE (fin) === */
+
+/* ---- Titre de fiche avec filet (2026-11-22, choix de Pierre) : toutes les entités SAUF personnage, PNJ, créature et véhicule ; même double filet (noir + rouge fin) que H2 / H3.
+   Titre seul (ascendance, complication, voie, transformation) : filet sous le H1 ; titre + pastille de type (règle, objet, sort, table) : filet sous la ligne. ---- */
+main.entity:is(.rule, .item, .spell, .table) .title-row,
+main.entity:is(.ancestry, .complication, .path, .transformation) h1.entity-title { position: relative; padding-block-end: 0.5rem; }
+main.entity:is(.rule, .item, .spell, .table) .title-row::after,
+main.entity:is(.ancestry, .complication, .path, .transformation) h1.entity-title::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; display: block;
+  background: linear-gradient(var(--hx-ink), var(--hx-ink)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--hx-blood), var(--hx-blood)) 0 4px / 100% 1px no-repeat; }

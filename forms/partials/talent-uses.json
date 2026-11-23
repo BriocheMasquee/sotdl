@@ -40,6 +40,22 @@
           "attribute": "usesLevel"
         }
       ]
+    },
+    {
+      "title": "Character.UsesModify",
+      "type": "group",
+      "fields": [
+        {
+          "title": "Character.UsesTarget",
+          "type": "text",
+          "attribute": "usesTarget"
+        },
+        {
+          "title": "Character.UsesBonus",
+          "type": "number",
+          "attribute": "usesBonus"
+        }
+      ]
     }
   ]
 }

@@ -132,11 +132,10 @@
   "RuleType": {
     "Action": "RuleType.Action",
     "Affliction": "RuleType.Affliction",
-    "Combat": "RuleType.Combat",
+    "State": "RuleType.State",
     "Danger": "RuleType.Danger",
     "Movement": "RuleType.Movement",
     "Morality": "RuleType.Morality",
-    "Magic": "RuleType.Magic",
     "Language": "RuleType.Language",
     "Other": "RuleType.Other",
     "Source": "Common.Source"

@@ -41,6 +41,9 @@
   .gm .bar { position: relative; height: 24px; border-radius: 14px; background: #0a0706; border: 2px solid #efe8d855; overflow: hidden; margin-top: 12px; }
   .gm .bar i { position: absolute; inset: 0 auto 0 0; background: linear-gradient(180deg, #d02a33, #8e0e14); }
   .gm .bar b { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  .gm .fate { display:flex; align-items:center; justify-content:center; text-align:center; gap:10px; flex-wrap:wrap; margin-top:8px; } .gm .fate .fs { font-weight:700; font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:#ffd0c8; padding:4px 10px; border:1.5px solid #ff9a8f; border-radius:10px; background:#0007; } .gm .fate .go { display:inline-block; cursor:pointer; border:0; font-family:inherit; }
+  .gm .fate .fh { flex-basis:100%; font-size:10px; opacity:.85; }
+  .gm .stl { cursor:pointer; text-decoration:underline dotted; text-underline-offset:3px; }
   .gm .bar.down i { background: linear-gradient(180deg, #6a6a6a, #2a2a2a); }
   .gm .strip { display: flex; gap: 5px; flex-wrap: nowrap; margin: 6px 0; }
   .gm .strip > * { min-width: 0; }
@@ -121,7 +124,8 @@
     <div class="lv"><div class="seal"><b>{{data.level|default: 0}}</b><span>{{'Character.Level'|l}}</span></div>{% if env.sheetURL %}<a id="go-sheet" class="go" href="{{env.sheetURL}}">{{'Character.OpenSheet'|l}}</a>{% endif %}</div>
   </div>
   <div class="body">
-    <div class="bar{% if data.healthState == 'down' %} down{% endif %}"><i style="width: {{data.hpPercent|default: 0}}%"></i><b>{{'Characteristics.Damage'|l}} {{data.hp.current|default: 0}} / {{data.hp.maximum|default: 0}}{% if data.healthState == 'wounded' %} · {{'Card.Wounded'|l}}{% elif data.healthState == 'down' %} · {{'Sheet.Down'|l}}{% endif %}</b></div>
+    <div class="bar{% if data.healthState == 'down' %} down{% endif %}"><i style="width: {{data.hpPercent|default: 0}}%"></i><b>{{'Characteristics.Damage'|l}} {{data.hp.current|default: 0}} / {{data.hp.maximum|default: 0}}{% if data.healthState == 'wounded' %} · {{'Card.Wounded'|l}}{% elif data.healthState == 'down' %} · <a class="stl" data-rule="neutralise">{{'Sheet.Down'|l}}</a>{% endif %}</b></div>
+    {% if data.healthState == 'down' %}<div class="fate"><span class="fs">{% if data.fate.state == 'dying' %}<a class="stl" data-rule="agoniser">{{'Sheet.Fate.Dying'|l}}</a>{% elif data.fate.state == 'unconscious' %}<a class="stl" data-rule="inconscient">{{'Sheet.Fate.Unconscious'|l}}</a>{% if data.fate.hours %} · {{data.fate.hours}} {{'Sheet.Fate.HourUnit'|l}}{% endif %}{% elif data.fate.state == 'dead' %}<a class="stl" data-rule="mort-instantanee">{{'Sheet.Fate.Dead'|l}}</a>{% else %}<a class="stl" data-rule="hors-de-combat">{{'Sheet.Fate.Out'|l}}</a> · {{data.fate.rounds|default: 0}}{{'Sheet.Fate.RoundsOf'|l}}{% endif %}</span>{% if data.fate.state == 'unconscious' %}{% if data.fate.hours %}<small class="fh">{{'Sheet.Fate.WakeHint'|l}}</small>{% else %}<button type="button" class="go" data-fate="sleep">{{'Sheet.Fate.SleepRoll'|l}}</button>{% endif %}{% elif data.fate.state != 'dead' %}<button type="button" class="go" data-fate="roll">{{'Sheet.Fate.Roll'|l}}</button>{% endif %}</div>{% endif %}
     <div class="chars">
       <span class="ch"><span class="cl">{{'Characteristics.Size'|l}}</span><b>{% if data.gabaritChoice %}{{data.gabaritChoice|map: 'BodySize'}}{% else %}{{data.size|default: '—'}}{% endif %}</b></span>
       <span class="ch"><span class="cl">{{'Characteristics.Speed'|l}}</span><b>{{data.speedValue|default: '—'}}</b></span>
@@ -142,7 +146,7 @@
       <span class="pill">{{'Characteristics.Insanity'|l}} <b>{{data.insanityValue|default: 0}}{% if data.insanityMax != nil %} / {{data.insanityMax}}{% endif %}</b></span>
       <span class="pill">{{'Characteristics.Corruption'|l}} <b>{{data.corruptionValue|default: 0}}</b></span>
     </div><div class="strip">
-      <label class="pill luck{% if data.luck == true %} on{% else %} off{% endif %}" title="{{'Sheet.Luck.Tip'|l}}"><input type="checkbox" data-bind="data.luck" class="lk-in">{{'Character.Luck'|l}}</label>
+      <label class="pill luck{% if data.luck == true %} on{% else %} off{% endif %}"><input type="checkbox" data-bind="data.luck" class="lk-in">{{'Character.Luck'|l}}</label>
       <a class="pill dem{% if data.dementia %} on{% else %} off{% endif %}" href="#" data-open="mind">{{'Character.Dementia'|l}}</a>
       <a class="pill mark{% if data.darkMark %} on{% else %} off{% endif %}" href="#" data-open="mind">{{'Sheet.MarksShort'|l}}</a>
     </div></div>
@@ -309,16 +313,88 @@
     redraw()
   }
   loadLib().then(paintAll)
-  { const m = document.querySelector('main'); if (m) new MutationObserver(paintAll).observe(m, { childList: true, subtree: true }); c.subscribe && c.subscribe(paintAll) }
+  { const m = document.querySelector('main'); if (m) new MutationObserver(paintAll).observe(m, { childList: true, subtree: true }); c.subscribe && c.subscribe(() => { paintAll(); setTimeout(() => fateSync(), 0) }) }
   // clic = jet ; clic droit ou appui long = menu d'avantage / désavantage
   let lp = null, longDone = false
   const stopLP = () => { clearTimeout(lp); lp = null }
   document.addEventListener('pointerdown', (ev) => { const r = ev.target.closest('.rl[data-kind]'); if (!r || r.dataset.kind === 'damage') return; longDone = false; lp = setTimeout(() => { longDone = true; rollMenu(r) }, 600) }, true)
   ;['pointerup', 'pointermove', 'pointercancel', 'pointerleave'].forEach((n) => document.addEventListener(n, stopLP, true))
   document.addEventListener('contextmenu', (ev) => { const r = ev.target.closest('.rl[data-kind]'); if (!r || r.dataset.kind === 'damage') return; ev.preventDefault(); ev.stopPropagation(); stopLP(); longDone = true; rollMenu(r) }, true)
+  // États et jet de destinée (livre de règles p. 40) : mêmes règles et même état (data.fate) que la fiche du joueur ; voir fiche-grimoire.modele.html
+  // (vul / unc = Vulnérable / Inconscient posés par la fiche ; seuls ceux-là sont retirés ; la synchronisation se fait à chaque mise à jour, la barre du suivi ne passant pas par ce code)
+  const FM = { nothing: "{{'Sheet.Fate.R.Nothing'|l}}", dying: "{{'Sheet.Fate.R.Dying'|l}}", healed: "{{'Sheet.Fate.R.Healed'|l}}", out: "{{'Sheet.Fate.R.Out'|l}}", dead: "{{'Sheet.Fate.R.Dead'|l}}", unc: "{{'Sheet.Fate.R.Unconscious'|l}}", woke: "{{'Sheet.Fate.R.Woke'|l}}", sleepR: "{{'Sheet.Fate.R.Sleep'|l}}", sleep: "{{'Sheet.Fate.Sleep'|l}}", roll: "{{'Sheet.Fate.Roll'|l}}", ask: "{{'Sheet.Step.RollAsk'|l}}", validate: "{{'Sheet.Step.Validate'|l}}", cancelled: "{{'Sheet.Step.RollCancelled'|l}}" }
+  const fm = (k, o) => FM[k].replace(/\{(\w+)\}/g, (_, n) => o[n])
+  // jet sans résultat (d3 : pas de dé 3D dans E+) : saisie manuelle du résultat, comme sur la fiche du joueur
+  const rollTotal = async (formula, label, die) => {
+    let r = null
+    try { r = await EP.roll(die ? formula.replace(/(\d*d\d+)/gi, '$1[' + die + ']') : formula, { label, type: 'check' }) } catch (e) { fail(e) }
+    if (r && r.result != null && !Number.isNaN(Number(r.result))) return Number(r.result)
+    const a = await dlg(label, '<p class="sub">' + esc(FM.ask.replace('{l}', label).replace('{f}', formula)) + '</p><input type="number" id="rv" name="rv" inputmode="numeric">', [{ label: L.cancel, value: null }, { label: FM.validate, value: 'ok', primary: true }])
+    if (a.value !== 'ok' || a.data.rv === '' || Number.isNaN(Number(a.data.rv))) { toast(FM.cancelled); return null }
+    return Number(a.data.rv)
+  }
+  const flag = (k) => c.get('data.conditions.' + k) === true
+  const setFlag = (k, v) => c.set('data.conditions.' + k, v)
+  const setFate = (o) => c.set('data.fate', Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && v !== false)))
+  const healOne = async () => { await c.set('data.hp.current', Math.max(0, Number(c.get('data.hp.current') || 0) - 1)); await setFlag('affaibli', true) }
+  let fateBusy = false
+  async function fateSync() {
+    if (fateBusy) return
+    const down = c.get('view.data.healthState') === 'down', f = c.get('data.fate') || {}
+    let job = null
+    if (down && !f.state) job = async () => {
+      if (c.get('data.fate.state')) return
+      const vul = !flag('vulnerable'); await setFlag('a-terre', true); await setFlag('vulnerable', true); await setFate({ state: 'out', rounds: 0, vul })
+    }
+    else if (!down && f.state) job = async () => { if (f.vul) await setFlag('vulnerable', false); if (f.unc) await setFlag('inconscient', false); await c.remove('data.fate') }
+    else if (down && f.state === 'unconscious' && !flag('inconscient')) job = async () => { await healOne(); await c.remove('data.fate'); toast(FM.woke) }
+    if (!job) return
+    fateBusy = true
+    try { await job() } catch (e) { fail(e) } finally { fateBusy = false }
+    await redraw()
+  }
+  async function fateClick(b) {
+    if (fateBusy) return
+    const f = c.get('data.fate') || {}, state = f.state || 'out', rounds = Number(f.rounds || 0)
+    fateBusy = true
+    try {
+      if (b && b.dataset.fate === 'sleep') {   // durée d'inconscience : 1d3 h
+        const h = await rollTotal('1d3', FM.sleep); if (h == null) return
+        await setFate({ state: 'unconscious', rounds: 3, hours: h, unc: f.unc }); toast(fm('sleepR', { h })); return
+      }
+      const v = await rollTotal('1d6', FM.roll, "{{'Sheet.Die.Fate'|l}}"); if (v == null) return
+      if (state === 'out') {
+        if (v === 1) {
+          if (f.vul) await setFlag('vulnerable', false)
+          const unc = !flag('inconscient'); await setFlag('inconscient', true); await setFate({ state: 'dying', rounds: 0, unc }); toast(fm('dying', { v }))
+        } else if (v === 6) { await healOne(); if (f.vul) await setFlag('vulnerable', false); await c.remove('data.fate'); toast(fm('healed', { v })) }
+        else if (rounds + 1 >= 3) {
+          if (f.vul) await setFlag('vulnerable', false)
+          const unc = !flag('inconscient'); await setFlag('inconscient', true); await setFate({ state: 'unconscious', rounds: 3, unc }); toast(fm('unc', { v }))
+        } else { await setFate({ state: 'out', rounds: rounds + 1, vul: f.vul }); toast(fm('nothing', { v })) }
+      } else if (state === 'dying') {
+        if (v === 1) { await setFate({ state: 'dead', rounds: 0 }); toast(fm('dead', { v })) }
+        else if (v === 6) {
+          if (f.unc) await setFlag('inconscient', false)
+          const vul = !flag('vulnerable'); await setFlag('vulnerable', true); await setFate({ state: 'out', rounds: 0, vul }); toast(fm('out', { v }))
+        } else toast(fm('nothing', { v }))
+      }
+    } catch (e) { fail(e) } finally { fateBusy = false }
+    await redraw()
+  }
+  // lien vers la règle de l'état (types État et Affliction de la bibliothèque)
+  let stateRefs = null
+  async function openStateRule(slug, label) {
+    if (!stateRefs) { stateRefs = {}; for (const ty of ['State', 'Affliction']) { try { for (const e of ((await EP.query({ entity: 'Rule', where: { type: ty }, limit: 300 })).entries || [])) stateRefs[slugOf(e.reference)] = e.reference } catch (err) { /* bibliothèque indisponible */ } } }
+    if (stateRefs[slug]) EP.open(stateRefs[slug]); else { stateRefs = null; toast("{{'Sheet.RuleMissing'|l}}".replace('{n}', label)) }
+  }
   document.addEventListener('click', (ev) => {
     const r = ev.target.closest('.rl[data-kind]')
     if (r) { ev.preventDefault(); ev.stopPropagation(); if (longDone) { longDone = false; return } roll(r, 0, false); return }
+    const sl = ev.target.closest('[data-rule]')
+    if (sl) { ev.preventDefault(); ev.stopPropagation(); openStateRule(sl.dataset.rule, sl.textContent); return }
+    const fb = ev.target.closest('[data-fate]')
+    if (fb) { ev.preventDefault(); ev.stopPropagation(); fateClick(fb); return }
     const o = ev.target.closest('[data-open]')
     if (o) { ev.preventDefault(); ev.stopPropagation(); if (o.dataset.open === 'mind') mindDialog(); else affDialog() }
   }, true)

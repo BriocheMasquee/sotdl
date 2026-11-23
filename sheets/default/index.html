@@ -88,6 +88,9 @@
     .lvbtn.hot { background:linear-gradient(180deg,var(--blood2),var(--blood)); border-color:#ff9a8f; box-shadow:0 0 12px #ff3b3088, 0 2px 0 #000a; }
     .lvbtn:hover:not(:disabled) { border-color:#fff; }
     .vial { display:flex; align-items:center; gap:12px; margin-top:22px; }
+    .fate { display:flex; align-items:center; justify-content:center; text-align:center; gap:12px; flex-wrap:wrap; margin-top:10px; } .fate .fs { font:700 10px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; color:#ffd0c8; padding:5px 12px; border:1.5px solid #ff9a8f; border-radius:11px; background:#0007; } .fate .lvbtn { display:inline-block; }
+    .fate .stl, #hp-down { cursor:pointer; text-decoration:underline dotted; text-underline-offset:3px; }
+    .fate .fh { flex-basis:100%; font:500 11px var(--f-ui); opacity:.85; }
     .vtrack { position:relative; flex:1; height:38px; border-radius:19px; background:#0a0706; border:2px solid #54443a; box-shadow:inset 0 3px 9px #000; overflow:hidden; display:block; }
     .vtrack .fill { position:absolute; inset:0 auto 0 0; width:0; background:linear-gradient(180deg,#d42028,#7a0b10); box-shadow:inset 0 2px 0 #ff7a7a55; transition:width .2s; }
     .vtrack.down .fill { background:linear-gradient(180deg,#6a6a6a,#2a2a2a); }
@@ -175,6 +178,8 @@
     .or { text-align:center; font:700 11px var(--f-ui); letter-spacing:.24em; color:#8a7f70; margin:12px 0 8px; } .btn.wide { display:block; width:100%; text-align:center; }
     .rrow { display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px dotted #17120f44; } .rrow .rn { flex:1; font:17px var(--f-title); } .rv { min-width:64px; text-align:right; font:22px var(--f-title); color:#8a7f70; } .rin { width:72px !important; text-align:center; margin:0 !important; padding:3px 6px !important; }
     .stp { display:flex; align-items:center; gap:8px; padding:6px 0; border-bottom:1px dotted #17120f44; } .stp .sl { flex:1; font:15px var(--f-body); } .stp.done .sl { opacity:.6; } .stp .btn { padding:2px 14px; min-width:84px; text-align:center; } .stp .skip { min-width:56px; text-align:right; } .skip { font:700 10px var(--f-ui); letter-spacing:.1em; text-transform:uppercase; color:#8a7f70; text-decoration:underline; } .sub.book { font-style:italic; margin:4px 0 0; } .downlist { margin:4px 0 0 18px; padding:0; font:13px var(--f-body); color:#3b322a; } .downlist li { margin:2px 0; }
+    .lrow { display:grid; grid-template-columns:1fr repeat(3,auto); gap:8px 12px; align-items:center; padding:5px 0; border-bottom:1px dotted #17120f44; } .lrow .nm { font:15px var(--f-body); } .lrow .nm small { display:block; font:italic 11px var(--f-body); color:#6b5f52; } .lhead .nm { font:700 10px var(--f-ui); letter-spacing:.12em; text-transform:uppercase; color:var(--blood); }
+    .lrc { display:flex; gap:4px; align-items:center; font:700 11px var(--f-ui); } .lrc input { width:18px; height:18px; }
     .sub.warn { margin:6px 0 0; color:var(--blood); font-size:12px; }
     .qin { width:38px; height:24px; text-align:center; font:700 14px var(--f-ui); color:var(--ink); background:transparent; border:0; border-bottom:1.5px dotted #7a6f60; border-radius:0; padding:0; flex:none; -moz-appearance:textfield; } .qin::-webkit-inner-spin-button, .qin::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; } .qin:focus { border-bottom-color:var(--blood2); outline:0; }
     .rg { margin-left:auto; display:flex; align-items:center; gap:12px; flex:none; } .wl .btn, .wl .seal2 { min-width:80px; text-align:center; flex:none; }
@@ -232,6 +237,7 @@
     .db input[type=text], .db textarea { font:15px var(--f-body); }
     .db label.opt { display:flex; align-items:center; gap:10px; padding:3px 0; font:15px var(--f-body); } .db input[type=checkbox], .db input[type=radio] { accent-color:var(--blood); width:18px; height:18px; }
     .btn .bsub { display:block; font:400 11px var(--f-ui); letter-spacing:0; text-transform:none; margin-top:2px; white-space:normal; }
+    .dlg.wide { width:min(94%,560px); } .dbt.one { flex-wrap:nowrap; } .dbt.one .btn { white-space:nowrap; }
     .dbt { display:flex; gap:10px; justify-content:flex-end; margin-top:14px; flex-wrap:wrap; }
     .drawer { position:fixed; top:0; right:0; bottom:0; width:min(92%,440px); z-index:9; background-color:#d9dde3; background-image:var(--paper,none); background-size:256px; padding:22px 22px 18px; box-shadow:-10px 0 24px #000a; overflow-y:auto; border-left:3px solid var(--blood); }
     .drawer .ribbon { position:absolute; right:26px; top:0; width:38px; height:64px; background:linear-gradient(180deg,var(--blood2),var(--blood)); clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%); color:var(--bone); text-align:center; font:700 14px/38px var(--f-ui); }
@@ -268,6 +274,7 @@
       <button type="button" class="vtrack" id="hp-open" data-tt="Sheet.EditDamage"><i class="fill"></i><i class="tick"><em data-t="Sheet.Wounded"></em></i><b id="hp-text"></b><b class="r" id="hp-down" data-t="Sheet.Down" hidden></b></button>
       <button type="button" class="pm" id="hp-plus" data-ta="Sheet.HurtOne" data-tt="Sheet.HurtOne">+</button>
     </div>
+    <div class="fate" id="fate" hidden></div>
   </div>
   <div class="band"><div class="sigs" id="attrs"></div><div class="chars" id="stats"></div></div>
   <div class="status" id="badges"></div>
@@ -396,11 +403,11 @@
 
   // ---- fenêtres ----
   // dialog(titre, corps HTML, boutons) : résout { value, data } ; value = null si fermé en touchant le fond
-  function dialog(title, body, buttons, onOpen) {
+  function dialog(title, body, buttons, onOpen, oneRow) {
     return new Promise((resolve) => {
       const ov = $('overlay')
-      ov.innerHTML = `<div class="veil"></div><div class="dlg" role="dialog" aria-label="${esc(title)}"><h3 class="ban"><span>${esc(title)}</span></h3><div class="db">${body}</div>
-        <div class="dbt">${buttons.map((b, i) => `<button type="button" class="btn${b.primary ? ' on' : ''}" data-b="${i}">${esc(b.label)}${b.sub ? `<small class="bsub">${esc(b.sub)}</small>` : ''}</button>`).join('')}</div></div>`
+      ov.innerHTML = `<div class="veil"></div><div class="dlg${oneRow ? ' wide' : ''}" role="dialog" aria-label="${esc(title)}"><h3 class="ban"><span>${esc(title)}</span></h3><div class="db">${body}</div>
+        <div class="dbt${oneRow ? ' one' : ''}">${buttons.map((b, i) => `<button type="button" class="btn${b.primary ? ' on' : ''}" data-b="${i}">${esc(b.label)}${b.sub ? `<small class="bsub">${esc(b.sub)}</small>` : ''}</button>`).join('')}</div></div>`
       ov.hidden = false
       const close = (value) => {
         const data = {}
@@ -480,7 +487,8 @@
   const edgeTermOf = (n) => (n ? (n > 0 ? '+' : '-') + Math.abs(n) + 'd6kh1[' + (n > 0 ? t('Sheet.Edge.Adv') : t('Sheet.Edge.Dis')) + ']' : '')
   // encombré (charge > Force ; au-delà du double la charge est impossible) : tous les jets de Force et d'Agilité se font avec 1 désavantage de plus (livre de règles, p. 99)
   const encumbered = () => { const str = Number(hero.get('view.data.strength') ?? 0), tot = Number(hero.get('view.data.encumbrance.total') ?? 0); return str > 0 && tot > str }
-  const dmgFormula = (f) => String(f).replace(/(\d*d\d+)/gi, '$1[' + t('Sheet.Die.Damage') + ']')
+  const tagDice = (f, key) => String(f).replace(/(\d*d\d+(?:k[hl]\d+|x\d+)?)/gi, '$1[' + t(key) + ']')   // dés nommés (config.json dice.labels) : « Destinée », « Générique »
+  const dmgFormula = (f) => String(f).replace(/(\d*d\d+(?:k[hl]\d+|x\d+)?)(?![\d\[])/gi, '$1[' + t('Sheet.Die.Damage') + ']')   // un dé déjà nommé (« 1d6[Destinée] ») garde son nom
   async function doRoll(spec, edge = 0, mode) {
     if (spec.raw) { try { return await EP.roll(spec.raw, { label: spec.label, type: spec.type }) } catch (e) { fail(e); return null } }
     if ((spec.attr === 'STR' || spec.attr === 'AGI') && encumbered()) { edge -= 1; note(t('Sheet.EncBane')) }
@@ -609,10 +617,11 @@
     if (afflCache.has(a.name)) return afflCache.get(a.name)
     let info = { text: '', reference: a.reference || '' }
     try {
-      const r = await EP.query({ entity: 'Rule', search: a.name, limit: 10, keys: ['data.descr'] })
+      // EP.query ne renvoie pas `descr` : le texte rendu vient de la transformation des règles (views/transforms/rule.json : view.data.text)
+      const r = await EP.query({ entity: 'Rule', search: a.name, limit: 30, keys: ['view.data.text', 'view.data.raw'] })
       const list = r.entries || []
-      const e = list.find((x) => x.name.toLowerCase() === a.name.toLowerCase()) || null
-      if (e) info = { text: String((e.data && e.data.descr) ?? e['data.descr'] ?? e.descr ?? ''), reference: e.reference || info.reference }
+      const e = list.find((x) => a.reference && slugOf(x.reference) === slugOf(a.reference)) || list.find((x) => String(x.name).toLowerCase() === a.name.toLowerCase()) || null
+      if (e) { const vd = (e.view && e.view.data) || {}; info = { text: String(vd.text || '') || (vd.raw ? mdFull(String(vd.raw)) : ''), reference: e.reference || info.reference } }
     } catch (err) { /* hors bibliothèque : pas de texte */ }
     afflCache.set(a.name, info)
     return info
@@ -638,7 +647,7 @@
     if (b.dataset.b === 'aff-more') {
       const infos = await Promise.all(list.map(afflInfo))
       const dm = []
-      const body = dm.map(([k, v]) => `<div class="afftxt"><b>${esc(k)}.</b> ${esc(v)}</div>`).join('') + (list.length ? list.map((a, i) => `<details class="ad"><summary>${esc(a.name)}</summary><div class="afftxt">${infos[i].text ? mdLite(infos[i].text) : `<span class="empty">${esc(t('Sheet.NoDescr'))}</span>`}</div></details>`).join('') : `<p class="empty">${esc(t('Sheet.NoAfflictions'))}</p>`)
+      const body = dm.map(([k, v]) => `<div class="afftxt"><b>${esc(k)}.</b> ${esc(v)}</div>`).join('') + (list.length ? list.map((a, i) => `<details class="ad"><summary>${esc(a.name)}</summary><div class="afftxt">${infos[i].text ? infos[i].text : `<span class="empty">${esc(t('Sheet.NoDescr'))}</span>`}</div></details>`).join('') : `<p class="empty">${esc(t('Sheet.NoAfflictions'))}</p>`)
       const r = await dialog(t('Sheet.AfflictionsNow'), body, [{ label: t('Sheet.Close'), value: null }, { label: t('Sheet.EditList'), value: 'edit', primary: true }])
       if (r.value === 'edit') afflictionDialog()
       return
@@ -646,7 +655,7 @@
     if (b.dataset.b === 'aff') {
       const a = list[Number(b.dataset.i)]; if (!a) return
       const info = await afflInfo(a)
-      const r = await dialog(a.name, `<div class="afftxt">${info.text ? mdLite(info.text) : `<span class="empty">${esc(t('Sheet.NoDescr'))}</span>`}</div>`,
+      const r = await dialog(a.name, `<div class="afftxt">${info.text ? info.text : `<span class="empty">${esc(t('Sheet.NoDescr'))}</span>`}</div>`,
         [{ label: t('Sheet.Close'), value: null }, ...(info.reference ? [{ label: t('Sheet.SeeRule'), value: 'see' }] : []), { label: t('Sheet.Remove'), value: 'del', primary: true }])
       if (r.value === 'see') openRef(info.reference, a.name)
       if (r.value === 'del') removeAff(a).catch(fail)
@@ -713,7 +722,7 @@
   const linkSpecs = []
   const TERM = /[+-](?:\d+|STR|AGI|INT|WIL|PER)/gi
   function rollSpec(f, label, type) {
-    const m = String(f).match(/^d20((?:[+-](?:\d+|STR|AGI|INT|WIL|PER))*)$/i)
+    const m = String(f).replace(/\[[^\]]*\]/g, '').match(/^d20((?:[+-](?:\d+|STR|AGI|INT|WIL|PER))*)$/i)   // les dés nommés des liens (d20[Test]+AGI) ne gênent pas la lecture
     if (!m) return { raw: dmgFormula(String(f)), label, type: type || 'damage' }
     return { terms: (m[1].match(TERM) || []).map((x) => ({ sign: x[0] === '-' ? -1 : 1, v: x.slice(1).toUpperCase() })), label, kind: type === 'attack' ? 'attack' : 'check' }
   }
@@ -919,6 +928,9 @@
   ]
   let talentRows = []
   // pour chaque origine existante : { o, root, levels: Map(niveau → { talents, choices }) }
+  let usesMods = []
+  const normName = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, ' ').trim()
+  const usesExtra = (x) => { const k = normName(x.name); return usesMods.reduce((acc, [n, b]) => acc + (n === k ? b : 0), 0) }
   function collect(d) {
     const lvl = Number(d.level ?? 0)
     talentRows = []
@@ -941,18 +953,21 @@
       }
       groups.push(g)
     }
+    // talents qui modifient les utilisations d'un autre talent (usesTarget = nom du talent visé, usesBonus = utilisations en plus)
+    usesMods = []
+    for (const g of groups) for (const v of g.levels.values()) for (const a of v.talents) if (a.x.usesTarget && Number(a.x.usesBonus)) usesMods.push([normName(a.x.usesTarget), Number(a.x.usesBonus)])
     return groups
   }
   const talentRow = (n, a) => {
     const x = a.x
-    const max = x.usesBase != null ? Number(x.usesMaximum ?? x.usesBase) : 0
+    const max = (x.usesBase != null ? Number(x.usesMaximum ?? x.usesBase) : 0) + usesExtra(x)
     const uses = max > 0 && a.row >= 0 ? usesHTML(max, x.usesSpent, talentRows[a.row].path + '.usesSpent', x.name) : ''
     return bandRow({ k: 'tl/' + (a.row >= 0 ? talentRows[a.row].path : n + x.name), name: x.name, level: n, uses, body: `<div class="tx">${rollText(x.text || '', x.name)}</div>` })
   }
   function renderTalents(d) {
     const groups = collect(d)
     const other = hero.get('data.otherTalents') || []
-    if (!diff('talents', [ui.edit, last.status, d.level, groups.map((g) => [g.root.name, [...g.levels].map(([n, v]) => [n, v.talents.map((a) => [a.x.name, a.x.usesSpent, a.x.usesMaximum]), v.choices.map((a) => !!a.x.chosen)])]), other.map((a) => [a.name, a.text])])) return
+    if (!diff('talents', [ui.edit, last.status, d.level, groups.map((g) => [g.root.name, [...g.levels].map(([n, v]) => [n, v.talents.map((a) => [a.x.name, a.x.usesSpent, a.x.usesMaximum, usesExtra(a.x)]), v.choices.map((a) => !!a.x.chosen)])]), other.map((a) => [a.name, a.text])])) return
     const blocks = []
     for (const g of groups) {
       const rows = []
@@ -1181,7 +1196,7 @@
   }
   $('transformation').addEventListener('click', async (ev) => {
     if (ev.target.closest('[data-transf=add]')) {
-      try { const picked = await pickEntries('Transformation', t('Sheet.Transf.Add'), { single: true }); if (picked[0]) await hero.embed('data.transformation', picked[0], TRANSF_KEYS) } catch (e) { fail(e) }
+      try { const picked = await pickEntries('Transformation', t('Sheet.Transf.Add'), { single: true }); if (picked[0]) { await hero.embed('data.transformation', picked[0], TRANSF_KEYS); await rollTransfStart(picked[0]) } } catch (e) { fail(e) }
       return
     }
     if (!ev.target.closest('[data-transf=del]')) return
@@ -1190,7 +1205,7 @@
     try {
       // annule d'abord les choix de niveau faits grâce à la transformation (attributs +1, langue, profession, sort…), puis la retire
       for (const e of (hero.get('data.levelSteps') || []).map((x) => x.key).filter((k) => String(k).startsWith('transformation/'))) await undoStep({ key: e })
-      await hero.remove('data.transformation')
+      await hero.remove('data.transformation'); await clearTransfStart()
     } catch (e) { fail(e) }
   })
   $('complication').addEventListener('click', async (ev) => {
@@ -1278,6 +1293,7 @@
     else if (u.t === 'adjust') { await hero.set(`data.attrAdjust.${u.up}.ancestryBonus`, adj(u.up, 'ancestryBonus') - 1); await hero.set(`data.attrAdjust.${u.down}.ancestryBonus`, adj(u.down, 'ancestryBonus') + 1) }
     else if (u.t === 'lang') { const j = idx('data.languages', u.name); if (j >= 0) await hero.remove(`data.languages[${j}]`) }
     else if (u.t === 'autospells') { for (const a of (u.list || []).reverse()) { const sp = hero.get('data.spells') || []; const j = sp.findIndex((x) => (a.reference && x.reference === a.reference) || (a.name && x.name === a.name)); if (j >= 0) await hero.remove(`data.spells[${j}]`) } }
+    else if (u.t === 'langrights') { for (const c of (u.ch || []).slice().reverse()) await hero.set(c.path, c.from) }
     else if (u.t === 'purse') await hero.set('data.currency.ca', Math.max(0, Number(hero.get('data.currency.ca') || 0) - Number(u.v || 0)))
     else if (u.t === 'read') { const path = u.src === 'own' ? `data.languages[${idx('data.languages', u.name) >= 0 ? idx('data.languages', u.name) : u.i}].read` : `data.ancestry.startLanguages[${u.i}].read`; await hero.set(path, false) }
     else if (u.t === 'prof') { const j = idx('data.professionList', u.name); if (j >= 0) await hero.remove(`data.professionList[${j}]`) }
@@ -1297,6 +1313,15 @@
     return (r['level' + n] && r['level' + n].data) || {}
   }
   const ANC_KEYS = ['STR', 'AGI', 'INT', 'WIL', 'attributeChoice', 'startMode', 'STRRoll', 'AGIRoll', 'INTRoll', 'WILRoll', 'perception', 'defense', 'health', 'size', 'speed', 'insanity', 'corruption', 'languagesProfessions', 'startLanguages', 'startProfessions', 'talent', 'powerfulAncestry', 'ancestryLevel1', 'ancestryLevel2', 'ancestryLevel4', 'ancestryLevel5', 'ancestryLevel8', 'creationAttrChoice', 'creationLang', 'creationProf', 'creationLangProfOne']
+  // Folie / Corruption « variable » d'une transformation : jet à l'ajout (fenêtre de jet, d3 : saisie manuelle), enregistré dans data.<stat>.transfStart et ajouté à la valeur de départ
+  async function rollTransfStart(picked) {
+    for (const [k, lk] of [['insanity', 'Characteristics.Insanity'], ['corruption', 'Characteristics.Corruption']]) {
+      const o = hero.get('data.transformation.' + k) || (picked && picked.data && picked.data[k]) || {}
+      if (o.mode !== 'variable' || !o.dice) continue
+      const v = await rollTotal(o.dice, t(lk), lk); if (v != null) await hero.set(`data.${k}.transfStart`, v)
+    }
+  }
+  const clearTransfStart = async () => { for (const k of ['insanity', 'corruption']) if (hero.get(`data.${k}.transfStart`) != null) await hero.remove(`data.${k}.transfStart`) }
   const TRANSF_KEYS = ['attrs', 'perception', 'defense', 'health', 'corruptionFactor', 'speed', 'healingZero', 'insanity', 'corruption', 'insanityRemoved', 'talent', 'powerfulAncestry', 'replaceLevel4', 'transfLevel1', 'transfLevel2', 'transfLevel4', 'transfLevel5', 'transfLevel8']
   const PATH_LEVELS = { novicePath: [1, 2, 5, 8], expertPath: [3, 6, 9], masterPath: [7, 10], secondPath: [7, 10] }
   const pathKeys = (root) => ['pathType'].concat(PATH_LEVELS[root].flatMap((n) => ['level' + n, 'level' + n + 'Talent', 'level' + n + 'Choice']))
@@ -1337,6 +1362,7 @@
     const L = !!f.levelLang, P = !!f.levelProf
     if (L && P && f.levelLangProfOne) add('langprof', 'langprof', t('Sheet.Step.LangProf'))
     else { if (L) add('lang', 'lang', t('Sheet.Step.Lang')); if (P) add('prof', 'prof', t('Sheet.Step.Prof')) }
+    if (f.levelLangRights) add('langrights', 'langrights', t('Sheet.Step.LangRights'))   // « vous lisez / écrivez … les langues que vous parlez » : cases à cocher sur les langues connues
     if (f.levelTradition && f.levelSpell && f.levelMagicOne) add('tradspell', 'tradspell', t('Sheet.Step.TradSpell'))
     else {
       if (f.levelTradition) add('tradition', 'tradition', t('Sheet.Step.Tradition'))
@@ -1372,6 +1398,84 @@
     for (const p of sv.split(/\s+(?:ou|or)\s+|[;,]/)) { const q = p.trim(), m = q.match(/^(\d+)\s*\/\s*(\d+)$/), k = m ? 'g' + m[1] + '_' + m[2] : /^\d+$/.test(q) ? 'g' + q : null; if (k && BODY.includes(k) && !out.includes(k)) out.push(k) }
     return out
   }
+  // ---- États et jet de destinée (livre de règles, p. 40) : quand le personnage est neutralisé, le joueur lance 1d6 à la fin de chaque round.
+  // data.fate { state, rounds, hours, vul, unc } : état (out = hors de combat, dying, unconscious, dead), rounds sans effet, durée du sommeil (1d3 h),
+  // vul / unc = Vulnérable / Inconscient posés PAR LA FICHE (seuls ceux-là sont retirés par elle : une affliction venue d'ailleurs reste au MJ).
+  // Afflictions : À terre à l'entrée (jamais retiré) ; Vulnérable en hors de combat ; Inconscient en agonie et après 3 rounds hors de combat.
+  // La barre du suivi de combat ne passe pas par ce code : la synchronisation se fait à chaque mise à jour de la fiche (fateSync).
+  const FATE_LBL = { out: 'Sheet.Fate.Out', dying: 'Sheet.Fate.Dying', unconscious: 'Sheet.Fate.Unconscious', dead: 'Sheet.Fate.Dead' }
+  // lien vers la règle de l'état (types État et Affliction de la bibliothèque) : ouverture par l'adresse trouvée par EP.query
+  const STATE_SLUG = { out: 'hors-de-combat', dying: 'agoniser', unconscious: 'inconscient', dead: 'mort-instantanee' }
+  let stateRefs = null
+  async function openStateRule(slug, label) {
+    if (!stateRefs) { stateRefs = {}; for (const ty of ['State', 'Affliction']) { try { for (const e of ((await EP.query({ entity: 'Rule', where: { type: ty }, limit: 300 })).entries || [])) stateRefs[slugOf(e.reference)] = e.reference } catch (err) { /* bibliothèque indisponible */ } } }
+    if (stateRefs[slug]) EP.open(stateRefs[slug]); else { stateRefs = null; note(tf('Sheet.RuleMissing', { n: label })) }
+  }
+  document.addEventListener('click', (ev) => {
+    const s = ev.target.closest('#fate [data-rule]'); if (s) { ev.preventDefault(); openStateRule(s.dataset.rule, s.textContent); return }
+    const d = ev.target.closest('#hp-down'); if (d) { ev.preventDefault(); ev.stopPropagation(); openStateRule('neutralise', d.textContent) }
+  }, true)
+  const flag = (k) => hero.get('data.conditions.' + k) === true
+  const setFlag = (k, v) => hero.set('data.conditions.' + k, v)
+  const setFate = (o) => hero.set('data.fate', Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && v !== false)))
+  const healOne = async () => { await hero.set('data.hp.current', Math.max(0, Number(hero.get('data.hp.current') || 0) - 1)); await setFlag('affaibli', true) }
+  async function fateSync(d, connected) {
+    if (!connected || ui.fateBusy) return
+    const down = d.healthState === 'down', f = hero.get('data.fate') || {}
+    let job = null
+    if (down && !f.state) job = async () => {   // entrée en neutralisation : À terre (définitif) et Vulnérable
+      if (hero.get('data.fate.state')) return
+      const vul = !flag('vulnerable'); await setFlag('a-terre', true); await setFlag('vulnerable', true); await setFate({ state: 'out', rounds: 0, vul })
+    }
+    else if (!down && f.state) job = async () => {   // plus neutralisé (soin, résurrection) : on retire ce que la fiche avait posé
+      if (f.vul) await setFlag('vulnerable', false); if (f.unc) await setFlag('inconscient', false); await hero.remove('data.fate')
+    }
+    else if (down && f.state === 'unconscious' && !flag('inconscient')) job = async () => {   // réveil : l'affliction Inconscient a été retirée
+      await healOne(); await hero.remove('data.fate'); toast(t('Sheet.Fate.R.Woke'))
+    }
+    if (!job) return
+    ui.fateBusy = true; try { await job() } catch (e) { fail(e) } finally { ui.fateBusy = false }
+  }
+  function renderFate(d, connected) {
+    const down = d.healthState === 'down', f = hero.get('data.fate') || {}
+    fateSync(d, connected)
+    const state = down && f.state ? f.state : (down ? 'out' : null)
+    if (!diff('fate', [state, f.rounds, f.hours, connected])) return
+    const el = $('fate'); el.hidden = !state
+    if (!state) { el.innerHTML = ''; return }
+    const btn = state === 'dead' ? '' : state === 'unconscious' ? (f.hours ? '' : `<button type="button" class="lvbtn hot" data-fate="sleep"${connected ? '' : ' disabled'}>${esc(t('Sheet.Fate.SleepRoll'))}</button>`) : `<button type="button" class="lvbtn hot" data-fate="roll"${connected ? '' : ' disabled'}>${esc(t('Sheet.Fate.Roll'))}</button>`
+    const extra = state === 'out' ? ` · ${esc(tf('Sheet.Fate.Round', { n: Number(f.rounds || 0) }))}` : state === 'unconscious' && f.hours ? ` · ${esc(tf('Sheet.Fate.Hours', { h: f.hours }))}` : ''
+    const hint = state === 'unconscious' ? `<small class="fh">${esc(t('Sheet.Fate.WakeHint'))}</small>` : ''
+    el.innerHTML = `<span class="fs"><a class="stl" data-rule="${STATE_SLUG[state]}">${esc(t(FATE_LBL[state]))}</a>${extra}</span>${btn}${hint}`
+  }
+  $('fate').addEventListener('click', async (ev) => {
+    const b = ev.target.closest('[data-fate]'); if (!b || b.disabled || ui.fateBusy) return
+    const f = hero.get('data.fate') || {}, state = f.state || 'out', rounds = Number(f.rounds || 0)
+    ui.fateBusy = true
+    try {
+      if (b.dataset.fate === 'sleep') {   // durée d'inconscience : 1d3 h
+        const h = await rollTotal('1d3', t('Sheet.Fate.Sleep')); if (h == null) return
+        await setFate({ state: 'unconscious', rounds: 3, hours: h, unc: f.unc }); toast(tf('Sheet.Fate.R.Sleep', { h })); return
+      }
+      const v = await rollTotal('1d6', t('Sheet.Fate.Roll'), 'Sheet.Die.Fate'); if (v == null) return
+      if (state === 'out') {
+        if (v === 1) {   // agonise : Vulnérable retiré, Inconscient posé
+          if (f.vul) await setFlag('vulnerable', false)
+          const unc = !flag('inconscient'); await setFlag('inconscient', true); await setFate({ state: 'dying', rounds: 0, unc }); toast(tf('Sheet.Fate.R.Dying', { v }))
+        } else if (v === 6) { await healOne(); if (f.vul) await setFlag('vulnerable', false); await hero.remove('data.fate'); toast(tf('Sheet.Fate.R.Healed', { v })) }
+        else if (rounds + 1 >= 3) {   // trois rounds sans effet : Inconscient ; la durée (1d3 h) se lance ensuite par un bouton du bandeau (décompte manuel : le MJ retire l'affliction)
+          if (f.vul) await setFlag('vulnerable', false)
+          const unc = !flag('inconscient'); await setFlag('inconscient', true); await setFate({ state: 'unconscious', rounds: 3, unc }); toast(tf('Sheet.Fate.R.Unconscious', { v }))
+        } else { await setFate({ state: 'out', rounds: rounds + 1, vul: f.vul }); toast(tf('Sheet.Fate.R.Nothing', { v })) }
+      } else if (state === 'dying') {
+        if (v === 1) { await setFate({ state: 'dead', rounds: 0 }); toast(tf('Sheet.Fate.R.Dead', { v })) }
+        else if (v === 6) {   // de nouveau hors de combat : Inconscient retiré, Vulnérable posé
+          if (f.unc) await setFlag('inconscient', false)
+          const vul = !flag('vulnerable'); await setFlag('vulnerable', true); await setFate({ state: 'out', rounds: 0, vul }); toast(tf('Sheet.Fate.R.Out', { v }))
+        } else toast(tf('Sheet.Fate.R.Nothing', { v }))
+      }
+    } catch (e) { fail(e) } finally { ui.fateBusy = false }
+  })
   // ---- baisse de niveau : le formulaire ne peut pas demander confirmation ; la fiche le fait à l'ouverture suivante (`data.levelRef` = dernier niveau confirmé).
   // Deux issues seulement : confirmer la baisse (les choix et les imports automatiques des niveaux supérieurs sont supprimés) ou rétablir le niveau précédent.
   const STEP_LEVEL = /^(ancestry|transformation|novicePath|expertPath|masterPath|secondPath|open)\/(\d+)\//
@@ -1423,7 +1527,13 @@
       }
     }
     // « Autres options » : ouvertes à tous, visibles dès le début (transformation, options de départ, équipement, élément intéressant, ajustement, complication)
-    add('creation/transformation', 'pickTransf', t('Sheet.Create.Transf'), !!(d.transformation && d.transformation.name) || stepDone('creation/transformation'), false, d.transformation && d.transformation.name ? { info: tf('Sheet.Create.TransfDone', { n: d.transformation.name }), undoFn: async () => { await hero.remove('data.transformation') } } : {})
+    add('creation/transformation', 'pickTransf', t('Sheet.Create.Transf'), !!(d.transformation && d.transformation.name) || stepDone('creation/transformation'), false, d.transformation && d.transformation.name ? { info: tf('Sheet.Create.TransfDone', { n: d.transformation.name }), undoFn: async () => { await hero.remove('data.transformation'); await clearTransfStart() } } : {})
+    // jets de Folie / Corruption « variable » de la transformation : étapes visibles (résultat dans data.<stat>.transfStart, ajouté à la valeur de départ)
+    if (d.transformation && d.transformation.name) for (const [k, lk] of [['insanity', 'Characteristics.Insanity'], ['corruption', 'Characteristics.Corruption']]) {
+      const o = d.transformation[k]; if (!o || o.mode !== 'variable' || !o.dice) continue
+      const v = hero.get(`data.${k}.transfStart`), done = v != null
+      add('creation/transf-' + k, 'transfRoll', tf('Sheet.Create.TransfRoll', { s: t(lk), dice: o.dice }), done, true, Object.assign({ stat: k, dice: o.dice, lk }, done ? { info: tf('Sheet.Create.TransfRollDone', { s: t(lk), v }), undoFn: async () => { await hero.remove(`data.${k}.transfStart`) } } : {}))
+    }
     // livre de règles : « vous commencez avec deux professions » ; une profession peut être échangée contre une autre langue ou la capacité de lire une langue connue
     for (let i = 1; i <= 2; i++) add('creation/startprof' + i, 'startProf', tf('Sheet.Create.StartProf', { i, n: 2 }), stepDone('creation/startprof' + i), false)
     // livre de règles : « lancez 3d6 et consultez la table des Ressources » (équipement de départ)
@@ -1501,8 +1611,7 @@
       const steps = makeSteps(f, base, 'levelBonus'), ci = choiceInfo(f, v, base)
       const alt = ci.instead ? steps.filter((s) => isAlt(s, base)) : [], main = ci.instead ? steps.filter((s) => !isAlt(s, base)) : steps
       const seenKey = g.o.root + '/' + n
-      if (!(n === lvl || main.some((x) => !x.done) || ci.pending || drawerSeen.has(seenKey))) return ''
-      drawerSeen.add(seenKey)
+      if (!(n === lvl || main.some((x) => !x.done) || ci.pending)) return ''   // niveau visé, ou niveau ancien avec des choix encore à faire
       const got = gainsHTML(f) + v.talents.filter((a) => !a.chosen).map((a) => `<div class="got">${esc(a.x.name)} <small>(${esc(t('Sheet.Step.Received'))})</small></div>`).join('')
       let todo = stepList(main)
       if (v.choices.length) {
@@ -1521,14 +1630,13 @@
       if (!got && !todo && !book && !results2) return ''
       return box(`${g.root.name} · ${t('Character.Level')} ${n}`, `${todo ? `<div class="lbl">${esc(t('Sheet.Step.ToChoose'))}</div>${todo}` : ''}${results2 ? `<div class="resbox">${results2}</div>` : ''}${got ? `<div class="lbl" style="margin-top:8px">${esc(t('Sheet.Step.AutoSummary'))}</div>${got}` : ''}${book}`, 'tight')
     }).join('')).join('')
-    const paths = pathSteps(d, lvl)
+    const paths = pathSteps(d, lvl).filter((x) => !x.done || x.req.min === lvl)   // voies : seulement celle du niveau visé, ou celles qu'il reste à choisir
     // choix ouverts à tous : à faire (tous niveaux atteints) ; faits : seulement pour le niveau actuel ou ceux déjà affichés dans cette fenêtre
-    const openAll = openSteps(d, lvl), openShown = openAll.filter((x) => !x.done || Number(x.key.split('/')[1]) === lvl || drawerSeen.has(x.key))
-    openShown.forEach((x) => drawerSeen.add(x.key))
-    const openHTML = openShown.length ? box(t('Sheet.Open.Title'), `<p class="sub book">${esc(t('Sheet.Open.Hint'))}</p>` + stepList(openShown) + (openShown.some((x) => x.done) ? `<div class="resbox">${stepResults(openShown)}</div>` : ''), 'tight') : ''
+    const openAll = openSteps(d, lvl), openShown = openAll.filter((x) => !x.done || Number(x.key.split('/')[1]) === lvl)
+    const openHTML = openShown.length ? box(t('Sheet.Open.Title'), `` + stepList(openShown) + (openShown.some((x) => x.done) ? `<div class="resbox">${stepResults(openShown)}</div>` : ''), 'tight') : ''
     return `<h3 class="dtitle">${esc(t('Character.Level'))} ${lvl}${lvl < 10 ? `<small>→ ${lvl + 1}</small>` : ''}</h3>
       <p class="dsub">${esc(t('Sheet.Step.Intro'))}</p>
-      <div style="margin:8px 0 4px"><button type="button" class="btn on" id="dr-up"${lvl >= 10 ? ' disabled' : off()}>${esc(tf('Sheet.Step.Up', { n: lvl + 1 }))}</button></div>
+      ${lvl >= 10 ? '' : `<div style="margin:8px 0 4px"><button type="button" class="btn on" id="dr-up"${off()}>${esc(tf('Sheet.Step.Up', { n: lvl + 1 }))}</button></div>`}
       ${paths.length ? box(t('Sheet.Step.Paths'), stepList(paths) + (paths.some((x) => x.done) ? `<div class="resbox">${stepResults(paths)}</div>` : ''), 'tight') : ''}
       ${sections || (paths.length || openHTML ? '' : `<p class="empty">${esc(t('Sheet.Step.None'))}</p>`)}
       ${openHTML}
@@ -1591,9 +1699,9 @@
     } catch (e) { fail(e) }
     reopenDrawer()
   })
-  const rollTotal = async (formula, label) => {
+  const rollTotal = async (formula, label, die) => {
     let r = null
-    try { r = await EP.roll(formula, { label, type: 'check' }) } catch (e) { fail(e) }
+    try { r = await EP.roll(die ? tagDice(formula, die) : formula, { label, type: 'check' }) } catch (e) { fail(e) }
     if (r && r.result != null && !Number.isNaN(Number(r.result))) return Number(r.result)
     const a = await dialog(label, `<p class="sub">${esc(tf('Sheet.Step.RollAsk', { l: label, f: formula }))}</p><input type="number" id="rv" name="rv" inputmode="numeric">`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
     if (a.value !== 'ok' || a.data.rv === '' || Number.isNaN(Number(a.data.rv))) { toast(t('Sheet.Step.RollCancelled')); return null }
@@ -1644,7 +1752,7 @@
         ov.querySelector('[data-rl="res"]').addEventListener('click', async (ev) => {
           ev.currentTarget.disabled = true
           let v = null
-          try { const rr = await EP.roll('3d6', { label: t('Sheet.Create.ResourcesLabel'), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
+          try { const rr = await EP.roll(tagDice('3d6', 'Sheet.Die.Generic'), { label: t('Sheet.Create.ResourcesLabel'), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
           if (v != null) { res = v; cell.textContent = v; cell.classList.add('on') }
           else { cell.innerHTML = '<input type="number" class="rin" inputmode="numeric" placeholder="?">'; const inp = cell.querySelector('input'); inp.addEventListener('input', () => { res = inp.value === '' ? null : Number(inp.value); upd() }); inp.focus() }
           upd()
@@ -1664,7 +1772,7 @@
         ov.querySelector('[data-rl="p"]').addEventListener('click', async (ev) => {
           ev.currentTarget.disabled = true
           let v = null
-          try { const rr = await EP.roll('2d6', { label: t('Sheet.Open.PurseRow'), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
+          try { const rr = await EP.roll(tagDice('2d6', 'Sheet.Die.Generic'), { label: t('Sheet.Open.PurseRow'), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
           if (v != null) { res = v; cell.textContent = v; cell.classList.add('on') }
           else { cell.innerHTML = '<input type="number" class="rin" inputmode="numeric" placeholder="?">'; const inp = cell.querySelector('input'); inp.addEventListener('input', () => { res = inp.value === '' ? null : Number(inp.value); upd() }); inp.focus() }
           upd()
@@ -1688,7 +1796,7 @@
         const roll = (id, formula, label, then) => ov.querySelector(`[data-rl="${id}"]`).addEventListener('click', async (ev) => {
           ev.currentTarget.disabled = true
           const cell = ov.querySelector('#rv-' + id); let v = null
-          try { const rr = await EP.roll(formula, { label, type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
+          try { const rr = await EP.roll(tagDice(formula, 'Sheet.Die.Generic'), { label, type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) v = Number(rr.result) } catch (e) { fail(e) }
           const set = (x) => { vals[id] = x; if (then) then(x); upd() }
           if (v != null) { cell.textContent = v; cell.classList.add('on'); set(v) }
           else { cell.innerHTML = '<input type="number" class="rin" inputmode="numeric" placeholder="?">'; const inp = cell.querySelector('input'); inp.addEventListener('input', () => set(inp.value === '' ? null : Number(inp.value))); inp.focus() }
@@ -1703,6 +1811,27 @@
       })
       if (r.value !== 'ok' || vals.t == null || vals.e == null) return
       await mark(st.key, tf('Sheet.Create.InterestDone', { t: vals.t, e: vals.e }), { t: 'none' })
+    } else if (st.type === 'langrights') {
+      // langues connues : celles du personnage et celles de l'ascendance (copie) ; le joueur coche Parlé / Lu / Écrit selon la règle du niveau
+      const KS = ['spoken', 'read', 'written']
+      const own = (hero.get('data.languages') || []).map((x, i) => ({ src: 'own', i, x }))
+      const fix = (((last.view.data || {}).ancestry || {}).startLanguages || []).map((x, i) => ({ src: 'anc', i, x }))
+      const list = own.concat(fix)
+      if (!list.length) { await dialog(st.label, `<p>${esc(t('Sheet.Step.LangRightsNone'))}</p>`, [{ label: t('Sheet.Ok'), value: null, primary: true }]); return }
+      const cell = (r, k) => `<label class="lrc"><input type="checkbox" name="lr${r}:${k}" data-lr="${r}:${k}"${list[r].x[k] ? ' checked' : ''}><span>${esc(t(k === 'spoken' ? 'Sheet.Lang.Spoken' : k === 'read' ? 'Sheet.Lang.Read' : 'Sheet.Lang.Written'))}</span></label>`
+      const head = `<div class="lrow lhead"><span class="nm">${esc(t('Sheet.Step.LangRightsAll'))}</span>${KS.map((k) => `<label class="lrc"><input type="checkbox" name="all-${k}" data-all="${k}"><span>${esc(t(k === 'spoken' ? 'Sheet.Lang.Spoken' : k === 'read' ? 'Sheet.Lang.Read' : 'Sheet.Lang.Written'))}</span></label>`).join('')}</div>`
+      const rows = list.map((r, i) => `<div class="lrow"><span class="nm">${esc(slName(r.x) || '—')}${r.src === 'anc' ? `<small>${esc(t('Sheet.Lang.FromAncestry'))}</small>` : ''}</span>${KS.map((k) => cell(i, k)).join('')}</div>`).join('')
+      const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Step.LangRightsHint'))}</p>${head}${rows}`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }],
+        (ov) => ov.querySelectorAll('[data-all]').forEach((a) => a.addEventListener('change', () => ov.querySelectorAll(`[data-lr$=":${a.dataset.all}"]`).forEach((c) => { c.checked = a.checked }))))
+      if (r.value !== 'ok') return
+      const ch = []
+      for (let i = 0; i < list.length; i++) for (const k of KS) {
+        const want = !!r.data[`lr${i}:${k}`], old = !!list[i].x[k]
+        if (want === old) continue
+        const path = list[i].src === 'own' ? `data.languages[${list[i].i}].${k}` : `data.ancestry.startLanguages[${list[i].i}].${k}`
+        await hero.set(path, want); ch.push({ path, from: old })
+      }
+      await mark(st.key, tf('Sheet.Step.LangRightsDone', { n: ch.length }), { t: 'langrights', ch })
     } else if (st.type === 'startProf') {
       const r0 = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Create.StartProfHint'))}</p><label class="opt"><input type="radio" name="k" value="prof" checked><span><b>${esc(t('Sheet.Step.Prof'))}</b></span></label><label class="opt"><input type="radio" name="k" value="lang"><span><b>${esc(t('Sheet.Create.OtherLang'))}</b></span></label><label class="opt"><input type="radio" name="k" value="read"><span><b>${esc(t('Sheet.Create.ReadLang'))}</b></span></label>`,
         [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
@@ -1712,8 +1841,8 @@
         await hero.insert('data.languages', l); await mark(st.key, tf('Sheet.Step.LangDone', { n: l.name }), { t: 'lang', name: l.name })
       } else if (r0.data.k === 'read') {
         // langues connues que l'on ne sait pas encore lire : celles du personnage et celles de l'ascendance
-        const own = (hero.get('data.languages') || []).map((x, i) => ({ src: 'own', i, name: slName(x), read: x.read }))
-        const fix = (((last.view.data || {}).ancestry || {}).startLanguages || []).map((x, i) => ({ src: 'anc', i, name: slName(x), read: x.read }))
+        const own = (hero.get('data.languages') || []).map((x, i) => ({ src: 'own', i, name: slName(x), read: x.read, spoken: x.spoken }))
+        const fix = (((last.view.data || {}).ancestry || {}).startLanguages || []).map((x, i) => ({ src: 'anc', i, name: slName(x), read: x.read, spoken: x.spoken }))
         const list = own.concat(fix).filter((x) => !x.read)
         if (!list.length) { await dialog(st.label, `<p>${esc(t('Sheet.Create.NoReadable'))}</p>`, [{ label: t('Sheet.Ok'), value: null, primary: true }]); return }
         const r1 = await dialog(t('Sheet.Create.ReadLang'), list.map((x, i) => `<label class="opt"><input type="radio" name="rl" value="${i}"${i === 0 ? ' checked' : ''}><span><b>${esc(x.name)}</b></span></label>`).join(''), [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
@@ -1767,11 +1896,14 @@
       await mark(st.key, tf('Sheet.Step.AdjustDone', { u: nm(r.data.up), d: nm(r.data.down) }), { t: 'adjust', up: r.data.up, down: r.data.down })
     } else if (st.type === 'pickTransf') {
       const picked = await pickEntries('Transformation', st.label, { single: true }); if (!picked[0]) return
-      await hero.embed('data.transformation', picked[0], TRANSF_KEYS)
+      await hero.embed('data.transformation', picked[0], TRANSF_KEYS)   // les jets Folie / Corruption variables deviennent des étapes de la modale
+    } else if (st.type === 'transfRoll') {
+      const v = await rollTotal(st.dice, t(st.lk), st.lk); if (v == null) return
+      await hero.set(`data.${st.stat}.transfStart`, v)
     } else if (st.type === 'pickPathLevel') {
       let root = st.req.root, type = st.req.types[0]
       if (st.req.alt) {
-        const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Step.PathMasterOrSecond'))}</p>`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.PathMasterBtn'), value: 'master' }, { label: t('Sheet.Step.PathSecondBtn'), value: 'second', primary: true }])
+        const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Step.PathMasterOrSecond'))}</p>`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.PathMasterBtn'), value: 'master' }, { label: t('Sheet.Step.PathSecondBtn'), value: 'second' }], undefined, true)
         if (!r.value) return
         if (r.value === 'second') { root = st.req.alt; type = 'Expert' } else type = 'Master'
       }
@@ -1800,7 +1932,7 @@
         ov.querySelectorAll('[data-rl]').forEach((b) => b.addEventListener('click', async () => {
           const k = b.dataset.rl, cell = ov.querySelector('#rv-' + k); b.disabled = true
           let res = null
-          try { const rr = await EP.roll(anc[k + 'Roll'], { label: t('Attributes.' + k), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) res = Number(rr.result) } catch (e) { fail(e) }
+          try { const rr = await EP.roll(tagDice(anc[k + 'Roll'], 'Sheet.Die.Generic'), { label: t('Attributes.' + k), type: 'check' }); if (rr && rr.result != null && !Number.isNaN(Number(rr.result))) res = Number(rr.result) } catch (e) { fail(e) }
           if (res != null) { vals[k] = res; cell.textContent = res; cell.classList.add('on') }
           else { cell.innerHTML = '<input type="number" class="rin" inputmode="numeric" placeholder="?">'; const inp = cell.querySelector('input'); inp.addEventListener('input', () => { vals[k] = inp.value === '' ? null : Number(inp.value); upd() }); inp.focus() }
           upd()
@@ -1810,7 +1942,7 @@
       if (r.value === 'ok') { for (const k of keys) await hero.set(`data.attrAdjust.${k}.base`, vals[k]); await mark(st.key, tf('Sheet.Step.RollsDone', { a: keys.map((k) => `${t('Attributes.' + k)} ${vals[k]}`).join(' · ') }), { t: 'baseAttrs', k: keys }) }
       else await mark(st.key, t('Sheet.Step.FixedDone'), { t: 'none' })
     } else if (st.type === 'startRoll') {
-      const v = await rollTotal(st.dice, t(st.stat === 'insanity' ? 'Characteristics.Insanity' : 'Characteristics.Corruption')); if (v == null) return
+      const v = await rollTotal(st.dice, t(st.stat === 'insanity' ? 'Characteristics.Insanity' : 'Characteristics.Corruption'), st.stat === 'insanity' ? 'Characteristics.Insanity' : 'Characteristics.Corruption'); if (v == null) return
       await hero.set(`data.${st.stat}.start`, v); await mark(st.key, `${st.label.split(' :')[0]} : ${v}`, { t: 'start', stat: st.stat })
     }
   }
@@ -1855,7 +1987,7 @@
     const folie = imax != null && imax <= 10
       ? `<span class="meter">${lab('Characteristics.Insanity')}<span class="dias">${diamonds(ins, imax, connected)}</span><b>${ins}/${imax}</b></span>`
       : `<span class="meter">${lab('Characteristics.Insanity')}<button type="button" class="pm d sm" data-c="insanity" data-d="-1" aria-label="−1"${dis}>−</button>${gauge(ins, imax)}<b class="big">${ins}${imax != null ? '/' + imax : ''}</b><button type="button" class="pm d sm" data-c="insanity" data-d="1" aria-label="+1"${dis}>+</button></span>`
-    const tag = (cls, on, lk, act, short) => `<button type="button" class="luck ${cls}${on ? ' on' : ''}" data-b="${act}"${act === 'luck' ? ` role="switch" aria-checked="${!!on}" title="${esc(t('Sheet.Luck.Tip'))}"${dis}` : ` title="${esc(t('Sheet.Mind'))}"`}><i></i>${esc(tight && short ? short : t(lk))}</button>`
+    const tag = (cls, on, lk, act, short) => `<button type="button" class="luck ${cls}${on ? ' on' : ''}" data-b="${act}"${act === 'luck' ? ` role="switch" aria-checked="${!!on}"${dis}` : ` title="${esc(t('Sheet.Mind'))}"`}><i></i>${esc(tight && short ? short : t(lk))}</button>`
     const middle = tag('', st.luck, 'Character.Luck', 'luck') + tag('dem', !!dem, 'Character.Dementia', 'mind') + tag('mark', !!mark, 'Character.DarkMark', 'mind', t('Sheet.MarksShort'))
     const pills = aff.map((a, i) => `<button type="button" class="aff" data-b="aff" data-i="${i}">${esc(a.name)}</button>`)
     return folie + '<span class="vr"></span>' + stepper('corruption', 'Characteristics.Corruption', cor, connected, lab) + '<span class="vr"></span>' + middle +
@@ -1909,6 +2041,7 @@
     const pend = pendingChoices(d)
     const lvHtml = (creating(d) ? '✎ ' + t('Sheet.Create.Button') : '▲ ' + t('Sheet.Step.Button')) + (pend ? `<em>${tf('Sheet.Step.Count', { n: pend })}</em>` : '')
     if ($('level-btn').dataset.k !== lvHtml) { $('level-btn').dataset.k = lvHtml; $('level-btn').innerHTML = lvHtml }
+    $('level-btn').hidden = Number(d.level ?? 0) >= 10 && !pend && !creating(d)   // niveau 10 = maximum : plus de montée de niveau (sauf choix restant)
     $('level-btn').classList.toggle('hot', pend > 0)
     // jets
     ATTR.forEach(([k, valKey, modKey]) => {
@@ -1929,6 +2062,7 @@
     $('hp-open').classList.toggle('down', d.healthState === 'down')
     text($('hp-text'), `${t('Characteristics.Damage')} ${cur ?? 0} / ${max ?? '—'}`)
     $('hp-down').hidden = d.healthState !== 'down'
+    renderFate(d, connected)
     $('hp-minus').disabled = $('hp-plus').disabled = $('hp-open').disabled = !connected
     // folie (losanges : toucher en coche ou décoche), corruption, afflictions
     const aff = affList()

@@ -37,6 +37,8 @@
     // Folie ou corruption : valeur de départ et valeur actuelle.
     "StartCurrent": {
       "start": { "type": "integer", "min": 0 },
+      // jet de Folie / Corruption « variable » d'une transformation (fiche interactive, 2026-11-23), ajouté à la valeur de départ
+      "transfStart": { "type": "integer", "min": 0 },
       "current": { "type": "integer", "min": 0, "play": true }
     },
 
@@ -47,6 +49,8 @@
       "usesBase": "integer",
       "usesPower": "boolean",
       "usesLevel": "boolean",
+      "usesTarget": "string",
+      "usesBonus": "integer",
       "usesSpent": { "type": "integer", "min": 0, "play": true }
     },
 
@@ -58,6 +62,8 @@
       "usesBase": "integer",
       "usesPower": "boolean",
       "usesLevel": "boolean",
+      "usesTarget": "string",
+      "usesBonus": "integer",
       "usesSpent": { "type": "integer", "min": 0, "play": true }
     },
 
@@ -109,6 +115,7 @@
       "levelLang": "boolean",
       "levelProf": "boolean",
       "levelLangProfOne": "boolean",
+      "levelLangRights": "boolean",
       "levelTradition": "boolean",
       "levelSpell": "boolean",
       "levelMagicChoices": "integer",
@@ -130,6 +137,7 @@
       "levelLang": "boolean",
       "levelProf": "boolean",
       "levelLangProfOne": "boolean",
+      "levelLangRights": "boolean",
       "levelTradition": "boolean",
       "levelSpell": "boolean",
       "levelMagicChoices": "integer",
@@ -493,6 +501,16 @@
     // SANTÉ ET ÉTATS : `hp.current` est les DÉGÂTS subis (barre `marked` de config.json, depuis le
     // 2026-11-18) : 0 au départ, blessé à la moitié de la Santé, neutralisé au maximum. Le maximum
     // (`hp.maximum` = Santé) est calculé.
+    // JET DE DESTINÉE (fiche, 2026-11-22) : état du personnage neutralisé (out = hors de combat, dying = agonise, unconscious, dead), rounds sans effet, durée du sommeil en heures (hours) et afflictions posées par la fiche (vul = Vulnérable, unc = Inconscient : seules celles-là sont retirées par la fiche)
+    "fate": {
+      "properties": {
+        "state": { "type": "string", "play": true },
+        "rounds": { "type": "integer", "min": 0, "play": true },
+        "hours": { "type": "integer", "min": 0, "play": true },
+        "vul": { "type": "boolean", "play": true },
+        "unc": { "type": "boolean", "play": true }
+      }
+    },
     "hp": {
       "properties": {
         "current": { "type": "integer", "min": 0, "play": true }

@@ -5,7 +5,7 @@
     <h1 class="entity-title">{{ name }}</h1>
     {% if sourceFormatted %}<div class="entity-source">{% include "source.html" %}</div>{% endif %}
   </header>
-  {% if image %}<div class="entity-image"><img src="{{ image|resolvePath }}" alt="{{ name }}"></div>{% endif %}
+  {% if image %}<div class="entity-image"><a href="{{ image|resolvePath }}" target="_blank"><img src="{{ image|resolvePath }}" alt="{{ name }}"></a></div>{% endif %}
   {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
   {% if data.level1.data.attrs.STR != nil or data.level1.data.attrs.AGI != nil or data.level1.data.attrs.INT != nil or data.level1.data.attrs.WIL != nil or data.level1.data.attrs.custom or data.level1.data.gains.perception != nil or data.level1.data.gains.defense != nil or data.level1.data.gains.defenseFixed != nil or data.level1.data.gains.health != nil or data.level1.data.gains.speed != nil or data.level1.data.gains.power != nil or data.level1.data.gains.insanity != nil or data.level1.data.gains.corruption != nil or data.level1.data.gains.size != nil or data.level1.data.gains.custom or data.level1.data.levelLangProf or data.level1.data.levelOptions or data.level1Talent or data.level1Choice %}
   <section class="level">
