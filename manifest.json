@@ -2,12 +2,20 @@
   "id": "sotdl",
   "name": "Shadow of the Demon Lord",
   "type": "system",
-  "version": "0.14.0",
+  "version": "1.0.0",
   "compatibility": {
     "minimum": "5.2.0"
   },
-  "download": "https://github.com/BriocheMasquee/sotdl/releases/download/0.14.0/sotdl.system",
+  "download": "https://github.com/BriocheMasquee/sotdl/releases/download/1.0.0/sotdl.system",
   "repository": "https://github.com/BriocheMasquee/sotdl",
   "website": "https://schwalbentertainment.com",
-  "description": "Shadow of the Demon Lord is a dark fantasy role-playing game of a world in agony, on the verge of the end times."
+  "description": "Shadow of the Demon Lord is a dark fantasy role-playing game of a world in agony, on the verge of the end times.",
+  "recommends": [
+    {
+      "id": "aide-osd",
+      "type": "module",
+      "manifest": "https://github.com/BriocheMasquee/sotdl-help/releases/latest/download/aide-osd.json",
+      "reason": "Guide d'utilisation du système (français) : feuille de personnage, cartes du MJ, suivi de combat, réglages. / Usage guide for the system (French)."
+    }
+  ]
 }
