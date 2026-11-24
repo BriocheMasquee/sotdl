@@ -19,7 +19,7 @@
     <div class="line"><b>{{ 'Characteristics.Health'|l }}</b> {{ data.health.attribute|default: 'STR'|map: 'HealthPhrase'|l }}{% if data.health.bonus %} {{ data.health.bonus|signed }}{% endif %}</div>
     <div class="line"><b>{{ 'Characteristics.HealingRate'|l }}</b> {{ 'Ancestry.HealingRule'|l }}</div>
     <div class="line"><b>{{ 'Characteristics.Size'|l }}</b> {% if data.size != nil %}{{ data.size|map: 'BodySize' }}{% else %}—{% endif %}, <b>{{ 'Characteristics.Speed'|l }}</b> {% if data.speed != nil %}{{ data.speed }}{% else %}—{% endif %}, <b>{{ 'Characteristics.Power'|l }}</b> 0</div>
-    <div class="line">{% markdown -%}**{{ 'Characteristics.Damage'|l }}** 0, **{{ 'Characteristics.Insanity'|l }}** {% if data.insanity.mode == 'variable' %}{% if data.insanity.dice != nil %}{{ data.insanity.dice }}{% else %}—{% endif %}{% elif data.insanity.value != nil %}{{ data.insanity.value }}{% else %}—{% endif %}, **{{ 'Characteristics.Corruption'|l }}** {% if data.corruption.mode == 'variable' %}{% if data.corruption.dice != nil %}{{ data.corruption.dice }}{% else %}—{% endif %}{% elif data.corruption.value != nil %}{{ data.corruption.value }}{% else %}—{% endif %}{% endmarkdown %}</div>
+    <div class="line">{% markdown -%}**{{ 'Characteristics.Damage'|l }}** 0, **{{ 'Characteristics.Insanity'|l }}** {% if data.insanity.mode == 'variable' %}{% if data.insanity.dice != nil %}{% set t_Insanity 'Characteristics.Insanity'|l %}[{{data.insanity.dice}}](</roll/{% for term in data.insanity.dice|split:'+' %}{% if not forloop.first %}+{% endif %}{% if 'd' in term %}{% set pp term|split:'d' %}{{ pp.first }}d{{ pp.last }}[{{ t_Insanity }}]{% else %}{{ term }}{% endif %}{% endfor %}/{{ t_Insanity }}/check>){% else %}—{% endif %}{% elif data.insanity.value != nil %}{{ data.insanity.value }}{% else %}—{% endif %}, **{{ 'Characteristics.Corruption'|l }}** {% if data.corruption.mode == 'variable' %}{% if data.corruption.dice != nil %}{% set t_Corruption 'Characteristics.Corruption'|l %}[{{data.corruption.dice}}](</roll/{% for term in data.corruption.dice|split:'+' %}{% if not forloop.first %}+{% endif %}{% if 'd' in term %}{% set pp term|split:'d' %}{{ pp.first }}d{{ pp.last }}[{{ t_Corruption }}]{% else %}{{ term }}{% endif %}{% endfor %}/{{ t_Corruption }}/check>){% else %}—{% endif %}{% elif data.corruption.value != nil %}{{ data.corruption.value }}{% else %}—{% endif %}{% endmarkdown %}</div>
     </div>
   </section>{% endif %}
     {% if data.languagesProfessions %}<div class="line justify">{% markdown -%}**{{ 'Common.Language&Profession'|l }}.** {{ data.languagesProfessions }}{% endmarkdown %}</div>{% endif %}
@@ -91,4 +91,5 @@
   {% endif %}{% endif %}
   {% if data.tables %}<section class="level"><h2 class="section">{{ 'Ancestry.Tables'|l }}</h2></section><section class="entity-tables">{{ data.tables|md }}</section>{% endif %}
 </main>
+{{ runtime }}
 {% endblock %}

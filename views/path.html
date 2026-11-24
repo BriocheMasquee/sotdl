@@ -127,4 +127,5 @@
   {% if data.other and data.otherTalents %}<section class="level"><h2 class="section">{{ data.talentList.talentName }}</h2>{% for t in data.otherTalents %}<div class="line talent">{% markdown -%}**{{ t.name }}.** {{ t.text }}{% endmarkdown %}</div>{% endfor %}</section>{% endif %}
   {% if data.tables %}<section class="level"><h2 class="section">{{ 'Path.Tables'|l }}</h2></section><section class="entity-tables">{{ data.tables|md }}</section>{% endif %}
 </main>
+{{ runtime }}
 {% endblock %}

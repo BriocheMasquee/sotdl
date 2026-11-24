@@ -41,4 +41,5 @@
   {% if descr %}<div class="description">{{ descr|md }}</div>{% endif %}
   {% if image %}<div class="entity-image"><a href="{{ image|resolvePath }}" target="_blank"><img src="{{ image|resolvePath }}" alt="{{ name }}"></a></div>{% endif %}
 </main>
+{{ runtime }}
 {% endblock %}

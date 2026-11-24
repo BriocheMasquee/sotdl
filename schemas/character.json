@@ -467,6 +467,8 @@
     "darkMark": "text",
     "story": "text",
     "luck": { "type": "boolean", "play": true },
+    // tour choisi par le joueur : none | fast | slow (feuille, carte du MJ, suivi de combat ; 2026-11-24)
+    "turn": { "type": "string", "play": true },
     "bagNotes": "text",
     // montée de niveau et création : étapes déjà faites (une entrée par étape, présence = faite) ; `created` = création du personnage terminée
     "levelSteps": ["LevelStep"],

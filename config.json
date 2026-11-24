@@ -42,7 +42,7 @@
             "type": "marked"
           }
         ],
-        "detail": "{{'Characteristics.DefenseAbbr'|l}} {% if data.defenseValue != nil %}{{data.defenseValue}}{% else %}—{% endif %} • {{'Characteristics.PerceptionAbbr'|l}} {% if data.perceptionFinal != nil %}{{data.perceptionFinal}}{% else %}—{% endif %}"
+        "detail": "{{'Characteristics.DefenseAbbr'|l}} {% if data.defenseValue != nil %}{{data.defenseValue}}{% else %}—{% endif %} • {{'Characteristics.PerceptionAbbr'|l}} {% if data.perceptionFinal != nil %}{{data.perceptionFinal}}{% else %}—{% endif %}{% if data.turn == 'fast' %} • ⚡ {{'TurnType.Fast'|l}}{% elif data.turn == 'slow' %} • ⏳ {{'TurnType.Slow'|l}}{% endif %}"
       }
     },
     "Complication": {
@@ -277,6 +277,10 @@
       "Folie": { "color": "#5B3A8C", "textColor": "#FFFFFF" },
       "Insanity": { "color": "#5B3A8C", "textColor": "#FFFFFF" },
       "Corruption": { "color": "#2C7A62", "textColor": "#FFFFFF" }
-    }
+    },
+    "options": [
+      { "id": "boon", "label": "Sheet.Edge.Adv", "when": { "faces": [20] }, "add": "1d6[Avantage]" },
+      { "id": "bane", "label": "Sheet.Edge.Dis", "when": { "faces": [20] }, "add": "-1d6[Désavantage]" }
+    ]
   }
 }

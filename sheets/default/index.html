@@ -65,29 +65,29 @@
     .chip.tool { margin-left:auto; border-color:#8c8274; color:#5b5045; font-weight:600; text-transform:none; letter-spacing:0; }
     .chip .x { margin-left:6px; color:var(--blood2); }
     /* ---- bandeau d'en-tête ---- */
-    .hero { position:relative; z-index:2; background:linear-gradient(180deg,#1f1813,#110c0a); color:var(--bone); padding:20px 30px 40px; overflow:hidden; }
+    .hero { position:relative; z-index:2; background:linear-gradient(180deg,#1f1813,#110c0a); color:var(--bone); padding:14px 30px 34px; overflow:hidden; }
     .hero::before { content:''; position:absolute; inset:0; background-image:var(--paper,none); background-size:256px; opacity:.09; mix-blend-mode:screen; }
     .hero::after { content:''; position:absolute; left:-80px; bottom:-120px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,#8e0e1477,transparent 65%); }
     .hero > * { position:relative; z-index:1; }
     .hero > i.pent { position:absolute; right:-130px; top:-215px; width:470px; height:470px; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27400%27%20height%3D%27400%27%20viewBox%3D%270%200%20400%20400%27%3E%3Cg%20fill%3D%27%23efe8d8%27%3E%3Cpath%20d%3D%27M200.0%20328.0Q167.3%20210.6%20124.8%2096.4Q157.4%20213.8%20200.0%20328.0ZM124.8%2096.4Q220.2%20172.2%20321.7%20239.6Q226.3%20163.8%20124.8%2096.4ZM321.7%20239.6Q200.0%20234.4%2078.3%20239.6Q200.0%20244.8%20321.7%20239.6ZM78.3%20239.6Q179.8%20172.2%20275.2%2096.4Q173.7%20163.8%2078.3%20239.6ZM275.2%2096.4Q232.7%20210.6%20200.0%20328.0Q242.6%20213.8%20275.2%2096.4Z%27/%3E%3C/g%3E%3Cg%20fill%3D%27none%27%20stroke%3D%27%23efe8d8%27%20stroke-width%3D%271.3%27%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27142%27/%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27150%27%20stroke-dasharray%3D%271%203%27/%3E%3Cline%20x1%3D%22350.0%22%20y1%3D%22200.0%22%20x2%3D%22360.0%22%20y2%3D%22200.0%22/%3E%3Cline%20x1%3D%22349.2%22%20y1%3D%22215.7%22%20x2%3D%22354.2%22%20y2%3D%22216.2%22/%3E%3Cline%20x1%3D%22346.7%22%20y1%3D%22231.2%22%20x2%3D%22351.6%22%20y2%3D%22232.2%22/%3E%3Cline%20x1%3D%22342.7%22%20y1%3D%22246.4%22%20x2%3D%22352.2%22%20y2%3D%22249.4%22/%3E%3Cline%20x1%3D%22337.0%22%20y1%3D%22261.0%22%20x2%3D%22341.6%22%20y2%3D%22263.0%22/%3E%3Cline%20x1%3D%22329.9%22%20y1%3D%22275.0%22%20x2%3D%22338.6%22%20y2%3D%22280.0%22/%3E%3Cline%20x1%3D%22321.4%22%20y1%3D%22288.2%22%20x2%3D%22325.4%22%20y2%3D%22291.1%22/%3E%3Cline%20x1%3D%22311.5%22%20y1%3D%22300.4%22%20x2%3D%22315.2%22%20y2%3D%22303.7%22/%3E%3Cline%20x1%3D%22300.4%22%20y1%3D%22311.5%22%20x2%3D%22303.7%22%20y2%3D%22315.2%22/%3E%3Cline%20x1%3D%22288.2%22%20y1%3D%22321.4%22%20x2%3D%22291.1%22%20y2%3D%22325.4%22/%3E%3Cline%20x1%3D%22275.0%22%20y1%3D%22329.9%22%20x2%3D%22280.0%22%20y2%3D%22338.6%22/%3E%3Cline%20x1%3D%22261.0%22%20y1%3D%22337.0%22%20x2%3D%22263.0%22%20y2%3D%22341.6%22/%3E%3Cline%20x1%3D%22246.4%22%20y1%3D%22342.7%22%20x2%3D%22247.9%22%20y2%3D%22347.4%22/%3E%3Cline%20x1%3D%22231.2%22%20y1%3D%22346.7%22%20x2%3D%22232.2%22%20y2%3D%22351.6%22/%3E%3Cline%20x1%3D%22215.7%22%20y1%3D%22349.2%22%20x2%3D%22216.2%22%20y2%3D%22354.2%22/%3E%3Cline%20x1%3D%22200.0%22%20y1%3D%22350.0%22%20x2%3D%22200.0%22%20y2%3D%22360.0%22/%3E%3Cline%20x1%3D%22184.3%22%20y1%3D%22349.2%22%20x2%3D%22183.8%22%20y2%3D%22354.2%22/%3E%3Cline%20x1%3D%22168.8%22%20y1%3D%22346.7%22%20x2%3D%22167.8%22%20y2%3D%22351.6%22/%3E%3Cline%20x1%3D%22153.6%22%20y1%3D%22342.7%22%20x2%3D%22152.1%22%20y2%3D%22347.4%22/%3E%3Cline%20x1%3D%22139.0%22%20y1%3D%22337.0%22%20x2%3D%22137.0%22%20y2%3D%22341.6%22/%3E%3Cline%20x1%3D%22125.0%22%20y1%3D%22329.9%22%20x2%3D%22120.0%22%20y2%3D%22338.6%22/%3E%3Cline%20x1%3D%22111.8%22%20y1%3D%22321.4%22%20x2%3D%22108.9%22%20y2%3D%22325.4%22/%3E%3Cline%20x1%3D%2299.6%22%20y1%3D%22311.5%22%20x2%3D%2296.3%22%20y2%3D%22315.2%22/%3E%3Cline%20x1%3D%2288.5%22%20y1%3D%22300.4%22%20x2%3D%2284.8%22%20y2%3D%22303.7%22/%3E%3Cline%20x1%3D%2278.6%22%20y1%3D%22288.2%22%20x2%3D%2274.6%22%20y2%3D%22291.1%22/%3E%3Cline%20x1%3D%2270.1%22%20y1%3D%22275.0%22%20x2%3D%2261.4%22%20y2%3D%22280.0%22/%3E%3Cline%20x1%3D%2263.0%22%20y1%3D%22261.0%22%20x2%3D%2258.4%22%20y2%3D%22263.0%22/%3E%3Cline%20x1%3D%2257.3%22%20y1%3D%22246.4%22%20x2%3D%2247.8%22%20y2%3D%22249.4%22/%3E%3Cline%20x1%3D%2253.3%22%20y1%3D%22231.2%22%20x2%3D%2248.4%22%20y2%3D%22232.2%22/%3E%3Cline%20x1%3D%2250.8%22%20y1%3D%22215.7%22%20x2%3D%2245.8%22%20y2%3D%22216.2%22/%3E%3Cline%20x1%3D%2250.0%22%20y1%3D%22200.0%22%20x2%3D%2240.0%22%20y2%3D%22200.0%22/%3E%3Cline%20x1%3D%2250.8%22%20y1%3D%22184.3%22%20x2%3D%2245.8%22%20y2%3D%22183.8%22/%3E%3Cline%20x1%3D%2253.3%22%20y1%3D%22168.8%22%20x2%3D%2248.4%22%20y2%3D%22167.8%22/%3E%3Cline%20x1%3D%2257.3%22%20y1%3D%22153.6%22%20x2%3D%2252.6%22%20y2%3D%22152.1%22/%3E%3Cline%20x1%3D%2263.0%22%20y1%3D%22139.0%22%20x2%3D%2258.4%22%20y2%3D%22137.0%22/%3E%3Cline%20x1%3D%2270.1%22%20y1%3D%22125.0%22%20x2%3D%2261.4%22%20y2%3D%22120.0%22/%3E%3Cline%20x1%3D%2278.6%22%20y1%3D%22111.8%22%20x2%3D%2274.6%22%20y2%3D%22108.9%22/%3E%3Cline%20x1%3D%2288.5%22%20y1%3D%2299.6%22%20x2%3D%2284.8%22%20y2%3D%2296.3%22/%3E%3Cline%20x1%3D%2299.6%22%20y1%3D%2288.5%22%20x2%3D%2296.3%22%20y2%3D%2284.8%22/%3E%3Cline%20x1%3D%22111.8%22%20y1%3D%2278.6%22%20x2%3D%22106.0%22%20y2%3D%2270.6%22/%3E%3Cline%20x1%3D%22125.0%22%20y1%3D%2270.1%22%20x2%3D%22120.0%22%20y2%3D%2261.4%22/%3E%3Cline%20x1%3D%22139.0%22%20y1%3D%2263.0%22%20x2%3D%22137.0%22%20y2%3D%2258.4%22/%3E%3Cline%20x1%3D%22153.6%22%20y1%3D%2257.3%22%20x2%3D%22152.1%22%20y2%3D%2252.6%22/%3E%3Cline%20x1%3D%22168.8%22%20y1%3D%2253.3%22%20x2%3D%22167.8%22%20y2%3D%2248.4%22/%3E%3Cline%20x1%3D%22184.3%22%20y1%3D%2250.8%22%20x2%3D%22183.8%22%20y2%3D%2245.8%22/%3E%3Cline%20x1%3D%22200.0%22%20y1%3D%2250.0%22%20x2%3D%22200.0%22%20y2%3D%2240.0%22/%3E%3Cline%20x1%3D%22215.7%22%20y1%3D%2250.8%22%20x2%3D%22216.2%22%20y2%3D%2245.8%22/%3E%3Cline%20x1%3D%22231.2%22%20y1%3D%2253.3%22%20x2%3D%22232.2%22%20y2%3D%2248.4%22/%3E%3Cline%20x1%3D%22246.4%22%20y1%3D%2257.3%22%20x2%3D%22247.9%22%20y2%3D%2252.6%22/%3E%3Cline%20x1%3D%22261.0%22%20y1%3D%2263.0%22%20x2%3D%22263.0%22%20y2%3D%2258.4%22/%3E%3Cline%20x1%3D%22275.0%22%20y1%3D%2270.1%22%20x2%3D%22280.0%22%20y2%3D%2261.4%22/%3E%3Cline%20x1%3D%22288.2%22%20y1%3D%2278.6%22%20x2%3D%22294.0%22%20y2%3D%2270.6%22/%3E%3Cline%20x1%3D%22300.4%22%20y1%3D%2288.5%22%20x2%3D%22303.7%22%20y2%3D%2284.8%22/%3E%3Cline%20x1%3D%22311.5%22%20y1%3D%2299.6%22%20x2%3D%22315.2%22%20y2%3D%2296.3%22/%3E%3Cline%20x1%3D%22321.4%22%20y1%3D%22111.8%22%20x2%3D%22325.4%22%20y2%3D%22108.9%22/%3E%3Cline%20x1%3D%22329.9%22%20y1%3D%22125.0%22%20x2%3D%22338.6%22%20y2%3D%22120.0%22/%3E%3Cline%20x1%3D%22337.0%22%20y1%3D%22139.0%22%20x2%3D%22341.6%22%20y2%3D%22137.0%22/%3E%3Cline%20x1%3D%22342.7%22%20y1%3D%22153.6%22%20x2%3D%22347.4%22%20y2%3D%22152.1%22/%3E%3Cline%20x1%3D%22346.7%22%20y1%3D%22168.8%22%20x2%3D%22351.6%22%20y2%3D%22167.8%22/%3E%3Cline%20x1%3D%22349.2%22%20y1%3D%22184.3%22%20x2%3D%22354.2%22%20y2%3D%22183.8%22/%3E%3Ccircle%20cx%3D%27200%27%20cy%3D%27200%27%20r%3D%27170%27%20stroke-width%3D%27.8%27/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat; opacity:.11; z-index:0; }
     .top { display:flex; align-items:center; gap:18px; }
-    .portrait { position:relative; width:74px; height:74px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#3a2d25,#120d0b); display:flex; align-items:center; justify-content:center; flex:none; overflow:visible; }
+    .portrait { position:relative; width:62px; height:62px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#3a2d25,#120d0b); display:flex; align-items:center; justify-content:center; flex:none; overflow:visible; }
     .portrait::before { pointer-events:none; content:''; position:absolute; inset:-3px; border-radius:50%; border:3px solid var(--blood2); }
     .portrait img.zoom { cursor:zoom-in; }
     .dlg.lbx { top:50%; transform:translate(-50%,-50%); width:auto; background:none; padding:0; box-shadow:none; } .dlg.lbx::before { display:none; } .lbx img { display:block; max-width:min(92vw,900px); max-height:86vh; border:4px solid var(--blood2); box-shadow:0 10px 40px #000c; background:#120d0b; }
     .portrait img { width:100%; height:100%; border-radius:50%; object-fit:cover; display:block; }
     .portrait span { font:34px var(--f-title); color:var(--bone); }
     .who { flex:1; min-width:0; }
-    input.name { width:100%; font:50px/1 var(--f-title); color:var(--bone); text-transform:uppercase; letter-spacing:.03em; text-shadow:0 2px 0 #000, 0 0 22px #b3151e99; background:transparent; border:0; padding:0; }
+    input.name { width:100%; font:40px/1 var(--f-title); color:var(--bone); text-transform:uppercase; letter-spacing:.03em; text-shadow:0 2px 0 #000, 0 0 22px #b3151e99; background:transparent; border:0; padding:0; }
     .orig { margin-top:6px; font:700 11px var(--f-ui); letter-spacing:.2em; text-transform:uppercase; color:#d49a8a; min-height:14px; }
     .lv { display:flex; flex-direction:column; align-items:center; gap:8px; flex:none; }
-    .seal { position:relative; width:86px; height:86px; border-radius:50%; background:radial-gradient(circle at 35% 28%,#32261f,#0a0706); border:3px solid var(--bone); box-shadow:0 0 0 3px var(--blood), 0 0 0 5px #000, 0 6px 18px #000b; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-    .seal b { font:40px/1 var(--f-title); color:var(--bone); position:relative; top:-10px; } .seal span { font:700 7.5px var(--f-ui); letter-spacing:.2em; text-transform:uppercase; color:#d49a8a; margin-top:2px; }
+    .seal { position:relative; width:72px; height:72px; border-radius:50%; background:radial-gradient(circle at 35% 28%,#32261f,#0a0706); border:3px solid var(--bone); box-shadow:0 0 0 3px var(--blood), 0 0 0 5px #000, 0 6px 18px #000b; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .seal b { font:34px/1 var(--f-title); color:var(--bone); position:relative; top:-8px; } .seal span { font:700 7.5px var(--f-ui); letter-spacing:.2em; text-transform:uppercase; color:#d49a8a; margin-top:2px; }
     .lvbtn { display:block; text-align:center; font:700 8.5px/1.2 var(--f-ui); letter-spacing:.12em; text-transform:uppercase; color:var(--bone); border:1.5px solid #efe8d8aa; border-radius:11px; padding:4px 10px; background:#0007; }
     .lvbtn em { display:block; font:italic 400 10px var(--f-body); letter-spacing:0; text-transform:none; margin-top:1px; }
     .lvbtn.hot { background:linear-gradient(180deg,var(--blood2),var(--blood)); border-color:#ff9a8f; box-shadow:0 0 12px #ff3b3088, 0 2px 0 #000a; }
     .lvbtn:hover:not(:disabled) { border-color:#fff; }
-    .vial { display:flex; align-items:center; gap:12px; margin-top:22px; }
+    .vial { display:flex; align-items:center; gap:12px; margin-top:16px; }
     .fate { display:flex; align-items:center; justify-content:center; text-align:center; gap:12px; flex-wrap:wrap; margin-top:10px; } .fate .fs { font:700 10px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; color:#ffd0c8; padding:5px 12px; border:1.5px solid #ff9a8f; border-radius:11px; background:#0007; } .fate .lvbtn { display:inline-block; }
     .fate .stl, #hp-down { cursor:pointer; text-decoration:underline dotted; text-underline-offset:3px; }
     .fate .fh { flex-basis:100%; font:500 11px var(--f-ui); opacity:.85; }
@@ -98,13 +98,13 @@
     .vtrack b.r { left:auto; padding-left:0; padding-right:22px; text-align:right; color:#ffd9d4; }
     .vtrack b { position:absolute; inset:0; z-index:2; padding-left:20px; text-align:left; font:700 13px/38px var(--f-ui); letter-spacing:.18em; text-transform:uppercase; color:var(--bone); text-shadow:0 1px 3px #000; }
     /* ---- bande des attributs (bord déchiré) ---- */
-    .band { position:relative; z-index:3; margin-top:-16px; padding:34px 30px 14px; background-color:#d9dde3; background-image:var(--paper,none); background-size:256px; clip-path:polygon(0 14px, 2.1% 12px, 5.0% 8px, 7.1% 12px, 10.1% 3px, 11.6% 12px, 13.8% 12px, 16.6% 0px, 18.7% 3px, 20.0% 8px, 23.0% 4px, 24.3% 9px, 27.4% 4px, 30.1% 4px, 31.6% 0px, 34.5% 0px, 35.8% 3px, 38.8% 12px, 40.0% 9px, 41.9% 12px, 44.8% 12px, 46.4% 6px, 48.6% 4px, 50.0% 4px, 51.8% 12px, 55.0% 8px, 56.3% 6px, 58.1% 3px, 60.4% 0px, 61.7% 8px, 63.1% 0px, 66.0% 9px, 67.4% 0px, 70.3% 0px, 71.9% 0px, 74.0% 4px, 76.0% 0px, 78.3% 3px, 81.1% 6px, 83.0% 6px, 84.8% 9px, 87.6% 0px, 89.0% 4px, 90.4% 0px, 92.6% 9px, 94.1% 12px, 95.7% 12px, 97.3% 4px, 100.0% 9px, 100% 14px, 100% 100%, 0 100%); }
+    .band { position:relative; z-index:3; margin-top:-16px; padding:28px 30px 10px; background-color:#d9dde3; background-image:var(--paper,none); background-size:256px; clip-path:polygon(0 14px, 2.1% 12px, 5.0% 8px, 7.1% 12px, 10.1% 3px, 11.6% 12px, 13.8% 12px, 16.6% 0px, 18.7% 3px, 20.0% 8px, 23.0% 4px, 24.3% 9px, 27.4% 4px, 30.1% 4px, 31.6% 0px, 34.5% 0px, 35.8% 3px, 38.8% 12px, 40.0% 9px, 41.9% 12px, 44.8% 12px, 46.4% 6px, 48.6% 4px, 50.0% 4px, 51.8% 12px, 55.0% 8px, 56.3% 6px, 58.1% 3px, 60.4% 0px, 61.7% 8px, 63.1% 0px, 66.0% 9px, 67.4% 0px, 70.3% 0px, 71.9% 0px, 74.0% 4px, 76.0% 0px, 78.3% 3px, 81.1% 6px, 83.0% 6px, 84.8% 9px, 87.6% 0px, 89.0% 4px, 90.4% 0px, 92.6% 9px, 94.1% 12px, 95.7% 12px, 97.3% 4px, 100.0% 9px, 100% 14px, 100% 100%, 0 100%); }
     .sigs { display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
     .sig { display:flex; flex-direction:column; align-items:center; gap:7px; } .sig .nm { font:700 11px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; color:#3d342b; }
-    .ring { position:relative; width:84px; height:84px; display:flex; align-items:center; justify-content:center; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Cpath%20d%3D%27M96.1%2050.0%20L96.1%2052.1%20L96.0%2054.1%20L95.3%2056.2%20L95.5%2058.2%20L95.1%2060.2%20L94.3%2062.2%20L93.8%2064.2%20L92.8%2066.1%20L92.2%2068.2%20L91.6%2069.9%20L90.7%2071.7%20L89.5%2073.5%20L88.1%2075.5%20L87.1%2076.9%20L86.2%2078.8%20L84.5%2080.4%20L83.3%2081.9%20L81.7%2083.4%20L80.3%2084.9%20L78.8%2085.9%20L77.0%2087.1%20L75.2%2088.2%20L73.5%2089.5%20L71.7%2090.6%20L69.9%2091.3%20L68.2%2092.3%20L66.1%2093.1%20L64.3%2093.5%20L62.3%2094.1%20L60.3%2095.0%20L58.2%2095.4%20L56.2%2095.6%20L54.1%2095.5%20L52.1%2096.2%20L50.0%2096.2%20L47.9%2096.2%20L45.9%2095.7%20L43.8%2095.7%20L41.8%2095.4%20L39.7%2095.1%20L37.8%2094.6%20L35.9%2093.7%20L33.8%2093.3%20L32.0%2092.5%20L30.0%2091.3%20L28.3%2090.3%20L26.5%2089.3%20L24.6%2088.6%20L23.1%2087.0%20L21.1%2086.0%20L19.8%2084.5%20L18.2%2083.4%20L16.8%2081.8%20L15.6%2080.4%20L14.3%2078.7%20L12.6%2076.9%20L11.5%2075.5%20L10.4%2073.7%20L9.7%2071.8%20L8.7%2070.0%20L7.8%2068.1%20L6.7%2066.2%20L6.0%2064.2%20L5.7%2062.3%20L5.2%2060.2%20L4.8%2058.2%20L4.5%2056.2%20L3.9%2054.1%20L4.0%2052.1%20L4.2%2050.0%20L3.9%2047.9%20L4.3%2045.9%20L4.3%2043.8%20L4.6%2041.8%20L5.2%2039.7%20L5.8%2037.8%20L6.1%2035.7%20L7.0%2033.7%20L7.6%2031.9%20L8.8%2030.0%20L9.6%2028.2%20L10.5%2026.3%20L11.5%2024.6%20L12.9%2022.9%20L13.9%2021.2%20L15.4%2019.6%20L16.6%2018.1%20L18.0%2016.6%20L19.7%2015.3%20L21.4%2013.9%20L22.8%2012.8%20L24.6%2011.5%20L26.3%2010.7%20L28.1%209.4%20L30.0%208.6%20L31.9%207.6%20L33.8%206.8%20L35.9%206.4%20L37.8%205.6%20L39.8%205.0%20L41.8%205.0%20L43.8%204.6%20L45.9%204.4%20L47.9%204.2%20L50.0%204.3%20L52.1%204.1%20L54.1%204.1%20L56.2%204.2%20L58.2%204.8%20L60.2%205.2%20L62.2%205.5%20L64.2%206.5%20L66.2%207.2%20L68.1%207.8%20L70.0%208.3%20L71.9%209.5%20L73.7%2010.4%20L75.3%2011.8%20L77.1%2012.8%20L78.9%2013.8%20L80.3%2015.4%20L82.0%2017.0%20L83.1%2018.2%20L84.7%2019.9%20L86.0%2021.2%20L87.2%2023.0%20L88.3%2024.7%20L89.7%2026.4%20L90.8%2028.1%20L91.5%2030.1%20L92.6%2031.9%20L93.0%2033.9%20L94.0%2035.8%20L94.2%2037.8%20L94.6%2039.7%20L95.2%2041.8%20L95.8%2043.8%20L95.5%2045.9%20L95.8%2047.9Z%27%20fill%3D%27none%27%20stroke%3D%27%2317120f%27%20stroke-width%3D%273.4%27%20stroke-linejoin%3D%27round%27/%3E%3C/svg%3E") center/100% 100% no-repeat; }
-    .ring::after { content:''; position:absolute; inset:8px; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Cpath%20d%3D%27M89.9%2050.0%20L89.8%2052.1%20L89.6%2054.2%20L89.8%2056.2%20L89.2%2058.3%20L88.6%2060.4%20L87.9%2062.4%20L87.2%2064.3%20L86.3%2066.2%20L85.6%2068.3%20L84.6%2069.9%20L83.4%2071.9%20L82.2%2073.5%20L81.0%2075.2%20L79.7%2076.8%20L78.3%2078.3%20L76.9%2079.8%20L75.1%2080.9%20L73.6%2082.4%20L71.7%2083.7%20L70.0%2084.7%20L68.2%2085.5%20L66.2%2086.7%20L64.3%2087.5%20L62.3%2088.1%20L60.4%2088.9%20L58.4%2089.1%20L56.2%2089.3%20L54.2%2089.8%20L52.1%2090.1%20L50.0%2090.1%20L47.9%2089.8%20L45.8%2089.7%20L43.8%2089.5%20L41.7%2089.3%20L39.6%2088.5%20L37.7%2087.9%20L35.6%2087.6%20L33.8%2086.7%20L31.9%2085.4%20L29.9%2084.6%20L28.3%2083.5%20L26.6%2082.3%20L24.8%2081.1%20L23.2%2079.6%20L21.9%2078.1%20L20.4%2076.8%20L19.0%2075.3%20L17.6%2073.6%20L16.3%2071.7%20L15.6%2069.9%20L14.4%2068.2%20L13.3%2066.2%20L12.4%2064.2%20L11.8%2062.3%20L11.2%2060.3%20L10.6%2058.3%20L10.3%2056.3%20L10.4%2054.2%20L10.1%2052.1%20L9.9%2050.0%20L10.1%2047.9%20L10.4%2045.8%20L10.5%2043.8%20L10.9%2041.7%20L11.3%2039.7%20L12.0%2037.7%20L12.8%2035.7%20L13.5%2033.8%20L14.3%2031.8%20L15.3%2030.1%20L16.5%2028.2%20L17.8%2026.4%20L18.8%2024.8%20L20.2%2023.3%20L21.8%2021.7%20L23.2%2020.2%20L25.0%2018.9%20L26.4%2017.5%20L28.1%2016.3%20L30.1%2015.4%20L31.8%2014.1%20L33.8%2013.3%20L35.6%2012.6%20L37.6%2011.7%20L39.6%2011.5%20L41.6%2011.0%20L43.8%2010.3%20L45.8%2010.3%20L47.9%2010.0%20L50.0%209.9%20L52.1%209.9%20L54.2%2010.2%20L56.2%2010.5%20L58.3%2010.9%20L60.4%2011.5%20L62.3%2011.8%20L64.3%2012.7%20L66.2%2013.3%20L68.1%2014.5%20L70.1%2015.4%20L71.7%2016.3%20L73.5%2017.7%20L75.3%2018.8%20L76.8%2020.4%20L78.4%2021.7%20L79.8%2023.3%20L81.2%2024.7%20L82.3%2026.4%20L83.7%2028.1%20L84.8%2029.9%20L85.5%2031.8%20L86.6%2033.8%20L87.3%2035.6%20L88.2%2037.6%20L88.4%2039.6%20L89.3%2041.7%20L89.4%2043.8%20L90.0%2045.8%20L90.0%2047.9Z%27%20fill%3D%27none%27%20stroke%3D%27%238e0e14%27%20stroke-width%3D%271%27%20stroke-linejoin%3D%27round%27/%3E%3C/svg%3E") center/100% 100% no-repeat; }
-    .ring b { position:relative; z-index:1; font:42px/1 var(--f-title); color:var(--ink); }
-    .chars { display:flex; justify-content:center; align-items:center; gap:16px; margin-top:16px; padding-top:12px; border-top:2px solid var(--ink); position:relative; flex-wrap:wrap; }
+    .ring { position:relative; width:70px; height:70px; display:flex; align-items:center; justify-content:center; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Cpath%20d%3D%27M96.1%2050.0%20L96.1%2052.1%20L96.0%2054.1%20L95.3%2056.2%20L95.5%2058.2%20L95.1%2060.2%20L94.3%2062.2%20L93.8%2064.2%20L92.8%2066.1%20L92.2%2068.2%20L91.6%2069.9%20L90.7%2071.7%20L89.5%2073.5%20L88.1%2075.5%20L87.1%2076.9%20L86.2%2078.8%20L84.5%2080.4%20L83.3%2081.9%20L81.7%2083.4%20L80.3%2084.9%20L78.8%2085.9%20L77.0%2087.1%20L75.2%2088.2%20L73.5%2089.5%20L71.7%2090.6%20L69.9%2091.3%20L68.2%2092.3%20L66.1%2093.1%20L64.3%2093.5%20L62.3%2094.1%20L60.3%2095.0%20L58.2%2095.4%20L56.2%2095.6%20L54.1%2095.5%20L52.1%2096.2%20L50.0%2096.2%20L47.9%2096.2%20L45.9%2095.7%20L43.8%2095.7%20L41.8%2095.4%20L39.7%2095.1%20L37.8%2094.6%20L35.9%2093.7%20L33.8%2093.3%20L32.0%2092.5%20L30.0%2091.3%20L28.3%2090.3%20L26.5%2089.3%20L24.6%2088.6%20L23.1%2087.0%20L21.1%2086.0%20L19.8%2084.5%20L18.2%2083.4%20L16.8%2081.8%20L15.6%2080.4%20L14.3%2078.7%20L12.6%2076.9%20L11.5%2075.5%20L10.4%2073.7%20L9.7%2071.8%20L8.7%2070.0%20L7.8%2068.1%20L6.7%2066.2%20L6.0%2064.2%20L5.7%2062.3%20L5.2%2060.2%20L4.8%2058.2%20L4.5%2056.2%20L3.9%2054.1%20L4.0%2052.1%20L4.2%2050.0%20L3.9%2047.9%20L4.3%2045.9%20L4.3%2043.8%20L4.6%2041.8%20L5.2%2039.7%20L5.8%2037.8%20L6.1%2035.7%20L7.0%2033.7%20L7.6%2031.9%20L8.8%2030.0%20L9.6%2028.2%20L10.5%2026.3%20L11.5%2024.6%20L12.9%2022.9%20L13.9%2021.2%20L15.4%2019.6%20L16.6%2018.1%20L18.0%2016.6%20L19.7%2015.3%20L21.4%2013.9%20L22.8%2012.8%20L24.6%2011.5%20L26.3%2010.7%20L28.1%209.4%20L30.0%208.6%20L31.9%207.6%20L33.8%206.8%20L35.9%206.4%20L37.8%205.6%20L39.8%205.0%20L41.8%205.0%20L43.8%204.6%20L45.9%204.4%20L47.9%204.2%20L50.0%204.3%20L52.1%204.1%20L54.1%204.1%20L56.2%204.2%20L58.2%204.8%20L60.2%205.2%20L62.2%205.5%20L64.2%206.5%20L66.2%207.2%20L68.1%207.8%20L70.0%208.3%20L71.9%209.5%20L73.7%2010.4%20L75.3%2011.8%20L77.1%2012.8%20L78.9%2013.8%20L80.3%2015.4%20L82.0%2017.0%20L83.1%2018.2%20L84.7%2019.9%20L86.0%2021.2%20L87.2%2023.0%20L88.3%2024.7%20L89.7%2026.4%20L90.8%2028.1%20L91.5%2030.1%20L92.6%2031.9%20L93.0%2033.9%20L94.0%2035.8%20L94.2%2037.8%20L94.6%2039.7%20L95.2%2041.8%20L95.8%2043.8%20L95.5%2045.9%20L95.8%2047.9Z%27%20fill%3D%27none%27%20stroke%3D%27%2317120f%27%20stroke-width%3D%273.4%27%20stroke-linejoin%3D%27round%27/%3E%3C/svg%3E") center/100% 100% no-repeat; }
+    .ring::after { content:''; position:absolute; inset:7px; background:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Cpath%20d%3D%27M89.9%2050.0%20L89.8%2052.1%20L89.6%2054.2%20L89.8%2056.2%20L89.2%2058.3%20L88.6%2060.4%20L87.9%2062.4%20L87.2%2064.3%20L86.3%2066.2%20L85.6%2068.3%20L84.6%2069.9%20L83.4%2071.9%20L82.2%2073.5%20L81.0%2075.2%20L79.7%2076.8%20L78.3%2078.3%20L76.9%2079.8%20L75.1%2080.9%20L73.6%2082.4%20L71.7%2083.7%20L70.0%2084.7%20L68.2%2085.5%20L66.2%2086.7%20L64.3%2087.5%20L62.3%2088.1%20L60.4%2088.9%20L58.4%2089.1%20L56.2%2089.3%20L54.2%2089.8%20L52.1%2090.1%20L50.0%2090.1%20L47.9%2089.8%20L45.8%2089.7%20L43.8%2089.5%20L41.7%2089.3%20L39.6%2088.5%20L37.7%2087.9%20L35.6%2087.6%20L33.8%2086.7%20L31.9%2085.4%20L29.9%2084.6%20L28.3%2083.5%20L26.6%2082.3%20L24.8%2081.1%20L23.2%2079.6%20L21.9%2078.1%20L20.4%2076.8%20L19.0%2075.3%20L17.6%2073.6%20L16.3%2071.7%20L15.6%2069.9%20L14.4%2068.2%20L13.3%2066.2%20L12.4%2064.2%20L11.8%2062.3%20L11.2%2060.3%20L10.6%2058.3%20L10.3%2056.3%20L10.4%2054.2%20L10.1%2052.1%20L9.9%2050.0%20L10.1%2047.9%20L10.4%2045.8%20L10.5%2043.8%20L10.9%2041.7%20L11.3%2039.7%20L12.0%2037.7%20L12.8%2035.7%20L13.5%2033.8%20L14.3%2031.8%20L15.3%2030.1%20L16.5%2028.2%20L17.8%2026.4%20L18.8%2024.8%20L20.2%2023.3%20L21.8%2021.7%20L23.2%2020.2%20L25.0%2018.9%20L26.4%2017.5%20L28.1%2016.3%20L30.1%2015.4%20L31.8%2014.1%20L33.8%2013.3%20L35.6%2012.6%20L37.6%2011.7%20L39.6%2011.5%20L41.6%2011.0%20L43.8%2010.3%20L45.8%2010.3%20L47.9%2010.0%20L50.0%209.9%20L52.1%209.9%20L54.2%2010.2%20L56.2%2010.5%20L58.3%2010.9%20L60.4%2011.5%20L62.3%2011.8%20L64.3%2012.7%20L66.2%2013.3%20L68.1%2014.5%20L70.1%2015.4%20L71.7%2016.3%20L73.5%2017.7%20L75.3%2018.8%20L76.8%2020.4%20L78.4%2021.7%20L79.8%2023.3%20L81.2%2024.7%20L82.3%2026.4%20L83.7%2028.1%20L84.8%2029.9%20L85.5%2031.8%20L86.6%2033.8%20L87.3%2035.6%20L88.2%2037.6%20L88.4%2039.6%20L89.3%2041.7%20L89.4%2043.8%20L90.0%2045.8%20L90.0%2047.9Z%27%20fill%3D%27none%27%20stroke%3D%27%238e0e14%27%20stroke-width%3D%271%27%20stroke-linejoin%3D%27round%27/%3E%3C/svg%3E") center/100% 100% no-repeat; }
+    .ring b { position:relative; z-index:1; font:36px/1 var(--f-title); color:var(--ink); }
+    .chars { display:flex; justify-content:center; align-items:center; gap:16px; margin-top:10px; padding-top:8px; border-top:2px solid var(--ink); position:relative; flex-wrap:wrap; }
     .chars::before { content:''; position:absolute; left:0; right:0; top:2px; border-top:1px solid var(--blood); }
     .ch.def { margin:0 4px; } .shield { display:block; position:relative; width:42px; height:48px; margin:2px auto 0; background:var(--ink); clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%); } .shield::before { content:''; position:absolute; inset:2px; background:linear-gradient(180deg,#f6f0e0,#e2d9c3); clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%); } .shield b { position:absolute; left:0; right:0; top:7px; z-index:1; font:22px/1 var(--f-title); color:var(--ink); }
     .ch { text-align:center; } .ch .cl { display:block; font:700 9.5px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; color:#5b5045; } .ch b { font:26px/1.1 var(--f-title); color:var(--ink); } .sep { color:var(--blood); font-size:9px; padding-bottom:6px; }
@@ -129,6 +129,9 @@
     .status .add { font-size:11px; padding:1px 12px; } button.ml { cursor:pointer; } button.ml:hover { color:var(--blood); }
     /* ---- corps, encadrés ---- */
     .body { position:relative; z-index:2; flex:1; padding:6px 30px 14px; }
+    .tchip { margin-top:7px; display:inline-flex; align-items:center; gap:5px; border:1.5px solid #efe8d8aa; border-radius:11px; padding:3px 10px; font:700 9.5px/1.2 var(--f-ui); letter-spacing:.12em; text-transform:uppercase; background:#0007; color:var(--bone); cursor:pointer; }
+    .tchip.fast { border-color:#f0c36b; color:#f6d58f; } .tchip.slow { border-color:#86a9d6; color:#aac4ea; } .tchip.none { opacity:.6; border-style:dashed; }
+    .tchip:disabled { cursor:default; opacity:.5; }
     .cols2 { display:grid; grid-template-columns:1fr 1fr; gap:0 30px; align-items:start; }
     .cols2 > div { min-width:0; }
     .cols2 .ban span { font-size:18px; line-height:22px; padding:4px 24px 3px; }
@@ -266,7 +269,7 @@
     <i class="pent"></i>
     <div class="top">
       <div class="portrait"><span id="portrait-i"></span><img id="portrait" alt="" hidden></div>
-      <div class="who"><input class="name" id="name" data-ta="Common.Name"><div class="orig" id="origins"></div></div>
+      <div class="who"><input class="name" id="name" data-ta="Common.Name"><div class="orig" id="origins"></div><button type="button" class="tchip none" id="turn" data-tt="Character.Turn"></button></div>
       <div class="lv"><div class="seal"><b id="level-n">0</b><span id="lbl-level"></span></div><button type="button" class="lvbtn" id="level-btn" data-tt="Sheet.OpenLevel"></button></div>
     </div>
     <div class="vial">
@@ -290,7 +293,8 @@
           <div class="rest med"><span class="nm"><small data-t="Sheet.Meditate"></small></span>
             <button type="button" class="tg on" id="rest-spells" role="switch" aria-checked="true" data-ta="Sheet.MeditateAria"><i></i></button></div>
           </section></div>
-        <div><section class="box"><h3 class="ban"><span id="h-actions"></span></h3><div id="actions"></div></section>
+        <div><section class="box"><h3 class="ban"><span id="h-actions"></span></h3>
+          <div id="actions"></div></section>
         <div class="addrow"><button type="button" class="chip tool" data-edit data-t="Sheet.Edit"></button><button type="button" class="add" id="add-action" data-t="Sheet.AddActionBtn"></button></div></div>
       </div>
     </section>
@@ -364,6 +368,8 @@
   // icône d'une arme ou d'une armure : épée (corps à corps), arc (distance), bouclier (armure, bouclier)
   const iconOf = (x) => (x.itemType === 'Armor' || x.weaponType === 'Shield' ? 'shield' : x.weaponType === 'Ranged' ? 'bow' : 'sword')
   const hero = EP.entity
+  // « Voir la règle », liens d'entités : dans le navigateur (client web), on ouvre un NOUVEL ONGLET pour ne pas quitter la feuille ; dans l'application, ouverture normale d'Encounter+
+  const epOpen = (ref) => { if (hero.client === 'browser' && typeof ref === 'string' && ref.startsWith('/')) { const w = window.open(ref, '_blank', 'noopener'); if (w) return } EP.open(ref) }
   if (!hero) { $('loading').textContent = t('Sheet.NoCharacter'); return }
   try { await hero.connect() }
   catch (e) { $('loading').textContent = t('Sheet.ConnectFail') + ' ' + (e.message || e); return }
@@ -553,10 +559,10 @@
       const r = await EP.query({ entity: 'Rule', search: name, limit: 10 })
       const list = r.entries || []
       const e = list.find((x) => x.name.toLowerCase() === name.toLowerCase()) || list[0]
-      if (e) EP.open(e.reference); else note(tf('Sheet.RuleMissing', { n: name }))
+      if (e) epOpen(e.reference); else note(tf('Sheet.RuleMissing', { n: name }))
     } catch (err) { fail(err) }
   }
-  const openRef = (ref, name) => { if (!ref) openRule(name); else if (String(ref).startsWith('/')) EP.open(ref); else toast(t('Sheet.RefInvalid')) }
+  const openRef = (ref, name) => { if (!ref) openRule(name); else if (String(ref).startsWith('/')) epOpen(ref); else toast(t('Sheet.RefInvalid')) }
 
   // ---- cases : utilisations dépensées (cases jusqu'à 10, compteur au-delà) ----
   // accordéon « bandeau » (actions, sorts, talents) : bandeau sombre (niveau, nom, cases d'utilisation, rond + / −) ; le texte se déplie dans un panneau clair
@@ -603,7 +609,7 @@
   $('hp-plus').addEventListener('click', () => { const m = hpMax(); if (m != null && hpCur() >= m) return; hero.set('data.hp.current', hpCur() + 1).catch(fail) })
   $('hp-open').addEventListener('click', async () => {
     const r = await dialog(t('Characteristics.Damage'), `<label class="lbl" for="amt">${esc(t('Character.Quantity'))}</label><input type="number" id="amt" min="0" value="1" inputmode="numeric">`,
-      [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Heal'), value: 'heal' }, { label: t('Sheet.Hurt'), value: 'hit', primary: true }])
+      [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Heal'), value: 'heal' }, { label: t('Sheet.Hurt'), value: 'hit' }])
     const n = Math.max(0, Math.floor(Number(r.data.amt) || 0))
     if (!r.value || !n) return
     const m = hpMax()
@@ -784,9 +790,9 @@
     $('add-action').disabled = !online()
   }
   document.addEventListener('toggle', (ev) => { const d = ev.target; if (d.matches && d.matches('details.bd') && d.open) { const b = d.querySelector('.adesc'); if (b) fillAct(b) } }, true)
-  document.addEventListener('click', (ev) => { const g = ev.target.closest('#spells [data-go], #talents [data-go]'); if (g && g.dataset.go) { ev.preventDefault(); EP.open(g.dataset.go) } })
+  document.addEventListener('click', (ev) => { const g = ev.target.closest('#spells [data-go], #talents [data-go]'); if (g && g.dataset.go) { ev.preventDefault(); epOpen(g.dataset.go) } })
   $('actions').addEventListener('click', async (ev) => {
-    const g = ev.target.closest('[data-go]'); if (g && g.dataset.go) { ev.preventDefault(); EP.open(g.dataset.go); return }
+    const g = ev.target.closest('[data-go]'); if (g && g.dataset.go) { ev.preventDefault(); epOpen(g.dataset.go); return }
     const del = ev.target.closest('[data-delact]')
     if (del) {
       const a = (hero.get('data.actions') || [])[Number(del.dataset.delact)]
@@ -805,7 +811,7 @@
     try {
       const r = await EP.query({ entity: 'Rule', search: slug, limit: 20 })
       const e = (r.entries || []).find((x) => slugOf(x.reference) === slug)
-      if (e) EP.open(e.reference)
+      if (e) epOpen(e.reference)
     } catch (err) { fail(err) }
   }
   $('rest-link').addEventListener('click', () => openRuleSlug('repos'))
@@ -831,6 +837,11 @@
       })
     } catch (e) { fail(e) }
   }
+  // tour : choix du joueur (data.turn = none | fast | slow), repris par la carte du MJ et le suivi de combat ; un clic passe au choix suivant (non choisi → rapide → lent → non choisi), comme sur la carte
+  $('turn').addEventListener('click', () => {
+    const cur = String(hero.get('data.turn') || 'none')
+    hero.set('data.turn', cur === 'none' ? 'fast' : cur === 'fast' ? 'slow' : 'none').catch(fail)
+  })
   $('rest-8').addEventListener('click', () => rest(1))
   $('rest-24').addEventListener('click', () => rest(2))
   $('rest-spells').addEventListener('click', () => {
@@ -1105,7 +1116,7 @@
   const BODY = ['g1_12', 'g1_8', 'g1_4', 'g1_2', 'g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g8', 'g10', 'g12', 'g15', 'g20']
   const num = (path) => `<input type="number" data-p="${path}" aria-label="${path}">`
   const sel = (path) => `<select data-sp="${path}" aria-label="${path}"><option value="">—</option>${BODY.map((k) => `<option value="${k}">${esc(EP.label('BodySize', k))}</option>`).join('')}</select>`
-  $('calc').innerHTML = '<div class="cr hh"><span></span><span></span><span>' + esc(t('Sheet.ColCalc')) + '</span><span>' + esc(t('Sheet.ColBase')) + '</span><span>' + esc(t('Sheet.ColBonus')) + '</span><span>' + esc(t('Sheet.ColForced')) + '</span></div>' +
+  $('calc').innerHTML = '<div class="cr hh"><span>' + esc(t('Sheet.Characteristics')) + '</span><span></span><span>' + esc(t('Sheet.ColCalc')) + '</span><span>' + esc(t('Sheet.ColBase')) + '</span><span>' + esc(t('Sheet.ColBonus')) + '</span><span>' + esc(t('Sheet.ColForced')) + '</span></div>' +
     calcRows.map(([n, k, v, rk]) => `<div class="cr"><span>${n}</span><span class="fm" data-fm="${rk || ''}"></span><span class="cc" data-cc="${v}">—</span>${num(`data.${k}.base`)}${num(`data.${k}.bonus`)}${num(`data.${k}.override`)}</div>`).join('') +
     `<div class="cr"><span>${esc(t('Characteristics.Size'))}</span><span class="fm"></span><span class="cc" id="size-cc">—</span>${sel('data.sizeAdjust.base')}${num('data.sizeAdjust.bonus')}${sel('data.sizeAdjust.override')}</div>` +
     '<div class="cr hh"><span>' + esc(t('Sheet.Attrs')) + '</span><span></span><span>' + esc(t('Sheet.ColCalc')) + '</span><span>' + esc(t('Sheet.ColBase')) + '</span><span>' + esc(t('Sheet.ColAsc')) + '</span><span>' + esc(t('Sheet.ColForced')) + '</span></div>' +
@@ -1158,7 +1169,7 @@
   }
   $('lp').addEventListener('click', async (ev) => {
     const lo = ev.target.closest('[data-lopen]')
-    if (lo) { const l = (hero.get('data.languages') || [])[Number(lo.dataset.lopen)]; if (l && l.reference) EP.open(l.reference); return }
+    if (lo) { const l = (hero.get('data.languages') || [])[Number(lo.dataset.lopen)]; if (l && l.reference) epOpen(l.reference); return }
     const b = ev.target.closest('[data-lp]'); if (!b) return
     const a = b.dataset.lp, i = Number(b.dataset.i)
     try {
@@ -1302,6 +1313,7 @@
     else if (u.t === 'baseAttrs') for (const k of u.k) await hero.remove(`data.attrAdjust.${k}.base`)
     else if (u.t === 'start') await hero.remove(`data.${u.stat}.start`)
     else if (u.t === 'size') await hero.remove('data.sizeAdjust.base')
+    else if (u.t === 'identity') { await hero.set('data.age', ''); await hero.set('data.religion', '') }
     if (u.t === 'trad') for (const suf of ['-cantrip2', '-cantrip']) if (stepEntry(st.key + suf) >= 0) await undoStep({ key: st.key + suf })
     if (st.key === 'creation/attrroll' && stepEntry('creation/ancestry/attrs') >= 0) await undoStep({ key: 'creation/ancestry/attrs' })
     await hero.remove(`data.levelSteps[${stepEntry(st.key)}]`)
@@ -1409,7 +1421,7 @@
   let stateRefs = null
   async function openStateRule(slug, label) {
     if (!stateRefs) { stateRefs = {}; for (const ty of ['State', 'Affliction']) { try { for (const e of ((await EP.query({ entity: 'Rule', where: { type: ty }, limit: 300 })).entries || [])) stateRefs[slugOf(e.reference)] = e.reference } catch (err) { /* bibliothèque indisponible */ } } }
-    if (stateRefs[slug]) EP.open(stateRefs[slug]); else { stateRefs = null; note(tf('Sheet.RuleMissing', { n: label })) }
+    if (stateRefs[slug]) epOpen(stateRefs[slug]); else { stateRefs = null; note(tf('Sheet.RuleMissing', { n: label })) }
   }
   document.addEventListener('click', (ev) => {
     const s = ev.target.closest('#fate [data-rule]'); if (s) { ev.preventDefault(); openStateRule(s.dataset.rule, s.textContent); return }
@@ -1540,10 +1552,11 @@
     add('creation/resources', 'resources', t('Sheet.Create.Resources'), stepDone('creation/resources'), false)
     // livre de règles : « lancez 1d6 pour savoir quelle table des Éléments intéressants utiliser, puis 1d20 et consultez la table appropriée »
     add('creation/interesting', 'interesting', t('Sheet.Create.Interesting'), stepDone('creation/interesting'), false)
+    add('creation/identity', 'identity', t('Sheet.Create.Identity'), stepDone('creation/identity') || !!(hero.get('data.age') || hero.get('data.religion')), false)
     add('creation/adjust', 'adjust', t('Sheet.Create.Adjust'), stepDone('creation/adjust'), false)
     add('creation/complication', 'pickCompl', t('Sheet.Create.Compl'), !!(d.complication && d.complication.name) || stepDone('creation/complication'), false, d.complication && d.complication.name ? { info: tf('Sheet.Create.ComplDone', { n: d.complication.name }), undoFn: async () => { await hero.remove('data.complication') } } : {})
     // choix ouverts à tous (par opposition à ceux qui viennent de l'ascendance, des voies ou de la transformation)
-    const OPEN = ['creation/transformation', 'creation/startprof1', 'creation/startprof2', 'creation/resources', 'creation/interesting', 'creation/adjust', 'creation/complication']
+    const OPEN = ['creation/transformation', 'creation/startprof1', 'creation/startprof2', 'creation/resources', 'creation/interesting', 'creation/identity', 'creation/adjust', 'creation/complication']
     for (const s of S) if (OPEN.includes(s.key)) s.scope = 'all'
     return S
   }
@@ -1736,6 +1749,13 @@
         if (r.value !== 'ok' || !String(r.data.pn).trim()) return
         await hero.insert('data.professionList', { name: String(r.data.pn).trim(), detail: String(r.data.pd || '').trim() }); await mark(st.key, tf('Sheet.Step.ProfDone', { n: String(r.data.pn).trim() }), { t: 'prof', name: String(r.data.pn).trim() })
       }
+    } else if (st.type === 'identity') {
+      const ag = String(hero.get('data.age') || ''), rl = String(hero.get('data.religion') || '')
+      const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Create.IdentityHint'))}</p><input type="text" name="age" placeholder="${esc(t('Character.Age'))}" value="${esc(ag)}"><input type="text" name="religion" placeholder="${esc(t('Character.Religion'))}" value="${esc(rl)}">`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
+      if (r.value !== 'ok') return
+      const a = String(r.data.age || '').trim(), g = String(r.data.religion || '').trim()
+      await hero.set('data.age', a); await hero.set('data.religion', g)
+      await mark(st.key, tf('Sheet.Create.IdentityDone', { a: a || '—', r: g || '—' }), { t: 'identity' })
     } else if (st.type === 'resources') {
       // la table du livre n'est pas dans le système : on propose de l'ouvrir seulement si une table nommée « Ressources » existe dans la bibliothèque
       let tbl = null
@@ -1748,7 +1768,7 @@
         const ok = ov.querySelector('button[data-b="1"]'), cell = ov.querySelector('#rv-res')
         const upd = () => { ok.hidden = res == null || Number.isNaN(res) }
         upd()
-        const ob = ov.querySelector('[data-tbl]'); if (ob) ob.addEventListener('click', () => EP.open(tbl.reference))
+        const ob = ov.querySelector('[data-tbl]'); if (ob) ob.addEventListener('click', () => epOpen(tbl.reference))
         ov.querySelector('[data-rl="res"]').addEventListener('click', async (ev) => {
           ev.currentTarget.disabled = true
           let v = null
@@ -1805,7 +1825,7 @@
           const e = ov.querySelector('[data-rl="e"]'); if (e) e.disabled = !!off()
           // si la bibliothèque contient la table correspondante (« … table N »), on propose de l'ouvrir
           try { const q = await EP.query({ entity: 'Table', search: t('Sheet.Create.InterestTable'), limit: 30 }); tbl = (q.entries || []).find((x) => new RegExp('(?:table|tableau)\\s*' + n + '\\b', 'i').test(String(x.name))) || null } catch (e2) { /* bibliothèque indisponible */ }
-          if (tbl && tbl.reference) { const box = ov.querySelector('#int-open'); box.innerHTML = `<div class="rrow"><button type="button" class="btn wide" data-tbl="1">${esc(tf('Sheet.Create.InterestOpen', { n }))}</button></div>`; box.querySelector('button').addEventListener('click', () => EP.open(tbl.reference)) }
+          if (tbl && tbl.reference) { const box = ov.querySelector('#int-open'); box.innerHTML = `<div class="rrow"><button type="button" class="btn wide" data-tbl="1">${esc(tf('Sheet.Create.InterestOpen', { n }))}</button></div>`; box.querySelector('button').addEventListener('click', () => epOpen(tbl.reference)) }
         })
         roll('e', '1d20', t('Sheet.Create.Interesting'))
       })
@@ -1867,7 +1887,7 @@
       await hero.embed('data.spells', picked[0], spellKeys)
       await mark(st.key, tf('Sheet.Step.SpellDone', { n: picked[0].name }), { t: 'spell', name: picked[0].name })
     } else if (st.type === 'mchoice' || st.type === 'tradspell') {
-      const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Step.MChoiceAsk'))}</p>`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.NewTrad'), value: 'trad' }, { label: t('Sheet.Step.ASpell'), value: 'spell', primary: true }])
+      const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Step.MChoiceAsk'))}</p>`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.NewTrad'), value: 'trad' }, { label: t('Sheet.Step.ASpell'), value: 'spell' }])
       if (!r.value) return
       if (r.value === 'trad') { const k = await pickTradition(t('Sheet.Step.Tradition')); if (!k) return; await hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)); await mark(st.key, tf('Sheet.Step.TradDone', { n: EP.label('SpellTradition', k) }), { t: 'trad', k }) }
       else { const picked = await pickEntries('Spell', t('Sheet.Step.Spell'), { single: true, knownTraditions: true }); if (!picked[0]) return; await hero.embed('data.spells', picked[0], spellKeys); await mark(st.key, tf('Sheet.Step.SpellDone', { n: picked[0].name }), { t: 'spell', name: picked[0].name }) }
@@ -2070,6 +2090,7 @@
     const luck = !!hero.get('data.luck'), dem = String(hero.get('data.dementia') || '').trim(), mark = String(hero.get('data.darkMark') || '').trim()
     if (diff('badges', [ins, imax, cor, luck, dem, mark, aff.map((a) => a.name), connected])) { badgeState = { ins, imax, cor, luck, dem, mark, aff, connected }; fitBadges() }
     renderWeapons(d); renderActions(d)
+    { const tv = String(hero.get('data.turn') || 'none'), tb = $('turn'); tb.className = 'tchip ' + tv; tb.disabled = !connected; text(tb, tv === 'fast' ? '⚡ ' + t('TurnType.Fast') : tv === 'slow' ? '⏳ ' + t('TurnType.Slow') : t('TurnType.None')) }
     const heal = d.healingValue
     text($('rest-8-sub'), heal != null ? `soigne ${heal}` : '')
     text($('rest-24-sub'), heal != null ? `soigne ${heal * 2}` : '')

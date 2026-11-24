@@ -13,6 +13,12 @@
                             "type": "picker",
                             "attribute": "data.level",
                             "attributeType": "CharacterLevel"
+                        },
+                        {
+                            "title": "Character.Turn",
+                            "type": "picker",
+                            "attribute": "data.turn",
+                            "attributeType": "TurnType"
                         }
                     ]
                 },

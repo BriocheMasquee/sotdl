@@ -16,7 +16,7 @@
     {% if data.armorDefenseFixed != nil or data.armorDefenseAgility != nil %}<div class="line">{% markdown -%}**{{ 'Characteristics.Defense'|l }}** {% if data.armorDefenseFixed != nil %}{{ data.armorDefenseFixed }}{% else %}{{ 'Attributes.AGI'|l }}{% if data.armorDefenseAgility != 0 %} + {{ data.armorDefenseAgility }}{% endif %}{% endif %}{% endmarkdown %}</div>{% endif %}
     {% endif %}
     {% if data.itemType == 'Weapon' %}
-    {% if data.weaponDamage %}<div class="line">{% markdown -%}**{{ 'Characteristics.Damage'|l }}** {{ data.weaponDamage }}{% if data.weaponHands %} · **{{ 'Weapon.Hands'|l }}** {{ data.weaponHands|map: 'WeaponHands'|l }}{% endif %}{% if data.weaponRequirement %} · **{{ 'Item.Requirement'|l }}** {{ data.weaponRequirement }}{% endif %}{% endmarkdown %}</div>{% endif %}
+    {% if data.weaponDamage %}{% set dtag 'Sheet.Die.Damage'|l %}{% set dform %}{% for term in data.weaponDamage|split:'+' %}{% if not forloop.first %}+{% endif %}{% if 'd' in term %}{% set pp term|split:'d' %}{{ pp.first }}d{{ pp.last }}[{{ dtag }}]{% else %}{{ term }}{% endif %}{% endfor %}{% endset %}<div class="line">{% markdown -%}**{{ 'Characteristics.Damage'|l }}** [{{ data.weaponDamage }}](</roll/{{ dform }}/{{ name }}/damage>){% if data.weaponHands %} · **{{ 'Weapon.Hands'|l }}** {{ data.weaponHands|map: 'WeaponHands'|l }}{% endif %}{% if data.weaponRequirement %} · **{{ 'Item.Requirement'|l }}** {{ data.weaponRequirement }}{% endif %}{% endmarkdown %}</div>{% endif %}
     {% if data.weaponProperty or data.weaponReach or data.weaponDefensive %}<div class="line">{% markdown -%}**{{ 'Weapon.Property'|l }}** {% if data.weaponReach and data.reachValue != nil %}{{ 'Weapon.Reach'|l|lowercase }} +{{ data.reachValue }}{% endif %}{% if data.weaponDefensive and data.defensiveValue != nil %}{% if data.weaponReach and data.reachValue != nil %}, {% endif %}{{ 'Weapon.Defensive'|l|lowercase }} +{{ data.defensiveValue }}{% endif %}{% if data.weaponProperty %}{% if data.weaponReach and data.reachValue != nil %}, {% else %}{% if data.weaponDefensive and data.defensiveValue != nil %}, {% endif %}{% endif %}{{ data.weaponProperty|map: 'WeaponProperty'|l|lowercase }}{% endif %}{% endmarkdown %}</div>{% endif %}
     {% if data.ammunitionRequirement and data.ammunitionType %}<div class="line">{% markdown -%}**{{ 'Weapon.AmmunitionRequirement'|l }}** {{ data.ammunitionType|map: 'Ammunition'|l|lowercase }}{% endmarkdown %}</div>{% endif %}
     {% endif %}
@@ -24,4 +24,5 @@
   {% if descr %}<div class="description item-text">{{ descr|md }}</div>{% endif %}
   {% for e in data.relic %}<div class="line talent">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}
 </main>
+{{ runtime }}
 {% endblock %}

@@ -107,6 +107,11 @@
     "9": "SpellRank.9",
     "10": "SpellRank.10"
   },
+  "TurnType": {
+    "none": "TurnType.None",
+    "fast": "TurnType.Fast",
+    "slow": "TurnType.Slow"
+  },
   "SpellRank": {
     "0": "SpellRank.0",
     "1": "SpellRank.1",

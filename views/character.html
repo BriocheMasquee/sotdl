@@ -22,6 +22,8 @@
   .gm .who { flex: 1; min-width: 0; }
   .gm h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font: 28px/1.1 var(--font-title, 'Aquifer', serif); color: #efe8d8; text-transform: uppercase; letter-spacing: .03em; text-shadow: 0 2px 0 #000, 0 0 22px #b3151e99; }
   .gm .orig + .orig { margin-top: 2px; }
+  .gm .tchip { margin-top: 7px; display: inline-flex; align-items: center; gap: 5px; border: 1.5px solid #efe8d8aa; border-radius: 11px; padding: 3px 10px; font: 700 9.5px/1.2 var(--ui, sans-serif); letter-spacing: .12em; text-transform: uppercase; background: #0007; color: #efe8d8; cursor: pointer; }
+  .gm .tchip.fast { border-color: #f0c36b; color: #f6d58f; } .gm .tchip.slow { border-color: #86a9d6; color: #aac4ea; } .gm .tchip.none { opacity: .6; border-style: dashed; }
   .gm .orig.paths-line { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.35; }
   .gm .orig { margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: #d49a8a; }
   .gm .lv { display: flex; flex-direction: column; align-items: center; gap: 7px; flex: none; }
@@ -120,6 +122,7 @@
       <h1>{{name}}</h1>
       <div class="orig">{% if data.ancestry.name %}{{data.ancestry.name}}{% endif %}{% if data.transformation.name %} · {{data.transformation.name}}{% endif %}</div>
       <div class="orig paths-line">{% if data.novicePath.name %}{{data.novicePath.name}}{% endif %}{% if data.expertPath.name %} · {{data.expertPath.name}}{% endif %}{% if data.masterPath.name %} · {{data.masterPath.name}}{% endif %}{% if data.secondPath.name %} · {{data.secondPath.name}} ({{'Sheet.SecondPathNote'|l}}){% endif %}</div>
+      <button type="button" class="tchip {% if data.turn == 'fast' %}fast{% elif data.turn == 'slow' %}slow{% else %}none{% endif %}" id="turn-chip" data-turn="{{data.turn|default: 'none'}}" title="{{'Character.Turn'|l}}">{% if data.turn == 'fast' %}⚡ {{'TurnType.Fast'|l}}{% elif data.turn == 'slow' %}⏳ {{'TurnType.Slow'|l}}{% else %}{{'TurnType.None'|l}}{% endif %}</button>
     </div>
     <div class="lv"><div class="seal"><b>{{data.level|default: 0}}</b><span>{{'Character.Level'|l}}</span></div>{% if env.sheetURL %}<a id="go-sheet" class="go" href="{{env.sheetURL}}">{{'Character.OpenSheet'|l}}</a>{% endif %}</div>
   </div>
@@ -389,6 +392,8 @@
     if (stateRefs[slug]) EP.open(stateRefs[slug]); else { stateRefs = null; toast("{{'Sheet.RuleMissing'|l}}".replace('{n}', label)) }
   }
   document.addEventListener('click', (ev) => {
+    const tc = ev.target.closest('#turn-chip')
+    if (tc) { ev.preventDefault(); ev.stopPropagation(); const cur = String(c.get('data.turn') || 'none'); Promise.resolve(c.set('data.turn', cur === 'none' ? 'fast' : cur === 'fast' ? 'slow' : 'none')).then(redraw).catch(fail); return }
     const r = ev.target.closest('.rl[data-kind]')
     if (r) { ev.preventDefault(); ev.stopPropagation(); if (longDone) { longDone = false; return } roll(r, 0, false); return }
     const sl = ev.target.closest('[data-rule]')

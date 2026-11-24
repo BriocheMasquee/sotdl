@@ -122,6 +122,7 @@ h2.section {
 .description p { text-indent: 1.2em; }
 /* Pas de retrait juste après un titre, en tête de description, ni dans une liste ou une citation (comme les pages de module) */
 .description :is(h1, h2, h3, h4, h5, h6) + p, .description > p:first-child, .description li > p, .description blockquote p { text-indent: 0; }
+.description :is(table, ul, ol, pre, hr, div) + p { text-indent: 0; }   /* pas de retrait après une table, une liste ou un bloc (règle SotDL, 2026-11-24) */
 
 /* Titres Markdown (H1 à H4) dans les descriptions : H2 = titre de fiche (rouge, majuscules, filet) ;
    H1 = H2 en plus grand, sans filet ; H3 = H2 centré, filet noir ; H4 = Montserrat gras, majuscules, noir (comme les bandes des blocs de statistiques).
@@ -202,6 +203,7 @@ a.entity-kind:active, .entity-tables a[href^="/table-roll/"]:active { color: var
 .spell-text p, .item-text p { margin-block-end: 0.35rem; }
 /* entrées spéciales d'un sort (Jet d'attaque 20+…) : comme un nouveau paragraphe du livre, retrait de 1ʳᵉ ligne et pas de retrait suspendu ; les lignes du cadre (`.spell-lines`) gardent le retrait suspendu (2026-11-08) */
 .line.spell-entry { padding-inline-start: 0; text-indent: 1.2em; }
+.line.spell-entry.named { text-indent: 0; }   /* entrée spéciale (nom en gras) : pas de retrait, comme dans le livre */
 .spell .app-note { margin-block: 0.35rem 0.7rem; }
 .create.spell-lines, .create.item-lines { margin-block: 0 0.9rem; padding-block-start: 0.5rem; }
 .spell-lines > .line:last-child, .item-lines > .line:last-child { margin-block-end: 0; }
@@ -385,8 +387,9 @@ h2.section::after { content: '◆'; position: absolute; left: 50%; bottom: -5px;
 .create > h2.section::before, .create > h2.section::after { display: none; }
 .entity-tables td { border-bottom: 1px dotted var(--hx-dot); }
 .entity-tables th { border-bottom: 2px solid var(--hx-blood); }
-.description h3 { border-block-end: 0; position: relative; padding-block-end: 0.5rem; }
-.description h3::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(var(--hx-ink), var(--hx-ink)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--hx-blood), var(--hx-blood)) 0 4px / 100% 1px no-repeat; }
+.description h3 { border-block-end: 0; position: relative; padding-block-end: 0.5rem; }   /* H3 : filet interrompu par un losange, comme les titres de section de la fiche (2026-11-23, choix de Pierre ; modules alignés) */
+.description h3::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, var(--hx-ink) calc(50% - 14px), transparent calc(50% - 14px), transparent calc(50% + 14px), var(--hx-ink) calc(50% + 14px)); }
+.description h3::after { content: '◆'; position: absolute; left: 50%; bottom: -5px; transform: translateX(-50%); font-size: 9px; line-height: 1; letter-spacing: 0; color: var(--hx-blood); font-family: var(--font-ui); font-variant-caps: normal; }
 .description h2 { border-block-end: 0; position: relative; padding-block-end: 0.5rem; }   /* H2 : même double filet que H1 / H3 (décision du 2026-11-21 pour les pages, étendue aux descriptions le 2026-11-22) */
 .description h2::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: linear-gradient(var(--hx-ink), var(--hx-ink)) 0 0 / 100% 2px no-repeat, linear-gradient(var(--hx-blood), var(--hx-blood)) 0 4px / 100% 1px no-repeat; }
 .description hr { border: 0; height: 14px; margin: 1.2rem 0; position: relative; background: none; }

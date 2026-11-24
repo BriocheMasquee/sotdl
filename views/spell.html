@@ -16,6 +16,7 @@
     {% if data.spellDuration %}<div class="line">{% markdown -%}**{{ 'Spell.Duration'|l }}.** {{ data.spellDuration }}{% endmarkdown %}</div>{% endif %}
   </div>{% endif %}
   {% if descr %}<div class="description spell-text">{{ descr|md }}</div>{% endif %}
-  {% for e in data.spellEffects %}<div class="line justify spell-entry">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}
+  {% for e in data.spellEffects %}<div class="line justify spell-entry{% if e.name %} named{% endif %}">{% markdown -%}{% if e.name %}**{{ e.name }}.** {% endif %}{{ e.text }}{% endmarkdown %}</div>{% endfor %}
 </main>
+{{ runtime }}
 {% endblock %}
