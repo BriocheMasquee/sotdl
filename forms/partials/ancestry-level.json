@@ -94,6 +94,13 @@
           "visibleIf": "{% if levelTradition and levelSpell %}true{% endif %}"
         },
         {
+          "title": "Level.TraditionOnly",
+          "type": "multiPicker",
+          "attribute": "levelTraditionOnly",
+          "attributeType": "SpellTradition",
+          "visibleIf": "{% if levelTradition or levelSpell %}true{% endif %}"
+        },
+        {
           "title": "Level.MagicChoices",
           "type": "number",
           "attribute": "levelMagicChoices"

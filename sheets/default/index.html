@@ -144,6 +144,16 @@
     .wl { display:flex; align-items:center; gap:10px; } .wl .ic { color:var(--blood); flex:none; }
     .nm { flex:1; min-width:0; font:19px/22px var(--f-title); color:var(--ink); letter-spacing:.02em; text-align:left; } .nm small { display:block; font:11px var(--f-ui); color:#6a5f52; letter-spacing:0; margin-top:1px; }
     .lk { border-bottom:1.5px dotted #7a6f60; cursor:pointer; }
+    a.lk[data-k] { border-bottom-width:1px; }
+    /* liens d'entité dans les textes : pastille CLAIRE comme default.css (section 7) et page-harmonisation.css ; teinte par type d'adresse (data-k posé par wireRolls) */
+    a.lk[data-k] { --c1:#3f6a8f; --lt:#1f3c58; display:inline-block; padding:0.04em 0.5em 0.06em 0.38em; vertical-align:0.1em; border:1px solid color-mix(in srgb, var(--c1) 60%, #fff); border-radius:999px;
+      background:linear-gradient(180deg, color-mix(in srgb, var(--c1) 8%, #fff), color-mix(in srgb, var(--c1) 20%, #fff)); color:var(--lt); font:600 0.7em/1.2 var(--f-ui); text-decoration:none; white-space:nowrap; cursor:pointer; }
+    a.lk[data-k]::before { content:''; display:inline-block; width:0.5em; height:0.5em; margin-right:0.3em; border-radius:50%; vertical-align:0.04em; background:radial-gradient(circle at 35% 30%, #fffc, var(--c1) 62%, var(--lt)); }
+    a.lk[data-k=module] { --c1:#4a4038; --lt:#17120f; }
+    a.lk:is([data-k=creature],[data-k=npc],[data-k=vehicle]) { --c1:#9c1a24; --lt:#5a0c12; }
+    a.lk[data-k=item] { --c1:#c39a2e; --lt:#5a4204; }
+    a.lk[data-k=spell] { --c1:#5b3a8c; --lt:#2e1a52; }
+    a.lk:is([data-k=ancestry],[data-k=path],[data-k=transformation],[data-k=complication],[data-k=entity]) { --c1:#2c7a62; --lt:#124236; }
     .rk { width:30px; height:30px; border-radius:50%; border:2px solid var(--ink); font:700 14px/26px var(--f-title); text-align:center; flex:none; background:#fff9; }
     .am { display:flex; align-items:center; gap:10px; margin-top:6px; padding-top:6px; border-top:1px dashed #17120f33; flex-wrap:wrap; } .al { font:700 9.5px var(--f-ui); letter-spacing:.14em; text-transform:uppercase; color:#6a5f52; } .auto { margin-left:auto; font:10px var(--f-ui); color:#8a7f70; }
     .pips { display:inline-flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
@@ -171,6 +181,7 @@
     select { font:13px var(--f-body); }
     .rkgrid { display:grid; grid-template-columns:1fr 1fr; gap:0 30px; align-items:start; }
     details.sd { flex:1; min-width:0; } details.sd summary { list-style:none; cursor:pointer; } details.sd summary::-webkit-details-marker { display:none; } details.sd summary::after { content:' ▾'; color:var(--blood); font-size:11px; }
+    table.mdt { border-collapse:collapse; margin:6px 0; width:100%; } table.mdt th, table.mdt td { border-bottom:1px dotted #8a7a62; padding:3px 8px; text-align:left; font-weight:normal; } table.mdt th { font-weight:bold; }
     .ttext { white-space:pre-wrap; margin:6px 0 2px; font:13px/1.45 var(--f-body); color:#2b241d; }
     .box.tl .ban span { font-size:19px; padding:4px 28px 3px; } .sb { font:700 10px var(--f-ui); letter-spacing:.16em; text-transform:uppercase; color:var(--blood); margin:0 0 4px 2px; }
     .ti { display:flex; gap:12px; align-items:flex-start; padding:7px 0; border-bottom:1px dotted #17120f44; } .ti:last-child { border-bottom:0; }
@@ -743,8 +754,27 @@
   const mdFull = (md, label) => esc(md).split(/\n{2,}/).map((p) => '<p>' + p.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>').replace(/\[([^\]]+)\]\(&lt;([^)]*?)&gt;\)|\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t1, u1, t2, u2) => `<a href="${u1 || u2}">${t1 || t2}</a>`)
     .replace(/(<a [^>]*>.*?<\/a>)|([^<]+)/g, (m, link, txt) => link || txt.replace(DICE, (_, pre, f) => `${pre}<a href="/roll/${encodeURIComponent(f)}/${encodeURIComponent(label || '')}/damage">${f}</a>`)).replace(/\n/g, '<br>') + '</p>').join('')
   // sorts et talents : le texte est affiché tel quel (retours à la ligne conservés) ; seuls les liens de jet [texte](/roll/…) et les formules de dés (3d6, 1d6+1) deviennent des boutons
-  const rollText = (txt, label) => esc(txt).replace(/\[([^\]]+)\]\((?:&lt;)?(\/roll\/[^)\s]*?)(?:&gt;)?\)/g, (_, t1, u) => `<a href="${u}">${t1}</a>`)
-    .replace(/(<a [^>]*>.*?<\/a>)|([^<]+)/g, (m, link, plain) => link || plain.replace(DICE, (_, pre, f) => `${pre}<a href="/roll/${encodeURIComponent(f)}/${encodeURIComponent(label || '')}/damage">${f}</a>`))
+  const rollText = (txt, label) => {
+    // texte d'une entité copié dans la fiche : Markdown allégé (liens, gras, italique, tableaux) ; jets [texte](/roll/…) et dés nus = boutons
+    // liens vers une entité : /rule/slug etc. (pastille colorée par type, cliquable) ; lien court `(rule)` : adresse déduite du nom
+    const keep = []
+    let s = esc(txt).replace(/\[([^\]]+)\]\((?:&lt;([\s\S]*?)&gt;|([^)\s]*))\)/g, (_, t1, u1, u2) => {
+      let u = String(u1 || u2 || '').trim()
+      if (/^(rule|spell|item|creature|npc|vehicle|ancestry|path|transformation|complication|table)$/.test(u)) u = '/' + u + '/' + t1.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[’']/g, '-').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')   // lien court [nom](type) : adresse déduite du nom (E+ ignore casse et accents)
+      return '\u0001' + (keep.push(/^\//.test(u) ? `<a href="${u.replace(/"/g, '&quot;')}">${t1}</a>` : t1) - 1) + '\u0001'
+    }).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>')
+    const lines = s.split('\n'), out = []
+    for (let k = 0; k < lines.length; k++) {
+      if (!/^\s*\|.*\|\s*$/.test(lines[k])) { out.push(lines[k]); continue }
+      const rows = []
+      while (k < lines.length && /^\s*\|.*\|\s*$/.test(lines[k])) { rows.push(lines[k].trim().replace(/^\||\|$/g, '').split('|').map((c) => c.trim())); k++ }
+      k--
+      const body = rows.filter((r) => !r.every((c) => /^:?-{2,}:?$/.test(c)))
+      out.push('<table class="mdt">' + body.map((r, ri) => '<tr>' + r.map((c) => `<${ri === 0 ? 'th' : 'td'}>${c}</${ri === 0 ? 'th' : 'td'}>`).join('') + '</tr>').join('') + '</table>')
+    }
+    return out.join('\n').replace(/\u0001(\d+)\u0001/g, (_, i) => keep[Number(i)])
+      .replace(/(<a [^>]*>.*?<\/a>)|(<[^>]+>)|([^<]+)/g, (m, link, tag, plain) => link || tag || plain.replace(DICE, (_, pre, f) => `${pre}<a href="/roll/${encodeURIComponent(f)}/${encodeURIComponent(label || '')}/damage">${f}</a>`))
+  }
   const actHtml = new Map()
   async function ruleDescrHtml(a) {
     if (actHtml.has(a.reference)) return actHtml.get(a.reference)
@@ -767,7 +797,7 @@
       if (/^\/roll\//i.test(h)) {
         const [f, label, type] = h.slice(6).split('/').map((x) => { try { return decodeURIComponent(x) } catch (e) { return x } })
         const sp = rollSpec(f, label || a.textContent, type); const b = document.createElement('button'); b.type = 'button'; b.className = 'roll sm inl' + (sp.raw ? ' dmg' : '') + (a.textContent.trim().length > 9 ? ' txt' : ''); b.dataset.rs = 'l:' + (linkSpecs.push(sp) - 1); b.textContent = a.textContent; a.replaceWith(b)
-      } else { a.dataset.go = h; a.removeAttribute('href'); a.classList.add('lk') }
+      } else { a.dataset.go = h; const mk = h.match(/^\/([a-z]+)\//); if (mk) a.dataset.k = mk[1]; a.removeAttribute('href'); a.classList.add('lk') }
     })
   }
   async function fillAct(box) {
@@ -790,7 +820,7 @@
     $('add-action').disabled = !online()
   }
   document.addEventListener('toggle', (ev) => { const d = ev.target; if (d.matches && d.matches('details.bd') && d.open) { const b = d.querySelector('.adesc'); if (b) fillAct(b) } }, true)
-  document.addEventListener('click', (ev) => { const g = ev.target.closest('#spells [data-go], #talents [data-go]'); if (g && g.dataset.go) { ev.preventDefault(); epOpen(g.dataset.go) } })
+  document.addEventListener('click', (ev) => { const g = ev.target.closest('#spells [data-go], #talents [data-go], #complication [data-go]'); if (g && g.dataset.go) { ev.preventDefault(); epOpen(g.dataset.go) } })
   $('actions').addEventListener('click', async (ev) => {
     const g = ev.target.closest('[data-go]'); if (g && g.dataset.go) { ev.preventDefault(); epOpen(g.dataset.go); return }
     const del = ev.target.closest('[data-delact]')
@@ -906,10 +936,12 @@
       if (k) hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)).catch(fail)
     }
   })
+  // sorts limités aux traditions autorisées par le niveau (`levelTraditionOnly`) : filtre + clé de tradition lue dans la bibliothèque
+  const onlyOpts = (only) => (only && only.length ? { filter: (e) => { const x = (e.data && e.data.spellTradition) || e['data.spellTradition'] || e.spellTradition; return !!x && only.includes(x.tradition) }, keys: ['data.spellTradition'] } : {})
   // choix d'une tradition parmi celles que le personnage ne connaît pas encore ; rend la clé ou null
-  async function pickTradition(title) {
+  async function pickTradition(title, only) {
     const cur = hero.get('data.traditions') || []
-    const opts = TRADITIONS.filter((k) => !cur.includes(k)).map((k) => ({ k, l: EP.label('SpellTradition', k) })).sort((a, b) => a.l.localeCompare(b.l, 'fr'))
+    const opts = TRADITIONS.filter((k) => !cur.includes(k) && (!only || !only.length || only.includes(k))).map((k) => ({ k, l: EP.label('SpellTradition', k) })).sort((a, b) => a.l.localeCompare(b.l, 'fr'))
     const r = await dialog(title, `<input type="text" id="tsearch" placeholder="${esc(t('Sheet.Search'))}" autocomplete="off"><div class="picklist" id="tlist">${opts.map((o) => `<label class="opt" data-l="${esc(o.l.toLowerCase())}"><input type="radio" name="trad" id="trad" value="${o.k}"> ${esc(o.l)}</label>`).join('')}</div>`,
       [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Add'), value: 'ok', primary: true }],
       (ov) => ov.querySelector('#tsearch').addEventListener('input', (e) => { const q = e.target.value.trim().toLowerCase(); ov.querySelectorAll('#tlist label').forEach((l) => { l.hidden = q && !l.dataset.l.includes(q) }) }))
@@ -1192,9 +1224,10 @@
     const c = d.complication, traits = (c && c.trait) || []
     if (!diff('compl', [ui.edit, last.status, c && c.name, c && c.descr, traits.map((x) => [x.name, x.text])])) return
     $('complication').innerHTML = c && c.name
-      ? `<div class="wl">${ui.edit ? `<button type="button" class="del" data-compl="del" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : ''}<div class="tn">${esc(c.name)}</div></div>${c.descr ? `<div class="tx">${esc(c.descr)}</div>` : ''}` +
+      ? `<div class="wl">${ui.edit ? `<button type="button" class="del" data-compl="del" title="${esc(t('Sheet.Remove'))}"${off()}>✕</button>` : ''}<div class="tn">${esc(c.name)}</div></div>${c.descr ? `<div class="tx">${rollText(c.descr, c.name)}</div>` : ''}` +
         traits.map((x, i) => bandRow({ k: 'cp/' + i + (x.name || ''), name: x.name || '', body: `<div class="tx">${rollText(x.text || '', x.name)}</div>` })).join('')
       : `<div class="addrow"><button type="button" class="add" data-compl="add"${off()}>+ ${esc(t('Sheet.Compl.Add'))}</button></div>`
+    wireRolls($('complication'))   // liens en pastilles, jets en boutons (comme les sorts et les talents)
   }
   // transformation : possible à tout moment (entre deux aventures ou en cours de partie, avec l'accord du MJ : revenant, vampire, incarnation, esclave des charniers…).
   // Les choix de niveau qu'elle apporte jusqu'au niveau du groupe apparaissent dans la fenêtre de montée de niveau.
@@ -1313,7 +1346,7 @@
     else if (u.t === 'baseAttrs') for (const k of u.k) await hero.remove(`data.attrAdjust.${k}.base`)
     else if (u.t === 'start') await hero.remove(`data.${u.stat}.start`)
     else if (u.t === 'size') await hero.remove('data.sizeAdjust.base')
-    else if (u.t === 'identity') { await hero.set('data.age', ''); await hero.set('data.religion', '') }
+    else if (u.t === 'identity') { if (u.fld) await hero.set('data.' + u.fld, ''); else { await hero.set('data.age', ''); await hero.set('data.religion', '') } }
     if (u.t === 'trad') for (const suf of ['-cantrip2', '-cantrip']) if (stepEntry(st.key + suf) >= 0) await undoStep({ key: st.key + suf })
     if (st.key === 'creation/attrroll' && stepEntry('creation/ancestry/attrs') >= 0) await undoStep({ key: 'creation/ancestry/attrs' })
     await hero.remove(`data.levelSteps[${stepEntry(st.key)}]`)
@@ -1375,10 +1408,11 @@
     if (L && P && f.levelLangProfOne) add('langprof', 'langprof', t('Sheet.Step.LangProf'))
     else { if (L) add('lang', 'lang', t('Sheet.Step.Lang')); if (P) add('prof', 'prof', t('Sheet.Step.Prof')) }
     if (f.levelLangRights) add('langrights', 'langrights', t('Sheet.Step.LangRights'))   // « vous lisez / écrivez … les langues que vous parlez » : cases à cocher sur les langues connues
-    if (f.levelTradition && f.levelSpell && f.levelMagicOne) add('tradspell', 'tradspell', t('Sheet.Step.TradSpell'))
+    const only = (f.levelTraditionOnly || []).filter(Boolean)   // traditions autorisées à ce niveau (vide = toutes)
+    if (f.levelTradition && f.levelSpell && f.levelMagicOne) add('tradspell', 'tradspell', t('Sheet.Step.TradSpell'), { only })
     else {
-      if (f.levelTradition) add('tradition', 'tradition', t('Sheet.Step.Tradition'))
-      if (f.levelSpell) add('spell', 'spell', t('Sheet.Step.Spell'))
+      if (f.levelTradition) add('tradition', 'tradition', t('Sheet.Step.Tradition'), { only })
+      if (f.levelSpell) add('spell', 'spell', t('Sheet.Step.Spell'), { only })
     }
     const nm = Number(f.levelMagicChoices || 0)
     for (let i = 1; i <= nm; i++) add('mchoice' + i, 'mchoice', tf('Sheet.Step.MChoice', { i, n: nm }))
@@ -1538,7 +1572,17 @@
         const o = anc[k]; if (o && o.mode === 'variable' && o.dice) add('creation/' + k, 'startRoll', tf('Sheet.Create.StartRoll', { s: t(lk), dice: o.dice }), stepDone('creation/' + k), true, { stat: k, dice: o.dice })
       }
     }
-    // « Autres options » : ouvertes à tous, visibles dès le début (transformation, options de départ, équipement, élément intéressant, ajustement, complication)
+    // « Autres options » : ouvertes à tous, dans l'ordre du livre de règles (ch. 1) : ajuster un attribut, deux options de départ (profession / langue), équipement, élément intéressant, puis âge, religion, complication et transformation (extensions optionnelles)
+    add('creation/adjust', 'adjust', t('Sheet.Create.Adjust'), stepDone('creation/adjust'), false)
+    // livre de règles : « vous commencez avec deux professions » ; une profession peut être échangée contre une autre langue ou la capacité de lire une langue connue
+    for (let i = 1; i <= 2; i++) add('creation/startprof' + i, 'startProf', tf('Sheet.Create.StartProf', { i, n: 2 }), stepDone('creation/startprof' + i), false)
+    // livre de règles : « lancez 3d6 et consultez la table des Ressources » (équipement de départ)
+    add('creation/resources', 'resources', t('Sheet.Create.Resources'), stepDone('creation/resources'), false)
+    // livre de règles : « lancez 1d6 pour savoir quelle table des Éléments intéressants utiliser, puis 1d20 et consultez la table appropriée »
+    add('creation/interesting', 'interesting', t('Sheet.Create.Interesting'), stepDone('creation/interesting'), false)
+    add('creation/age', 'identity', t('Sheet.Create.Age'), stepDone('creation/age') || !!hero.get('data.age'), false, { fld: 'age' })   // Âge et religion : deux choix distincts
+    add('creation/religion', 'identity', t('Sheet.Create.Religion'), stepDone('creation/religion') || !!hero.get('data.religion'), false, { fld: 'religion' })
+    add('creation/complication', 'pickCompl', t('Sheet.Create.Compl'), !!(d.complication && d.complication.name) || stepDone('creation/complication'), false, d.complication && d.complication.name ? { info: tf('Sheet.Create.ComplDone', { n: d.complication.name }), undoFn: async () => { await hero.remove('data.complication') } } : {})
     add('creation/transformation', 'pickTransf', t('Sheet.Create.Transf'), !!(d.transformation && d.transformation.name) || stepDone('creation/transformation'), false, d.transformation && d.transformation.name ? { info: tf('Sheet.Create.TransfDone', { n: d.transformation.name }), undoFn: async () => { await hero.remove('data.transformation'); await clearTransfStart() } } : {})
     // jets de Folie / Corruption « variable » de la transformation : étapes visibles (résultat dans data.<stat>.transfStart, ajouté à la valeur de départ)
     if (d.transformation && d.transformation.name) for (const [k, lk] of [['insanity', 'Characteristics.Insanity'], ['corruption', 'Characteristics.Corruption']]) {
@@ -1546,17 +1590,8 @@
       const v = hero.get(`data.${k}.transfStart`), done = v != null
       add('creation/transf-' + k, 'transfRoll', tf('Sheet.Create.TransfRoll', { s: t(lk), dice: o.dice }), done, true, Object.assign({ stat: k, dice: o.dice, lk }, done ? { info: tf('Sheet.Create.TransfRollDone', { s: t(lk), v }), undoFn: async () => { await hero.remove(`data.${k}.transfStart`) } } : {}))
     }
-    // livre de règles : « vous commencez avec deux professions » ; une profession peut être échangée contre une autre langue ou la capacité de lire une langue connue
-    for (let i = 1; i <= 2; i++) add('creation/startprof' + i, 'startProf', tf('Sheet.Create.StartProf', { i, n: 2 }), stepDone('creation/startprof' + i), false)
-    // livre de règles : « lancez 3d6 et consultez la table des Ressources » (équipement de départ)
-    add('creation/resources', 'resources', t('Sheet.Create.Resources'), stepDone('creation/resources'), false)
-    // livre de règles : « lancez 1d6 pour savoir quelle table des Éléments intéressants utiliser, puis 1d20 et consultez la table appropriée »
-    add('creation/interesting', 'interesting', t('Sheet.Create.Interesting'), stepDone('creation/interesting'), false)
-    add('creation/identity', 'identity', t('Sheet.Create.Identity'), stepDone('creation/identity') || !!(hero.get('data.age') || hero.get('data.religion')), false)
-    add('creation/adjust', 'adjust', t('Sheet.Create.Adjust'), stepDone('creation/adjust'), false)
-    add('creation/complication', 'pickCompl', t('Sheet.Create.Compl'), !!(d.complication && d.complication.name) || stepDone('creation/complication'), false, d.complication && d.complication.name ? { info: tf('Sheet.Create.ComplDone', { n: d.complication.name }), undoFn: async () => { await hero.remove('data.complication') } } : {})
     // choix ouverts à tous (par opposition à ceux qui viennent de l'ascendance, des voies ou de la transformation)
-    const OPEN = ['creation/transformation', 'creation/startprof1', 'creation/startprof2', 'creation/resources', 'creation/interesting', 'creation/identity', 'creation/adjust', 'creation/complication']
+    const OPEN = ['creation/transformation', 'creation/startprof1', 'creation/startprof2', 'creation/resources', 'creation/interesting', 'creation/age', 'creation/religion', 'creation/adjust', 'creation/complication']
     for (const s of S) if (OPEN.includes(s.key)) s.scope = 'all'
     return S
   }
@@ -1594,7 +1629,7 @@
     const out = []
     const a = f.attrs || {}
     for (const [k, , , name] of ATTR4) if (a[k]) out.push(`${t('Attributes.' + k)} ${sgn(a[k])}`)
-    if (a.custom) out.push(a.custom)
+    if (a.custom && !Number(f.levelAttrChoice || 0)) out.push(a.custom)   // « Augmentez N attributs de 1 » = choix du joueur (étape « Attributs +1 »), pas un gain automatique
     const g = f.gains || {}
     for (const [k, [lk]] of Object.entries(GAIN_LABELS)) if (g[k]) out.push(`${t(lk)} ${sgn(g[k])}`)
     if (g.defenseFixed) out.push(`${t('Characteristics.Defense')} ${g.defenseFixed}`)
@@ -1607,13 +1642,13 @@
   const stepList = (S) => S.filter((x) => !x.done).map(stepRow).join('')
   const stepResults = (S) => S.filter((x) => x.done).map(resultRow).join('')
   // choix ouverts à tous, à la montée de niveau (livre de règles, « Équipements à plus haut niveau ») : +2d6 ca à la bourse pour chaque niveau supplémentaire,
-  // et un élément intéressant de plus à chaque choix de voie (niveaux 1, 3 et 7)
+  // (dès le niveau 1 : « pour chaque niveau supplémentaire », niveau 0 = personnage de départ), et un élément intéressant de plus à chaque choix de voie (niveaux 1, 3 et 7)
   function openSteps(d, lvl) {
     const S = [], c = t('Character.CA')
     const add = (key, type, label) => { const st = { key, type, label, done: stepDone(key), required: false, scope: 'all' }; S.push(st); drawerSteps.set(key, st) }
     const tier = { 1: d.novicePath, 3: d.expertPath, 7: d.masterPath && d.masterPath.name ? d.masterPath : d.secondPath }
     for (let n = 1; n <= lvl; n++) {
-      if (n >= 2) add(`open/${n}/purse`, 'purse', tf('Sheet.Open.Purse', { n, c }))
+      add(`open/${n}/purse`, 'purse', tf('Sheet.Open.Purse', { n, c }))
       if (tier[n] && tier[n].name) add(`open/${n}/interesting`, 'interesting', tf('Sheet.Open.Interesting', { n }))
     }
     return S
@@ -1625,11 +1660,11 @@
       const alt = ci.instead ? steps.filter((s) => isAlt(s, base)) : [], main = ci.instead ? steps.filter((s) => !isAlt(s, base)) : steps
       const seenKey = g.o.root + '/' + n
       if (!(n === lvl || main.some((x) => !x.done) || ci.pending)) return ''   // niveau visé, ou niveau ancien avec des choix encore à faire
-      const got = gainsHTML(f) + v.talents.filter((a) => !a.chosen).map((a) => `<div class="got">${esc(a.x.name)} <small>(${esc(t('Sheet.Step.Received'))})</small></div>`).join('')
+      const got = gainsHTML(f) + v.talents.filter((a) => !a.chosen).map((a) => `<div class="got">${esc(a.x.name)}</div>`).join('')
       let todo = stepList(main)
       if (v.choices.length) {
         todo += `<div class="lbl" style="margin:6px 0 2px">${esc(tf('Sheet.Step.Pick', { n: ci.pick }))}</div>` +
-          v.choices.map((a) => `<label class="chc"><input type="checkbox" data-r="${a.row}"${a.x.chosen ? ' checked' : ''}${off() || (!a.x.chosen && (ci.chosen >= ci.pick || ci.insteadDone) ? ' disabled' : '')}><span class="ctext"><b>${esc(a.x.name)}</b><small>${esc(a.x.text)}</small></span></label>`).join('')
+          v.choices.map((a) => `<label class="chc"><input type="checkbox" data-r="${a.row}"${a.x.chosen ? ' checked' : ''}${off() || (!a.x.chosen && (ci.chosen >= ci.pick || ci.insteadDone) ? ' disabled' : '')}><span class="ctext"><b>${esc(a.x.name)}</b><small>${mdLite(a.x.text)}</small></span></label>`).join('')
         if (ci.instead && !ci.insteadDone && ci.chosen < ci.pick) {
           // alternatives au talent : « Ou découvrir une tradition », « Ou apprendre un sort », « Ou une tradition ou un sort »
           const LBL = { tradition: 'Sheet.Step.AltTradition', spell: 'Sheet.Step.AltSpell', tradspell: 'Sheet.Step.AltTradSpell' }
@@ -1637,11 +1672,11 @@
           else { const st = { key: base + '/spellInstead', type: 'spell', label: t('Sheet.Step.SpellInstead'), field: '', done: false }; drawerSteps.set(st.key, st); todo += stepRow(st) }  // anciennes données : seul « Sort OU talent » est réglé
         } else if (ci.instead && !alt.length && ci.insteadDone) { const st = { key: base + '/spellInstead', type: 'spell', label: t('Sheet.Step.SpellInstead'), field: '', done: true }; drawerSteps.set(st.key, st); steps.push(st) }
       }
-      const book = [f.levelLangProf, f.levelOptions, f.options].filter(Boolean).map((x) => `<p class="sub book">${esc(x)}</p>`).join('') +
+      const book = [f.levelLangProf, f.levelOptions, f.options].filter(Boolean).map((x) => `<p class="sub book">${mdLite(x)}</p>`).join('') +
         (f.levelTalent && !v.choices.length ? `<p class="sub warn">${esc(t('Sheet.Step.NoTalentDefined'))}</p>` : '')   // « Donne 1 talent » coché sans talent dans « Talents au choix » : rien à choisir
       const results2 = stepResults(steps)
       if (!got && !todo && !book && !results2) return ''
-      return box(`${g.root.name} · ${t('Character.Level')} ${n}`, `${todo ? `<div class="lbl">${esc(t('Sheet.Step.ToChoose'))}</div>${todo}` : ''}${results2 ? `<div class="resbox">${results2}</div>` : ''}${got ? `<div class="lbl" style="margin-top:8px">${esc(t('Sheet.Step.AutoSummary'))}</div>${got}` : ''}${book}`, 'tight')
+      return box(`${g.root.name} · ${t('Character.Level')} ${n}`, `${todo ? `<div class="lbl">${esc(t('Sheet.Step.ToChoose'))}</div>${todo}` : ''}${book}${results2 ? `<div class="resbox">${results2}</div>` : ''}${got ? `<div class="lbl" style="margin-top:8px">${esc(t('Sheet.Step.AutoSummary'))}</div>${got}` : ''}`, 'tight')   // phrases du livre (langues et professions…) : avec les choix à faire, avant les choix déjà faits
     }).join('')).join('')
     const paths = pathSteps(d, lvl).filter((x) => !x.done || x.req.min === lvl)   // voies : seulement celle du niveau visé, ou celles qu'il reste à choisir
     // choix ouverts à tous : à faire (tous niveaux atteints) ; faits : seulement pour le niveau actuel ou ceux déjà affichés dans cette fenêtre
@@ -1663,7 +1698,7 @@
     if ((a.startLanguages || []).length) out.push(tf('Sheet.Create.AutoLangs', { l: a.startLanguages.map((x) => slName(x)).join(', ') }))
     if ((a.startProfessions || []).length) out.push(tf('Sheet.Create.AutoProfs', { p: a.startProfessions.map((x) => x.name).join(', ') }))
     if ((a.talent || []).length) out.push(tf('Sheet.Create.AutoTraits', { t: a.talent.map((x) => x.name).join(', ') }))
-    return out.length ? `<div class="dsub auto"><b>${esc(t('Sheet.Create.AutoLabel'))}</b>${out.map((x) => `<div>${esc(x)}</div>`).join('')}</div>` : ''
+    return out.length ? `<div class="lbl" style="margin-top:8px">${esc(t('Sheet.Step.AutoSummary'))}</div>${out.map((x) => `<div class="got">${esc(x)}</div>`).join('')}` : ''   // même présentation que la montée de niveau, dans le cadre « Ascendance »
   }
   function creationHTML(d) {
     const S = creationSteps(d), anc = d.ancestry || {}
@@ -1671,8 +1706,7 @@
     const info = ''
     return `<h3 class="dtitle">${esc(t('Sheet.Create.Title'))}</h3>
       <p class="dsub">${esc(t('Sheet.Create.IntroShort'))}</p>
-      ${creationAuto(d)}
-      ${box(t('Sheet.Create.Origin'), stepList(S.filter((x) => x.scope !== 'all')) + (S.some((x) => x.scope !== 'all' && x.done) ? `<div class="resbox">${stepResults(S.filter((x) => x.scope !== 'all'))}</div>` : '') + info + (anc.languagesProfessions ? `<p class="sub book">${esc(anc.languagesProfessions)}</p>` : ''), 'tight')}
+      ${box(t('Sheet.Create.Origin'), stepList(S.filter((x) => x.scope !== 'all')) + (anc.languagesProfessions ? `<p class="sub book">${mdLite(anc.languagesProfessions)}</p>` : '') + (S.some((x) => x.scope !== 'all' && x.done) ? `<div class="resbox">${stepResults(S.filter((x) => x.scope !== 'all'))}</div>` : '') + creationAuto(d) + info, 'tight')}
       ${S.some((x) => x.scope === 'all') ? box(t('Sheet.Open.Title'), stepList(S.filter((x) => x.scope === 'all')) + (S.some((x) => x.scope === 'all' && x.done) ? `<div class="resbox">${stepResults(S.filter((x) => x.scope === 'all'))}</div>` : ''), 'tight') : ''}
 
       <div style="margin:8px 0 4px"><button type="button" class="btn on" id="cr-done"${ok ? off() : ' disabled'}>${esc(t('Sheet.Create.Done'))}</button></div>`
@@ -1750,12 +1784,12 @@
         await hero.insert('data.professionList', { name: String(r.data.pn).trim(), detail: String(r.data.pd || '').trim() }); await mark(st.key, tf('Sheet.Step.ProfDone', { n: String(r.data.pn).trim() }), { t: 'prof', name: String(r.data.pn).trim() })
       }
     } else if (st.type === 'identity') {
-      const ag = String(hero.get('data.age') || ''), rl = String(hero.get('data.religion') || '')
-      const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Create.IdentityHint'))}</p><input type="text" name="age" placeholder="${esc(t('Character.Age'))}" value="${esc(ag)}"><input type="text" name="religion" placeholder="${esc(t('Character.Religion'))}" value="${esc(rl)}">`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
+      const fl = st.fld === 'religion' ? 'religion' : 'age', cur = String(hero.get('data.' + fl) || '')
+      const r = await dialog(st.label, `<p class="sub">${esc(t(fl === 'age' ? 'Sheet.Create.AgeHint' : 'Sheet.Create.ReligionHint'))}</p><input type="text" name="v" placeholder="${esc(t(fl === 'age' ? 'Character.Age' : 'Character.Religion'))}" value="${esc(cur)}">`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.Validate'), value: 'ok', primary: true }])
       if (r.value !== 'ok') return
-      const a = String(r.data.age || '').trim(), g = String(r.data.religion || '').trim()
-      await hero.set('data.age', a); await hero.set('data.religion', g)
-      await mark(st.key, tf('Sheet.Create.IdentityDone', { a: a || '—', r: g || '—' }), { t: 'identity' })
+      const v = String(r.data.v || '').trim()
+      await hero.set('data.' + fl, v)
+      await mark(st.key, tf(fl === 'age' ? 'Sheet.Create.AgeDone' : 'Sheet.Create.ReligionDone', { v: v || '—' }), { t: 'identity', fld: fl })
     } else if (st.type === 'resources') {
       // la table du livre n'est pas dans le système : on propose de l'ouvrir seulement si une table nommée « Ressources » existe dans la bibliothèque
       let tbl = null
@@ -1876,10 +1910,10 @@
         await hero.insert('data.professionList', { name: String(r.data.pn).trim(), detail: String(r.data.pd || '').trim() }); await mark(st.key, tf('Sheet.Step.ProfDone', { n: String(r.data.pn).trim() }), { t: 'prof', name: String(r.data.pn).trim() })
       }
     } else if (st.type === 'tradition') {
-      const k = await pickTradition(st.label); if (!k) return
+      const k = await pickTradition(st.label, st.only); if (!k) return
       await hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)); await mark(st.key, tf('Sheet.Step.TradDone', { n: EP.label('SpellTradition', k) }), { t: 'trad', k })
     } else if (st.type === 'spell') {
-      const picked = await pickEntries('Spell', st.label, { single: true, knownTraditions: true }); if (!picked[0]) return
+      const picked = await pickEntries('Spell', st.label, Object.assign({ single: true, knownTraditions: true }, onlyOpts(st.only))); if (!picked[0]) return
       await hero.embed('data.spells', picked[0], spellKeys)
       await mark(st.key, tf('Sheet.Step.SpellDone', { n: picked[0].name }), { t: 'spell', name: picked[0].name })
     } else if (st.type === 'cantrip') {
@@ -1889,8 +1923,8 @@
     } else if (st.type === 'mchoice' || st.type === 'tradspell') {
       const r = await dialog(st.label, `<p class="sub">${esc(t('Sheet.Step.MChoiceAsk'))}</p>`, [{ label: t('Sheet.Cancel'), value: null }, { label: t('Sheet.Step.NewTrad'), value: 'trad' }, { label: t('Sheet.Step.ASpell'), value: 'spell' }])
       if (!r.value) return
-      if (r.value === 'trad') { const k = await pickTradition(t('Sheet.Step.Tradition')); if (!k) return; await hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)); await mark(st.key, tf('Sheet.Step.TradDone', { n: EP.label('SpellTradition', k) }), { t: 'trad', k }) }
-      else { const picked = await pickEntries('Spell', t('Sheet.Step.Spell'), { single: true, knownTraditions: true }); if (!picked[0]) return; await hero.embed('data.spells', picked[0], spellKeys); await mark(st.key, tf('Sheet.Step.SpellDone', { n: picked[0].name }), { t: 'spell', name: picked[0].name }) }
+      if (r.value === 'trad') { const k = await pickTradition(t('Sheet.Step.Tradition'), st.only); if (!k) return; await hero.set('data.traditions', (hero.get('data.traditions') || []).concat(k)); await mark(st.key, tf('Sheet.Step.TradDone', { n: EP.label('SpellTradition', k) }), { t: 'trad', k }) }
+      else { const picked = await pickEntries('Spell', t('Sheet.Step.Spell'), Object.assign({ single: true, knownTraditions: true }, onlyOpts(st.only))); if (!picked[0]) return; await hero.embed('data.spells', picked[0], spellKeys); await mark(st.key, tf('Sheet.Step.SpellDone', { n: picked[0].name }), { t: 'spell', name: picked[0].name }) }
     } else if (st.type === 'pickAncestry') {
       const picked = await pickEntries('Ancestry', st.label, { single: true }); if (!picked[0]) return
       await hero.embed('data.ancestry', picked[0], ANC_KEYS)
@@ -2092,8 +2126,8 @@
     renderWeapons(d); renderActions(d)
     { const tv = String(hero.get('data.turn') || 'none'), tb = $('turn'); tb.className = 'tchip ' + tv; tb.disabled = !connected; text(tb, tv === 'fast' ? '⚡ ' + t('TurnType.Fast') : tv === 'slow' ? '⏳ ' + t('TurnType.Slow') : t('TurnType.None')) }
     const heal = d.healingValue
-    text($('rest-8-sub'), heal != null ? `soigne ${heal}` : '')
-    text($('rest-24-sub'), heal != null ? `soigne ${heal * 2}` : '')
+    text($('rest-8-sub'), heal != null ? tf('Sheet.RestHeals', { n: heal }) : '')
+    text($('rest-24-sub'), heal != null ? tf('Sheet.RestHeals', { n: heal * 2 }) : '')
     $('rest-8').disabled = $('rest-24').disabled = !connected || heal == null
     renderMagic(d); renderTalents(d); renderItems(d); renderPerso(d)
     if (!connected) status.textContent = t('Sheet.Offline')
