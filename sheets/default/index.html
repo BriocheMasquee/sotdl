@@ -1055,7 +1055,7 @@
     if (!diff('items', [ui.edit, last.status, items.map((it) => [it.name, it.quantity, it.equipped, it.itemType, it.weaponType, it.weaponDamage, it.armorDefenseFixed, it.uses, it.usesSpent]), enc.total, str, d.defenseValue, rec.armorName, rec.shieldName])) return
     const total = Number(enc.total ?? 0), dbl = Number(enc.double ?? 2 * str), over = str > 0 && total > str, heavy = str > 0 && total > dbl
     $('enc').className = 'enc' + (over ? ' over' : '')
-    $('enc').innerHTML = `<span class="el">${esc(t('Character.Encumbrance'))}</span><span class="gauge wide"><i style="width:${str > 0 ? Math.min(100, Math.round(100 * total / str)) : 0}%"></i></span><b>${total} / ${str || '—'}${over ? ' · ' + esc(heavy ? t('Character.EncOverloaded') : t('Character.EncEncumbered')) : ''}</b>${over ? `<div class="encx sub">${esc(heavy ? t('Character.TooHeavy') : t('Character.Encumbered'))}</div>` : ''}`
+    $('enc').innerHTML = `<span class="el">${esc(t('Character.Encumbrance'))}</span><span class="gauge wide"><i style="width:${str > 0 ? Math.min(100, Math.round(100 * total / str)) : 0}%"></i></span><b>${total} / ${str}${over ? ' · ' + esc(heavy ? t('Character.EncOverloaded') : t('Character.EncEncumbered')) : ''}</b>${over ? `<div class="encx sub">${esc(heavy ? t('Character.TooHeavy') : t('Character.Encumbered'))}</div>` : ''}`
     const row = (it, i) => {
       const can = equippable(it), eq = can && !!it.equipped, q = it.quantity ?? 1
       const qty = `<input type="number" class="qin" min="0" value="${q}" data-qi="${i}" aria-label="${esc(t('Character.Quantity'))}" title="${esc(t('Character.Quantity'))}"${off()}>`
