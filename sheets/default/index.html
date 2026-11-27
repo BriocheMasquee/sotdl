@@ -1672,8 +1672,7 @@
           else { const st = { key: base + '/spellInstead', type: 'spell', label: t('Sheet.Step.SpellInstead'), field: '', done: false }; drawerSteps.set(st.key, st); todo += stepRow(st) }  // anciennes données : seul « Sort OU talent » est réglé
         } else if (ci.instead && !alt.length && ci.insteadDone) { const st = { key: base + '/spellInstead', type: 'spell', label: t('Sheet.Step.SpellInstead'), field: '', done: true }; drawerSteps.set(st.key, st); steps.push(st) }
       }
-      const book = [f.levelLangProf, f.levelOptions, f.options].filter(Boolean).map((x) => `<p class="sub book">${mdLite(x)}</p>`).join('') +
-        (f.levelTalent && !v.choices.length ? `<p class="sub warn">${esc(t('Sheet.Step.NoTalentDefined'))}</p>` : '')   // « Donne 1 talent » coché sans talent dans « Talents au choix » : rien à choisir
+      const book = [f.levelLangProf, f.levelOptions, f.options].filter(Boolean).map((x) => `<p class="sub book">${mdLite(x)}</p>`).join('')
       const results2 = stepResults(steps)
       if (!got && !todo && !book && !results2) return ''
       return box(`${g.root.name} · ${t('Character.Level')} ${n}`, `${todo ? `<div class="lbl">${esc(t('Sheet.Step.ToChoose'))}</div>${todo}` : ''}${book}${results2 ? `<div class="resbox">${results2}</div>` : ''}${got ? `<div class="lbl" style="margin-top:8px">${esc(t('Sheet.Step.AutoSummary'))}</div>${got}` : ''}`, 'tight')   // phrases du livre (langues et professions…) : avec les choix à faire, avant les choix déjà faits

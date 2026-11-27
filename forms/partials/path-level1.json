@@ -117,21 +117,16 @@
       "type": "group",
       "fields": [
         {
-          "title": "Level.Talent",
-          "type": "toggle",
-          "attribute": "data.levelTalent"
-        },
-        {
           "title": "Level.ChoicePick",
           "type": "number",
           "attribute": "data.levelChoicePick",
-          "visibleIf": "{% if data.levelTalent %}true{% endif %}"
+          "defaultValue": 1
         },
         {
           "title": "Level.SpellInstead",
           "type": "toggle",
           "attribute": "data.levelSpellInstead",
-          "visibleIf": "{% if data.levelTalent %}{% if data.levelSpell or data.levelTradition %}true{% endif %}{% endif %}"
+          "visibleIf": "{% if data.levelSpell or data.levelTradition %}true{% endif %}"
         }
       ]
     },
